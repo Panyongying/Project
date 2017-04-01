@@ -1,5 +1,5 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<!-- saved from url=(0118)http://www2.hm.com/zh_c/Project/project/Public/show.html?utm_source=baidu&utm_medium=cpc&utm_campaign=brandzone&utm_content=desktop_heading -->
+<!-- saved from url=(0118)http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html?utm_source=baidu&utm_medium=cpc&utm_campaign=brandzone&utm_content=desktop_heading -->
 <html lang="zh" class="js history rgba no-touchevents lastchild nthchild oninput backgroundsize borderradius flexbox flexboxlegacy csstransforms csstransitions grunticon ng-scope" ng-app="hmApp">
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,15 +7,15 @@
         </style>
         
         
-        <link rel="stylesheet" href="/Project/project/Public/show/icons.data.svg.css" media="all">
-            <link rel="stylesheet" href="/Project/project/Public/show/shared.min.css" type="text/css">
-            <link rel="stylesheet" href="/Project/project/Public/show/general.min.css" type="text/css">
+        <link rel="stylesheet" href="/www/pro/Project/project/Public/show/icons.data.svg.css" media="all">
+            <link rel="stylesheet" href="/www/pro/Project/project/Public/show/shared.min.css" type="text/css">
+            <link rel="stylesheet" href="/www/pro/Project/project/Public/show/general.min.css" type="text/css">
 
-            <link rel="stylesheet" href="/Project/project/Public/show/checkout.min.css" type="text/css">
+            <link rel="stylesheet" href="/www/pro/Project/project/Public/show/checkout.min.css" type="text/css">
 
-            <link rel="stylesheet" href="/Project/project/Public/show/myhm.min.css" type="text/css">
+            <link rel="stylesheet" href="/www/pro/Project/project/Public/show/myhm.min.css" type="text/css">
 
-        <link href="/Project/project/Public/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css"> 
+        <link href="/www/pro/Project/project/Public/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css"> 
 
     <!-- to include grunticon -->
     	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,15 +31,15 @@
         	<meta property="og:site_name" content="H&amp;M">
         	<meta property="og:type" content="website">
         	
-            <meta property="og:url" content="http://www2.hm.com/zh_c/Project/project/Public/show.html">
+            <meta property="og:url" content="http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html">
     	<meta property="fb:app_id" content="1433700643510498">
 
         <link rel="icon" type="image/vnd.microsoft.icon" href="http://www2.hm.com/etc/designs/hm/favicon.ico">
         <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://www2.hm.com/etc/designs/hm/favicon.ico">
 
-    	<link rel="canonical" href="http://www2.hm.com/zh_c/Project/project/Public/show.html">
+    	<link rel="canonical" href="http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html">
     		
-    	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m2.hm.com/m/zh_c/Project/project/Public/show.html">
+    	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m2.hm.com/m/zh_c/www/pro/Project/project/Public/show.html">
     		
      
        <title>H&M</title>
@@ -60,7 +60,7 @@
                     <div class="warehousemessage"></div>
 
                     <div class="wrapper" ng-init="hmClubEnabled=false; offersSpace=&#39;&#39;; hmClubServiceCacheDuration=0; hmRedirectPath=&#39;&#39;">
-                        <a href="http://www2.hm.com/zh_c/Project/project/Public/show.html" title="HM.com" class="logotype hidden-text">HM.com</a>
+                        <a href="http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html" title="HM.com" class="logotype hidden-text">HM.com</a>
                     <div class="parbase topnav">
 
 
@@ -2074,7 +2074,7 @@
                         <div class="signin-not-signed-in">
                             <a class="goto-my-hm" href="https://www2.hm.com/zh_cn/my-account" rel="noreferrer">我的H&amp;M</a>
                             
-                            <a href="http://www2.hm.com/zh_c/Project/project/Public/show.html?utm_source=baidu&utm_medium=cpc&utm_campaign=brandzone&utm_content=desktop_heading#" class="goto-sign-in rollover-toggle" onclick="trackLinkAccountHeader()">登录/加入</a>
+                            <a href="http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html?utm_source=baidu&utm_medium=cpc&utm_campaign=brandzone&utm_content=desktop_heading#" class="goto-sign-in rollover-toggle" onclick="trackLinkAccountHeader()">登录/加入</a>
                             <div class="signin-rollover popdown row">
                                 <div class="inner">
                                   <div class="signin-rollover-login">
@@ -2215,7 +2215,7 @@
                         	
                           <div class="background-image teaser-image rimd">
 
-                            <img src="/Project/project/Public/show/1.jpg"> <!-- 首页大图 -->
+                            <img src="/www/pro/Project/project/Public/show/1.jpg"> <!-- 首页大图 -->
                           </div>
 
                  <!-- 大图描述1 -->
@@ -2246,7 +2246,7 @@
                             <div class="department-product-item">
                               <article class="product-item" data-articlecode="0484891003" data-newarrivals-first-article="true" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0484891003&#39;);"><!-- Product item -->
                     				<a href="http://www2.hm.com/zh_cn/productpage.0484891003.html" data-cta-tracking="false" title="双层雪纺上衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="双层雪纺上衣" class="product-item-image" src="/Project/project/Public/show/hmprod(1)" title="双层雪纺上衣">
+                    	               <img width="260" height="390" alt="双层雪纺上衣" class="product-item-image" src="/www/pro/Project/project/Public/show/hmprod(1)" title="双层雪纺上衣">
                     	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0484891003|双层雪纺上衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
                     	            </a>
                     	            <div class="product-item-details">
@@ -2262,7 +2262,7 @@
                             <div class="department-product-item">
                               <article class="product-item" data-articlecode="0504168001" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0504168001&#39;);"><!-- Product item -->
                     				<a href="http://www2.hm.com/zh_cn/productpage.0504168001.html" data-cta-tracking="false" title="提花梭织紧身胸衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="提花梭织紧身胸衣" class="product-item-image" src="/Project/project/Public/show/hmprod(2)" title="提花梭织紧身胸衣">
+                    	               <img width="260" height="390" alt="提花梭织紧身胸衣" class="product-item-image" src="/www/pro/Project/project/Public/show/hmprod(2)" title="提花梭织紧身胸衣">
                     	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0504168001|提花梭织紧身胸衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
                     	            </a>
                     	            <div class="product-item-details">
@@ -2278,7 +2278,7 @@
                             <div class="department-product-item">
                             <article class="product-item" data-articlecode="0524124002" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0524124002&#39;);"><!-- Product item -->
                     				<a href="http://www2.hm.com/zh_cn/productpage.0524124002.html" data-cta-tracking="false" title="褶边上衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="褶边上衣" class="product-item-image" src="/Project/project/Public/show/hmprod(3)" title="褶边上衣">
+                    	               <img width="260" height="390" alt="褶边上衣" class="product-item-image" src="/www/pro/Project/project/Public/show/hmprod(3)" title="褶边上衣">
                     	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0524124002|褶边上衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
                     	            </a>
                     	            <div class="product-item-details">
@@ -2294,7 +2294,7 @@
                             <div class="department-product-item">
                               <article class="product-item" data-articlecode="0482832001" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0482832001&#39;);"><!-- Product item -->
                     				<a href="http://www2.hm.com/zh_cn/productpage.0482832001.html" data-cta-tracking="false" title="绑带棉质衬衫" class="product-item-link">
-                    	               <img width="260" height="390" alt="绑带棉质衬衫" class="product-item-image" src="/Project/project/Public/show/hmprod(4)" title="绑带棉质衬衫">
+                    	               <img width="260" height="390" alt="绑带棉质衬衫" class="product-item-image" src="/www/pro/Project/project/Public/show/hmprod(4)" title="绑带棉质衬衫">
                     	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0482832001|绑带棉质衬衫|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
                     	            </a>
                     	            <div class="product-item-details">
@@ -2319,13 +2319,13 @@
                             
                 	<div class="background-image teaser-image rimd">
                  
-                        <img src="/Project/project/Public/show/hmprod(5)">
+                        <img src="/www/pro/Project/project/Public/show/hmprod(5)">
                     </div>
                     	<div class="text-container" data-text-placement="center bottom" data-text-alignment="center" data-text-color="black">
                     	
                     	<div class="logo-image rimd" style="padding-bottom:41.875%;">
                     	
-                    	   <img src="/Project/project/Public/show/hmprod(6)">
+                    	   <img src="/www/pro/Project/project/Public/show/hmprod(6)">
                         </div>
                     	
                     	
@@ -2339,7 +2339,7 @@
                 		<article class="merch-ladder-plate teaser-media " data-item-ratio="2x3" data-view-tracking="false" data-activity-type="MERCH" data-activity-code="CN31_QINGMING" data-promotion-creative="CN31 QINGMING">
                 	<div class="background-image teaser-image rimd">
 
-                        <img src="/Project/project/Public/show/hmprod(7)">
+                        <img src="/www/pro/Project/project/Public/show/hmprod(7)">
                         </div>
                     	<div class="background-plate" data-background-color="white">
                     </div>
@@ -2372,7 +2372,7 @@
                         <a href="http://www2.hm.com/zh_cn/ladies/offers-highlights/season-s-shirts.html" data-promotion-page-id="Ladies : Offersandhighlights : Cnl12 - Seasons Shirts : Seasons shirts" data-promotion-page-category="LADIES_OFFERSANDHIGHLIGHTS : CNL12 - SEASONS SHIRTS_CNL12 - SEASONS SHIRTS : SEASONS SHIRTS_VIEW_ALL" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
                         	<div class="background-image teaser-image rimd">
 
-                                <img src="/Project/project/Public/show/hmprod(8)"></div>
+                                <img src="/www/pro/Project/project/Public/show/hmprod(8)"></div>
                         	
                             <div class="text-container" data-text-color="black">
                             	
@@ -2393,13 +2393,13 @@
                         <article class="default-m-sans  teaser-media  single-cta" data-item-ratio="2x3" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NC" data-promotion-creative="8NC Teaser page part 1" id="track_832539"><a href="https://globalchangeaward.com/" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">阅读更多</a>
                             	<div class="background-image teaser-image rimd">
                              
-                                    <img src="/Project/project/Public/show/hmprod(9)">
+                                    <img src="/www/pro/Project/project/Public/show/hmprod(9)">
                                 </div>
                                 	<div class="text-container" data-text-placement="center middle" data-text-alignment="center" data-text-color="white">
                                 	
                                 	<div class="logo-image rimd" style="padding-bottom:32.8125%;">
 
-                                	<img src="/Project/project/Public/show/hmprod(10)"></div>
+                                	<img src="/www/pro/Project/project/Public/show/hmprod(10)"></div>
                                 	<h3 class="heading">为时尚新理念投票</h3>
                                 	<p class="preamble-bottom">五大新創意，為保護地球出一分力。百萬歐元大獎花落誰家，你們來決定！<br>
                                 <br></p>
@@ -2413,7 +2413,7 @@
                         <article class="default-m-sans  teaser-media  single-cta" data-item-ratio="2x3" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NE" data-promotion-creative="8NE Teaser page" id="track_832540"><a href="http://www2.hm.com/zh_cn/men/shop-by-feature/8ne-modern-casual.html" data-promotion-page-id="Men : Shopbyfeature : 8Ne - Modern Casual" data-promotion-page-category="MEN_SHOPBYFEATURE _8NE - MODERN CASUAL" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
                             	<div class="background-image teaser-image rimd">
 
-                                     <img src="/Project/project/Public/show/hmprod(11)">
+                                     <img src="/www/pro/Project/project/Public/show/hmprod(11)">
                                 </div>
                             	<div class="text-container" data-text-placement="center bottom" data-text-alignment="center" data-text-color="white">
                                 	<p class="vignette">春季风尚</p>
@@ -2437,7 +2437,7 @@
                 	
                     	<div class="background-image teaser-image rimd">
                      
-                            <img src="/Project/project/Public/show/hmprod(12)">
+                            <img src="/www/pro/Project/project/Public/show/hmprod(12)">
                         </div>
                         	<div class="text-container" data-text-placement="right middle" data-text-alignment="center" data-text-color="white">
                         	<p class="vignette">尺码 18个月-14岁+</p>
@@ -2459,7 +2459,7 @@
                                 <a href="http://www2.hm.com/zh_cn/customer-service/newsletter.html" data-promotion-page-id="CUSTOMER_SERVICE_NEWSLETTER" data-promotion-page-category="CUSTOMER_SERVICE_NEWSLETTER" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">注册</a>
                         	<div class="background-image teaser-image rimd">
 
-                                <img src="/Project/project/Public/show/hmprod(13)">
+                                <img src="/www/pro/Project/project/Public/show/hmprod(13)">
                             </div>
                         	<div class="background-plate" data-background-color="white"> </div>
                        
@@ -2483,7 +2483,7 @@
                         <article class="merch-customer-deal-small-top teaser-media " data-item-ratio="2x3" data-view-tracking="false" data-activity-type="MERCH" data-promotion-creative="Wechat Follow Us">
                         	<div class="background-image teaser-image rimd">
                          
-                                <img src="/Project/project/Public/show/hmprod(14)">
+                                <img src="/www/pro/Project/project/Public/show/hmprod(14)">
                             </div>
                                 	
                             <div class="text-container" data-text-color="black">
@@ -2501,7 +2501,7 @@
                                 <a href="http://www2.hm.com/zh_cn/customer-service/download-app.html" data-promotion-page-id="Customer Service Downloadapp (View All)" data-promotion-page-category="CUSTOMER_SERVICE_DOWNLOADAPP" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">阅读更多</a>
                                 <div class="background-image teaser-image rimd">
                              
-                                    <img src="/Project/project/Public/show/hmprod(15)">
+                                    <img src="/www/pro/Project/project/Public/show/hmprod(15)">
                                 </div>
                         	
                                 <div class="text-container" data-text-color="black">
@@ -2530,7 +2530,7 @@
                         	
                         	<div class="background-image teaser-image rimd">
 
-                                <img src="/Project/project/Public/show/hmprod(16)">
+                                <img src="/www/pro/Project/project/Public/show/hmprod(16)">
                             </div>
                             <div class="text-container" data-text-placement="right middle" data-text-alignment="center" data-text-color="black">
                             	<p class="vignette">MAGAZINE</p>
@@ -2566,7 +2566,7 @@
                                             <a href="http://www2.hm.com/zh_cn/life/fashion/featured-fashion/dree-and-drake-wear-springs-essentials.html" data-cta-tracking="true" data-promotion-page-id="Dree and Drake wear Spring’s essentials" data-promotion-page-category="LIFE_FASHION_FEATUREDFASHION_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
                                             <div class="background-image teaser-image rimd">
                                         
-                                                <img src="/Project/project/Public/show/hmprod(17)" alt="FEATURED FASHION" title="FEATURED FASHION">
+                                                <img src="/www/pro/Project/project/Public/show/hmprod(17)" alt="FEATURED FASHION" title="FEATURED FASHION">
                                             </div>
                                                 
                                             <div class="text-container">
@@ -2585,7 +2585,7 @@
                                         <a href="http://www2.hm.com/zh_cn/life/fashion/editors-picks/this-week_s-fashion-finds2017-03-b3.html" data-cta-tracking="true" data-promotion-page-id="This week’s fashion finds_2017 03 B3" data-promotion-page-category="LIFE_FASHION_EDITORSPICKS_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
                                             <div class="background-image teaser-image rimd">
                                             
-                                            <img src="/Project/project/Public/show/hmprod(18)" alt="EDITORS PICKS" title="EDITORS PICKS"></div>
+                                            <img src="/www/pro/Project/project/Public/show/hmprod(18)" alt="EDITORS PICKS" title="EDITORS PICKS"></div>
                                                 
                                                 <div class="text-container">
                                                 	<p class="vignette">EDITORS PICKS</p>
@@ -2600,7 +2600,7 @@
                                         <article class="hm-life teaser-media single-cta" data-view-tracking="true" data-activity-type="LIFE" data-activity-code="Zara Larsson’s top music and fashion picks" data-promotion-creative="Zara Larsson’s top music and fashion picks" id="track_832547"><a href="http://www2.hm.com/zh_cn/life/culture/interview/zara-larsson_s-top-music-and-fashion-picks.html" data-cta-tracking="true" data-promotion-page-id="Zara Larsson’s top music and fashion picks" data-promotion-page-category="LIFE_CULTURE_INTERVIEW_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
                                             <div class="background-image teaser-image rimd">
                                           
-                                            <img src="/Project/project/Public/show/hmprod(19)" alt="INTERVIEW" title="INTERVIEW"></div>
+                                            <img src="/www/pro/Project/project/Public/show/hmprod(19)" alt="INTERVIEW" title="INTERVIEW"></div>
                                                 
                                                 <div class="text-container">
                                                 	<p class="vignette">INTERVIEW</p>
@@ -2627,7 +2627,7 @@
 
         <footer class="footer-global responsive"><!-- Footer -->
 
-                <!-- Global Include Footer LaTime /content/hmonline/zh_c/Project/project/Public/show : Wed Mar 29 11:21:25 CEST 2017  -->
+                <!-- Global Include Footer LaTime /content/hmonline/zh_c/www/pro/Project/project/Public/show : Wed Mar 29 11:21:25 CEST 2017  -->
                         
                 <div class="layout">
 
@@ -2870,7 +2870,7 @@
 
                 </div>
 
-                <a href="http://www2.hm.com/zh_c/Project/project/Public/show.html" class="footer-logotype icon icon-hm-white hidden-text">H&amp;M</a>
+                <a href="http://www2.hm.com/zh_c/www/pro/Project/project/Public/show.html" class="footer-logotype icon icon-hm-white hidden-text">H&amp;M</a>
                 </div>
            
         </footer><!-- /Footer -->
