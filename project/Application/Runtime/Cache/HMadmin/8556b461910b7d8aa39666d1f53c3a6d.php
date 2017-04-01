@@ -1,23 +1,23 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html class="no-js">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<block name="title">
-<title></title>
-</block>
+
+	<title>会员管理</title>
+
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="__PUBLIC__/Backstage/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/Backstage/i/app-icon72x72@2x.png">
+<link rel="icon" type="image/png" href="/Project/project/Public/Backstage/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="/Project/project/Public/Backstage/i/app-icon72x72@2x.png">
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="__PUBLIC__/Backstage/css/amazeui.min.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Backstage/css/admin.css">
-<script src="__PUBLIC__/Backstage/js/jquery.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/app.js"></script>
+<link rel="stylesheet" href="/Project/project/Public/Backstage/css/amazeui.min.css"/>
+<link rel="stylesheet" href="/Project/project/Public/Backstage/css/admin.css">
+<script src="/Project/project/Public/Backstage/js/jquery.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/app.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -33,7 +33,7 @@
 
 <!-- header part start -->
 <header class="am-topbar admin-header">
-    <div class="am-topbar-brand"><img src="__PUBLIC__/Backstage/i/logo.png"></div>
+    <div class="am-topbar-brand"><img src="/Project/project/Public/Backstage/i/logo.png"></div>
 
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
       <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
@@ -59,7 +59,7 @@
 
    <li class="kuanjie">
    	
-   	<a href="__APP__/HMadmin/User/index">会员管理</a>          
+   	<a href="/Project/project/index.php/HMadmin/User/index">会员管理</a>          
    	<a href="#">奖金管理</a> 
    	<a href="#">订单管理</a>   
    	<a href="#">产品管理</a> 
@@ -120,9 +120,9 @@
         <li>发货单列表</li>
         <li>换货单列表</li>
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="__APP__/HMadmin/User/index">会员管理</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="/Project/project/index.php/HMadmin/User/index">会员管理</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/User/index">会员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/User/index">会员列表</a> </li>
         <li>未激活会员</li>
         <li>团队系谱图</li>
         <li>会员推荐图</li>
@@ -188,11 +188,115 @@
 </div>
 <!-- admin-content part end -->
 
-<block name="content">
-<!-- admin-content part start -->
 
-   
-</block>
+	<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-users"> 会员管理</ul>
+      
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">商品列表</a></dl>
+      
+      <dl>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加会员</button>
+      </dl>
+      <!--这里打开的是新页面-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
+
+
+    <form class="am-form am-g">
+          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+              <tr class="am-success">
+                <th class="table-check"><input type="checkbox" /></th>
+
+                <th class="table-id">ID</th>
+                <th class="table-title">会员email</th>
+                <th class="table-type">会员状态</th>
+                <th class="table-author am-hide-sm-only">注册日期</th>
+                <th width="130px" class="table-set">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
+                <td><input type="checkbox" /></td>
+                
+                <td><?php echo ($vo["id"]); ?></td>
+                <td><?php echo ($vo["email"]); ?></td>
+                <td><?php echo ($vo["status"]); ?></td>            
+                <td class="am-hide-sm-only"><?php echo ($vo["addtime"]); ?></td>
+                <td>
+                	
+                	
+                	<div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
+                    </div>
+                  </div>
+                	
+   	
+                </td>
+              </tr><?php endforeach; endif; ?>
+        
+            </tbody>
+          </table>
+          
+                 <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+            </div>
+          
+          <ul class="am-pagination am-fr">
+                <li class="am-disabled"><a href="#">«</a></li>
+                <li class="am-active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+              </ul>
+          
+          
+          
+      
+          <hr />
+          <p>注：.....</p>
+        </form>
+
    
    
 
@@ -215,13 +319,13 @@
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="__PUBLIC__/Backstage/js/polyfill/rem.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/polyfill/respond.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/amazeui.legacy.js"></script>
+<script src="/Project/project/Public/Backstage/js/polyfill/rem.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/polyfill/respond.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/amazeui.legacy.js"></script>
 <![endif]--> 
 
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="__PUBLIC__/Backstage/js/amazeui.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/amazeui.min.js"></script>
 <!--<![endif]-->
 
 

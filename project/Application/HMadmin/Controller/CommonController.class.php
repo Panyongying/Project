@@ -1,6 +1,6 @@
 <?php
 
-	namespace Admin\Controller;
+	namespace HMadmin\Controller;
 
 	use Think\Controller;
 
@@ -12,13 +12,13 @@
 		{
 			parent::__construct();
 
-	/*			//判断是否登录
-			if ( !$_SESSION['admin'] ) {
+				//判断是否登录
+			if ( !$_SESSION['adminInfo'] ) {
 
 				$this->error('请登录', U('Public/login') );
 
 				exit;
-			}*/
+			}
 
 
 			// 登陆成功后还需要判断对某个方法是否有权限

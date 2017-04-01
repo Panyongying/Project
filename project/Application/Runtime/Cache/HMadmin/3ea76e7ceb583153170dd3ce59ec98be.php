@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>html5响应式后台登录界面模板</title>
+<title>后台登录界面模板</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -35,10 +35,10 @@
 			</div>
 		
 			<div class="login_form">
-				<form action="index.html" id="login_form" method="post">
+				<form action="" id="login_form" method="post">
 					<div class="form-group">
-						<label for="j_username" class="t">邮　箱：</label> 
-						<input id="email" value="" name="email" type="text" class="form-control x319 in" 
+						<label for="j_username" class="t">用　户：</label> 
+						<input id="name" value="" name="name" type="text" class="form-control x319 in" 
 						autocomplete="off">
 					</div>
 					<div class="form-group">
@@ -46,11 +46,7 @@
 						<input id="password" value="" name="password" type="password" 
 						class="password form-control x319 in">
 					</div>
-					<div class="form-group">
-						<label for="j_captcha" class="t">验证码：</label>
-						 <input id="j_captcha" name="j_captcha" type="text" class="form-control x164 in">
-						<img id="captcha_img" alt="点击更换" title="点击更换" src="/Project/project/Public/AdminLogin/images/captcha.jpeg" class="m">
-					</div>
+					
 					<div class="form-group">
 						<label class="t"></label>
 						<label for="j_remember" class="m">
@@ -58,7 +54,7 @@
 					</div>
 					<div class="form-group space">
 						<label class="t"></label>　　　
-						<button type="button"  id="submit_btn" 
+						<button id="submit_btn" 
 						class="btn btn-primary btn-lg">&nbsp;登&nbsp;录&nbsp </button>
 						<input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
 					</div>

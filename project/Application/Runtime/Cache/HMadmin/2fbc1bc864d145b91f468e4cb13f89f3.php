@@ -59,7 +59,7 @@
 
    <li class="kuanjie">
    	
-   	<a href="#">会员管理</a>          
+   	<a href="/Project/project/index.php/HMadmin/User/index">会员管理</a>          
    	<a href="#">奖金管理</a> 
    	<a href="#">订单管理</a>   
    	<a href="#">产品管理</a> 
@@ -120,9 +120,9 @@
         <li>发货单列表</li>
         <li>换货单列表</li>
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="/Project/project/index.php/HMadmin/User/index">会员管理</a></h3>
       <ul>
-        <li>会员列表 </li>
+        <li><a href="/Project/project/index.php/HMadmin/User/index">会员列表</a> </li>
         <li>未激活会员</li>
         <li>团队系谱图</li>
         <li>会员推荐图</li>
