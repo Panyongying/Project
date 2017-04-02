@@ -1,0 +1,43 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>添加商品分类管理</title>
+</block>
+<block name="content">
+ <div class="admin-biaogelist">
+      <div class="listbiaoti am-cf">
+        <ul class="am-icon-flag on">
+          添加分类栏目管理
+        </ul>
+        <dl class="am-icon-home" style="float: right;">
+          当前位置： 首页 > <a href="#"添加分类列表</a>
+        </dl>
+       
+        <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束--> 
+        
+      </div>
+      <form method="post" class="am-form am-g">
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+          <thead>
+            <tr class="am-success">
+              <th class="table-id am-text-center">输入分类名<input type="text" name="name">
+                  <input type="hidden" name="id" value="{$id}">
+                  <input type="hidden" name="path" value="{$path}">
+              </th>
+            </tr>
+            <tr class="am-success">
+              <th class="table-id am-text-center"><input class="am-btn am-btn-success" type="submit" value="提交"></th>
+            </tr>
+          </thead>
+        </table>
+        
+
+        
+        
+        
+        
+     
+      </form>
+
+     
+     
+</block>
