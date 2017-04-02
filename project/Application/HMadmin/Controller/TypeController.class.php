@@ -2,9 +2,8 @@
 
 namespace HMadmin\Controller;
 
-use Think\Controller;
 
-class TypeController extends Controller {
+class TypeController extends CommonController {
     //type首页显示
     public function index()
     {

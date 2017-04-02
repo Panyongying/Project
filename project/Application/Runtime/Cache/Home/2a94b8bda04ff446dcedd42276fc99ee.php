@@ -42,7 +42,7 @@
     	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m2.hm.com/m/zh_c/Project/project/Public/show.html">
     		
      
-       <title>1111</title>
+       <title>H&M</title>
 </head>
 
 

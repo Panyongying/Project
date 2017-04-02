@@ -41,10 +41,10 @@
         <li class="am-dropdown tognzhi" data-am-dropdown>
         <button class="am-btn am-btn-primary am-dropdown-toggle am-btn-xs am-radius am-icon-bell-o" data-am-dropdown-toggle> 消息管理　</button>
       <ul class="am-dropdown-content">
-    		
+
         <li class="am-dropdown-header">所有消息都在这里</li>
 
-        
+
 
         <li><a href="#">未激活会员 <span class="am-badge am-badge-danger am-round">556</span></a></li>
         <li><a href="#">未激活代理 <span class="am-badge am-badge-danger am-round">69</span></a></a></li>
@@ -53,29 +53,38 @@
         <li><a href="#">未发货订单</a></li>
         <li><a href="#">低库存产品</a></li>
         <li><a href="#">信息反馈</a></li>
-      
+
       </ul>
-    
+
 
    <li class="kuanjie">
+<<<<<<< HEAD
+
+   	<a href="#">会员管理</a>
+   	<a href="#">奖金管理</a>
+   	<a href="#">订单管理</a>
+   	<a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a>
+   	<a href="#">个人中心</a>
+=======
    	
-   	<a href="#">会员管理</a>          
+   	<a href="/Project/project/index.php/HMadmin/User/index">会员管理</a>          
    	<a href="#">奖金管理</a> 
    	<a href="#">订单管理</a>   
    	<a href="#">产品管理</a> 
    	<a href="#">个人中心</a> 
+>>>>>>> 720a383ab48b8e6ce86fdca92e41a41e6f400092
    	<a href="#">系统设置</a>
    </li>
 
    <li class="soso">
-   	
-  <p>   
-  	
+
+  <p>
+
   	   <select data-am-selected="{btnWidth: 70, btnSize: 'sm', btnStyle: 'default'}">
             <option value="b">全部</option>
             <option value="o">产品</option>
             <option value="o">会员</option>
-            
+
        </select>
 
   </p>
@@ -95,18 +104,18 @@
 <!-- header part end -->
 
 
-<div class="am-cf admin-main"> 
+<div class="am-cf admin-main">
 <!-- left-nav part start -->
 <div class="nav-navicon admin-main admin-sidebar">
-    
-    
+
+
     <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
     <div class="sideMenu">
-      <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
+      <h3 class="am-icon-flag"><em></em> <a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a></h3>
       <ul>
-        <li><a href="">商品列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Goods/index">商品列表</a></li>
         <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
-        <li>商品分类</li>
+        <li><a href="/Project/project/index.php/HMadmin/Type/index">商品分类</a></li>
         <li>用户评论</li>
         <li>商品回收站</li>
         <li>库存管理 </li>
@@ -120,9 +129,9 @@
         <li>发货单列表</li>
         <li>换货单列表</li>
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="/Project/project/index.php/HMadmin/User/index">会员管理</a></h3>
       <ul>
-        <li>会员列表 </li>
+        <li><a href="/Project/project/index.php/HMadmin/User/index">会员列表</a> </li>
         <li>未激活会员</li>
         <li>团队系谱图</li>
         <li>会员推荐图</li>
@@ -149,8 +158,8 @@
         <li>声音文件</li>
       </ul>
     </div>
-    <!-- sideMenu End --> 
-    
+    <!-- sideMenu End -->
+
     <script type="text/javascript">
 			jQuery(".sideMenu").slide({
 				titCell:"h3", //鼠标触发对象
@@ -161,29 +170,29 @@
 				defaultPlay:false,//默认是否执行效果（默认true）
 				returnDefault:true //鼠标从.sideMen移走后返回默认状态（默认false）
 				});
-		</script> 
+		</script>
 <!-- left-nav end start -->
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 </div>
 
 <!-- admin-content part start -->
 <div class=" admin-content">
-  
+
     <div class="daohang">
       <ul>
         <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
         <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
         <li></li>
         <li></li>
-        
-        
+
+
       </ul>
 </div>
 <!-- admin-content part end -->
@@ -291,13 +300,13 @@
      
      
 
-   
-   
+
+
 
 
    <!--  <div class="foods">
     	<ul>版权所有@2015</ul>
-    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>	
+    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
     </div> -->
 
 
@@ -316,9 +325,9 @@
 <script src="/Project/project/Public/Backstage/js/polyfill/rem.min.js"></script>
 <script src="/Project/project/Public/Backstage/js/polyfill/respond.min.js"></script>
 <script src="/Project/project/Public/Backstage/js/amazeui.legacy.js"></script>
-<![endif]--> 
+<![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!--> 
+<!--[if (gte IE 9)|!(IE)]><!-->
 <script src="/Project/project/Public/Backstage/js/amazeui.min.js"></script>
 <!--<![endif]-->
 
