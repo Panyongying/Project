@@ -50,27 +50,25 @@
                 <th class="table-check"><input type="checkbox" /></th>
 
                 <th class="table-id">ID</th>
-                <th class="table-title">会员名称</th>
-                <th class="table-type">会员等级</th>
-                <th class="table-author am-hide-sm-only">会员积分</th>
+                <th class="table-title">会员email</th>
+                <th class="table-type">会员状态</th>
                 <th class="table-author am-hide-sm-only">注册日期</th>
-                <th class="table-date am-hide-sm-only">最近消费</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
             <tbody>
+
+            <foreach name="list" item="vo">
               <tr>
                 <td><input type="checkbox" /></td>
                 
-                <td>14</td>
-                <td><a href="#">Business management</a></td>
-                <td>3件 （消费455个积分）</td>
-                <td class="am-hide-sm-only">访问</td><td class="am-hide-sm-only">访问</td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                <td>{$vo.id}</td>
+                <td>{$vo.email}</td>
+                <td>{$vo.status}</td>            
+                <td class="am-hide-sm-only">{$vo.addtime}</td>
                 <td>
                 	
                 	
-                      	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
                       <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
@@ -79,33 +77,11 @@
                     </div>
                   </div>
                 	
-                	
-                	
-                	
-                	
-                	
+   	
                 </td>
               </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                
-                <td>15</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only"><i class="am-icon-close am-text-primary"></i></td><td class="am-hide-sm-only">访问</td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                <td>
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                
-                </td>
-              </tr>
+              </foreach>
+        
             </tbody>
           </table>
           
