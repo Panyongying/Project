@@ -13,4 +13,18 @@ class UserController extends CommonController
 
       	$this->display('Backstage/member');
     }
+    //删除用户
+    public function deleteUser ()
+    {
+        if (IS_AJAX) {
+
+            $num = D('user')->deleteUser();
+
+            echo $num;
+            
+        }else {
+
+            $this->error('非法请求');
+        }
+    }
 }

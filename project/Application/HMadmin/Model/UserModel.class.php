@@ -20,5 +20,16 @@
 
 			return $userInfo;
 		}
+		//删除用户
+		public function deleteUser()
+		{
+
+			$id = I('get.id');
+
+            $res = $this->where('id='.$id)->delete();
+
+            return $res;
+            
+		}
 		
 	}
