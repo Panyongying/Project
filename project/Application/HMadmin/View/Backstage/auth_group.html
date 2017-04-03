@@ -1,17 +1,17 @@
 <extend name="Backstage/base" />
 <block name="title">
-	<title>会员管理</title>
+	<title>权限组管理</title>
 </block>
 <block name="content">
 	<div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-users"> 会员管理</ul>
+      <ul class="am-icon-users"> 权限组管理</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">会员列表</a></dl>
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">管理组列表</a></dl>
       
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加会员</button>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加管理组</button>
       </dl>
       <!--这里打开的是新页面-->
       
@@ -50,9 +50,9 @@
                 <th class="table-check"><input type="checkbox" /></th>
 
                 <th class="table-id">ID</th>
-                <th class="table-title">会员email</th>
-                <th class="table-type">会员状态</th>
-                <th class="table-author am-hide-sm-only">注册日期</th>
+                <th class="table-title">管理组名称</th>
+                <th class="table-type">组状态</th>
+                <th class="table-author am-hide-sm-only">拥有的权限</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
@@ -62,18 +62,18 @@
               <tr>
                 <td><input type="checkbox" /></td>
                 
-                <td>{$vo.id}</td>
-                <td>{$vo.email}</td>
-                <td>{$vo.status}</td>            
-                <td class="am-hide-sm-only">{$vo.addtime}</td>
+                <td>测试</td>
+                <td>测试</td>
+                <td>测试</td>            
+                <td class="am-hide-sm-only">测试</td>
                 <td>
                 	
                 	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员"><span class="am-icon-trash-o" ></span></button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看管理组详情"></span> </button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除组"><span class="am-icon-trash-o" ></span></button>
                     </div>
                   </div>
                 	
