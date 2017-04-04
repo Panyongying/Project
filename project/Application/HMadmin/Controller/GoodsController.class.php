@@ -18,28 +18,39 @@
 
                 $this->assign('goodsList', $goodsList);
                 $this->display('Backstage/goods');
-
             }
-
         }
 
         //ajax删除
-        public function deletes()
+        public function ajaxDelete()
         {
+            if (IS_AJAX) {
+
+                $res = D('goods')->deleteOne();
+
+                if ($res) {
+
+                    $this->ajaxReturn(1);
+                }
+            }
+
+        }
+
+        //添加goods
+        public function addGood()
+        {
+
             if (IS_POST) {
+
+                $res = D('goods')->addGood();
 
             } else {
 
-                $deleteOne = D('goods')->delete();
-
-                dump($deleteOne);
-                exit;
+                $this->display('Backstage/addGood');
             }
 
 
         }
-
-
 
     }
 

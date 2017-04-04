@@ -25,16 +25,30 @@
             return $goodsList;
         }
 
-        public function delete()
+        //删除商品
+        public function deleteOne()
         {
 
-            $id = I('get.');
+            $id = I('get.id');
 
-            $num = M('goods')->where('id='.$id)->delete();
+            // dump($id);exit;
 
-            return $num;
+            $bool = M('goods')->delete($id);
+
+            return $bool;
 
         }
 
+        //添加商品
+        public function addGood()
+        {
+            $data = I('post.');
+
+            $data['addtime'] = time();
+            dump($data);exit;
+            // $res = M('goods')->add($data);
+
+            dump(M('goods')->getLastSql());exit;
+        }
 
     }

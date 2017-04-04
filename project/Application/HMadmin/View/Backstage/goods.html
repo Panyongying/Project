@@ -11,7 +11,7 @@
       <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">商品列表</a></dl>
 
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加产品</button>
+        <a href="__APP__/HMadmin/Goods/addGood"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加产品</button></a>
       </dl>
 
 
@@ -58,7 +58,7 @@
 </div>
 
 
-    <form class="am-form am-g" action="">
+    <form class="am-form am-g">
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
@@ -66,7 +66,7 @@
                 <th class="table-title">序号</th>
                 <th class="table-title">商品名</th>
                 <th class="table-title">价格</th>
-                <th class="table-type">所属</th>
+                <th class="table-type">一级</th>
                 <th class="table-type">描述</th>
                 <th class="table-type">状态</th>
                 <th class="table-type">点击量</th>
@@ -79,7 +79,7 @@
             </thead>
             <tbody>
 
-            <foreach name="goodsList" item="vo">
+            <foreach name="goodsList" item="vo" key="k">
               <tr>
                 <td><input type="checkbox"/></td>
                 <!-- <td><input type="text" class="am-form-field am-radius am-input-sm"/></td> -->
@@ -94,40 +94,55 @@
                 <td>{$vo.saled}</td>
                 <td>{$vo.addtime}</td>
 
-                <td><div class="am-btn-toolbar">
+                <td><div class="am-btn-toolbar" data-num="{$k}">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search"></span> </button>
                       <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
                       <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round"><a href="__URL__/deletes/id/{$vo.id}"><span class="am-icon-trash-o">1</span></a></button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" data-id="{$vo.id}"><span class="am-icon-trash-o"></span></button>
                     </div>
                   </div></td>
 
 
               </tr>
             </foreach>
-             <!--  <tr>
-                <td><input type="checkbox" /></td>
-                <td><input type="text" class="am-form-field am-radius am-input-sm"/></td>
-                <td>15</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only"><i class="am-icon-close am-text-primary"></i></td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                <td><div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round"><span class="am-icon-trash-o"></span></button>
-                    </div>
-                  </div></td>
-              </tr> -->
+
+            <script>
+
+            var url = '__URL__/ajaxDelete';
+
+            for (var i=0; i<$('.am-btn-toolbar').length-1; i++) {
+
+              var btns = $('div[data-num='+i+']').find('button').eq(2);
+
+              btns.on('click', function () {
+
+                var that = $(this);
+
+                // console.log($(this).attr('data-id'));
+
+                $.get(url, {'id':$(this).attr('data-id')}, function (data) {
+
+                  console.log(data);
+                  if (data == 1) {
+
+                    that.parent().parent().parent().parent().remove();
+                  }
+
+                }, 'json');
+
+              });
+
+            }
+
+
+
+            </script>
+
             </tbody>
           </table>
 
                  <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
+
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
@@ -151,7 +166,7 @@
 
 
           <hr />
-          <p>注：.....</p>
+          <p>注：<span class="am-icon-pencil-square-o">编辑</span>&nbsp; <span class="am-icon-trash-o">删除</span></p>
     </form>
 
 
