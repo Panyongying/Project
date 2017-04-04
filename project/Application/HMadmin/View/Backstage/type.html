@@ -53,6 +53,14 @@
             
            </foreach>
           <script>
+            //删除按钮的确定判定
+            $('.deleteBtn').on('click', function() {
+              var bool = confirm('确定删除？');
+
+              if (!bool) {
+                return false;
+              }
+            });
             //修改按钮ajax
             $('.modifyBtn').on('click', function(){
               var name = prompt('请输入修改的名字');

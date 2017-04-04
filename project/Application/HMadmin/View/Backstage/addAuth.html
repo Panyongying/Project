@@ -15,17 +15,17 @@
     </div>
 	
     <div class="fbneirong">
-      <form class="am-form">
+      <form method="post" class="am-form">
         <div class="am-form-group am-cf">
           <div class="zuo">权限路径：</div>
           <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入权限路径">
+            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="name" placeholder="请输入权限路径">
           </div>
         </div>
         <div class="am-form-group am-cf">
           <div class="zuo">权限功能名：</div>
           <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入功能名">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" placeholder="请输入功能名">
           </div>
         </div>
 
@@ -35,7 +35,7 @@
         <div class="am-form-group am-cf">
           <div class="zuo">描述：</div>
           <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="不填默认为空">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="situation" placeholder="不填默认为空">
           </div>
         </div>
         
@@ -51,7 +51,7 @@
             </div>
           <div class="am-form-group am-cf">
               <div class="you" style="margin-left: 11%;">
-                  <a href="__CONTROLLER__/index" type="submit" class="am-btn am-btn-default am-radius">返回</a>&nbsp;  &raquo; &nbsp; <button type="submit" class="am-btn am-btn-success am-radius">添加</button>
+                  <a href="__CONTROLLER__/index" type="submit" class="am-btn am-btn-default am-radius">返回</a>&nbsp;  &raquo; &nbsp; <input type="submit" class="am-btn am-btn-success am-radius" value="提交">
 
               </div>
           </div>

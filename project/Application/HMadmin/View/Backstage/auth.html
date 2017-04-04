@@ -31,7 +31,7 @@
           </thead>
           <tbody>
             <!-- 循环 -->
-            <foreach name="typeList" item="v">
+            <foreach name="authList" item="v">
                 <tr>
                   <td><input type="checkbox" name="ids[]" value="{$v.id}" /></td>
                   <td class="am-text-center">{$v.id}</td>
@@ -40,32 +40,24 @@
                   <td>{$v.status}</td>
                   <td><div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                      <a href="__CONTROLLER__/" class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" data-am-modal="{target: '#my-popups'}" title="添加子栏目"></a>
-                        <button class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round" onclick="return false" data-id="{$v.id}" title="修改"><span class="am-icon-pencil-square-o" ></span></button>             
-                        <a href="__CONTROLLER__/" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除"><span class="am-icon-trash-o"></span></a>
+                     <!--  <a href="__CONTROLLER__/" class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" data-am-modal="{target: '#my-popups'}" title="添加子栏目"></a> -->
+                        <!-- <button class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round" onclick="return false" data-id="{$v.id}" title="修改"><span class="am-icon-pencil-square-o" ></span></button> -->             
+                        <a href="__CONTROLLER__/deleteAuth/id/{$v.id}" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除"><span class="am-icon-trash-o"></span></a>
                       </div>
                     </div></td>
                 </tr>
             
            </foreach>
           <script>
-            //修改按钮ajax
-            $('.modifyBtn').on('click', function(){
-              var name = prompt('请输入修改的名字');
+            //删除按钮的确定判定
+            $('.deleteBtn').on('click', function() {
+              var bool = confirm('确定删除？');
 
-              if (name == null  ) {
+              if (!bool) {
                 return false;
               }
-              var id = $(this).attr('data-id');
-                $.ajax({
-                  url:'__CONTROLLER__/modifyTypeName/id/' + id + '/name/' + name,
-                  success:function(data) {
-                    if ( data == 1 ) {
-                       location.reload();
-                    }
-                  }
-                });
             });
+
             //全选
             $('#checkBox').on('click', function() {
                  var bool =  $('#checkBox').prop('checked');
