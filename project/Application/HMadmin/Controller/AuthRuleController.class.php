@@ -3,15 +3,19 @@
 namespace HMadmin\Controller;
 
 
-class AuthController extends CommonController {
+class AuthRuleController extends CommonController {
     //type首页显示
     public function index()
     {
        $authList = M('auth_rule')->select();
 
+       $status = [null, '正常', '禁用'];
+
+       $this->assign('status', $status);
+
        $this->assign('authList', $authList);
 
-       $this->display('Backstage/auth');
+       $this->display('Backstage/AuthRule');
     }
 
     //显示添加权限页面
@@ -56,6 +60,28 @@ class AuthController extends CommonController {
         } else {
             $this->error('删除失败');
         }
+    }
+
+    //Auth批量删除
+    public function deleteAuthAll()
+    {
+
+    	$ids = I('post.');
+
+        if (empty($ids)) {
+            $this->error('请先勾选要删除的分类');
+            exit;
+        }
+
+    	$ids = join($ids['ids'], ',');
+
+    	$res = D('AuthRule')->deleteType($ids);
+
+    	if ($res) {
+    		$this->success('删除成功', U('index'));
+    	} else {
+    		$this->error('删除失败', U('index'));
+    	}
     }
 
 }

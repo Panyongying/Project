@@ -11,7 +11,7 @@
       <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">管理组列表</a></dl>
       
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加管理组</button>
+        <a href="__CONTROLLER__/showAddAuthGroupPage" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加管理组</a>
       </dl>
       <!--这里打开的是新页面-->
       
@@ -43,11 +43,11 @@
 	
 
 
-    <form class="am-form am-g">
+    <form action="__CONTROLLER__/deleteAuthGroup" method="post" class="am-form am-g">
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
-                <th class="table-check"><input type="checkbox" /></th>
+                <th class="table-check"><input type="checkbox" id="checkBox" /></th>
 
                 <th class="table-id">ID</th>
                 <th class="table-title">管理组名称</th>
@@ -58,14 +58,14 @@
             </thead>
             <tbody>
 
-            <foreach name="list" item="vo">
+            <foreach name="authGroupList" item="vo">
               <tr>
-                <td><input type="checkbox" /></td>
+                <td><input type="checkbox" name="ids[]" value="{$vo.id}" /></td>
                 
-                <td>测试</td>
-                <td>测试</td>
-                <td>测试</td>            
-                <td class="am-hide-sm-only">测试</td>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td>{$status[$vo[status]]}</td>            
+                <td class="am-hide-sm-only">{$vo.rules}</td>
                 <td>
                 	
                 	
@@ -73,7 +73,7 @@
                     <div class="am-btn-group am-btn-group-xs">
                       <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看管理组详情"></span> </button>
                       <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除组"><span class="am-icon-trash-o" ></span></button>
+                      <a href="__CONTROLLER__/deleteAuthGroupOne/id/{$vo[id]}" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除组"><span class="am-icon-trash-o"></span></a>
                     </div>
                   </div>
                 	
@@ -81,22 +81,38 @@
                 </td>
               </tr>
               </foreach>
+
+              <script>
+                 //删除按钮的确定判定
+                  $('.deleteBtn').on('click', function() {
+                    var bool = confirm('确定删除？');
+
+                    if (!bool) {
+                      return false;
+                    }
+                  });
+                  //全选
+                  $('#checkBox').on('click', function() {
+                       var bool =  $('#checkBox').prop('checked');
+                       $('input[type="checkbox"]').prop('checked', bool) ;
+                  });
+              </script>
         
             </tbody>
           </table>
-          
+          <!-- 按钮 -->
                  <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
+             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button> -->
+              <input type="submit" class="am-btn am-btn-default" value="删除" />
             </div>
-          
-          <ul class="am-pagination am-fr">
+          <!-- 分页 -->
+         <!--  <ul class="am-pagination am-fr">
                 <li class="am-disabled"><a href="#">«</a></li>
                 <li class="am-active"><a href="#">1</a></li>
                 <li><a href="#">2</a></li>
@@ -104,7 +120,7 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">»</a></li>
-              </ul>
+              </ul> -->
           
           
           
