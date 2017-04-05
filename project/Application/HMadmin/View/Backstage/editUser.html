@@ -1,0 +1,86 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>修改会员资料</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on">修改会员</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置：首页 > <a href="__URL__/index">会员列表</a></dl>
+
+      
+      
+    </div>
+
+    <div class="fbneirong">
+      <form class="am-form" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">生日：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" name="birthday" id="doc-ipt-email-1" value="{$list[birthday]}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">昵称：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" name="nickname" id="doc-ipt-pwd-1" value="{$list[nickname]}">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">手机：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" name="phone" id="doc-ipt-pwd-1" value="{$list[phone]}">
+          </div>
+        </div>
+
+        <div class="am-form-group am-cf">
+          <div class="zuo">性别：</div>
+          <div class="you">
+        
+            男<input type="radio"  name="sex" id="doc-ipt-pwd-1"value="1"
+                
+              <if condition="($list['sex'] eq 1)">
+
+                checked
+
+              </if>
+            
+             >
+            女<input type="radio"  name="sex" id="doc-ipt-pwd-1" value="0" 
+
+              <if condition="($list['sex'] eq 0)">
+
+              checked
+
+              </if>
+            
+            >
+
+            保密<input type="radio" name="sex" id="doc-ipt-pwd-1" value="2"  
+              <if condition="($list['sex'] eq 2)">
+
+                checked
+
+              </if>
+              
+            >
+
+                
+           
+       
+        </div>
+             
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">修改用户</button>&nbsp;  &raquo; &nbsp; 
+              <button type="reset" class="am-btn am-btn-secondary am-radius">重置</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+     
+     
+</block>

@@ -1,0 +1,471 @@
+<extend name="Base:base" />
+<block name="title">
+	<title>Checkout | H&amp;M CN</title>
+</block>
+<block name="main">
+<main role="main" class="segments responsive">
+			<div class="wrapper">    
+				<nav class="breadcrumbs">
+					<ul>
+	<li>
+	
+	
+	
+		<a href="https://www2.hm.com/zh_cn/">HM.COM</a>
+	</li>
+
+	<li class="">
+
+			<a href="https://www2.hm.com/zh_cn/login/checkout#" onclick="return false;"> 登录/注册</a>
+				</li>
+	</ul>
+</nav>
+				<header class="checkout-header">
+		<h1>结账</h1>
+		<ul class="checkout-breadcrumbs items-4 clearfix">
+	<li class="item item-current">1. 登录</li>
+	<li class="item">2. 发货 &amp; 支付</li>
+	<li class="item">3. 确认订单</li>
+	<li class="item item-last">4. 非常感谢</li>
+	</ul></header>
+	<div class="row ng-scope" ng-controller="CheckoutLoginCxtController">
+		<div class="grid col-8">
+			<div id="hidden_login_box" class="box">
+	<h2 class="box-headline">
+		1. 登录</h2>
+	<div class="row">
+		<div class="grid col-4">
+			<div class="box-content">
+				<div class="login-form">
+					<!-- Login form -->
+					<h3>
+						登录</h3>
+					<form id="loginForm" action="https://www2.hm.com/zh_cn/checkout/j_spring_security_check" method="post" onsubmit="utagTrackFormLink(this);" class="ng-pristine ng-valid"><input type="hidden" id="targetURL" name="targetURL" value="/login/checkout">
+                          
+						<div class="inputwrapper required">
+							<label for="j_username" class="label">电子邮箱</label><input id="signin-email" name="j_username" data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" type="email" data-validation-inline="false" class="text-input" data-validation-email-text="请输入有效电子邮箱" value="" maxlength="40"></div>
+						<div class="inputwrapper required">
+							<label for="j_password" class="label">密码</label><input id="txt-signin-password" name="j_password" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-minlength="6" data-validation-maxlength="25" data-validation-minlength-text="密码至少需要6位字符" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" class="password-input" type="password" value=""></div>
+						<p>
+						<a href="https://www2.hm.com/zh_cn/password/request" class="forgotten-password underline">忘了密码？</a>
+						</p>
+						<div class="input-group">
+							<button type="submit" data-validation-text="继续操作前，请先核对信息" class="button">登录</button>
+						</div>
+					<div>
+<input type="hidden" name="CSRFToken" value="bdec08c1-ed47-4f26-adca-1f32657a5eb0">
+</div></form></div>
+			</div>
+		</div>
+		<div class="grid col-4">
+			<div class="box-content">
+				<div class="input-group-separate">
+					<h3>
+						新客户</h3>
+					<p class="headline-explanation">
+						创建新账户，让购物更简便。</p>
+					<button id="click_button_register" class="button button-secondary" onclick="utagTrackExtraLink(this);">
+						创建新账户</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display: none" id="hidden_register_box" class="box">
+	<h2 class="box-headline">
+		新客户</h2>
+	<div class="box-content">
+		<div class="login-form new-user">
+		<!-- Login form -->
+			
+			<h3>
+				输入您的个人信息</h3>
+			
+			<form ng-submit="registerUser()" method="post" class="responsive form-section ng-pristine ng-valid ng-valid-email ng-valid-maxlength" id="registration-form">
+
+				<div class="input-group-separate">
+					<label for="txt-joinus-email">
+						电子邮箱</label>
+					<input ng-model="registerForm.email" id="txt-joinus-email" type="email" data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" data-validation-email-text="请输入有效电子邮箱" maxlength="80" ng-class="{&#39;invalid&#39; : errors.registerForm.email!=null}" class="ng-pristine ng-untouched ng-valid ng-valid-email ng-valid-maxlength">
+			 <!-- ngIf: errors.registerForm.email!=null --><span class="input-info">我们会为您发送订单确认邮件。</span>
+				</div>
+				<input type="hidden" id="driver" value="1">
+				<div class="input-group">
+					<label for="txt-joinus-password">
+						密码</label>
+					<input type="password" ng-model="registerForm.pwd" id="txt-joinus-password" data-validation-maxlength="25" data-validation-minlength="6" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-nospaces="true" data-validation-nospaces-text="密码中不得有任何空白" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" data-validation-minlength-text="密码至少需要6位字符" class="ng-pristine ng-untouched ng-valid">
+					<span class="input-info">密码至少需要6位字符</span>
+				</div>
+				<div class="input-group">
+					<label for="txt-joinus-password-repeat">
+						再次输入密码</label>
+					<input type="password" ng-model="registerForm.checkPwd" id="txt-joinus-password-repeat" data-validation-minlength="6" data-validation-required="true" data-validation-maxlength="25" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" data-validation-required-text="请重新输入您的密码" data-validation-confirm-id="txt-joinus-password" data-validation-confirm-text="您的密码和您再次输入的密码不相符。" data-validation-minlength-text="密码至少需要6位字符" class="ng-pristine ng-untouched ng-valid">
+					<span class="input-info">密码至少需要6位字符</span>
+				</div>
+				<div class="input-group">
+					<div class="country-picker">
+						<!-- Country picker -->
+						<label>国家</label> 
+						<span class="country-name">中国</span>
+						<a class="country-name overlay-trigger " data-layout="confirm" data-modal-scrollup="false" href="https://www2.hm.com/zh_cn/login/change-country">国家不正确吗？</a>
+					</div>
+				</div>
+				<div class="inputwrapper">
+					  <ul class="input-list">
+					      <li class="item subscriptions">
+					        <input type="checkbox" id="chb-signin-newsletter" name="hmNewsSubscription" ng-model="registerForm.hmNewsSubscription" class="checkbox-input ng-pristine ng-untouched ng-valid">
+					        <label class="checkbox-label" for="signin-newsletter_0">
+					        	是的，我希望收到“时尚快讯”且我的年龄在16岁或以上。</label>
+					      </li>
+					  </ul>
+					</div>	
+				<div class="input-group terms">
+				
+					<input type="checkbox" id="check-terms" class="checkbox-input ng-pristine ng-untouched ng-valid" name="termsAndConditions" data-validation-required="true" ng-model="registerForm.termsAndConditions">
+							<label for="check-terms" class="checkbox-label">
+							<a href="https://www2.hm.com/zh_cn/customer-service/privacy-link.html" class="underline overlay-trigger">
+							是的，我同意隐私政策。</a></label>
+								</div>
+				 <input id="checkoutRegisterNewUser" value="加入我们" type="submit" data-validation-text="该表格不能提交，请检查您的信息。">
+			</form>
+			
+		</div>
+	</div>
+</div></div>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.agreement-link {
+text-decoration: underline; 
+}
+.agreement-link:hover {
+text-decoration: none; 
+} 
+</style>
+
+ <form id="view-join-club-modal" ng-submit="createClubAccount()" aria-hidden="true" class="hidden modal-content create-account-modal ng-pristine ng-valid ng-valid-pattern ng-valid-maxlength">
+	<h2 class="heading">Join H&amp;M Club!</h2>
+	<article class="hero-unit responsive ">
+    	<header class="hero-logo icon-hm-club-logo-light">H&amp;M CLUB</header>
+        <p class="hero-text">You have items in your shopping bag that are eligible for special Club prices. Join H&amp;M Club to get this deal!</p>   
+    </article>
+    <div class="modal-text">
+    
+    
+    
+    <div class="inputwrapper select-date required">
+			<label class="label" for="dob">出生日期</label>
+	        <div class="merged-inputs">
+		       <input type="tel" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric" id="dob-day" class="input-day text-input ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-maxlength" placeholder="DD" size="2" maxlength="2" ng-model="birthDateForm.dobDay">
+	           <span class="divider"> / </span>
+	           <input type="tel" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric" id="dob-month" class="input-month text-input ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-maxlength" placeholder="MM" size="2" maxlength="2" ng-model="birthDateForm.dobMonth">
+	           <span class="divider"> / </span>
+	           <input type="tel" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric" id="dob-year" class="input-year text-input ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-maxlength" placeholder="YYYY" size="4" maxlength="4" ng-model="birthDateForm.dobYear">
+            </div>
+	        <input type="hidden" class="input-date" value="" data-min-age="16" data-min-age-text="您须年满 16 岁方可在我们的网站下订单。" data-format-text="Incorrect format" data-validation-minlength-text="Please enter your year of birth in a four digit format" data-show-text-after-this="true" data-validation-birthdate="true" data-validation-required="true" data-validation-required-text="Information is missing">
+        </div>	
+    
+		
+   </div>
+   <div class="sticky button-group">
+		<div class="inputwrapper list-group required">
+	      <ul class="input-list">
+			<li class="item">
+				<input class="checkbox-input ng-pristine ng-untouched ng-valid" type="checkbox" id="club-concent_0" name="club-concent" data-validation-required="true" ng-model="birthDateForm.consent">
+                <label class="checkbox-label" for="club-concent_0">
+				        
+				        I accept the H&amp;M Club <a href="https://www2.hm.com/zh_cn/customer-service/club-terms-link.html" class="agreement-link overlay-trigger">Terms &amp; conditions </a> and I am  16 years old.
+				</label>
+			</li>
+	</ul>
+   </div>
+	<p class="input-info">I am not interested in joining the H&amp;M Club at the moment.</p>
+		<button class="modalclose button secondary" type="button" ng-click="denyClubBenefits()">Skip</button>
+		<input class="button primary" type="submit" value="JOIN H&amp;M CLUB" data-custom-classname="content-fill no-border" data-validate-before-open-modal="true">
+	
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<div id="confirm-modal" aria-hidden="true" class="hidden no-border modal-content create-account-modal">
+	<div class="modal-text responsive">
+		<h2 class="heading">Welcome to H&amp;M Club!</h2>
+        
+		<article class="hero-unit responsive ">
+    	    <header class="hero-logo icon-hm-club-logo-light">H&amp;M CLUB</header>
+            <p class="hero-text">You are now a member of H&amp;M Club. You can earn pointson everything you buy! Use&nbsp;your&nbsp;points to unlock customised offers,fashionable rewards and invitations to exclusive events.</p>
+        </article>
+	</div>
+	<div class="sticky button-group">
+		
+		<button onclick="location.href = &#39;https://www2.hm.com/zh_cn/checkout&#39;;" class="modalclose button secondary">确认</button>
+	</div>
+</div>
+	<div class="grid col-4">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="box checkout-order" id="checkoutOrderPartDiv">
+
+	<h2 class="box-headline">
+		您的订单
+	</h2>
+	<ul class="checkout-order-items">
+		
+			
+			
+					<li class="checkout-order-item">
+			
+				<img src="./Proceed to Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2017%2FE00+0497510+001+68+1697.jpg],type[STILLLIFE_FRONT]&amp;hmver=5&amp;call=url[file-%2Fproduct%2Forder]" alt="Selvedge jeans" title="Selvedge jeans" class="checkout-order-item-image">
+			
+
+				<div class="checkout-order-item-product-info">
+					<div class="product-item-headline">Selvedge jeans</div>
+
+					<div id="redWhitePrices_0497510001004" class="product-item-price ">
+<span id="main_price" class="main_price_0497510001004">
+					¥599.00</span>
+			<small id="white_price_0497510001004"></small>
+		</div>
+
+					<dl class="checkout-order-item-product-details">
+						<dt>
+							数量：
+						</dt>
+						<dd>1</dd>
+						<dt>
+							颜色：
+						</dt>
+						<dd>蓝色水洗</dd>
+						<dt>
+							尺码：
+						</dt>
+						<dd>28 (165|72A)</dd>
+					</dl>
+					<div class="shopping-bag-item-total-price product-item-price">
+						总价：
+						&nbsp;
+						¥599.00
+					</div>
+				</div>
+					
+			</li>
+		
+			
+			
+					<li class="checkout-order-item">
+			
+				<img src="./Proceed to Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FE00+0438740+001+74+1904.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Forder]" alt="蕾丝背上托文胸" title="蕾丝背上托文胸" class="checkout-order-item-image">
+			
+
+				<div class="checkout-order-item-product-info">
+					<div class="product-item-headline">蕾丝背上托文胸</div>
+
+					<div id="redWhitePrices_0438740001018" class="product-item-price ">
+<span id="main_price" class="main_price_0438740001018">
+					¥179.00</span>
+			<small id="white_price_0438740001018"></small>
+		</div>
+
+					<dl class="checkout-order-item-product-details">
+						<dt>
+							数量：
+						</dt>
+						<dd>1</dd>
+						<dt>
+							颜色：
+						</dt>
+						<dd>黑色</dd>
+						<dt>
+							尺码：
+						</dt>
+						<dd>75B</dd>
+					</dl>
+					<div class="shopping-bag-item-total-price product-item-price">
+						总价：
+						&nbsp;
+						¥179.00
+					</div>
+				</div>
+					
+			</li>
+		
+	</ul>
+	<div class="box-content">
+
+		<table class="order-total">
+			<tbody>
+				<tr>
+					<th scope="row">订单价值：
+					</th>
+					<td><span id="newPriceSubtotal"> ¥778.00
+					</span></td>
+				</tr>
+				
+					
+				
+				<tr style="display: none;">
+					<th scope="row">折扣：</th>
+					<td><span id="totalDiscountValue">- ¥0.00
+					</span></td>
+				</tr>
+                 
+				
+
+
+				
+					<tr>
+						<th scope="row">送货：</th>
+						<td>¥10.00</td>
+					</tr>
+				
+
+
+				
+					
+					
+						<input id="paymentCostVisible" type="hidden" value="false">
+					
+				
+
+
+				
+				
+				<script type="text/javascript">				
+					function showHidePaymentCost() {
+						if ($('#paymentCostVisible').val() == 'true') {
+							$('#paymentCostMessage').show();
+							$('#paymentCostValue').show();
+						} else {
+							$('#paymentCostMessage').hide();
+							$('#paymentCostValue').hide();
+						}
+					}
+				    $(document).ready(showHidePaymentCost());
+		        </script>
+			</tbody>
+			<tfoot>
+				
+					
+					
+						<tr class="total">
+							<th scope="row">
+								总价:
+							</th>
+							<td id="total_price_of_basket">
+								¥788.00
+						    	
+							</td>
+						</tr>
+					
+				
+			</tfoot>
+		</table>
+		
+    	
+		
+			<p class="fine-print">
+				
+				您可以取消订单，前提是您希望退回的商品在不迟于您收到订单商品后的30天内送达给我们。您可在此找到退换货政策全文
+				<a class="overlay-trigger underline" href="https://www2.hm.com/zh_cn/customer-service/return-link.html"> 退货和退款</a>
+			</p>
+		
+	</div>
+</div>
+
+
+
+
+    
+    
+<!-- Only Content -->
+<!--AEMPUBPRDAP10-->
+<div class="parsys main"><section class="legaltext parbase section">
+<h1 class="sub-sub-heading">退货和退款</h1>
+<p class="text">如果要退货，请自行安排快递并承担快递费用。<a href="https://www2.hm.com/zh_cn/customer-service/return-link.html" class="underline overlay-trigger" adhocenable="false">在此处</a>了解更多有关退货和退款的信息。<br>
+您的发票将会在您提出要求后，为您提供。在&nbsp;<a href="https://www2.hm.com/zh_cn/customer-service/fapiao.html" class="underline overlay-trigger" adhocenable="false">这里</a>&nbsp;了解更多有关发票的信息<a adhocenable="false" href="https://www2.hm.com/zh_cn/customer-service/return-link.html#main_reference_7bd8" class="underline overlay-trigger" target="_blank"></a></p>	</section>
+
+</div>
+
+<!-- /Only Content -->
+
+[an error occurred while processing this directive]
+
+</div>
+	</div>
+	<div aria-hidden="true" id="login-failed" class="hidden modal-content">
+	<div class="modal-text">		
+		<h1>登录失败</h1>
+		<p>请检查电子邮箱和密码是否正确</p>
+		<div class="sticky button-group">
+			<input class="modalclose button" type="button" value="确定">
+		</div>
+	</div>
+</div>
+<script>
+		$(function() {
+			var loginError = "";
+			if (loginError == 'true') {
+				openPopup('login-failed');
+			}else{
+				closePopup('login-failed');
+			}
+			var registrationError = "";
+			
+			if(registrationError == 'true'){
+				$("#hidden_login_box").hide();
+				$("#hidden_register_box").show();
+			}		
+		})
+		
+		$("#click_button_register").click(function() {
+			$("#hidden_login_box").hide();
+			$("#hidden_register_box").show();
+			if(typeof(utag) !== 'undefined'){
+				utagTrackOpeningView("Registration : Checkout", "CHECKOUT");
+			}		
+		});
+	</script>
+</div>
+		</main>
+</block>

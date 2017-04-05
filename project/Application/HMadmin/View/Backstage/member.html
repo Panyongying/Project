@@ -11,7 +11,7 @@
       <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">会员列表</a></dl>
       
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加会员</button>
+        <a href="__URL__/addUser"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加会员</button></a>
       </dl>
       <!--这里打开的是新页面-->
 
@@ -22,8 +22,7 @@
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
-                <th class="table-check"><input type="checkbox" /></th>
-
+                <th class="table-check"><input id="checkBox" type="checkbox" /></th>
                 <th class="table-id">ID</th>
                 <th class="table-title">会员email</th>
                 <th class="table-type">会员状态</th>
@@ -35,20 +34,27 @@
 
             <foreach name="list" item="vo">
               <tr>
-                <td><input type="checkbox" /></td>
+                <td><input class="delAll" value="{$vo.id}" type="checkbox" /></td>
                 
                 <td>{$vo.id}</td>
                 <td>{$vo.email}</td>
-                <td>{$vo.status}</td>            
+                <td class="stat" style="cursor:pointer;" data-status="{$vo.id}" >{$vo.status}</td>            
                 <td class="am-hide-sm-only">{$vo.addtime}</td>
                 <td>
                 	
                 	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span></button>
-                       <span class="del" data-value="{$vo.id}"><button  class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员"><span class="am-icon-trash-o" ></span></button></span>
+                      <a href="__URL__/getUserMoreInfo/id/{$vo.id}" class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span> </a>
+
+                      <a href="__URL__/editUser/id/{$vo.id}" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span></a>
+
+                      
+                      <a  href="javascript:;" data-value="{$vo.id}" class=" del am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员">
+                            <span class="am-icon-trash-o" >
+                            </span>
+                      </a>
+                      
                     </div>
                   </div>
                 	
@@ -59,16 +65,14 @@
         
             </tbody>
           </table>
-          
-                 <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" id="delBtn" class="am-btn am-btn-danger" value="">删除</button>
+            </div>
+            <div class="am-btn-group am-btn-group-xs">
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span>为查看用户详情</a>
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span>为修改用户</a>
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员"><span class="am-icon-trash-o" ></span>为删除用户</a>
+         
             </div>
           
           <ul class="am-pagination am-fr">
@@ -79,33 +83,110 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">»</a></li>
-              </ul>
+          </ul>
           
           
           
       
           <hr />
-          <p>注：.....</p>
         </form>
-        <script> 
-            
-           $('.del').click(function () {
+
+      <script> 
+            //ajax单个删除
+          $('.del').click(function () {
 
             var that = $(this);
-           
-            $.get('__URL__/deleteUser', {'id':that.attr('data-value')}, function (data) {
 
-              if(data == 1) {
+            var bool = confirm('确定删除吗?');
 
-                that.parent().parent().parent().parent().remove();
+            if (bool) {
 
-              }else {
+              $.get('__URL__/deleteUser', {'id':that.attr('data-value')}, function (data) {
 
-                alert('删除失败');
-              }
+                if(data == 1) {
 
-            }, 'json');
+                  that.parent().parent().parent().parent().remove();
+
+                }else {
+
+                  alert('删除失败');
+                }
+
+              }, 'json');
+            }
+
 
            });
-        </script>
+
+
+          //多选
+          $('#checkBox').click(function () {
+
+              var bool =  $('#checkBox').prop('checked');
+
+              $('input[type="checkbox"]').prop('checked', bool) ;
+
+           });
+
+          //ajax批量删除
+          $('#delBtn').click(function () {
+
+            if($('.delAll:checked').length > 0){
+
+              var bool = confirm('确认删除?');
+
+            }
+           
+            if (bool){
+
+              var ids = '';
+
+              for (var i=0; i<$('.delAll').length; i++){
+      
+                if ($('.delAll')[i].checked){
+
+                  ids += $('.delAll')[i].value + ",";           
+
+                }
+
+              }
+
+              $.post('__URL__/delAll', {id:ids}, function (data){
+
+                  if (data) {
+
+                     $('.delAll:checked').parent().parent().remove();
+
+                  } else {
+
+                    alert('删除失败');
+                  }
+
+              }, 'json');
+
+            }          
+
+          });
+
+          //ajax修改状态
+          
+          $('.stat').click(function () {
+
+            var that = $(this);
+
+            $.post('__URL__/changeStatus', {id:$(this).attr('data-status')}, function (data) {
+
+                if (data == 3) {
+
+                  that.html('禁用');
+
+                }else if(data == 1){
+
+                  that.html('未激活');
+                }
+
+            }, 'json');
+            
+          });
+      </script>
 </block>
