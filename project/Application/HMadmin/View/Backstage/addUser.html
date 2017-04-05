@@ -1,0 +1,43 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>添加会员管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on">添加会员</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置：首页 > <a href="__URL__/index">会员列表</a></dl>
+
+      
+      
+    </div>
+
+    <div class="fbneirong">
+      <form class="am-form" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">邮箱：</div>
+          <div class="you">
+            <input type="email" class="am-input-sm" name="useremail" id="doc-ipt-email-1" placeholder="email为登录账户">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">密码：</div>
+          <div class="you">
+            <input type="password" class="am-input-sm" name="userpass" id="doc-ipt-pwd-1" placeholder="请输入密码">
+          </div>
+        </div>
+             
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">添加用户</button>&nbsp;  &raquo; &nbsp; 
+              <button type="reset" class="am-btn am-btn-secondary am-radius">重置</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+     
+     
+</block>
