@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>添加权限管理</title>
+	<title>添加管理组</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -130,7 +130,7 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
-        <li><a href="">管理员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
         <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
         <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
         <li>团队系谱图</li>
@@ -201,9 +201,9 @@
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 添加权限</ul>
+      <ul class="am-icon-flag on"> 添加管理组</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加权限</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加管理组</a></dl>
 
       
       

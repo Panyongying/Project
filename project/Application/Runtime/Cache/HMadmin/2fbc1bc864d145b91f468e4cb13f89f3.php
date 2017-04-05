@@ -130,9 +130,9 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
-        <li><a href="">管理员列表</a> </li>
-        <li><a href="">管理组列表</a></li>
-        <li><a href="/Project/project/index.php/HMadmin/Auth/index">权限列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
         <li>团队系谱图</li>
         <li>会员推荐图</li>
         <li>推荐列表</li>

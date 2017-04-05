@@ -16,11 +16,11 @@
 	
     <div class="fbneirong">
       <form method="post" class="am-form">
-        
+      <input type="hidden" name="id" value="{$data.id}">
         <div class="am-form-group am-cf">
           <div class="zuo">部门名：</div>
           <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" placeholder="请输入功能名">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" value="{$data.title}" placeholder="请输入功能名">
           </div>
         </div>
 
@@ -40,10 +40,10 @@
         <div class="zuo">状态：</div>
         <div class="you" style="margin-top: 5px;">
           <label class="am-checkbox-inline">
-            <input type="radio" value="1" checked name="status">
+            <input type="radio" value="1" <if condition="$data.status eq 1"> checked </if> name="status">
             正常 </label>
           <label class="am-checkbox-inline">
-            <input type="radio" value="2" name="status">
+            <input type="radio" value="2" <if condition="$data.status eq 2"> checked </if> name="status">
             禁用 </label>
             </div>
           <div class="am-form-group am-cf">
@@ -56,6 +56,18 @@
 
 
         </div>
+        <script>
+          //默认选中checkbox
+          var rules = [{$data.rules}];  
+          $('input[type=checkbox]').each(function(i) {
+            for(var j = 0 ; j < rules.length; j++) {
+              if($(this).attr('value') == rules[j]) {
+                $(this).attr('checked', true);
+              }
+            }
+          });
+          
+        </script>
         
       </form>
     </div>

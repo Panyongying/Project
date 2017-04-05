@@ -130,7 +130,7 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
-        <li><a href="">管理员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
         <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
         <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
         <li>团队系谱图</li>
@@ -265,8 +265,8 @@
                 	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看管理组详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
+                      <a href="/Project/project/index.php/HMadmin/AuthGroup/authGroupDetail/id/<?php echo ($vo["id"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看管理组详情"></span> </a>
+                      <a href="/Project/project/index.php/HMadmin/AuthGroup/editAuthGroup/id/<?php echo ($vo["id"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></a>
                       <a href="/Project/project/index.php/HMadmin/AuthGroup/deleteAuthGroupOne/id/<?php echo ($vo[id]); ?>" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除组"><span class="am-icon-trash-o"></span></a>
                     </div>
                   </div>

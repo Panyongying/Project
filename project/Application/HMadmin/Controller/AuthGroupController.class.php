@@ -69,7 +69,7 @@ class AuthGroupController extends CommonController {
         }
     }
 
-    //Auth批量删除
+    //AuthGroup批量删除
     public function deleteAuthGroup()
     {
 
@@ -89,6 +89,52 @@ class AuthGroupController extends CommonController {
     	} else {
     		$this->error('删除失败', U('index'));
     	}
+    }
+
+    //AuthGroup编辑
+    public function editAuthGroup()
+    {	//如果受到post提交数据就修改
+    	if (IS_POST) {
+
+    		$datas = I('post.');
+
+    		if ($datas['rules']) {
+    			$datas['rules'] = join($datas['rules'], ',');
+    		} else {
+    			$datas['rules'] = '';
+    		}
+
+    		$res = M('AuthGroup')->where("id={$datas['id']}")->save($datas);
+
+
+
+    		if ($res !== false) {
+    			$this->success('修改完成', U('index'));
+    		} else {
+    			$this->error('修改失败');
+    		}
+    		//GET数据显示页面
+    	} elseif (IS_GET) {
+    		$id = I('get.id');
+    		$data = M('AuthGroup')->where("id=$id")->find();
+    		$auths = M('AuthRule')->select();
+    		$this->assign('auths', $auths);
+    		$this->assign('data', $data);
+    		$this->display('Backstage/editAuthGroup');
+    	}
+    }
+
+    //管理组详情页面
+    public function authGroupDetail()
+    {
+    	$id = I('get.id');
+    	$title = D('AuthGroup')->findGroupName($id);
+    	$adminList = D('AuthGroup')->selectGroupAdmin($id);
+    	$status = [null, '正常', '禁用'];
+    	$this->assign('status', $status);
+    	$this->assign('adminList', $adminList);
+		$this->assign('title', $title['title']);    	
+    	$this->display('Backstage/authGroupDetail');
     }
 
 }
