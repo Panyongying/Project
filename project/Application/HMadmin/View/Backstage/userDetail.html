@@ -1,0 +1,55 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>会员详情</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on">会员详情</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置：首页 > <a href="__URL__/index">会员列表</a></dl>
+
+      
+      
+    </div>
+
+    <div class="fbneirong">
+      <form class="am-form" method="post">
+        <div class="am-form-group am-cf">
+          序号：{$list[0][id]}
+        </div>
+        <div class="am-form-group am-cf">
+          <div>邮箱：{$list[0][email]}</div>
+        </div>
+         <div class="am-form-group am-cf">
+          <div>昵称：{$list[1][nickname]}</div>
+        </div> 
+        <div class="am-form-group am-cf">
+          <div>性别：{$list[1][sex]}</div>
+        </div>
+         <div class="am-form-group am-cf">
+          <div>状态：{$list[0][status]}</div>
+        </div>
+         <div class="am-form-group am-cf">
+          <div>生日：{$list[1][birthday]}</div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div>手机号：{$list[1][phone]}</div>
+        </div>
+       
+        <div class="am-form-group am-cf">
+          <div>添加时间：{$list[0][addtime]}</div>
+        </div>
+             
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <a href="__URL__/index" class="am-btn am-btn-success am-radius">返回</a>&nbsp;
+               &nbsp; 
+          </div>
+        </div>
+      </form>
+    </div>
+     
+     
+</block>
