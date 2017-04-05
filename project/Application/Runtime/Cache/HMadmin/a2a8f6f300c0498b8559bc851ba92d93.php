@@ -212,7 +212,7 @@
         <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束--> 
         
       </div>
-      <form action="/Project/project/index.php/HMadmin/Auth/deleteTypeAll" method="post" class="am-form am-g">
+      <form action="/Project/project/index.php/HMadmin/Auth/deleteAuthAll" method="post" class="am-form am-g">
         <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
           <thead>
             <tr class="am-success">

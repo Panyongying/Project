@@ -20,4 +20,11 @@ class AuthRuleModel extends Model {
    		return M('AuthRule')->add($data);
    }
 
+   //删除分类
+    public function deleteType($id)
+    {
+        return M("AuthRule")->delete($id);
+
+    }
+
 }

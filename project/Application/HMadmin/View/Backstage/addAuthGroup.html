@@ -1,0 +1,64 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>添加权限管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 添加权限</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加权限</a></dl>
+
+      
+      
+    </div>
+	
+    <div class="fbneirong">
+      <form method="post" class="am-form">
+        
+        <div class="am-form-group am-cf">
+          <div class="zuo">部门名：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" placeholder="请输入功能名">
+          </div>
+        </div>
+
+
+
+
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限：</div>
+          <div class="you">
+            <foreach name="auths" item="v">
+              <label style="margin-top:7px"><input  type="checkbox" name="rules[]" value="{$v.id}">{$v.title}</label>
+            </foreach>
+          </div>
+        </div>
+        
+        
+        <div class="zuo">状态：</div>
+        <div class="you" style="margin-top: 5px;">
+          <label class="am-checkbox-inline">
+            <input type="radio" value="1" checked name="status">
+            正常 </label>
+          <label class="am-checkbox-inline">
+            <input type="radio" value="2" name="status">
+            禁用 </label>
+            </div>
+          <div class="am-form-group am-cf">
+              <div class="you" style="margin-left: 11%;">
+                  <a href="__CONTROLLER__/index" type="submit" class="am-btn am-btn-default am-radius">返回</a>&nbsp;  &raquo; &nbsp; <input type="submit" class="am-btn am-btn-success am-radius" value="提交">
+
+              </div>
+          </div>
+
+
+
+        </div>
+        
+      </form>
+    </div>
+     
+     
+</block>

@@ -58,21 +58,12 @@
 
 
    <li class="kuanjie">
-<<<<<<< HEAD
-
-   	<a href="#">会员管理</a>
-   	<a href="#">奖金管理</a>
-   	<a href="#">订单管理</a>
-   	<a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a>
-   	<a href="#">个人中心</a>
-=======
 
    	<a href="/Project/project/index.php/HMadmin/User/index">会员管理</a>
    	<a href="#">奖金管理</a>
    	<a href="#">订单管理</a>
-   	<a href="#">产品管理</a>
+   	<a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a>
    	<a href="#">个人中心</a>
->>>>>>> 720a383ab48b8e6ce86fdca92e41a41e6f400092
    	<a href="#">系统设置</a>
    </li>
 
@@ -141,6 +132,7 @@
       <ul>
         <li><a href="">管理员列表</a> </li>
         <li><a href="">管理组列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Auth/index">权限列表</a></li>
         <li>团队系谱图</li>
         <li>会员推荐图</li>
         <li>推荐列表</li>
@@ -195,8 +187,8 @@
 
     <div class="daohang">
       <ul>
-        <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
-        <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+        <li><a href="/Project/project/index.php/HMadmin/Index/index" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </a></li>
+        <li></li>
         <li></li>
         <li></li>
 

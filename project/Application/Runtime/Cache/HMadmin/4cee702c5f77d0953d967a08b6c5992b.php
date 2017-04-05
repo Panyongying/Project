@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>商品分类管理</title>
+	<title>权限管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -201,45 +201,42 @@
  <div class="admin-biaogelist">
       <div class="listbiaoti am-cf">
         <ul class="am-icon-flag on">
-          商品分类栏目管理
+          权限栏目管理
         </ul>
         <dl class="am-icon-home" style="float: right;">
-          当前位置： 首页 > <a href="#">分类列表</a>
+          当前位置： 首页 > <a href="#">权限列表</a>
         </dl>
         <dl>
-          <a href="/Project/project/index.php/HMadmin/Type/showAddType" type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-popup'}">添加商品一级分类</a>
+          <a href="/Project/project/index.php/HMadmin/AuthRule/showAddAuthPage" type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" data-am-modal="{target: '#my-popup'}">添加权限</a>
         </dl>
         <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束--> 
         
       </div>
-      <form action="/Project/project/index.php/HMadmin/Type/deleteTypeAll" method="post" class="am-form am-g">
+      <form action="/Project/project/index.php/HMadmin/AuthRule/deleteAuthAll" method="post" class="am-form am-g">
         <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
           <thead>
             <tr class="am-success">
               <th class="table-check"><input id="checkBox" type="checkbox" /></th>
               <th class="table-id am-text-center">ID</th>
-              <th class="table-id am-text-center">父类ID</th>
-              <th class="table-id am-text-center">路径</th>
-              <th class="table-title">栏目名称</th>
+              <th class="table-title">权限路径</th>
+              <th class="table-title">权限名</th>
+              <th class="table-id">状态</th>
               <th width="163px" class="table-set">操作</th>
             </tr>
           </thead>
           <tbody>
             <!-- 循环 -->
-            <?php if(is_array($typeList)): foreach($typeList as $key=>$v): ?><tr>
+            <?php if(is_array($authList)): foreach($authList as $key=>$v): ?><tr>
                   <td><input type="checkbox" name="ids[]" value="<?php echo ($v["id"]); ?>" /></td>
                   <td class="am-text-center"><?php echo ($v["id"]); ?></td>
-                  <td class="am-text-center"><?php echo ($v["pid"]); ?></td>
-                  <td class="am-text-center"><?php echo ($v["path"]); ?></td>
-                  <td>
-                      <?php if($v["path"] != '0,'): ?>　├─<?php echo ($v["name"]); ?>
-                      <?php else: echo ($v["name"]); endif; ?>
-                  </td>
+                  <td class="am-text-center"><?php echo ($v["name"]); ?></td>
+                  <td class="am-text-center"><?php echo ($v["title"]); ?></td>
+                  <td><?php echo ($status[$v[status]]); ?></td>
                   <td><div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                      <a href="/Project/project/index.php/HMadmin/Type/showAddType/id/<?php echo ($v["id"]); ?>/path/<?php echo ($v["path"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" data-am-modal="{target: '#my-popups'}" title="添加子栏目"></a>
-                        <button class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round" onclick="return false" data-id="<?php echo ($v["id"]); ?>" title="修改"><span class="am-icon-pencil-square-o" ></span></button>             
-                        <a href="/Project/project/index.php/HMadmin/Type/deleteTypeOne/id/<?php echo ($v[id]); ?>" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除"><span class="am-icon-trash-o"></span></a>
+                     <!--  <a href="/Project/project/index.php/HMadmin/AuthRule/" class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" data-am-modal="{target: '#my-popups'}" title="添加子栏目"></a> -->
+                        <!-- <button class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round" onclick="return false" data-id="<?php echo ($v["id"]); ?>" title="修改"><span class="am-icon-pencil-square-o" ></span></button> -->             
+                        <a href="/Project/project/index.php/HMadmin/AuthRule/deleteAuth/id/<?php echo ($v["id"]); ?>" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除"><span class="am-icon-trash-o"></span></a>
                       </div>
                     </div></td>
                 </tr><?php endforeach; endif; ?>
@@ -252,23 +249,7 @@
                 return false;
               }
             });
-            //修改按钮ajax
-            $('.modifyBtn').on('click', function(){
-              var name = prompt('请输入修改的名字');
 
-              if (name == null  ) {
-                return false;
-              }
-              var id = $(this).attr('data-id');
-                $.ajax({
-                  url:'/Project/project/index.php/HMadmin/Type/modifyTypeName/id/' + id + '/name/' + name,
-                  success:function(data) {
-                    if ( data == 1 ) {
-                       location.reload();
-                    }
-                  }
-                });
-            });
             //全选
             $('#checkBox').on('click', function() {
                  var bool =  $('#checkBox').prop('checked');
