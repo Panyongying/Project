@@ -60,6 +60,13 @@ class AuthGroupController extends CommonController {
     {
         $id = I('get.id');
 
+        $res = D('AuthGroup')->beforeDelete($id);
+      	//判断是否有管理员
+        if ( $res ) {
+        	$this->error('请先删除管理组里的成员');
+        	exit;
+        }
+
         $res = M('AuthGroup')->where("id={$id}")->delete();
 
         if ($res) {
@@ -81,6 +88,13 @@ class AuthGroupController extends CommonController {
         }
 
     	$ids = join($ids['ids'], ',');
+
+    	$res = D('AuthGroup')->beforeDelete($ids);
+      	//判断是否有管理员
+        if ( $res ) {
+        	$this->error('请先删除管理组里的成员');
+        	exit;
+        }
 
     	$res = D('AuthGroup')->deleteGroup($ids);
 
