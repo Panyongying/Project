@@ -30,7 +30,7 @@
 
 			$bool = $auth->check($name ,$uid);
 
-			var_dump($bool);
+			// var_dump($bool);
 
 
 			// if ( !$bool ) {

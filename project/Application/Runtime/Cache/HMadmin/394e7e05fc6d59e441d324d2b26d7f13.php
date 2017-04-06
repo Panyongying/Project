@@ -158,7 +158,7 @@
         <li>第三方支付</li>
         <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
-        <li>声音文件</li>
+        <li><a href="">迅搜</a></li>
       </ul>
     </div>
     <!-- sideMenu End -->
@@ -251,7 +251,7 @@
                 <th class="table-title">管理组名称</th>
                 <th class="table-type">组状态</th>
                 <th class="table-author am-hide-sm-only">拥有的权限</th>
-                <th width="130px" class="table-set">操作</th>
+                <th width="130" class="table-set">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -262,7 +262,7 @@
                 <td><?php echo ($vo["id"]); ?></td>
                 <td><?php echo ($vo["title"]); ?></td>
                 <td><?php echo ($status[$vo[status]]); ?></td>            
-                <td class="am-hide-sm-only"><?php echo ($vo["rules"]); ?></td>
+                <td><?php echo ($vo["rules"]); ?></td>
                 <td>
                 	
                 	

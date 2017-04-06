@@ -13,11 +13,13 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="icon" type="image/png" href="/Project/project/Public/Backstage/i/favicon.png">
 <link rel="apple-touch-icon-precomposed" href="/Project/project/Public/Backstage/i/app-icon72x72@2x.png">
+<link rel="stylesheet" href="/Project/project/Public/Dropzone/dropzone.css" />
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="/Project/project/Public/Backstage/css/amazeui.min.css"/>
 <link rel="stylesheet" href="/Project/project/Public/Backstage/css/admin.css">
 <script src="/Project/project/Public/Backstage/js/jquery.min.js"></script>
 <script src="/Project/project/Public/Backstage/js/app.js"></script>
+<script src="/Project/project/Public/Dropzone/dropzone.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -123,16 +125,17 @@
       <h3 class="am-icon-users"><em></em> <a href="/Project/project/index.php/HMadmin/User/index">会员管理</a></h3>
       <ul>
         <li><a href="/Project/project/index.php/HMadmin/User/index">会员列表</a> </li>
-        <li>未激活会员</li>
-        <li>团队系谱图</li>
-        <li>会员推荐图</li>
+        <li><a href="/Project/project/index.php/HMadmin/User/addUser">添加会员</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/User/inactive">未激活会员</a></li>
         <li>推荐列表</li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
+
         <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
         <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
         <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
+
         <li>团队系谱图</li>
         <li>会员推荐图</li>
         <li>推荐列表</li>
@@ -239,7 +242,7 @@
         <div class="am-form-group am-cf">
           <div class="zuo">部门:</div>
           <div class="you">
-            <?php if(is_array($authGroup)): foreach($authGroup as $key=>$v): ?><label style="margin-top:7px;margin-left:5px"><input  type="radio" name="gid" checked value="<?php echo ($v["id"]); ?>"><?php echo ($v["title"]); ?></label><?php endforeach; endif; ?>
+            <?php if(is_array($authGroup)): foreach($authGroup as $key=>$v): ?><label style="margin-top:7px;margin-left:5px"><input  type="radio" name="group_id" checked value="<?php echo ($v["id"]); ?>"><?php echo ($v["title"]); ?></label><?php endforeach; endif; ?>
           </div>
         </div>
         

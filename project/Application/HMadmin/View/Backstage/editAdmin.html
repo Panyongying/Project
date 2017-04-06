@@ -45,16 +45,16 @@
           <div class="zuo">部门:</div>
           <div class="you">
             <foreach name="authGroup" item="v">
-              <label style="margin-top:7px;margin-left:5px"><input  type="radio" name="gid" checked value="{$v.id}">{$v.title}</label>
+              <label style="margin-top:7px;margin-left:5px"><input  type="radio" name="group_id" checked value="{$v.id}">{$v.title}</label>
             </foreach>
           </div>
         </div>
 
         <script>
-          var gid = {$gid};
-          $('input[name=gid]').each(function(i) {
+          var group_id = {$group_id};
+          $('input[name=group_id]').each(function(i) {
             var that = $(this);
-            if ( $(this).attr('value') == gid ) {
+            if ( $(this).attr('value') == group_id ) {
               that.prop('checked', true);
             }
           });

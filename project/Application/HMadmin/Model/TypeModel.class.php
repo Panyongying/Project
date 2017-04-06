@@ -8,13 +8,13 @@ class TypeModel extends Model {
     //查出所有分类
     public function typeSelect()
     {
-        return M('Type')->order('concat(path, id)')->select();
+        return $this->order('concat(path, id)')->select();
     }
 
     //删除判断分类是否有父级
     public function beforeDelete($ids)
     {
-        $res = M('Type')->field('pid')->where("pid in ($ids)")->select();
+        $res = $this->field('pid')->where("pid in ($ids)")->select();
 
         return $res;
     }
@@ -29,19 +29,19 @@ class TypeModel extends Model {
 
        $data['path'] = '0,';
 
-       return M('Type')->add($data);
+       return $this->add($data);
     }
 
     //删除分类
     public function deleteType($id)
     {
-        return M("Type")->delete($id);
+        return $this->delete($id);
 
     }
 
     //添加子级分类
     public function addChildType($data)
     {
-        return M("Type")->add($data);
+        return $this->add($data);
     }
 }

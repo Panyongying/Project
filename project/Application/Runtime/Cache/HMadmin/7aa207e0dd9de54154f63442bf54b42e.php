@@ -242,15 +242,15 @@
         <div class="am-form-group am-cf">
           <div class="zuo">部门:</div>
           <div class="you">
-            <?php if(is_array($authGroup)): foreach($authGroup as $key=>$v): ?><label style="margin-top:7px;margin-left:5px"><input  type="radio" name="gid" checked value="<?php echo ($v["id"]); ?>"><?php echo ($v["title"]); ?></label><?php endforeach; endif; ?>
+            <?php if(is_array($authGroup)): foreach($authGroup as $key=>$v): ?><label style="margin-top:7px;margin-left:5px"><input  type="radio" name="group_id" checked value="<?php echo ($v["id"]); ?>"><?php echo ($v["title"]); ?></label><?php endforeach; endif; ?>
           </div>
         </div>
 
         <script>
-          var gid = <?php echo ($gid); ?>;
-          $('input[name=gid]').each(function(i) {
+          var group_id = <?php echo ($group_id); ?>;
+          $('input[name=group_id]').each(function(i) {
             var that = $(this);
-            if ( $(this).attr('value') == gid ) {
+            if ( $(this).attr('value') == group_id ) {
               that.prop('checked', true);
             }
           });

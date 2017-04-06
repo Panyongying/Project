@@ -4,7 +4,7 @@ namespace HMadmin\Controller;
 
 
 class AdminController extends CommonController {
-    //管理组首页显示
+    //管理员首页显示
     public function index()
     {
        $adminList = M('Admin')->select();
@@ -18,7 +18,7 @@ class AdminController extends CommonController {
        $this->display('Backstage/admin');
     }
 
-    //显示添加管理组页面
+    //显示添加管理员页面
     public function showAddAdminPage()
     {
         //如果有post值就执行添加
@@ -47,7 +47,7 @@ class AdminController extends CommonController {
 
                 $data2 = array(
                 	'uid'=>$uid,
-                	'gid'=>$data['gid'],
+                	'group_id'=>$data['group_id'],
                 );
 
                 if (!M('AuthGroupAccess')->add($data2)) {
@@ -76,7 +76,7 @@ class AdminController extends CommonController {
         }
     }
 
-    //删除管理组方法
+    //删除管理员方法
     public function deleteAdminOne()
     {
         $id = I('get.id');
@@ -120,7 +120,7 @@ class AdminController extends CommonController {
     public function showGroupName()
     {
        $id = I('get.id');
-       $adminList = M('AuthGroupAccess')->where("uid={$id}")->join('hm_auth_group ON hm_auth_group_access.gid = hm_auth_group.id')->find();
+       $adminList = M('AuthGroupAccess')->where("uid={$id}")->join('hm_auth_group ON hm_auth_group_access.group_id = hm_auth_group.id')->find();
 
 
        $this->ajaxReturn($adminList);
@@ -151,12 +151,11 @@ class AdminController extends CommonController {
 
                 $res = $admin->save();
 
-                $AuthGroupAccess->gid = $data['gid'];
+                $AuthGroupAccess->group_id = $data['group_id'];
 
                 $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
 
-
-                if ( $res !== false && $AGAres ) {
+                if ( $res !== false && $AGAres !== false ) {
                     $this->success('修改成功', U('Admin/index'));
                     exit;
                 } else {
@@ -176,7 +175,7 @@ class AdminController extends CommonController {
 
                     $res = $admin->save();
 
-                    $AuthGroupAccess->gid = $data['gid'];
+                    $AuthGroupAccess->group_id = $data['group_id'];
 
                     $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
 
@@ -207,9 +206,9 @@ class AdminController extends CommonController {
 
             $authGroup = M('AuthGroup')->field('id, title')->select();
 
-            $gid = D('Admin')->findAdminGroup($id)['gid'];
+            $group_id = D('Admin')->findAdminGroup($id)['group_id'];
 
-            $this->assign('gid', $gid);
+            $this->assign('group_id', $group_id);
 
             $this->assign('authGroup', $authGroup);
 

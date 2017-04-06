@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>管理员管理</title>
+	<title>添加权限管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -158,7 +158,7 @@
         <li>第三方支付</li>
         <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
-        <li><a href="">迅搜</a></li>
+        <li>声音文件</li>
       </ul>
     </div>
     <!-- sideMenu End -->
@@ -201,143 +201,67 @@
 <!-- admin-content part end -->
 
 
-	<div class="admin-biaogelist">
+<div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-users"> 管理员管理</ul>
+      <ul class="am-icon-flag on"> 添加权限</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">管理员列表</a></dl>
-      
-      <dl>
-        <a href="/Project/project/index.php/HMadmin/Admin/showAddAdminPage" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加管理员</a>
-      </dl>
-      <!--这里打开的是新页面-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加权限</a></dl>
+
       
       
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 	
-	
+    <div class="fbneirong">
+      <form method="post" class="am-form">
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限路径：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="name" placeholder="请输入权限路径">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">权限功能名：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" placeholder="请输入功能名">
+          </div>
+        </div>
 
 
-    <form action="/Project/project/index.php/HMadmin/Admin/deleteAdmin" method="post" class="am-form am-g">
-          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
-            <thead>
-              <tr class="am-success">
-                <th class="table-check"><input type="checkbox" id="checkBox" /></th>
-
-                <th class="table-id">ID</th>
-                <th class="table-title">管理员名称</th>
-                <th class="table-type">状态</th>
-                <th class="table-author am-hide-sm-only">所属部门</th>
-                <th width="130px" class="table-set">操作</th>
-              </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($adminList)): foreach($adminList as $key=>$vo): ?><tr>
-                <td><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
-                
-                <td><?php echo ($vo["id"]); ?></td>
-                <td><?php echo ($vo["name"]); ?></td>
-                <td><?php echo ($status[$vo[status]]); ?></td>            
-                <td class="am-hide-sm-only groupName" data-id="<?php echo ($vo["id"]); ?>"></td>
-                <td>
-                	
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <a href="/Project/project/index.php/HMadmin/Admin/editAdmin/id/<?php echo ($vo["id"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></a>
-                      <a href="/Project/project/index.php/HMadmin/Admin/deleteAdminOne/id/<?php echo ($vo[id]); ?>" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除组"><span class="am-icon-trash-o"></span></a>
-                    </div>
-                  </div>
-                	
-   	
-                </td>
-              </tr><?php endforeach; endif; ?>
-
-              <script>
-                  //ajax显示部门名
-                  $('.groupName').map(function() {
-                    var that = $(this);
-                      $.ajax({
-                        url:'/Project/project/index.php/HMadmin/Admin/showGroupName/id/' + $(this).attr('data-id'),
-                        success:function(data){
-                          if (data) {
-                            that.html(data.title);
-                          }
-                        }
-                      });
-
-                  });
 
 
-                 //删除按钮的确定判定
-                  $('.deleteBtn').on('click', function() {
-                    var bool = confirm('确定删除？');
-
-                    if (!bool) {
-                      return false;
-                    }
-                  });
-                  //全选
-                  $('#checkBox').on('click', function() {
-                       var bool =  $('#checkBox').prop('checked');
-                       $('input[type="checkbox"]').prop('checked', bool) ;
-                  });
-              </script>
+        <div class="am-form-group am-cf">
+          <div class="zuo">描述：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="situation" placeholder="不填默认为空">
+          </div>
+        </div>
         
-            </tbody>
-          </table>
-          <!-- 按钮 -->
-                 <div class="am-btn-group am-btn-group-xs">
-             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button> -->
-              <input type="submit" class="am-btn am-btn-default" value="删除" />
+        
+        <div class="zuo">状态：</div>
+        <div class="you" style="margin-top: 5px;">
+          <label class="am-checkbox-inline">
+            <input type="radio" value="1" checked name="status">
+            正常 </label>
+          <label class="am-checkbox-inline">
+            <input type="radio" value="2" name="status">
+            禁用 </label>
             </div>
-          <!-- 分页 -->
-         <!--  <ul class="am-pagination am-fr">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
-              </ul> -->
-          
-          
-          
-      
-          <hr />
-          <p>注：.....</p>
-        </form>
+          <div class="am-form-group am-cf">
+              <div class="you" style="margin-left: 11%;">
+                  <a href="/Project/project/index.php/HMadmin/AuthRule/index" type="submit" class="am-btn am-btn-default am-radius">返回</a>&nbsp;  &raquo; &nbsp; <input type="submit" class="am-btn am-btn-success am-radius" value="提交">
+
+              </div>
+          </div>
+
+
+
+        </div>
+        
+      </form>
+    </div>
+     
+     
 
 
 

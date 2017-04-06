@@ -158,7 +158,7 @@
         <li>第三方支付</li>
         <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
-        <li>声音文件</li>
+        <li><a href="">迅搜</a></li>
       </ul>
     </div>
     <!-- sideMenu End -->
@@ -238,7 +238,7 @@
                   <td><div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
                      <!--  <a href="/Project/project/index.php/HMadmin/AuthRule/" class="am-btn am-btn-default am-btn-xs am-text-success am-round am-icon-file" data-am-modal="{target: '#my-popups'}" title="添加子栏目"></a> -->
-                        <!-- <button class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round" onclick="return false" data-id="<?php echo ($v["id"]); ?>" title="修改"><span class="am-icon-pencil-square-o" ></span></button> -->             
+                        <a href="/Project/project/index.php/HMadmin/AuthRule/editAuth/id/<?php echo ($v["id"]); ?>" class="modifyBtn am-btn am-btn-default am-btn-xs am-text-secondary am-round"  title="修改"><span class="am-icon-pencil-square-o" ></span></a>             
                         <a href="/Project/project/index.php/HMadmin/AuthRule/deleteAuth/id/<?php echo ($v["id"]); ?>" class="deleteBtn am-btn am-btn-default am-btn-xs am-text-danger am-round"  title="删除"><span class="am-icon-trash-o"></span></a>
                       </div>
                     </div></td>
