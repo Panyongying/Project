@@ -42,7 +42,29 @@
 		//获取用户数据
 		public function getUserInfo()
 		{	
-			$userInfo = $this->field('id,email,status,addtime')->select();
+			
+			$name = I('get.keyword');
+
+
+	        if ( !empty($name) ) {
+
+	            $search['email'] = array('like', "%{$name}%");
+
+	        }
+
+            $listAll = $this->where($search)->select();
+           
+            
+            //统计总条数
+            $total = count($listAll);
+
+            $page = new \Think\Page($total, 5);
+
+            //分页
+            $userInfo = $this->field('id,email,status,addtime')->where($search)->limit($page->firstRow.','.$page->listRows)->select();
+
+            //拿到分页按钮
+            $show = $page->show();
 
 			$userArr = [1=>'未激活', '激活', '禁用'];
 
@@ -52,9 +74,8 @@
 
 				$userInfo[$i]['addtime'] = date('Y-m-d H:i:s', $userInfo[$i]['addtime']);
 			}
-
-
-
+			
+			$userInfo['show'] = $show;
 			return $userInfo;
 		}
 		//删除用户
@@ -102,23 +123,6 @@
 
 		}
 
-		//获取未激活会员
-		public function getInactive()
-		{
-			$userInfo = $this->field('id,email,status,addtime')->where('status=1')->select();
-
-			$userArr = [1=>'未激活', '激活', '禁用'];
-
-			for ($i=0; $i<count($userInfo); $i++) {
-
-				$userInfo[$i]['status'] = $userArr[ $userInfo[$i]['status'] ];
-
-				$userInfo[$i]['addtime'] = date('Y-m-d H:i:s', $userInfo[$i]['addtime']);
-			}
-
-			return $userInfo;
-		}
-
 		//ajax批量删除
 		public function ajaxdelsome()
 		{
@@ -131,6 +135,35 @@
 	       $list =	$this->where($map)->delete();
 
 	       return $list;
+		}
+
+		//单击ajax修改用户状态
+		public function changeUserStatus()
+		{
+			$id = I('post.id');
+
+      		 $list = $this->field('status')->where('id='.$id)->find();
+
+	        if($list['status'] == 3){
+
+	            $list['status']=1;
+
+	        }else if($list['status'] == 1){
+
+	            $list['status']=3;
+	        }
+
+	       	$res = M('user')->where('id='.$id)->save($list);
+
+		    if ($res){
+
+	         	return $list['status'];
+
+		    } else {
+
+		        $this->error('修改失败');
+		    }
+
 		}
 
 		protected function Hash()
