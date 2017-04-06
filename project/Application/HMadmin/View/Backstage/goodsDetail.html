@@ -1,0 +1,38 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>添加商品管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="__APP__/HMadmin/Goods/Index">商品列表</a></dl>
+
+
+
+    </div>
+
+    <div class="fbneirong">
+      <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+        <tr>
+          <td>
+          <foreach name="pic" item="vo">
+
+              <img src="__PUBLIC__/{$vo.pic}" alt="" width="200px">&nbsp;&nbsp;&nbsp;
+
+          </foreach>
+          </td>
+        </tr>
+      </table>
+      <div class="am-form-group am-cf">
+        <div class="you">
+            <a href="__APP__/HMadmin/Goods/Index" class="am-btn am-btn-success am-radius">返回</a>
+        </div>
+      </div>
+    </div>
+
+
+
+</block>

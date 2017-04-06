@@ -152,6 +152,52 @@
             }
         }
 
+        //显示图片详情
+        public function goodsDetail()
+        {
+            if (IS_POST) {
+
+            } else {
+
+                $pic = D('goods')->goodsDetail();
+
+                $this->assign('pic', $pic);
+                $this->display('Backstage/goodsDetail');
+            }
+        }
+
+        //编辑商品
+        public function goodsEdit()
+        {
+            if (IS_POST) {
+
+            } else {
+
+                $goodData = D('goods')->goodsEdit();
+                $attr = D('goods')->selectAttr();
+                $type = D('goods')->selectType();
+
+                $this->assign('goodData', $goodData);
+                $this->assign('attr', $attr);
+                $this->assign('type', $type);
+                $this->display('Backstage/goodsEdit');
+            }
+        }
+
+        //编辑时删除图片
+        public function editDelPic()
+        {
+
+            if (IS_AJAX) {
+
+                $res = D('goods')->editDelPic();
+
+                if ($res) {
+
+                    $this->ajaxReturn(1);
+                }
+            }
+        }
 
     }
 

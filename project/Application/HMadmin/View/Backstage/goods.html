@@ -68,7 +68,9 @@
                 <th class="table-title">价格</th>
                 <th class="table-type">一级</th>
                 <th class="table-type">描述</th>
+                <th class="table-type">详情</th>
                 <th class="table-type">状态</th>
+                <th class="table-type">此商品图片详情</th>
                 <th class="table-type">点击量</th>
                 <th class="table-type">销售量</th>
                 <th class="table-title">修改时间</th>
@@ -78,7 +80,6 @@
               </tr>
             </thead>
             <tbody>
-
             <foreach name="goodsList" item="vo" key="k">
               <tr>
                 <td><input type="checkbox" name="checkson[]" value="{$vo.id}" /></td>
@@ -89,14 +90,16 @@
                 <td>{$vo.tid}</td>
                 <!-- <td class="am-hide-sm-only"><i class="am-icon-check am-text-warning"></i></td> -->
                 <td class="am-hide-sm-only">{$vo.des}</td>
+                <td class="am-hide-sm-only">{$vo['detail'][0].detail}</td>
                 <td>{$vo.status}</td>
+                <td><a href="__CONTROLLER__/goodsDetail/id/{$vo.id}">详情图</a></td>
                 <td>{$vo.viewtimes}</td>
                 <td>{$vo.saled}</td>
                 <td>{$vo.addtime}</td>
 
                 <td><div class="am-btn-toolbar" data-num="{$k}">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
+                      <a href="__CONTROLLER__/goodsEdit/id/{$vo.id}" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></a>
                       <!-- <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button> -->
                       <a href="javascript:;" class="del am-btn am-btn-default am-btn-xs am-text-danger am-round"  data-id="{$vo.id}"><span class="am-icon-trash-o"></span></a>
                     </div>
