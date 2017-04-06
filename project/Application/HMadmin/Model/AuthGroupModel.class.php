@@ -37,4 +37,10 @@ class AuthGroupModel extends Model {
         return M('AuthGroupAccess')->where("gid=$gid")->join('hm_admin ON hm_auth_group_access.uid = hm_admin.id')->select();
     }
 
+    //删除前判定有没管理员在此部门
+    public function beforeDelete($gid)
+    {
+        return M('AuthGroupAccess')->where("gid in ($gid)")->join('hm_admin ON hm_auth_group_access.uid = hm_admin.id')->select();
+    }
+
 }

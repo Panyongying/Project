@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>管理员管理</title>
+	<title>商品管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -201,100 +201,119 @@
 <!-- admin-content part end -->
 
 
-	<div class="admin-biaogelist">
-	
+<div class="admin-biaogelist">
+
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-users"> <?php echo ($title); ?>详情</ul>
-      
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#"><?php echo ($title); ?>详情</a></dl>
-      
-        <!-- <dl>
-          <a href="/Project/project/index.php/HMadmin/AuthGroup/showAddAdminPage" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加组员</a>
-        </dl> -->
-      <!--这里打开的是新页面-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="/Project/project/index.php/HMadmin/Goods/Index">商品列表</a></dl>
+
+      <dl>
+        <a href="/Project/project/index.php/HMadmin/Goods/addGood"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加产品</button></a>
+      </dl>
+
+
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
+
+	<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+  <ul>
+    <li>
+      <div class="am-btn-group am-btn-group-xs">
+        <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+          <option value="b">产品分类</option>
+          <option value="o">下架</option>
+        </select>
+      </div>
+    </li>
+    <li>
+      <div class="am-btn-group am-btn-group-xs">
+      <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+        <option value="b">产品分类</option>
+        <option value="o">下架</option>
+      </select>
+      </div>
+    </li>
+    <li style="margin-right: 0;">
+    	<span class="tubiao am-icon-calendar"></span>
+      <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}"  readonly/>
+    </li>
+       <li style="margin-left: -4px;">
+    	<span class="tubiao am-icon-calendar"></span>
+      <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}"  readonly/>
+    </li>
+
+        <li style="margin-left: -10px;">
+      <div class="am-btn-group am-btn-group-xs">
+      <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+        <option value="b">产品分类</option>
+        <option value="o">下架</option>
+      </select>
+      </div>
+    </li>
+    <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索" /></li>
+    <li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">搜索</button></li>
+  </ul>
+</div>
 
 
-    <form action="/Project/project/index.php/HMadmin/AuthGroup/deleteAdmin" method="post" class="am-form am-g">
+    <form class="am-form am-g" action="/Project/project/index.php/HMadmin/Goods/deleteAll" method="post">
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
-                <!-- <th class="table-check"><input type="checkbox" id="checkBox" /></th> -->
-
-                <th class="table-id">ID</th>
-                <th class="table-title">管理员名称</th>
+                <th class="table-check"><input type="checkbox" name="checkboss" /></th>
+                <th class="table-title">序号</th>
+                <th class="table-title">商品名</th>
+                <th class="table-title">价格</th>
+                <th class="table-type">一级</th>
+                <th class="table-type">描述</th>
                 <th class="table-type">状态</th>
-                <th class="table-author am-hide-sm-only">所属部门</th>
-                <th width="130px" class="table-set">操作</th>
+                <th class="table-type">点击量</th>
+                <th class="table-type">销售量</th>
+                <th class="table-title">修改时间</th>
+              <!--   <th class="table-author am-hide-sm-only">上架/下架 <i class="am-icon-check am-text-warning"></i> <i class="am-icon-close am-text-primary"></i></th>
+                <th class="table-date am-hide-sm-only">修改日期</th> -->
+                <th width="163px" class="table-set">操作</th>
               </tr>
             </thead>
             <tbody>
 
-            <?php if(is_array($adminList)): foreach($adminList as $key=>$vo): ?><tr>
-                <!-- <td><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td> -->
-                
+            <?php if(is_array($goodsList)): foreach($goodsList as $k=>$vo): ?><tr>
+                <td><input type="checkbox" name="checkson[]" value="<?php echo ($vo["id"]); ?>" /></td>
+                <!-- <td><input type="text" class="am-form-field am-radius am-input-sm"/></td> -->
                 <td><?php echo ($vo["id"]); ?></td>
                 <td><?php echo ($vo["name"]); ?></td>
-                <td><?php echo ($status[$vo[status]]); ?></td>            
-                <td class="am-hide-sm-only groupName" data-id="<?php echo ($vo["id"]); ?>"><?php echo ($title); ?></td>
-                <td>
-                	
-                	
-                	<div class="am-btn-toolbar">
+                <td><?php echo ($vo["price"]); ?></td>
+                <td><?php echo ($vo["tid"]); ?></td>
+                <!-- <td class="am-hide-sm-only"><i class="am-icon-check am-text-warning"></i></td> -->
+                <td class="am-hide-sm-only"><?php echo ($vo["des"]); ?></td>
+                <td><?php echo ($vo["status"]); ?></td>
+                <td><?php echo ($vo["viewtimes"]); ?></td>
+                <td><?php echo ($vo["saled"]); ?></td>
+                <td><?php echo ($vo["addtime"]); ?></td>
+
+                <td><div class="am-btn-toolbar" data-num="<?php echo ($k); ?>">
                     <div class="am-btn-group am-btn-group-xs">
-                     
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
-                     
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
+                      <!-- <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button> -->
+                      <a href="javascript:;" class="del am-btn am-btn-default am-btn-xs am-text-danger am-round"  data-id="<?php echo ($vo["id"]); ?>"><span class="am-icon-trash-o"></span></a>
                     </div>
-                  </div>
-                	
-   	
-                </td>
+                  </div></td>
+
+
               </tr><?php endforeach; endif; ?>
 
-              
-        
+
             </tbody>
           </table>
-          <!-- 按钮 -->
+
                  <div class="am-btn-group am-btn-group-xs">
-             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button> -->
-              <a href="/Project/project/index.php/HMadmin/AuthGroup/index" class="am-btn am-btn-default" >返回</a>
+
+
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus" style="color:lime"><a href="/Project/project/index.php/HMadmin/Goods/addGood" style="color:lime"> 新增</a></span></button>
+              <button type="submit" class="delAll am-btn am-btn-default"><span class="am-icon-trash-o" style="color:red"> 批量删除</span></button>
             </div>
-          <!-- 分页 -->
-         <!--  <ul class="am-pagination am-fr">
+
+          <ul class="am-pagination am-fr">
                 <li class="am-disabled"><a href="#">«</a></li>
                 <li class="am-active"><a href="#">1</a></li>
                 <li><a href="#">2</a></li>
@@ -302,14 +321,70 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">»</a></li>
-              </ul> -->
-          
-          
-          
-      
+              </ul>
+
+            <script>
+            // ajax删除
+              var url = '/Project/project/index.php/HMadmin/Goods/ajaxDelete';
+
+              $('.del').on('click', function () {
+
+                console.log($('.del'));
+
+                var that = $(this);
+
+                // console.log($(this).attr('data-id'));
+
+                $.get(url, {'id':$(this).attr('data-id')}, function (data) {
+
+                  // console.log(data);
+                  if (data == 1) {
+
+                    that.parent().parent().parent().parent().remove();
+
+                  }
+
+                }, 'json');
+
+              });
+
+              //反选
+              $('input[name="checkboss"]').on('click', function() {
+
+                var inputs = $('input[name="checkson[]"]');
+
+                var checked = false;
+
+                var ids = '';
+
+                for (var i=0; i<inputs.length; i++) {
+
+                  inputs[i].checked = !inputs[i].checked;
+                }
+
+              });
+
+              //delAll
+              $('.delAll').click(function() {
+
+                if (confirm('are you sure ?')) {
+                  return true;
+
+                } else {
+
+                  return false;
+                }
+              });
+
+            </script>
+
+
           <hr />
-          <p>注：.....</p>
-        </form>
+          <p>注：<span class="am-icon-pencil-square-o">编辑</span>&nbsp; <span class="am-icon-trash-o">删除</span></p>
+    </form>
+
+
+
 
 
 

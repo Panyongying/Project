@@ -17,36 +17,27 @@
 
 				$this->error('请登录', U('Public/login') );
 
+
 				exit;
 			}
 
+			//权限验证
+			$auth = new \Think\Auth;
 
-			// 登陆成功后还需要判断对某个方法是否有权限
-			
-			//实例化auth类
-			// $auth = new \Think\Auth;
+			$uid = $_SESSION['adminInfo']['id'];
 
-			//假设mary登录
-			// $uid = 2;
+			$name = MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME; 
 
+			$bool = $auth->check($name ,$uid);
 
-			// $name = 'Admin/Order/select';
-
-			// echo CONTROLLER_NAME;
-
-			// $name = MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME; 
-
-			//调用check方法进行权限验证
-			// $bool = $auth->check($name ,$uid);
-
-			// var_dump($bool);
+			var_dump($bool);
 
 
 			// if ( !$bool ) {
 
-				//没有权限
-			/*	$this->error('你对此页面没有权限', U('Index/index') );
-				exit;*/
+				// 没有权限
+				// $this->error('你对此页面没有权限', U('Index/index') );
+				// exit;
 // 
 			// }
 

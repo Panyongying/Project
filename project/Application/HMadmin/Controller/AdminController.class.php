@@ -83,7 +83,9 @@ class AdminController extends CommonController {
 
         $res = M('Admin')->where("id={$id}")->delete();
 
-        if ($res) {
+        $AGAres = M("AuthGroupAccess")->where("uid = {$id}")->delete();
+
+        if ( $res && $AGAres ) {
             $this->success('删除成功');
         } else {
             $this->error('删除失败');
@@ -105,7 +107,9 @@ class AdminController extends CommonController {
 
     	$res = D('Admin')->deleteAdmin($ids);
 
-    	if ($res) {
+        $AGAres = M('AuthGroupAccess')->where("uid in ({$ids})")->delete();
+
+    	if ( $res && $AGAres ) {
     		$this->success('删除成功', U('index'));
     	} else {
     		$this->error('删除失败', U('index'));
@@ -125,9 +129,77 @@ class AdminController extends CommonController {
 
     //修改admin
     public function editAdmin()
-    {
+    {   //提交修改
         if (IS_POST) {
 
+            $data = I('post.');
+
+            $admin = D('Admin');
+
+            $AuthGroupAccess = M('AuthGroupAccess');
+
+            //不修改密码
+            if ($data['password'] == '') {
+                unset($data['password']);
+                unset($data['repassword']);
+
+                $admin->id = $data['id'];
+
+                $admin->name = $data['name'];
+
+                $admin->status = $data['status'];
+
+                $res = $admin->save();
+
+                $AuthGroupAccess->gid = $data['gid'];
+
+                $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
+
+
+                if ( $res !== false && $AGAres ) {
+                    $this->success('修改成功', U('Admin/index'));
+                    exit;
+                } else {
+                    $this->error('修改失败');
+                    exit;
+                }
+                //修改密码
+            } else {
+
+
+                if( !$admin->create() ) {
+                    $this->error($admin->getError());
+                    exit;
+                } else {
+
+                    $admin->startTrans();
+
+                    $res = $admin->save();
+
+                    $AuthGroupAccess->gid = $data['gid'];
+
+                    $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
+
+                    if ( $res !== false && $AGAres !== false ) {
+                        $admin->commit();
+                        $this->success('修改成功', U('Admin/index'));
+
+                    } else {
+                        $admin->rollback();
+                        $this->error('修改失败');
+                    }
+
+                }
+
+
+            }
+
+            
+
+
+
+
+            //get显示修改页面
         } elseif (IS_GET) {
             $id = I('get.id');
 

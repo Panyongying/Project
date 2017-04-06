@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>管理员管理</title>
+	<title>会员管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -204,97 +204,74 @@
 	<div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-users"> <?php echo ($title); ?>详情</ul>
+      <ul class="am-icon-users"> 会员管理</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#"><?php echo ($title); ?>详情</a></dl>
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">会员列表</a></dl>
       
-        <!-- <dl>
-          <a href="/Project/project/index.php/HMadmin/AuthGroup/showAddAdminPage" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加组员</a>
-        </dl> -->
+      <dl>
+        <a href="/Project/project/index.php/HMadmin/User/addUser"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加会员</button></a>
+      </dl>
       <!--这里打开的是新页面-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
     </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
 
-
-    <form action="/Project/project/index.php/HMadmin/AuthGroup/deleteAdmin" method="post" class="am-form am-g">
+    <form class="am-form am-g">
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
-                <!-- <th class="table-check"><input type="checkbox" id="checkBox" /></th> -->
-
+                <th class="table-check"><input id="checkBox" type="checkbox" /></th>
                 <th class="table-id">ID</th>
-                <th class="table-title">管理员名称</th>
-                <th class="table-type">状态</th>
-                <th class="table-author am-hide-sm-only">所属部门</th>
+                <th class="table-title">会员email</th>
+                <th class="table-type">会员状态</th>
+                <th class="table-author am-hide-sm-only">注册日期</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
             <tbody>
 
-            <?php if(is_array($adminList)): foreach($adminList as $key=>$vo): ?><tr>
-                <!-- <td><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td> -->
+            <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
+                <td><input class="delAll" value="<?php echo ($vo["id"]); ?>" type="checkbox" /></td>
                 
                 <td><?php echo ($vo["id"]); ?></td>
-                <td><?php echo ($vo["name"]); ?></td>
-                <td><?php echo ($status[$vo[status]]); ?></td>            
-                <td class="am-hide-sm-only groupName" data-id="<?php echo ($vo["id"]); ?>"><?php echo ($title); ?></td>
+                <td><?php echo ($vo["email"]); ?></td>
+                <td class="stat" style="cursor:pointer;" data-status="<?php echo ($vo["id"]); ?>" ><?php echo ($vo["status"]); ?></td>            
+                <td class="am-hide-sm-only"><?php echo ($vo["addtime"]); ?></td>
                 <td>
                 	
                 	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                     
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
-                     
+                      <a href="/Project/project/index.php/HMadmin/User/getUserMoreInfo/id/<?php echo ($vo["id"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span> </a>
+
+                      <a href="/Project/project/index.php/HMadmin/User/editUser/id/<?php echo ($vo["id"]); ?>" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span></a>
+
+                      
+                      <a  href="javascript:;" data-value="<?php echo ($vo["id"]); ?>" class=" del am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员">
+                            <span class="am-icon-trash-o" >
+                            </span>
+                      </a>
+                      
                     </div>
                   </div>
                 	
    	
                 </td>
               </tr><?php endforeach; endif; ?>
-
-              
         
             </tbody>
           </table>
-          <!-- 按钮 -->
-                 <div class="am-btn-group am-btn-group-xs">
-             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button> -->
-              <a href="/Project/project/index.php/HMadmin/AuthGroup/index" class="am-btn am-btn-default" >返回</a>
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" id="delBtn" class="am-btn am-btn-danger" value="">删除</button>
             </div>
-          <!-- 分页 -->
-         <!--  <ul class="am-pagination am-fr">
+            <div class="am-btn-group am-btn-group-xs">
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看会员详情"></span>为查看用户详情</a>
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改会员"><span class="am-icon-pencil-square-o"></span>为修改用户</a>
+              <a href="javascript:;" class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除会员"><span class="am-icon-trash-o" ></span>为删除用户</a>
+         
+            </div>
+          
+          <ul class="am-pagination am-fr">
                 <li class="am-disabled"><a href="#">«</a></li>
                 <li class="am-active"><a href="#">1</a></li>
                 <li><a href="#">2</a></li>
@@ -302,14 +279,112 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">»</a></li>
-              </ul> -->
+          </ul>
           
           
           
       
           <hr />
-          <p>注：.....</p>
         </form>
+
+      <script> 
+            //ajax单个删除
+          $('.del').click(function () {
+
+            var that = $(this);
+
+            var bool = confirm('确定删除吗?');
+
+            if (bool) {
+
+              $.get('/Project/project/index.php/HMadmin/User/deleteUser', {'id':that.attr('data-value')}, function (data) {
+
+                if(data == 1) {
+
+                  that.parent().parent().parent().parent().remove();
+
+                }else {
+
+                  alert('删除失败');
+                }
+
+              }, 'json');
+            }
+
+
+           });
+
+
+          //多选
+          $('#checkBox').click(function () {
+
+              var bool =  $('#checkBox').prop('checked');
+
+              $('input[type="checkbox"]').prop('checked', bool) ;
+
+           });
+
+          //ajax批量删除
+          $('#delBtn').click(function () {
+
+            if($('.delAll:checked').length > 0){
+
+              var bool = confirm('确认删除?');
+
+            }
+           
+            if (bool){
+
+              var ids = '';
+
+              for (var i=0; i<$('.delAll').length; i++){
+      
+                if ($('.delAll')[i].checked){
+
+                  ids += $('.delAll')[i].value + ",";           
+
+                }
+
+              }
+
+              $.post('/Project/project/index.php/HMadmin/User/delAll', {id:ids}, function (data){
+
+                  if (data) {
+
+                     $('.delAll:checked').parent().parent().remove();
+
+                  } else {
+
+                    alert('删除失败');
+                  }
+
+              }, 'json');
+
+            }          
+
+          });
+
+          //ajax修改状态
+          
+          $('.stat').click(function () {
+
+            var that = $(this);
+
+            $.post('/Project/project/index.php/HMadmin/User/changeStatus', {id:$(this).attr('data-status')}, function (data) {
+
+                if (data == 3) {
+
+                  that.html('禁用');
+
+                }else if(data == 1){
+
+                  that.html('未激活');
+                }
+
+            }, 'json');
+            
+          });
+      </script>
 
 
 

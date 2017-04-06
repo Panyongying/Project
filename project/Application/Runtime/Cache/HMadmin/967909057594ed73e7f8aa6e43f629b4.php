@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>管理员管理</title>
+	<title>添加会员管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -131,11 +131,15 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
-
+<<<<<<< HEAD
         <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
         <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
         <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
-
+=======
+        <li><a href="">管理员列表</a> </li>
+        <li><a href="">管理组列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Auth/index">权限列表</a></li>
+>>>>>>> 6993412c05dc94390b2884b9739fadd9dbc82ca6
         <li>团队系谱图</li>
         <li>会员推荐图</li>
         <li>推荐列表</li>
@@ -201,115 +205,43 @@
 <!-- admin-content part end -->
 
 
-	<div class="admin-biaogelist">
+<div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-users"> <?php echo ($title); ?>详情</ul>
+      <ul class="am-icon-flag on">添加会员</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#"><?php echo ($title); ?>详情</a></dl>
-      
-        <!-- <dl>
-          <a href="/Project/project/index.php/HMadmin/AuthGroup/showAddAdminPage" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 手动添加组员</a>
-        </dl> -->
-      <!--这里打开的是新页面-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      <dl class="am-icon-home" style="float: right;"> 当前位置：首页 > <a href="/Project/project/index.php/HMadmin/User/index">会员列表</a></dl>
+
       
       
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
 
+    <div class="fbneirong">
+      <form class="am-form" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">邮箱：</div>
+          <div class="you">
+            <input type="email" class="am-input-sm" name="useremail" id="doc-ipt-email-1" placeholder="email为登录账户">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">密码：</div>
+          <div class="you">
+            <input type="password" class="am-input-sm" name="userpass" id="doc-ipt-pwd-1" placeholder="请输入密码">
+          </div>
+        </div>
+             
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">添加用户</button>&nbsp;  &raquo; &nbsp; 
+              <button type="reset" class="am-btn am-btn-secondary am-radius">重置</button>
 
-    <form action="/Project/project/index.php/HMadmin/AuthGroup/deleteAdmin" method="post" class="am-form am-g">
-          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
-            <thead>
-              <tr class="am-success">
-                <!-- <th class="table-check"><input type="checkbox" id="checkBox" /></th> -->
-
-                <th class="table-id">ID</th>
-                <th class="table-title">管理员名称</th>
-                <th class="table-type">状态</th>
-                <th class="table-author am-hide-sm-only">所属部门</th>
-                <th width="130px" class="table-set">操作</th>
-              </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($adminList)): foreach($adminList as $key=>$vo): ?><tr>
-                <!-- <td><input type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td> -->
-                
-                <td><?php echo ($vo["id"]); ?></td>
-                <td><?php echo ($vo["name"]); ?></td>
-                <td><?php echo ($status[$vo[status]]); ?></td>            
-                <td class="am-hide-sm-only groupName" data-id="<?php echo ($vo["id"]); ?>"><?php echo ($title); ?></td>
-                <td>
-                	
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                     
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改管理组"><span class="am-icon-pencil-square-o"></span></button>
-                     
-                    </div>
-                  </div>
-                	
-   	
-                </td>
-              </tr><?php endforeach; endif; ?>
-
-              
-        
-            </tbody>
-          </table>
-          <!-- 按钮 -->
-                 <div class="am-btn-group am-btn-group-xs">
-             <!--  <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 删除</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 上架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 下架</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 移动</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 移动</button> -->
-              <a href="/Project/project/index.php/HMadmin/AuthGroup/index" class="am-btn am-btn-default" >返回</a>
-            </div>
-          <!-- 分页 -->
-         <!--  <ul class="am-pagination am-fr">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
-              </ul> -->
-          
-          
-          
-      
-          <hr />
-          <p>注：.....</p>
-        </form>
+          </div>
+        </div>
+      </form>
+    </div>
+     
+     
 
 
 
