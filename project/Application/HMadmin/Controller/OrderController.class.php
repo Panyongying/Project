@@ -41,4 +41,11 @@
 
 			echo $res;
 		}
+
+		public function multipleDelete()
+		{
+			$res = D('order')->multipleDelete();
+
+			echo $res;
+		}
 	}
