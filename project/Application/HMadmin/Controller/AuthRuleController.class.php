@@ -75,13 +75,49 @@ class AuthRuleController extends CommonController {
 
     	$ids = join($ids['ids'], ',');
 
-    	$res = D('AuthRule')->deleteType($ids);
+    	$res = D('AuthRule')->deleteAuth($ids);
 
     	if ($res) {
     		$this->success('删除成功', U('index'));
     	} else {
     		$this->error('删除失败', U('index'));
     	}
+    }
+
+    //编辑权限
+    public function editAuth()
+    {
+        if(IS_POST) {
+
+            $data = I('post.');
+
+            // dump($data);
+            // exit;
+
+            $res = M('AuthRule')->data($data)->save();
+
+
+
+            // exit;
+
+            if ($res !== false) {
+                $this->success('修改成功', U('index'));
+
+            } else {
+                $this->error('修改失败');
+            }
+
+
+
+        } elseif (IS_GET) {
+            $id = I('get.id');
+
+            $authRule = D('AuthRule')->fineAuth($id);
+
+            $this->assign('authRule', $authRule);
+
+            $this->display('Backstage/editAuth');
+        }
     }
 
 }

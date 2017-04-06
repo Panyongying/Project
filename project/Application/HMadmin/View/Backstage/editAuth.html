@@ -1,14 +1,14 @@
 <extend name="Backstage/base" />
 <block name="title">
-	<title>添加管理员</title>
+	<title>编辑权限管理</title>
 </block>
 <block name="content">
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 添加管理员</ul>
+      <ul class="am-icon-flag on"> 编辑权限</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加管理员</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">编辑权限</a></dl>
 
       
       
@@ -16,25 +16,17 @@
 	
     <div class="fbneirong">
       <form method="post" class="am-form">
-        
+      <input type="hidden" name="id" value="{$authRule.id}">
         <div class="am-form-group am-cf">
-          <div class="zuo">管理员名：</div>
+          <div class="zuo">权限路径：</div>
           <div class="you">
-            <input type="text" class="am-input-sm"  name="name" placeholder="请输入管理员名">
+            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="name" value="{$authRule.name}" placeholder="请输入权限路径">
           </div>
         </div>
-
         <div class="am-form-group am-cf">
-          <div class="zuo">密码：</div>
+          <div class="zuo">权限功能名：</div>
           <div class="you">
-            <input type="password" class="am-input-sm"  name="password" placeholder="请输入密码">
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">确认密码：</div>
-          <div class="you">
-            <input type="password" class="am-input-sm"  name="repassword" placeholder="请再次输入密码">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="title" value="{$authRule.title}" placeholder="请输入功能名">
           </div>
         </div>
 
@@ -42,11 +34,9 @@
 
 
         <div class="am-form-group am-cf">
-          <div class="zuo">部门:</div>
+          <div class="zuo">规则：</div>
           <div class="you">
-            <foreach name="authGroup" item="v">
-              <label style="margin-top:7px;margin-left:5px"><input  type="radio" name="group_id" checked value="{$v.id}">{$v.title}</label>
-            </foreach>
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="situation" value="{$authRule.situation}" placeholder="不填默认为空">
           </div>
         </div>
         

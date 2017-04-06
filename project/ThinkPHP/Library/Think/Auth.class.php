@@ -20,14 +20,14 @@ namespace Think;
  * 3，一个用户可以属于多个用户组(think_auth_group_access表 定义了用户所属用户组)。我们需要设置每个用户组拥有哪些规则(think_auth_group 定义了用户组权限)
  * 
  * 4，支持规则表达式。
- *      在think_auth_rule 表中定义一条规则时，如果type为1， condition字段就可以定义规则表达式。 如定义{score}>5  and {score}<100  表示用户的分数在5-100之间时这条规则才会通过。
+ *      在think_auth_rule 表中定义一条规则时，如果type为1， situation字段就可以定义规则表达式。 如定义{score}>5  and {score}<100  表示用户的分数在5-100之间时这条规则才会通过。
  */
 
 //数据库
 /*
 -- ----------------------------
 -- think_auth_rule，规则表，
--- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，condition：规则表达式，为空表示存在就验证，不为空表示按照条件验证
+-- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，situation：规则表达式，为空表示存在就验证，不为空表示按照条件验证
 -- ----------------------------
  DROP TABLE IF EXISTS `think_auth_rule`;
 CREATE TABLE `think_auth_rule` (  
@@ -36,7 +36,7 @@ CREATE TABLE `think_auth_rule` (
     `title` char(20) NOT NULL DEFAULT '',  
     `type` tinyint(1) NOT NULL DEFAULT '1',    
     `status` tinyint(1) NOT NULL DEFAULT '1',  
-    `condition` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
+    `situation` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
     PRIMARY KEY (`id`),  
     UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
@@ -190,18 +190,18 @@ class Auth{
             'status'=>1,
         );
         //读取用户组所有权限规则
-        $rules = M()->table($this->_config['AUTH_RULE'])->where($map)->field('condition,name')->select();
+        $rules = M()->table($this->_config['AUTH_RULE'])->where($map)->field('situation,name')->select();
 
         //循环规则，判断结果。
         $authList = array();   //
         foreach ($rules as $rule) {
-            if (!empty($rule['condition'])) { //根据condition进行验证
+            if (!empty($rule['situation'])) { //根据situation进行验证
                 $user = $this->getUserInfo($uid);//获取用户信息,一维数组
 
-                $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
+                $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['situation']);
                 //dump($command);//debug
-                @(eval('$condition=(' . $command . ');'));
-                if ($condition) {
+                @(eval('$situation=(' . $command . ');'));
+                if ($situation) {
                     $authList[] = strtolower($rule['name']);
                 }
             } else {

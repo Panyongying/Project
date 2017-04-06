@@ -17,7 +17,20 @@ class AuthRuleModel extends Model {
    //添加权限
    public function addAuthRule($data)
    {
-   		return M('AuthRule')->add($data);
+   		return $this->add($data);
+   }
+
+   //删除权限
+    public function deleteAuth($id)
+    {
+        return $this->delete($id);
+
+    }
+
+   //查询一个权限
+   public function fineAuth($id)
+   {
+   		return $this->where("id = $id")->find();
    }
 
 }
