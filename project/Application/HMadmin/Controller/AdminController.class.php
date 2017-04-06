@@ -4,7 +4,7 @@ namespace HMadmin\Controller;
 
 
 class AdminController extends CommonController {
-    //管理组首页显示
+    //管理员首页显示
     public function index()
     {
        $adminList = M('Admin')->select();
@@ -18,7 +18,7 @@ class AdminController extends CommonController {
        $this->display('Backstage/admin');
     }
 
-    //显示添加管理组页面
+    //显示添加管理员页面
     public function showAddAdminPage()
     {
         //如果有post值就执行添加
@@ -47,7 +47,7 @@ class AdminController extends CommonController {
 
                 $data2 = array(
                 	'uid'=>$uid,
-                	'gid'=>$data['gid'],
+                	'group_id'=>$data['group_id'],
                 );
 
                 if (!M('AuthGroupAccess')->add($data2)) {
@@ -76,14 +76,16 @@ class AdminController extends CommonController {
         }
     }
 
-    //删除管理组方法
+    //删除管理员方法
     public function deleteAdminOne()
     {
         $id = I('get.id');
 
         $res = M('Admin')->where("id={$id}")->delete();
 
-        if ($res) {
+        $AGAres = M("AuthGroupAccess")->where("uid = {$id}")->delete();
+
+        if ( $res && $AGAres ) {
             $this->success('删除成功');
         } else {
             $this->error('删除失败');
@@ -105,7 +107,9 @@ class AdminController extends CommonController {
 
     	$res = D('Admin')->deleteAdmin($ids);
 
-    	if ($res) {
+        $AGAres = M('AuthGroupAccess')->where("uid in ({$ids})")->delete();
+
+    	if ( $res && $AGAres ) {
     		$this->success('删除成功', U('index'));
     	} else {
     		$this->error('删除失败', U('index'));
@@ -116,7 +120,7 @@ class AdminController extends CommonController {
     public function showGroupName()
     {
        $id = I('get.id');
-       $adminList = M('AuthGroupAccess')->where("uid={$id}")->join('hm_auth_group ON hm_auth_group_access.gid = hm_auth_group.id')->find();
+       $adminList = M('AuthGroupAccess')->where("uid={$id}")->join('hm_auth_group ON hm_auth_group_access.group_id = hm_auth_group.id')->find();
 
 
        $this->ajaxReturn($adminList);
@@ -125,9 +129,76 @@ class AdminController extends CommonController {
 
     //修改admin
     public function editAdmin()
-    {
+    {   //提交修改
         if (IS_POST) {
 
+            $data = I('post.');
+
+            $admin = D('Admin');
+
+            $AuthGroupAccess = M('AuthGroupAccess');
+
+            //不修改密码
+            if ($data['password'] == '') {
+                unset($data['password']);
+                unset($data['repassword']);
+
+                $admin->id = $data['id'];
+
+                $admin->name = $data['name'];
+
+                $admin->status = $data['status'];
+
+                $res = $admin->save();
+
+                $AuthGroupAccess->group_id = $data['group_id'];
+
+                $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
+
+                if ( $res !== false && $AGAres !== false ) {
+                    $this->success('修改成功', U('Admin/index'));
+                    exit;
+                } else {
+                    $this->error('修改失败');
+                    exit;
+                }
+                //修改密码
+            } else {
+
+
+                if( !$admin->create() ) {
+                    $this->error($admin->getError());
+                    exit;
+                } else {
+
+                    $admin->startTrans();
+
+                    $res = $admin->save();
+
+                    $AuthGroupAccess->group_id = $data['group_id'];
+
+                    $AGAres = $AuthGroupAccess->where("uid={$data['id']}")->save();
+
+                    if ( $res !== false && $AGAres !== false ) {
+                        $admin->commit();
+                        $this->success('修改成功', U('Admin/index'));
+
+                    } else {
+                        $admin->rollback();
+                        $this->error('修改失败');
+                    }
+
+                }
+
+
+            }
+
+            
+
+
+
+
+            //get显示修改页面
         } elseif (IS_GET) {
             $id = I('get.id');
 
@@ -135,9 +206,9 @@ class AdminController extends CommonController {
 
             $authGroup = M('AuthGroup')->field('id, title')->select();
 
-            $gid = D('Admin')->findAdminGroup($id)['gid'];
+            $group_id = D('Admin')->findAdminGroup($id)['group_id'];
 
-            $this->assign('gid', $gid);
+            $this->assign('group_id', $group_id);
 
             $this->assign('authGroup', $authGroup);
 

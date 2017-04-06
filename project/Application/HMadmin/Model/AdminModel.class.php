@@ -50,7 +50,7 @@
         //删除管理员
          public function deleteAdmin($id)
          {
-             return M("Admin")->delete($id);
+             return $this->delete($id);
  
          }
 

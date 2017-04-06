@@ -36,14 +36,35 @@
 
 		public function deleteOrder()
 		{
-			if (IS_GET) {
-				$id = $_GET['ids'];
+			if (IS_AJAX) {
+				$id = $_GET['id'];
 			}
 
 			$map['id'] = $id;
 
 			$res = M('order')->where($map)->delete();
 
-			return $res;
+			if ($res) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+
+		public function multipleDelete()
+		{
+			if (IS_AJAX) {
+				$ids = rtrim($_POST['ids']);
+
+				$map['id'] = array('IN', $ids);
+
+				$res = M('order')->where($map)->delete();
+
+				if ($res) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
 		}
 	}

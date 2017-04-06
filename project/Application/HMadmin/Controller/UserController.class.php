@@ -6,12 +6,16 @@ use Think\Controller;
 class UserController extends CommonController 
 {
     public function index()
-    {	
-    	$list = D('user')->getUserInfo();
+    {	      
+        $list = D('user')->getUserInfo();
 
-    	$this->assign('list', $list);
+        $res = array_pop($list);
 
-      	$this->display('Backstage/member');
+        $this->assign('list', $list);
+
+        $this->assign('show', $res);
+
+        $this->display('Backstage/member');
 
     }
     //删除用户
@@ -104,18 +108,6 @@ class UserController extends CommonController
         // dump($list);
     }
 
-    //查看未激活会员
-    public function inactive()
-    {
-
-        $list = D('user')->getInactive();
-
-        $this->assign('list', $list);
-
-        $this->display('Backstage/member');
-
-
-    }
     //删除多个
     public function delAll()
     {
@@ -123,32 +115,16 @@ class UserController extends CommonController
 
         echo $list;
     }
+
     //修改状态
     public function changeStatus()
     {
-       $id = I('post.id');
+       
+        $res = D('user')->changeUserStatus();
 
-       $list = M('user')->field('status')->where('id='.$id)->find();
-
-        if($list['status'] == 3){
-
-            $list['status']=1;
-
-        }else if($list['status'] == 1){
-
-            $list['status']=3;
-        }
-
-       $res = M('user')->where('id='.$id)->save($list);
-
-       if ($res){
-
-         echo $list['status'];
-
-       } else {
-
-        $this->error('修改失败');
-       }
+        echo $res;
       
     }
+
+
 }
