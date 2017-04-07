@@ -15,7 +15,7 @@ class AuthRuleController extends CommonController {
 
        $this->assign('authList', $authList);
 
-       $this->display('Backstage/AuthRule');
+       $this->display('Backstage/authRule');
     }
 
     //显示添加权限页面
@@ -27,7 +27,7 @@ class AuthRuleController extends CommonController {
            $data = I('post.');
 
            $AuthRule = D('AuthRule');
-          
+
            if (!$AuthRule->create()) {
                 $this->error($AuthRule->getError());
                 exit;
@@ -39,7 +39,7 @@ class AuthRuleController extends CommonController {
                 } else {
                     $this->error('添加失败');
                 }
-           }   
+           }
         //否则显示添加页面
         } else {
 
