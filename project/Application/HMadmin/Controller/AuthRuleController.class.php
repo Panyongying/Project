@@ -15,7 +15,7 @@ class AuthRuleController extends CommonController {
 
        $this->assign('authList', $authList);
 
-       $this->display('Backstage/AuthRule');
+       $this->display('Backstage/authRule');
     }
 
     //显示添加权限页面

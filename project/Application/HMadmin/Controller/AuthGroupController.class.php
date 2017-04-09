@@ -15,7 +15,7 @@ class AuthGroupController extends CommonController {
 
        $this->assign('authGroupList', $authGroupList);
 
-       $this->display('Backstage/AuthGroup');
+       $this->display('Backstage/authGroup');
     }
 
     //显示添加管理组页面
