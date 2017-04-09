@@ -1,0 +1,165 @@
+<extend name="Backstage/base" />
+<block name="title">
+  <title>添加大图</title>
+</block>
+<block name="content" >
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 添加大图</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加大图</a></dl>
+
+      
+      
+    </div>
+	
+    <div class="fbneirong">
+      <form class="am-form" method="post" enctype="multipart/form-data">
+        <div class="am-form-group am-cf">
+            <div class="zuo">大图位置：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="location" checked value="1">1
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="2">2
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="3">3
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="4">4
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="5">5
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="6">6
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="7">7
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="8">8
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="9">9
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="10">10
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="location" value="11">11
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+            <div class="zuo">字体颜色：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="fontcolor" checked value="1">black
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="fontcolor" value="2">white
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">小标题：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-text-1" name="smalltitle" placeholder="请输入小标题">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">大标题：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-text-1" name="bigtitle" placeholder="请输入大标题">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+            <div class="zuo">对齐方式：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="align" value="1">left
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="align" checked value="2">center
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="align" value="3">right
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+            <div class="zuo">按钮颜色：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="btncolor" checked value="1">black
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="btncolor" value="2">white
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+            <div class="zuo">水平位置：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="hor" value="1">left
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="hor" checked value="2">center
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="hor" value="3">right
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+            <div class="zuo">垂直位置：</div>
+            <div class="you" style="margin-top: 5px;">
+              <label class="am-radio-inline">
+                <input type="radio" name="ver" value="1">top
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="ver" checked value="2">middle
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="ver" value="3">bottom
+              </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">大图图片：</div>
+          <div class="you" style="height: 45px;">
+            <input type="file" id="doc-ipt-file-1" name="pic">
+            <p class="am-form-help">请选择要上传的文件...</p>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">URL：</div>
+          <div class="you">
+            <input type="url" class="am-input-sm" id="doc-ipt-text-1" name="url" placeholder="请输入URL">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+        	<div class="zuo">状态：</div>
+	        <div class="you" style="margin-top: 5px;">
+	          <label class="am-radio-inline">
+	            <input type="radio" name="status" value="1">显示
+	          </label>
+	          <label class="am-radio-inline">
+	            <input type="radio" name="status" checked value="2">不显示
+	          </label>
+	        </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">添加</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</block>
