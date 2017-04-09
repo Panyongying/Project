@@ -1477,7 +1477,7 @@
                             <div class="signin-signed-in">
                             </if>
                           
-                                <span class="greeting-text"> 您好， <a class="goto-signed-in" href="https://www2.hm.com/zh_cn/my-account" rel="noreferrer"> </a> </span>
+                                <span class="greeting-text"> 您好,{$_SESSION[userInfo][email]} <a class="goto-signed-in" href="https://www2.hm.com/zh_cn/my-account" rel="noreferrer"> </a> </span>
                                 <a class="goto-my-hm" href="javascript:;" rel="noreferrer">我的H&amp;M</a>
                                 
                                 <a class="goto-sign-in" href="__APP__/Home/User/logout">退出</a>
@@ -1495,7 +1495,7 @@
                                 <div class="signin-rollover popdown row" id="bigdiv">
                                     <div class="inner">
                                       <div class="signin-rollover-login" id="showlogin">
-                                          <form class="responsive form-section ng-pristine ng-valid" action="__APP__/Home/User/login" method="POST">
+                                          <form id="loginForm"class="responsive form-section ng-pristine ng-valid" action="__APP__/Home/User/login" method="POST">
                                                 <h3>登录</h3>
                                                 
                                                 <div class="input-group">
@@ -1629,14 +1629,14 @@
                 	<ul class="list">
                 	
 
-                		       <li class="item"><a class="link" href="http://www2.hm.com/zh_cn/ladies.html">女士</a></li>
+                		<li class="item"><a class="link" href="http://www2.hm.com/zh_cn/ladies.html">女士</a></li>
 
-                		       <li class="item"><a class="link" href="http://www2.hm.com/zh_cn/men.html">男士</a></li>
+                		<li class="item"><a class="link" href="http://www2.hm.com/zh_cn/men.html">男士</a></li>
                 		    
 
-                		       <li class="item"><a class="link" href="http://www2.hm.com/zh_cn/kids.html">儿童</a></li>
+                		<li class="item"><a class="link" href="http://www2.hm.com/zh_cn/kids.html">儿童</a></li>
 
-                		       <li class="item"><a class="link" href="http://www2.hm.com/zh_cn/home.html">家居</a></li>
+                		<li class="item"><a class="link" href="http://www2.hm.com/zh_cn/home.html">家居</a></li>
 
                 	</ul>
 
@@ -1651,22 +1651,21 @@
                 	
                 	<ul class="list">
                 	
-    
-                		       <li class="item"><a class="link" href="http://career.hm.com/content/hmcareer/zh_cn.html" target="_blank">在H&amp;M的职业发展</a></li>
+                		<li class="item"><a class="link" href="http://career.hm.com/content/hmcareer/zh_cn.html" target="_blank">在H&amp;M的职业发展</a></li>
                 		    
 
-                		       <li class="item"><a class="link" href="http://about.hm.com/zh/About.html" target="_blank">关于H&amp;M</a></li>
+                		<li class="item"><a class="link" href="http://about.hm.com/zh/About.html" target="_blank">关于H&amp;M</a></li>
                 		    
    
                 		    
-                		       <li class="item"><a class="link" href="http://about.hm.com/zh_cn.html" target="_blank">我们的职责</a></li>
+                		<li class="item"><a class="link" href="http://about.hm.com/zh_cn.html" target="_blank">我们的职责</a></li>
 
-                		       <li class="item"><a class="link" href="http://about.hm.com/zh/news/newsroom.html" target="_blank">媒体</a></li>
+                		<li class="item"><a class="link" href="http://about.hm.com/zh/news/newsroom.html" target="_blank">媒体</a></li>
                 		    
 
-                		       <li class="item"><a class="link" href="http://about.hm.com/zh/About/Investor-Relations.html" target="_blank">投资者关系</a></li>
+                		<li class="item"><a class="link" href="http://about.hm.com/zh/About/Investor-Relations.html" target="_blank">投资者关系</a></li>
 
-                		       <li class="item"><a class="link" href="http://about.hm.com/zh/About/Corporate-Governance.html">Corporate governance</a></li>
+                		<li class="item"><a class="link" href="http://about.hm.com/zh/About/Corporate-Governance.html">Corporate governance</a></li>
                 		    
 
                 	</ul>
@@ -1716,17 +1715,14 @@
                 	
 
                 <ul class="footer-social footer-content">
+                                        
+                	<li class="item">
+                		<a class="hidden-text icon icon-social-weibo-white" target="_blank" title="微博" href="http://www.weibo.com/hm">微博</a>
+                	</li>       
                         
-                        
-                			<li class="item">
-                				<a class="hidden-text icon icon-social-weibo-white" target="_blank" title="微博" href="http://www.weibo.com/hm">微博</a>
-                			</li>       
-                        
-                			<li class="item">
-                				<a class="hidden-text icon icon-social-youku-white" target="_blank" title="优酷" href="http://tvs.youku.com/hm">优酷</a>
-                			</li>
-                
-                        
+                	<li class="item">
+                		<a class="hidden-text icon icon-social-youku-white" target="_blank" title="优酷" href="http://tvs.youku.com/hm">优酷</a>
+                	</li>        
                 </ul>
 
 
@@ -1840,7 +1836,7 @@
                 ev.cancelBubble = true;
 
             }
-
+            //注册表单验证
             $('input[name=useremail]').blur(function (){
 
                 if($(this).val() == ''){
@@ -1883,6 +1879,21 @@
                 var evalue = $('input[name=useremail]').val();
 
                 var pvalue = $('input[name=userpass]').val();
+
+                //判断邮箱格式
+                var res = RegCheck(evalue,/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/);
+
+                if (res === null) {
+
+                   $('input[name=useremail]').next('span').remove();
+
+                   $('input[name=useremail]').after('<span style="color:red";>*邮箱格式不正确!</span>');
+
+                   return false;
+
+                }
+
+
                 //判断密码的长度
                 if (pvalue.length < 6 || pvalue.length > 12) {
 
@@ -1915,18 +1926,7 @@
                    return false;
 
                 }
-                //判断邮箱格式
-                var res = RegCheck(evalue,/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/);
-
-                if (res === null) {
-
-                   $('input[name=useremail]').next('span').remove();
-
-                   $('input[name=useremail]').after('<span style="color:red";>*邮箱格式不正确!</span>');
-
-                   return false;
-
-                }
+            
 
                 //进行正则判断
                 function RegCheck(str, pattern){
@@ -1939,12 +1939,84 @@
 
             });
 
-            $('#nav-one').click(function () {
+            //登录表单验证
+            
+            $('input[name=username]').blur(function () {
 
-                $('#nav-one-div').show();
+                if($(this).val() == ''){
+
+                    $(this).next('span').remove();
+
+                    $(this).after('<span style="color:red";>请输入邮箱账号!</span>');
+
+                } else {
+
+                    $(this).next('span').remove();
+                } 
+
+            }).focus( function () {
+
+                $(this).next('span').remove();
+
+                $(this).after('<span style="color:red";>账号为您的邮箱</span>');
+
 
             });
-        
+
+
+            $('input[name=password]').blur(function () {
+
+              if($(this).val() == ''){
+
+                    $(this).next('span').remove();
+
+                    $(this).after('<span style="color:red";>请输入密码!</span>');
+
+                } else {
+
+                    $(this).next('span').remove();
+                }
+
+            }).focus( function () {
+
+                $(this).next('span').remove();
+
+                $(this).after('<span style="color:red";>请输入6-12位密码!</span>');
+
+
+            });
+
+            $('#loginForm').submit( function () {
+
+                var uvalue = $('input[name=username]').val();
+
+                var passvalue = $('input[name=password]').val();
+                //判断账号是否为空
+                if (uvalue == ''){
+
+                    $('input[name=username]').next('span').remove();
+
+                    $('input[name=username]').after('<span style="color:red";>*请输入邮箱账号!</span>');
+
+                    return false;
+                }     
+                //判断密码是否为空
+                if (passvalue == ''){
+
+                    $('input[name=password]').next('span').remove();
+
+                    $('input[name=password]').after('<span style="color:red";>*请输入密码!</span>');
+
+                    return false;
+                
+                }
+
+
+            });
+       
+
+            
+            
 
 
 

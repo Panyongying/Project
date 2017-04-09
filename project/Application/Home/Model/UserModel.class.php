@@ -77,7 +77,6 @@
 			$mail->Body = "请点链接激活你的邮箱"."<a href='http://127.0.0.1/obj-4.6/Project/project/index.php/Home/User/register/mail/$email/time/$time'>".$inner."</a>";
 			$status = $mail->send();
 			
-
 			
 			return $status;
 		}
@@ -103,6 +102,15 @@
 
 	    			$_SESSION['userInfo'] = $res;
 
+	    			$data['uid'] = $res['id'];
+
+	    			$data['login_time'] = time();
+
+	    			$data['login_result'] = 1;
+
+	    			$data['login_IP'] = $_SERVER['REMOTE_ADDR'];
+
+	    			M('user_login_detail')->add($data);
 
 	    			return ture;
 

@@ -69,7 +69,7 @@
 			
 			if ($res) {
 
-				$this->success('登录成功');
+				$this->display('Index/index');
 
 			}else {
 
@@ -84,7 +84,7 @@
 	    {
 	    	unset($_SESSION['userInfo']);
 
-	    	$this->success('退出成功');
+	    	$this->display('Index/index');
 	    }
 
 	  	
