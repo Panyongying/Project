@@ -19,38 +19,37 @@
             array('pic', 'require', '必须上传一张以上的图'),
         );
 
-        //查询所有商品的信息
+        //查询所有商品的信息+分页搜索
         public function selectAll()
         {
-            $goodsList = $this->field('id,name,price,tid,des,status,viewtimes,saled,addtime')->select();
+
+            $name = I('post.name');
+
+            if ( !empty($name) ) {
+
+                $search['name'] = array('like', "%{$name}%");
+            }
+
+            $goodsList = $this->field('id,name,price,tid,des,status,viewtimes,saled,addtime')->where($search)->select();
+
+            $total = count($goodsList);
+
+            $page = new \Think\Page($total, 4);
+
+            //分页
+            $goodsList = $this->field('id,name,price,tid,des,status,viewtimes,saled,addtime')->where($search)->limit($page->firstRow.','.$page->listRows)->select();
+
+            $show = $page->show();
 
             //查询跟id关联的pic和detail数据
             for ($i=0; $i<count($goodsList); $i++) {
 
                 $gid = $goodsList[$i]['id'];
-                // dump($gid);
 
                 //查询详情
                 $goodsList[$i]['detail'] = M('goods_detail')->field('detail')->where( 'gid='.$gid )->select();
 
-                // //查询aid
-                // $goodsList[$i]['aid'] = M('stock')->field('aid')->where('gid='.$gid)->select();
-
-                // $aid = $goodsList[$i]['aid'][0]['aid'];
-
-
-                // $map['id'] = array('in', $aid);
-
-                // //查询attr的属性名
-                // $goodsList[$i]['aid'] = M('attr')->field('attrName')->where($map)->select();
-
-                // for ($i=0; $i<count($goodsList[$i]['aid']); $i++) {
-
-                //     dump($goodsList[$i]['aid'][0]);
-                // }
-
             }
-                // dump($goodsList);
 
             $typeList = M('type')->field('id,name')->select();
 
@@ -72,6 +71,7 @@
                 $goodsList[$i]['addtime'] = date('Y-m-d H:i:s', $goodsList[$i]['addtime']);
             }
 
+            $goodsList['show'] = $show;
 
             return $goodsList;
         }
@@ -79,28 +79,111 @@
         //删除商品
         public function deleteOne()
         {
+            //启动事务
+            $Goods = M();
+            $Goods->startTrans();
+
+            $flag = true;
 
             $id = I('get.id');
 
-            // dump($id);exit;
+            $res = M('goods')->delete($id);
 
-            $bool = M('goods')->delete($id);
+            if ($res != 1) {
 
-            return $bool;
+                $flag = false;
+            }
+
+            $res = M('goods_detail')->where('gid='.$id)->delete();
+
+            if ($res != 1) {
+
+                $flag = false;
+            }
+
+
+            $res = M('goods_pic')->where('gid='.$id)->delete();
+
+            if ($res != 1) {
+
+                $flag = false;
+            }
+
+
+            $res = M('stock')->where('gid='.$id)->delete();
+
+            if ($res != 1) {
+
+                $flag = false;
+            }
+
+            if ($flag) {
+
+                $Goods->commit();
+                return true;
+
+            } else {
+
+                $Goods->rollback();
+                return false;
+            }
         }
 
         //批量删除
         public function deleteAll()
         {
+            //启动事务
+            $Goods = M();
+            $Goods->startTrans();
+
+            $flag = true;
 
             $checkVal = I('post.checkson');
 
             $ids = rtrim( join(',', $checkVal) );
 
-            $affecNum = M('goods')->delete($ids);
+            $res = M('goods')->delete($ids);
 
-            //需要把跟这些商品id关联的其他东西也删除
-            return  $affecNum;
+
+            if (!$res) {
+
+                $flag = false;
+            }
+
+            $map['gid'] = array('in', $ids);
+
+
+            $res = M('goods_detail')->where($map)->delete();
+
+            if (!$res) {
+
+                $flag = false;
+            }
+
+            $res = M('goods_pic')->where($map)->delete();
+
+            if ($res === false) {
+
+                $flag = false;
+            }
+
+            $res = M('stock')->where($map)->delete();
+
+            if (!$res) {
+
+                $flag = false;
+            }
+
+            if ($flag) {
+
+                $Goods->commit();
+                return true;
+
+            } else {
+
+                $Goods->rollback();
+                return false;
+            }
         }
 
         //获取分类类型
@@ -128,50 +211,90 @@
             $Goods = M();
             $Goods->startTrans();
 
+            $flag = true;
             $data = I('post.');
+            // dump($data);exit;
+
 
             $data['addtime'] = time();
-            $data['aid'] = join(',', $data['aid']);
+
+            //没有这个就跳过处理
+            if ( !isset($_POST['aid']) ) {
+
+                $data['aid'] = '';
+
+            } else {
+
+                $data['aid'] = join(',', $data['aid']);
+            }
+
+            if (!M('goods')->create($data)) {
+
+                $this->error('失败', U('Goods/addGood'));
+                exit;
+            }
 
             //过滤添加
-            $affectNum = M('goods')->field('name,price,tid,des,status,addtime')->data($data)->add();
+            $res = M('goods')->field('name,price,tid,des,status,addtime')->data($data)->add();
 
-            if ($affectNum > 0) {
+            //失败就赋值false
+            if (!$res) {
 
-                $gid = M('goods')->field('id')->where("name='{$data['name']}'")->select();
+                $flag = false;
+            }
 
-                $data['gid'] = $gid[0]['id'];
+            $gid = M('goods')->field('id')->where("name='{$data['name']}'")->select();
 
-                //遍历图片插入
+            $data['gid'] = $gid[0]['id'];
+
+            if (isset($_POST['pic'])) {
+
                 foreach ($data['pic'] as $v) {
 
                     $newData['gid'] = $data['gid'];
                     $newData['pic'] = $v;
 
-                    M('goods_pic')->data($newData)->add();
+                    $res = M('goods_pic')->data($newData)->add();
 
-                }
+                    if (!$res) {
 
-                $res = M('stock')->field('gid,aid,goodsNum')->data($data)->add();
-
-                if ($res) {
-
-                    $final = M('goods_detail')->field('gid,detail')->data($data)->add();
-
-                    if ($final) {
-
-                        $Goods->commit();
-                    } else {
-
-                        $Goods->rollback();
+                        $flag = false;
                     }
                 }
 
-                return ture;
+            } else {
+
+                $flag = false;
+            }
+            //遍历图片插入
+
+            $res = M('stock')->field('gid,aid,goodsNum')->data($data)->add();
+
+            if (!$res) {
+
+                $flag = false;
+            }
+
+            $res = M('goods_detail')->field('gid,detail')->data($data)->add();
+
+            if (!$res) {
+
+                $flag = false;
+            }
+
+            if ($flag) {
+
+                $Goods->commit();
+                return true;
+
+            } else {
+
+                $Goods->rollback();
+                return false;
             }
         }
 
-        //显示商品所以图
+        //显示商品所有图
         public function goodsDetail()
         {
             $id = I('get.id');
@@ -191,9 +314,16 @@
         {
             $pic = I('get.pic');
 
-            $pic = './'.strstr($pic, 'Upload');
+            $pic = strstr($pic, 'Upload');
 
-            $bool = M('goods_pic')->where("pic='{$pic}'")->delete();
+            $newpic = './'.$pic;
+
+            $bool = M('goods_pic')->where("pic='{$newpic}'")->delete();
+
+            if ($bool) {
+
+                unlink("./Public/{$pic}");
+            }
 
             return $bool;
         }
@@ -206,16 +336,10 @@
 
             $Model = new Model();
 
-            $res = $Model->query("SELECT g.name,g.tid,g.price,g.des,g.status,t.name tname,d.detail,s.aid,s.goodsNum FROM __GOODS__ g,__GOODS_DETAIL__ d,__TYPE__ t,__STOCK__ s,__ATTR__ a WHERE g.id={$id} AND d.gid={$id} AND g.tid=t.id AND s.gid={$id} AND s.aid=a.id");
-
-            // $status = ['', '在售中', '下架'];
-            // $res[0]['status'] = $status[ $res[0]['status'] ];
+            $res = $Model->query("SELECT g.id,g.name,g.tid,g.price,g.des,g.status,t.name tname,d.detail,s.aid,s.goodsNum FROM __GOODS__ g,__GOODS_DETAIL__ d,__TYPE__ t,__STOCK__ s,__ATTR__ a WHERE g.id={$id} AND d.gid={$id} AND g.tid=t.id AND s.gid={$id} AND s.aid=a.id");
 
             $pic = M('goods_pic')->field('pic')->where("gid='{$id}'")->select();
 
-            // $type = M('type')->field('name')->where("pid=0")->select();
-
-            // $map['id'] = array('in', $res[0]['aid']);
             $attr = M('attr')->field('attrName,attrType')->where($map)->select();
 
             for ($i=0; $i<count($pic); $i++) {
@@ -224,16 +348,113 @@
 
             $res[0]['addtime'] = time();
             $res[0]['pic'] = $pic;
-            // $res[0]['type'] = $type;
-
-            // $aidName = array_combine(explode(',', $res[0]['aid']), $attr);
             $res[0]['aid'] = explode(',', $res[0]['aid']);
 
             foreach ($res as $val) {
 
             }
-            // dump($val);exit;
-            return $val;
 
+            return $val;
         }
+
+        //修改商品信息
+        public function editOneGood()
+        {
+            //启动事务
+            $Goods = M();
+            $Goods->startTrans();
+
+            $flag = true;
+
+            $data = I('post.');
+
+            $data['addtime'] = time();
+
+            $data['aid'] = join(',', $data['aid']);
+
+            $res = M('goods')->where('id='.$data['id'])->field('name,price,des,status,tid,addtime')->filter('strip_tags')->save($data);
+
+            //什么都没修改
+            if ($res === false) {
+
+                $flag = false;
+            }
+
+            $res = M('stock')->where('gid='.$data['id'])->field('aid,goodsNum')->save($data);
+
+             if ($res === false) {
+
+                $flag = false;
+            }
+
+            $res = M('goods_detail')->where('gid='.$data['id'])->field('detail')->save($data);
+
+            if ($res === false) {
+
+                $flag = false;
+            }
+
+            //判断有图片就添加,没有就不走
+            if ( isset($_POST['pic']) ) {
+
+                foreach ($data['pic'] as $v) {
+
+                    $newData['gid'] = $data['id'];
+                    $newData['pic'] = $v;
+
+                    $res = M('goods_pic')->data($newData)->add();
+
+                    if ($res === false) {
+
+                        $flag = false;
+                    }
+                }
+
+            }
+
+
+            if ($flag) {
+
+                $Goods->commit();
+                return true;
+
+            } else {
+
+                $Goods->rollback();
+                return false;
+            }
+        }
+
+        //ajax修改状态
+        public function editStatus()
+        {
+
+            $status = I('get.');
+
+            if ($status['status'] == "在售中") {
+
+                $status['status'] = 2;
+
+                $res = M('goods')->field('status')->where('id='.$status['id'])->save($status);
+
+                if ($res) {
+
+                    return 2;
+                }
+
+            } else if ($status['status'] == "已下架") {
+
+                $status['status'] = 1;
+
+                $res = M('goods')->field('status')->where('id='.$status['id'])->save($status);
+
+                if ($res) {
+
+                    return 1;
+                }
+            }
+        }
+
+
+
     }

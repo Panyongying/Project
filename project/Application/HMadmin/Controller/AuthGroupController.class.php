@@ -29,7 +29,7 @@ class AuthGroupController extends CommonController {
            $data['rules'] = join($data['rules'], ',');
 
            $AuthGroup = D('AuthGroup');
-          
+
            if (!$AuthGroup->create()) {
                 $this->error($AuthGroup->getError());
                 exit;
@@ -43,7 +43,7 @@ class AuthGroupController extends CommonController {
                 } else {
                     $this->error('添加失败');
                 }
-           }   
+           }
         //否则显示添加页面
         } else {
             $auths = M('AuthRule')->field('id, title')->select();
@@ -147,7 +147,7 @@ class AuthGroupController extends CommonController {
     	$status = [null, '正常', '禁用'];
     	$this->assign('status', $status);
     	$this->assign('adminList', $adminList);
-		$this->assign('title', $title['title']);    	
+		$this->assign('title', $title['title']);
     	$this->display('Backstage/authGroupDetail');
     }
 

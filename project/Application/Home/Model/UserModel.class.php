@@ -51,4 +51,78 @@
 			return password_hash(I('post.userpass'), PASSWORD_DEFAULT);
 		}
 
+		//邮箱发送
+		public function sendEmail()
+		{
+			$mail = new \Org\Util\mailer\PHPMailer;
+			$email = I('post.useremail');
+			$inner = md5(mt_rand(0,999));
+			$time = time();
+			$mail->SMTPDebug = false;
+			$mail->isSMTP();
+			$mail->SMTPAuth=true;
+			$mail->Host = 'smtp.qq.com';
+			$mail->SMTPSecure = 'ssl';
+			//设置ssl连接smtp服务器的远程服务器端口号 可选465或587
+			$mail->Port = 465;
+			$mail->Hostname = 'localhost';
+			$mail->CharSet = 'UTF-8';
+			$mail->FromName = 'H&M';//寄件人名
+			$mail->Username ='472671496';//smtp邮件服务器
+			$mail->Password = 'ngszqfcsinfjcbdg';//stmp连接认证不用改
+			$mail->From = '472671496@qq.com';//发件人
+			$mail->isHTML(true); 
+			$mail->addAddress($email,'');//收件人
+			$mail->Subject = '激活H&M邮箱';//主题
+			$mail->Body = "请点链接激活你的邮箱"."<a href='http://127.0.0.1/obj-4.6/Project/project/index.php/Home/User/register/mail/$email/time/$time'>".$inner."</a>";
+			$status = $mail->send();
+			
+			
+			return $status;
+		}
+
+		//登录
+		public function signIn()
+		{
+			$email = I('post.username');
+
+	    	$password = I('post.password');
+
+	    	$res = $this->where('email='."'$email'")->find();
+
+	    	$truePassword = $res['password'];
+
+	    	unset($res['password']);
+
+	    	if($res) {
+
+	    		$bool = password_verify($password, $truePassword );
+
+	    		if ($bool) {
+
+	    			$_SESSION['userInfo'] = $res;
+
+	    			$data['uid'] = $res['id'];
+
+	    			$data['login_time'] = time();
+
+	    			$data['login_result'] = 1;
+
+	    			$data['login_IP'] = $_SERVER['REMOTE_ADDR'];
+
+	    			M('user_login_detail')->add($data);
+
+	    			return ture;
+
+	    		}else{
+
+	    			return false;
+	    		}
+
+	    	}else{
+
+	    		return false;
+	    	}
+		}
+
 	}
