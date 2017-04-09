@@ -6,7 +6,7 @@
 
     class GoodsController extends CommonController
     {
-        //商品列表
+        //商品列表+搜索分页
         public function index()
         {
             if (IS_POST) {
@@ -16,6 +16,9 @@
 
                 $goodsList = D('goods')->selectAll();
 
+                $show = array_pop($goodsList);
+
+                $this->assign('show', $show);
                 $this->assign('goodsList', $goodsList);
                 $this->display('Backstage/goods');
             }
@@ -51,9 +54,6 @@
             }
 
         }
-
-
-
 
         //添加goods
         public function addGood()
@@ -171,6 +171,16 @@
         {
             if (IS_POST) {
 
+                $res = D('goods')->editOneGood();
+
+                if ($res) {
+
+                    $this->success('修改成功', U('Goods/index'));
+                } else {
+
+                    $this->error('修改失败', U('Goods/index'));
+                }
+
             } else {
 
                 $goodData = D('goods')->goodsEdit();
@@ -184,7 +194,7 @@
             }
         }
 
-        //编辑时删除图片
+        //编辑时ajax删除图片
         public function editDelPic()
         {
 
@@ -196,6 +206,19 @@
 
                     $this->ajaxReturn(1);
                 }
+            }
+        }
+
+        //ajax修改状态
+        public function editStatus()
+        {
+
+            if (IS_AJAX) {
+
+                $res = D('goods')->editStatus();
+
+                $this->ajaxReturn($res);
+
             }
         }
 

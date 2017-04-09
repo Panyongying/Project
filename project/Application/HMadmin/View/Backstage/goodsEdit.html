@@ -15,7 +15,7 @@
     </div>
 
     <div class="fbneirong">
-      <form class="Forms am-form" action="__URL__/addGood" method="post">
+      <form class="Forms am-form" action="__CONTROLLER__/goodsEdit" method="post">
         <div class="am-form-group am-cf">
           <div class="zuo">商品名：</div>
           <div class="you">
@@ -107,6 +107,7 @@
             <foreach name="goodData['pic']" item="vp">
 
               <img src="__PUBLIC__/{$vp.pic}" alt="" width="100">&nbsp;<a href="javascript:;" style="position:relative;top:80px;left:-55px;" class="editdel">x</a>
+              <!-- <input type="hidden" name="pic[]" value="./{$vp.pic}"> -->
             </foreach>
 
           </div>
@@ -123,7 +124,9 @@
 
               if (data == 1) {
 
-                $(that.prev('img')[0]).remove();
+                $(that.prev('img')[0]).remove();//删除图片
+
+                // that.next('input').remove();//删除隐藏域
 
                 that.remove();//删除x
 
@@ -132,8 +135,6 @@
             }, 'json');
 
           });
-
-
         </script>
 
         <div class="am-form-group am-cf">
@@ -197,6 +198,8 @@
               //每次删除图片触发
               this.on("removedfile", function(file) {
 
+                $('.Forms>input').last().remove();
+
                 var filePath = JSON.parse(file.path, true);
 
                 filePath = filePath['details'].savepath + filePath['details'].savename;
@@ -209,11 +212,6 @@
                   //file.path可以获取到点击删除按钮的那张图片
                   data: { 'path': filePath }
                 });
-
-
-
-
-
 
               });
 
@@ -261,9 +259,10 @@
 
         <div class="am-form-group am-cf">
           <div class="you" style="margin-left: 11%;margin-top: 9%;">
-              <button type="submit" class="am-btn am-btn-success am-radius">发布</button>
+              <button type="submit" class="am-btn am-btn-success am-radius">更新</button>
           </div>
         </div>
+        <input type="hidden" name="id" value="{$goodData['id']}">
       </form>
     </div>
 

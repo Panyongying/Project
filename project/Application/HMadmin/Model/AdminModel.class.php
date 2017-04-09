@@ -28,9 +28,13 @@
 			$map['name'] = $data['name'];
 			
 			$userInfo = $this->where($map)->field('id,name,password')->find();
+
+            $pwd =  $userInfo['password'];
 			
+            unset($userInfo['password']);
+
 			//验证密码
-			$bool = password_verify($data['password'], $userInfo['password']);
+			$bool = password_verify($data['password'], $pwd);
 
 
 			if ($bool) {

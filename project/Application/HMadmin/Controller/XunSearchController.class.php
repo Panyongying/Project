@@ -1,13 +1,24 @@
 <?php
 
-namespace HMadmin\Controller;
+    namespace HMadmin\Controller;
+
+    import("XS.lib.XS");
 
 
 class XunSearchController extends CommonController {
     //xunsearch首页显示
     public function index()
     {
-       $this->display('Backstage/xunsearch');
+       // $this->display('Backstage/xunsearch');
+       $xs = new \XS('demo');
+
+       $search = $xs->search;
+
+       $res = $search->search('项目');
+
+       dump($res);
+
+       
     }
 
     //type添加分类页面
