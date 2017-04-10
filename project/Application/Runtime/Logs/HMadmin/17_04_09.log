@@ -94,3 +94,848 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
 INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
 
+[ 2017-04-09T21:29:39+08:00 ] ::1 /Project/project/index.php/HMadmin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: adminInfo D:\wamp64\www\Project\project\Application\HMadmin\Controller\CommonController.class.php 第 16 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-04-09T21:29:43+08:00 ] ::1 /Project/project/index.php/HMadmin/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T21:29:50+08:00 ] ::1 /Project/project/index.php/HMadmin/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_admin` [ RunTime:0.0090s ]
+SQL: SELECT `id`,`name`,`password` FROM `hm_admin` WHERE `name` = 'van' LIMIT 1   [ RunTime:0.0080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T21:29:51+08:00 ] ::1 /Project/project/index.php/HMadmin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0120s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0110s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0110s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003001s ]
+
+[ 2017-04-09T21:30:03+08:00 ] ::1 /Project/project/index.php/HMadmin/Goods/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_goods` [ RunTime:0.0090s ]
+NOTIC: [8] Undefined variable: search D:\wamp64\www\Project\project\Application\HMadmin\Model\GoodsModel.class.php 第 33 行.
+SQL: SELECT `id`,`name`,`price`,`tid`,`des`,`status`,`viewtimes`,`saled`,`addtime` FROM `hm_goods`  [ RunTime:0.0090s ]
+NOTIC: [8] Undefined variable: search D:\wamp64\www\Project\project\Application\HMadmin\Model\GoodsModel.class.php 第 40 行.
+SQL: SELECT `id`,`name`,`price`,`tid`,`des`,`status`,`viewtimes`,`saled`,`addtime` FROM `hm_goods` LIMIT 0,4   [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_type` [ RunTime:0.0100s ]
+SQL: SELECT `id`,`name` FROM `hm_type`  [ RunTime:0.0080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T21:30:10+08:00 ] ::1 /Project/project/index.php/HMadmin/XunSearch/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0080s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0080s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:31:10+08:00 ] ::1 /Project/project/index.php/HMadmin/AuthRule/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `hm_auth_rule`  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+NOTIC: [8] Use of undefined constant status - assumed 'status' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\25c501eb6e992273f9e1cc1ff3e216dc.php 第 237 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:32:59+08:00 ] ::1 /Project/project/index.php/HMadmin/Type/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0080s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_type` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `hm_type` ORDER BY concat(path, id)  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T21:36:27+08:00 ] ::1 /Project/project/index.php/HMadmin/Type/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_type` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `hm_type` ORDER BY concat(path, id)  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 245 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:36:30+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: typeList D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\e812c847020e83129ace4f75718f4aa5.php 第 232 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:37:27+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0110s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.2220s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: typeList D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\bb476073329961aa98a44a070a83b65d.php 第 232 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T21:40:07+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: v D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\bb476073329961aa98a44a070a83b65d.php 第 229 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T21:40:21+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0120s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0120s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: v D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\bb476073329961aa98a44a070a83b65d.php 第 229 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:40:46+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: v D:\wamp64\www\Project\project\Application\Runtime\Cache\HMadmin\bb476073329961aa98a44a070a83b65d.php 第 229 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:48:43+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T21:49:13+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T21:49:38+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T21:50:20+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-04-09T21:51:08+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0080s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0080s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T23:06:53+08:00 ] ::1 /Project/project/index.php/HMadmin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0400s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T23:06:58+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T23:14:01+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0080s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T23:14:02+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/char/cid/7f0000010b5400000045
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0110s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0110s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0110s ]
+ERR: 非法操作:char
+
+[ 2017-04-09T23:14:12+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T23:14:13+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/char/cid/7f0000010b5400000045
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+ERR: 非法操作:char
+
+[ 2017-04-09T23:14:21+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/char/cid/7f0000010b5400000045
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0120s ]
+ERR: 非法操作:char
+
+[ 2017-04-09T23:14:44+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0130s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0130s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T23:14:45+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/7f0000010b5400000045
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0080s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T23:14:45+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/Project/project/Public/CustomServiceandom=25e9671b-004b-44c3-9214-e5ea4f165cdf
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0150s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T23:14:52+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0110s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-09T23:14:53+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/7f0000010b5400000053
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0100s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0100s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T23:14:54+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/Project/project/Public/CustomServiceandom=25e9671b-004b-44c3-9214-e5ea4f165cdf
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0090s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0080s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T23:15:21+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.0100s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.0090s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.0110s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-04-09T23:15:24+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/7f0000010b5400000053
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.1460s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.1530s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.1650s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.1630s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-04-09T23:15:25+08:00 ] ::1 /Project/project/index.php/HMadmin/CustomService/chat/cid/Project/project/Public/CustomServiceandom=25e9671b-004b-44c3-9214-e5ea4f165cdf
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `hm_auth_group_access` [ RunTime:0.1180s ]
+SQL: SELECT `uid`,`group_id`,`title`,`rules` FROM hm_auth_group_access a INNER JOIN hm_auth_group g on a.group_id=g.id  WHERE ( a.uid='19' and g.status='1' )  [ RunTime:0.1190s ]
+SQL: SHOW COLUMNS FROM `hm_auth_rule` [ RunTime:0.1270s ]
+SQL: SELECT `situation`,`name` FROM `hm_auth_rule` WHERE `id` IN ('6','8','9','10','12','13','14','15','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','33','34','35','36','37','38','39','40','41') AND `status` = 1  [ RunTime:0.1290s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+

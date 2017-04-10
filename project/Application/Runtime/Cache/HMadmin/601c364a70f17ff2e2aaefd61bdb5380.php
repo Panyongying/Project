@@ -146,7 +146,7 @@
         <li>短信</li>
         <li>邮件</li>
         <li>微信</li>
-        <li>客服</li>
+        <li><a href="/Project/project/index.php/HMadmin/CustomService/index">客服</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
@@ -250,8 +250,10 @@
       </select>
       </div>
     </li>
-    <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索" /></li>
-    <li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">搜索</button></li>
+    <form action="/Project/project/index.php/HMadmin/Goods/index" method="get">
+    <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索" name="name" /></li>
+    <li><button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">搜索</button></li>
+    </form>
   </ul>
 </div>
 
@@ -288,7 +290,7 @@
                 <!-- <td class="am-hide-sm-only"><i class="am-icon-check am-text-warning"></i></td> -->
                 <td class="am-hide-sm-only"><?php echo ($vo["des"]); ?></td>
                 <td class="am-hide-sm-only"><?php echo ($vo['detail'][0]["detail"]); ?></td>
-                <td><?php echo ($vo["status"]); ?></td>
+                <td class="goodtr"><a href="javascript:;" value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></a></td>
                 <td><a href="/Project/project/index.php/HMadmin/Goods/goodsDetail/id/<?php echo ($vo["id"]); ?>">详情图</a></td>
                 <td><?php echo ($vo["viewtimes"]); ?></td>
                 <td><?php echo ($vo["saled"]); ?></td>
@@ -317,30 +319,20 @@
             </div>
 
           <ul class="am-pagination am-fr">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+                <?php echo ($show); ?>
               </ul>
 
             <script>
             // ajax删除
-              var url = '/Project/project/index.php/HMadmin/Goods/ajaxDelete';
 
               $('.del').on('click', function () {
 
-                console.log($('.del'));
+                var url = '/Project/project/index.php/HMadmin/Goods/ajaxDelete';
 
                 var that = $(this);
 
-                // console.log($(this).attr('data-id'));
-
                 $.get(url, {'id':$(this).attr('data-id')}, function (data) {
 
-                  // console.log(data);
                   if (data == 1) {
 
                     that.parent().parent().parent().parent().remove();
@@ -380,7 +372,33 @@
               });
 
             </script>
+            <script>
+            //ajax修改状态
 
+              $('.goodtr').on('click', function() {
+
+                var url = '/Project/project/index.php/HMadmin/Goods/editStatus';
+
+                var that = $(this);
+                // console.log(that.children().attr('value'));
+
+                $.get(url, {'status':(that.children().html()), 'id':that.children().attr('value')}, function(data) {
+
+                  if (data == 1) {
+
+                    that.children().html('在售中');
+
+                  } else {
+
+                    that.children().html('已下架');
+                  }
+
+                }, 'json')
+
+
+              });
+
+            </script>
 
           <hr />
           <p>注：<span class="am-icon-pencil-square-o">编辑</span>&nbsp; <span class="am-icon-trash-o">删除</span></p>

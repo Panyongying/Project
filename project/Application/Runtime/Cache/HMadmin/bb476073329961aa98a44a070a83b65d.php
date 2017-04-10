@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>添加商品管理</title>
+	<title>客服管理</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -201,188 +201,92 @@
 <!-- admin-content part end -->
 
 
-<div class="admin-biaogelist">
+ <div class="admin-biaogelist">
+      <div class="listbiaoti am-cf">
+        <ul class="am-icon-flag on">
+          客服管理
+        </ul>
+        <dl class="am-icon-home" style="float: right;">
+          当前位置： 首页 > <a href="#">客服列表</a>
+        </dl>
+        
+        <!--data-am-modal="{target: '#my-popup'}" 弹出层 ID  弹出层 190行 开始  271行结束--> 
+        
+      </div>
+      <form action="/Project/project/index.php/HMadmin/CustomService/deleteTypeAll" method="post" class="am-form am-g">
+        <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+          <thead>
+            <tr class="am-success">
+            
+              <th class="table-id am-text-center">等待连线中客户ID</th>
+            </tr>
+          </thead>
 
-    <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 栏目名称</ul>
+          <tbody id="tbody">
+            
+                <tr><td class="am-text-center"></td></tr>
+            
+          </tbody>
 
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="/Project/project/index.php/HMadmin/Goods/Index">商品列表</a></dl>
-
-
-
-    </div>
-
-    <div class="fbneirong">
-      <form class="Forms am-form" action="/Project/project/index.php/HMadmin/Goods/addGood" method="post">
-        <div class="am-form-group am-cf">
-          <div class="zuo">商品名：</div>
-          <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入名称" name="name">
-          </div>
-        </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">价格：</div>
-          <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入价格" name="price">
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">描述：</div>
-          <div class="you">
-            <textarea class="" rows="2" id="doc-ta-1" name="des"></textarea>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">商品详情：</div>
-          <div class="you">
-            <textarea class="" rows="2" id="doc-ta-1" name="detail"></textarea>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">库存：</div>
-          <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="必填" name="goodsNum">
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">颜色：</div>
-          <div class="you">
-            <?php if(is_array($attr)): foreach($attr as $key=>$vo): if($vo["attrtype"] == '1'): ?><input type="checkbox" name="aid[]" value="<?php echo ($vo["id"]); ?>"><?php echo ($vo['attrname']); ?>&nbsp;<?php endif; endforeach; endif; ?>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">衣服/鞋子尺寸：</div>
-          <div class="you">
-            <?php if(is_array($attr)): foreach($attr as $key=>$vo): if(($vo["attrtype"] == 2) OR ($vo["attrtype"] == 3)): ?><input type="checkbox" name="aid[]" value="<?php echo ($vo["id"]); ?>"><?php echo ($vo['attrname']); ?>&nbsp;&nbsp;<?php endif; endforeach; endif; ?>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">在售/下架：</div>
-          <div class="you">
-            <select name="status">
-              <option value="1">在售</option>
-              <option value="2">下架</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">分类：</div>
-          <div class="you">
-            <select name="tid">
-            <?php if(is_array($type)): foreach($type as $key=>$vo): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endforeach; endif; ?>
-            </select>
-          </div>
-        </div>
-
-        <!-- <div class="am-form-group am-cf">
-          <div class="zuo">缩略图：</div>
-          <div class="you"><input type="file" id="doc-ipt-file-1" name="pic[]"> </div>
-        </div> -->
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">产品图片：</div>
-          <div class="you" style="height: 45px;">
-            <div class="dropzone"></div>
-          </div>
-        </div>
-        <!-- 图片上传 -->
-        <script>
-          //防止报"Dropzone already
-          Dropzone.autoDiscover = false;
-
-          $(".dropzone").dropzone({
-
-            url:"/Project/project/index.php/HMadmin/Goods/upload/",
-
-            //是否显示删除图片按钮
-            addRemoveLinks:true,
-
-             //删除按钮样子
-            dictRemoveLinks: "x",
-
-            //取消上传样式
-            dictCancelUpload: "x",
-
-            paramName: "pic",
-
-            //上传数
-            maxFiles: 10,
-
-            //每张大小
-            maxFilesize: 5,
-
-            acceptedFiles: "image/*",
-            init: function() {
-
-              this.on("success", function(file, res) {
-
-                var obj = JSON.parse(res);
-
-                //res为dropzone.js返回的图片路经
-                file.path = res;
-
-                //拿到图片路劲
-                var filePath = obj['details'].savepath + obj['details'].savename;
-
-                if ( obj.status == 200 ) {
-                  //将服务器得到的数据生成一个隐藏域。做商品添加的时候就可以获取到了
-                  var input = '<input type="hidden" name="pic[]" value="'+filePath+'" />';
-
-                  $('.Forms').append(input);
-
-                } else {
-
-                  alert('上传失败');
-                }
-
-              })
-
-              //每次删除图片触发
-              this.on("removedfile", function(file) {
-
-                var filePath = JSON.parse(file.path, true);
-
-                filePath = filePath['details'].savepath + filePath['details'].savename;
-
-                console.log(filePath);
-
-                $.ajax({
-
-                  url: "/Project/project/index.php/HMadmin/Goods/deletePic",
-                  type: "post",
-
-                  //file.path可以获取到点击删除按钮的那张图片
-                  data: { 'path': filePath }
-                });
-
-
-
-
-
-
-              });
+          <script>
+            var url = "ws://120.24.57.54:8282/";  
+            var ws = new WebSocket(url); 
+            var s = 0;
+            var cid = '';
+            if (ws.readyState == 0) {
+              console.log('正在建立连接');
+              
 
             }
-          });
 
-        </script>
+            ws.onopen = function (e) {
+              console.log('连接成功');
+              ws.send('admin');
 
-        <div class="am-form-group am-cf">
-          <div class="you" style="margin-left: 11%;margin-top: 9%;">
-              <button type="submit" class="am-btn am-btn-success am-radius">发布</button>
-          </div>
-        </div>
+            }
+
+            ws.onmessage = function (e) {
+              $('#tbody tr').remove();
+              var data = JSON.parse(e.data);
+
+              for ( var i = 0; i < data.userNum.length; i++ ) {
+
+                $('#tbody').append("<tr><td class='am-text-center'>用户cid<a href='/Project/project/index.php/HMadmin/CustomService/chat/cid/" + data.userNum[i] + "' >" + data.userNum[i] + "</a></td></tr>");
+                
+              }
+
+
+              
+            }
+          </script>
+        </table>
+      
+       <!--  <ul class="am-pagination am-fr">
+          <li class="am-disabled"><a href="#">«</a></li>
+          <li class="am-active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">»</a></li>
+        </ul> -->
+        <hr />
+        <!-- <p>
+        备注：操作图标含义
+         <a class="am-text-success am-icon-file" title="添加子栏目"> 添加子栏目</a> 
+         <a class="am-icon-pencil-square-o am-text-secondary" title="修改"> 修改栏目</a> 
+         <a class="am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
+ -->         
+
+        
+        
+        
+        
+        </p>
       </form>
-    </div>
 
-
+     
+     
 
 
 

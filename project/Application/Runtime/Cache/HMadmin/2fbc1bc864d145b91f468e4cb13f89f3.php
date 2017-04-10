@@ -146,7 +146,7 @@
         <li>短信</li>
         <li>邮件</li>
         <li>微信</li>
-        <li>客服</li>
+        <li><a href="/Project/project/index.php/HMadmin/CustomService/index">客服</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
