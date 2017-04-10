@@ -1,0 +1,136 @@
+ <extend name="Base:base" />
+    
+     <block name="title"><title>重置密码 | H&amp;M China</title></block>  
+
+   <block name="main"> 
+  <main>
+		<div id="globalMessages">   </div>
+  <div>
+		<div class="row my-hm">
+		 <div class="layout layout-eight">
+			<div class="grid col-6">
+
+
+				<div class="grid col-6">
+					<h1>
+						重置密码</h1>
+					<div class="row">
+						<div class="grid col-3">
+								<form id="updatePwdForm" action="__URL__/collectEmail" method="post" class="ng-pristine ng-valid">
+									<div class="input-group" style="width:400px">
+
+										<label for="updatePwd-pwd">密码</label><input id="updatePwd-pwd" name="pwd" type="password" value="">
+									</div>
+									<div class="input-group" style="width:350px"> 
+										<label for="updatePwd-checkPwd">确认密码</label><input id="updatePwd-checkPwd" name="checkPwd" type="password" value="">
+									
+											
+									</div>
+									<button class="button">	保存</button>
+									<input type="hidden" name="email" value="{$Think.get.mail}">
+									<input type="hidden" name="time" value="{$Think.get.time}">
+
+								</form>	
+						</div>
+						<div class="grid col-3"></div>
+					</div>
+				</div>
+		
+					
+			</div>
+			<div class="grid col-3"></div>
+		 </div>	
+		</div>
+</div>
+</main>
+
+	<script>
+
+
+		
+		 $('#updatePwd-pwd').blur(function (){
+	 		var res = $('#updatePwd-pwd').val().match(/^\d+$/); 	
+
+			if (res != null ){
+
+				$(this).next('span').remove();
+
+				$(this).next('div').remove();
+
+				var tips = 	'<div style="float:right;width:100px;border:1px solid #ccc;height:20px; margin-right:70px;color:red"><div style="background:red;width:30px;height:20px"></div>密码安全等级较低</div>'
+				$('#updatePwd-pwd').after(tips);
+
+				
+	 		}			
+
+	 			 
+		
+		 });
+	
+		
+		$('#updatePwdForm').submit(function () {
+
+			var passwordValue = $('#updatePwd-pwd').val();
+
+
+			if (passwordValue == '') {
+
+				$('#updatePwd-pwd').next('span').remove();
+
+                $('#updatePwd-pwd').after('<span style="color:red";>*密码为6-12位!</span>');
+
+                 return false;
+
+			}
+
+			var res = RegCheck(passwordValue, /^\w{6,12}$/);
+
+            if (res === null) {
+
+                $('#updatePwd-pwd').next('span').remove();
+                $('#updatePwd-pwd').next('div').remove();
+                $('#updatePwd-pwd').after('<span style="color:red";>*密码由数字字母下划线组成!</span>');
+
+                 return false;
+            }
+
+            if ($('#updatePwd-pwd').val() != $('#updatePwd-checkPwd').val()) {
+
+				$('#updatePwd-checkPwd').next('span').remove();
+
+				$('#updatePwd-checkPwd').after('<span style="color:red">*确认密码与密码不一致!</span>');
+
+				return false;
+			}
+
+			  //进行正则判断
+            function RegCheck(str, pattern){
+
+                var res = str.match(pattern);
+
+                return res;
+             }
+
+		});
+
+		$('#updatePwd-pwd').blur( function () {
+
+			$('#updatePwd-pwd').next('span').remove();
+
+		}).focus(function () {
+
+			$(this).next('span').remove();
+
+			$(this).next('div').remove();
+
+			$(this).after('<span style="color:red">*密码由6-12位组成</span>');
+
+		});
+
+		$('#updatePwd-checkPwd').blur(function () {
+
+			$('#updatePwd-checkPwd').next('span').remove();
+		});
+
+	</script>
+	</block>

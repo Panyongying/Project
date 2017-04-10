@@ -1,14 +1,14 @@
 <extend name="Backstage/base" />
 <block name="title">
-  <title>订单列表</title>
+  <title>评论列表</title>
 </block>
 <block name="content">
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 订单列表</ul>
+      <ul class="am-icon-flag on"> 评论列表</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">订单列表</a></dl>
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">评论列表</a></dl>
       
       <!-- <dl>
         <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 补充线订单</button>
@@ -21,11 +21,12 @@
               <tr class="am-success">
                 <th class="table-check"></th>
                 <!-- <input type="checkbox" id="selectAll"/> -->
-                <th class="table-id">单号</th>
-                <th class="table-author am-hide-sm-only">购买人</th>
-                <th class="table-author am-hide-sm-only">订单状态</th>
-                <th class="table-author am-hide-sm-only">配送状态</th>
-                <th class="table-date am-hide-sm-only">生成日期</th>
+                <th class="table-id">序号</th>
+                <th class="table-author am-hide-sm-only">用户id</th>
+                <th class="table-author am-hide-sm-only">商品id</th>
+                <th class="table-author am-hide-sm-only">订单id</th>
+                <th class="table-date am-hide-sm-only">内容</th>
+                <th class="table-date am-hide-sm-only">时间</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
@@ -35,18 +36,18 @@
                   <td><input type="checkbox" value="{$ov.id}" /></td>
                   
                   <td>{$ov.id}</td>
-                  <td><a href="#">{$ov.uid}</a></td>
-                  <td class="am-hide-sm-only">{$ov.orderstatus}</td><td class="am-hide-sm-only">{$ov.ordersendstatus}</td>
-                  <td class="am-hide-sm-only">{$ov.orderaddtime}</td>
+                  <td>{$ov.uid}</td>
+                  <td class="am-hide-sm-only">{$ov.gid}</td>
+                  <td class="am-hide-sm-only">{$ov.oid}</td>
+                  <td class="am-hide-sm-only">{$ov.contents}</td>
+                  <td class="am-hide-sm-only">{$ov.addtime}</td>
                   <td>
                   	
                   	
                         	
                   	<div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                        <button class="am-btn am-btn-default am-btn-xs am-text-success am-round de-btn"  oid="{$ov.id}" title="查看订单详情"><span class="am-icon-search"></span></button>
-                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" oid="{$ov.id}" title="删除订单"><span class="am-icon-trash-o" ></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" cid="{$ov.id}" title="删除评论"><span class="am-icon-trash-o" ></span></button>
                       </div>
                     </div>
                   	
@@ -77,26 +78,16 @@
 </div>
 
 <script>
-  $('.de-btn').click(function () {
-    var oid = $(this).attr('oid');
-
-    location.href = '__MODULE__/OrderDetail/getOrderDetail/oid/' + oid;
-
-    return false;
-  });
-
   $('.rm-btn').click(function () {
     var that = $(this);
 
-    var id = $(this).attr("oid");
+    var id = $(this).attr("cid");
 
     var bool = confirm('此操作无法恢复，确定删除？');
 
     if (bool) {
-      // alert(id);
       $.get(
-        // '{:U(HMadmin/Order/deleteOrder)}',
-        '__CONTROLLER__/deleteOrder',
+        '__CONTROLLER__/deleteCommentary',
         {id:id},
         function (data) {
           if (data == 1) {
@@ -130,7 +121,7 @@
     var ids = '';
 
     if ($('input:checked').length == 0) {
-      alert('请选择要删除的订单。');
+      alert('请选择要删除的评论。');
 
       return false;
     }

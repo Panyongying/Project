@@ -75,8 +75,7 @@
 			$mail->addAddress($email,'');//收件人
 			$mail->Subject = '激活H&M邮箱';//主题
 			$mail->Body = "请点链接激活你的邮箱"."<a href='http://127.0.0.1/obj-4.6/Project/project/index.php/Home/User/register/mail/$email/time/$time'>".$inner."</a>";
-			$status = $mail->send();
-			
+			$status = $mail->send();			
 			
 			return $status;
 		}
@@ -92,29 +91,60 @@
 
 	    	$truePassword = $res['password'];
 
-	    	unset($res['password']);
+	    	unset($res['password']);	    	
 
 	    	if($res) {
 
 	    		$bool = password_verify($password, $truePassword );
-
+	    		//登录成功
 	    		if ($bool) {
 
+	    			//写入SESSION
 	    			$_SESSION['userInfo'] = $res;
 
-	    			$data['uid'] = $res['id'];
+	    			//如果用户已登录过不能多次写入登录信息表
+	    			$rows = M('user_login_detail')->where('uid='.$res['id'])->find();
 
-	    			$data['login_time'] = time();
+	    			if ($rows) {
+	    				//如果用户之前已经登录过就修改它的登录信息
+		    			$data['login_time'] = time();
 
-	    			$data['login_result'] = 1;
+						$data['login_IP'] = ip2long( $_SERVER['REMOTE_ADDR'] );
 
-	    			$data['login_IP'] = $_SERVER['REMOTE_ADDR'];
+						$map['uid'] = $res['id'];
 
-	    			M('user_login_detail')->add($data);
+						$map['login_result'] = 1;
+
+						M('user_login_detail')->where($map)->save($data);
+
+	    			}else {
+	    				//没有登录就写入信息
+		    			$data['uid'] = $res['id'];
+						
+		    			$data['login_time'] = time();
+
+		    			$data['login_result'] = 1;
+
+						$data['login_IP'] = ip2long( $_SERVER['REMOTE_ADDR'] );
+		    			
+		    			M('user_login_detail')->add($data);
+
+	    			}
 
 	    			return ture;
 
+	    			//登录失败
 	    		}else{
+
+	    			$data['uid'] = $res['id'];
+						
+		    		$data['login_time'] = time();
+
+		    		$data['login_result'] = 2;
+
+					$data['login_IP'] = ip2long( $_SERVER['REMOTE_ADDR'] );
+		    			
+		    		M('user_login_detail')->add($data);
 
 	    			return false;
 	    		}
@@ -124,5 +154,94 @@
 	    		return false;
 	    	}
 		}
+
+		//查询用户的登录状态		
+		public function saveUserStatus()
+		{	
+			$email = I('post.username');
+
+	    	$res = $this->where('email='."'$email'")->find();
+
+			$map['login_result'] = 2;
+
+			$map['login_IP'] = ip2long( $_SERVER['REMOTE_ADDR'] );
+
+			$map['uid'] = $res['id'];
+
+			$time = time();
+
+			$num = M('user_login_detail')->field('login_time')->where($map)->select();
+
+			$lasttime = $num[0]['login_time'];
+			//当过了3600秒后,用户登录表中的登录错误结果会自动删除.
+			if ($time - $lasttime >= 1800){
+
+				M('user_login_detail')->where($map)->delete();
+
+			}	
+
+			$num = M('user_login_detail')->field('login_time')->where($map)->select();
+			
+			$num = count($num);
+			
+			return $num;
+
+		}
+		//发送邮件修改密码
+		public function findPassword()
+		{				
+			$mail = new \Org\Util\mailer\PHPMailer;
+			$email = I('post.email');
+			$time = time();
+			$mail->SMTPDebug = false;
+			$mail->isSMTP();
+			$mail->SMTPAuth=true;
+			$mail->Host = 'smtp.qq.com';
+			$mail->SMTPSecure = 'ssl';
+			//设置ssl连接smtp服务器的远程服务器端口号 可选465或587
+			$mail->Port = 465;
+			$mail->Hostname = 'localhost';
+			$mail->CharSet = 'UTF-8';
+			$mail->FromName = 'H&M';//寄件人名
+			$mail->Username ='472671496';//smtp邮件服务器
+			$mail->Password = 'ngszqfcsinfjcbdg';//stmp连接认证不用改
+			$mail->From = '472671496@qq.com';//发件人
+			$mail->isHTML(true); 
+			$mail->addAddress($email,'');//收件人
+			$mail->Subject = '找回H&M密码';//主题
+			$mail->Body = "<span style='font-size:18px;'>您好,我们收到了你的账户的密码重置申请,如果您没有申请重置密码，请忽略该电子邮件，您的账户不会受到任何影响。</span><br><a href='http://127.0.0.1/obj-4.6/Project/project/index.php/Home/User/collectEmail/mail/$email/time/$time' style='color:red'>点击这里</a>
+							<br>进入链接修改密码
+							<br>请注意!该链接有效期只有半个小时。<br>
+							此致， H&M 客户服务";
+			$status = $mail->send();
+
+			return $status;
+		}
+
+		//修改密码
+		public function savePassword()
+		{
+			$i = I('post.');
+
+			$pwd = $i['pwd'];
+
+			$email = $i['email'];
+
+			$checkPwd = $i['checkPwd'];
+
+			if ($pwd == $checkPwd){
+
+				$data['password'] = password_hash($pwd, PASSWORD_DEFAULT);
+
+				$res = $this->where('email='."'$email'")->save($data);
+
+				return $res;
+
+			}else {
+
+				return false;
+			}
+		}
+
 
 	}

@@ -22,16 +22,26 @@
 		<div class="row sticky-wrapper ng-scope" ng-controller="CartContextController">
 			<div class="grid col-8">
 				<h2 class="visuallyhidden">购物袋商品</h2>
-					<!-- ngIf: getContext().cartEntries.length > 0 --><ul ng-if="getContext().cartEntries.length &gt; 0" class="product-detail-list responsive ng-scope" id="cartPage-items" ng-class="{&#39;club-member&#39;: getContext().isClubMember}"><!-- ngRepeat: entry in getContext().cartEntries --><li class="product-detail-list-item ng-scope" id="0401021001" ng-repeat="entry in getContext().cartEntries" ng-class="{&#39;club-price-item&#39;:entry.isYellowPriceAvailable}">
-		<!-- Shopping bag item -->
+					<if condition="$data = 'empty' ">
+						<div class="ng-scope">
+							<div id="cartPage-body-empty" class="box">
+								<div class="box-content shopping-bag-empty">
+									<h2>您的购物袋是空的</h2>
+									<div class="ng-scope">
+										请登录保存商品到购物袋,或读取购物袋中已保存商品。 <br><br>
+										<a href="/zh_cn/login">登录</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					<else />
+					<ul ng-if="getContext().cartEntries.length &gt; 0" class="product-detail-list responsive ng-scope" id="cartPage-items">
+						<foreach name="$data.cartList" item="ov">
+					<li class="product-detail-list-item ng-scope" id="0401021001" ng-repeat="entry in getContext().cartEntries" >
 		<div class="product-detail-list-item-image-wrapper">
 			<div class="wrapper-inner">
-				<a href="http://www2.hm.com/zh_cn/productpage.0401021001.html" class="product-detail-list-item-image "> 
-				<!-- ngIf: entry.isYellowPriceAvailable -->
-				<!-- ngIf: !entry.isYellowPriceAvailable && entry.promotionMarker && entry.promotionMarker.imageUrl != null -->
-		
-				<!-- ngIf: !entry.isYellowPriceAvailable && entry.promotionMarker && entry.promotionMarker.showPrice -->
-					<img ng-src="http://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2016%2FD00+0401021+001+78+6440.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D1%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="图案T恤" title="图案T恤" class="product-detail-list-item-image-image" src="./Your Shopping Bag _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FD00+0401021+001+78+6440.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Fcart]">
+				<a href="http://www2.hm.com/zh_cn/productpage.0401021001.html" class="product-detail-list-item-image ">
+					<img alt="{$ov.name}" title="{$ov.name}" class="product-detail-list-item-image-image" src="{$ov.pic}">
 						 
 			    </a>
 			 </div>  
@@ -40,26 +50,16 @@
 		
 				<div class="product-detail-list-item-price-info">
 					<p class="product-detail-list-item-total-price">
-						总价：<span id="entry_new_price" class="ng-binding">¥99.90</span>
+						总价：<span id="entry_new_price" class="ng-binding">¥{$ov.price * $ov.gnum}</span>
 					</p>
 				</div>
 		
 				<!-- ngRepeat: marker in entry.productMarker -->
 							
-				<h3 class="sub-sub-heading ng-binding">图案T恤</h3>
-				<div ng-show="entry.isYellowPriceAvailable" class="ng-hide">
-	<p ng-class="{&#39;original-price&#39; : getContext().isClubMember ,&#39;product-detail-price&#39;:!getContext().isClubMember }" class="ng-binding product-detail-price">
-		¥99.90</p>
-
-	<p class="club-price-text">
-		CLUB PRICE<!-- ngIf: getContext().isClubMember --> 
-		<!-- ngIf: !getContext().isClubMember --><span ng-if="!getContext().isClubMember" class="club-price ng-binding ng-scope">  </span><!-- end ngIf: !getContext().isClubMember -->
-	</p>
-</div>
-
+				<h3 class="sub-sub-heading ng-binding">{$ov.name}</h3>
 <div ng-hide="entry.isYellowPriceAvailable">
-	<p class="product-detail-price ng-binding" ng-class="{&#39;sale-price&#39; : entry.strikedPrice}">
-		¥99.90 <!-- ngIf: entry.strikedPrice -->
+	<p class="product-detail-price ng-binding">
+		¥{$ov.price}
 	</p>
 </div>
 
@@ -69,101 +69,40 @@
 				<dl class="product-detail-list-item-details-list">
 					<dt>
 						商品编号：</dt>
-					<dd class="ng-binding">0401021001</dd>
+					<dd class="ng-binding">{$ov.id}</dd>
 					
 					<dt>
 						颜色：</dt>
-					<dd class="ng-binding">深灰色</dd>
+					<dd class="ng-binding">{$ov.color}</dd>
 
 					<dt>
 						尺码：</dt>
-					<dd class="ng-binding">XS (165|84A)</dd>
+					<dd class="ng-binding">{$ov.size}</dd>
 				</dl>
 				
 			</div>
 			<div class="product-detail-list-item-actions">
                 <button class="button secondary icon icon-trash" type="button" title="Remove product" ng-click="removeItem(entry.variantCode,entry)"></button>
-                <!-- ngIf: true --><button class="button secondary icon icon-move-favorite ng-scope" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" ng-click="addToFavourite(entry.variantCode,entry.isFavourite,entry)" ng-class="{&#39;is-favorite&#39;:entry.isFavourite}" ng-if="true"></button><!-- end ngIf: true -->
+                <button class="button secondary icon icon-move-favorite ng-scope" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" ng-click="addToFavourite(entry.variantCode,entry.isFavourite,entry)"></button>
                 <label class="product-detail-list-item-actions-label" for="shopping-bag-quantity-options-4"></label>
 				<div class="select-primary product-detail-list-item-quantity">
-    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid"><option value="0" selected="selected" label="1">1</option></select>
+    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid">
+    					<if condition="$ov.stock egt 10">
+    						<for start="1" end="11">
+    							<option value="{$i}" <if condition="$i = $ov.stock">selected</if> label="{$i}">{$i}</option>
+    						</for>
+    					<else />
+    						<for start="1" end="$ov.stock + 1">
+    							<option value="{$i}" <if condition="$i = $ov.stock">selected</if> label="{$i}">{$i}</option>
+    						</for>
+    					</if>
+    				</select>
 				</div>
            	</div>
-			<!-- ngIf: entry.hazmat -->
-	</li><!-- end ngRepeat: entry in getContext().cartEntries --><li class="product-detail-list-item ng-scope" id="0513443001" ng-repeat="entry in getContext().cartEntries" ng-class="{&#39;club-price-item&#39;:entry.isYellowPriceAvailable}">
-		<!-- Shopping bag item -->
-		<div class="product-detail-list-item-image-wrapper">
-			<div class="wrapper-inner">
-				<a href="http://www2.hm.com/zh_cn/productpage.0513443001.html" class="product-detail-list-item-image "> 
-				<!-- ngIf: entry.isYellowPriceAvailable -->
-				<!-- ngIf: !entry.isYellowPriceAvailable && entry.promotionMarker && entry.promotionMarker.imageUrl != null -->
-		
-				<!-- ngIf: !entry.isYellowPriceAvailable && entry.promotionMarker && entry.promotionMarker.showPrice -->
-					<img ng-src="http://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2017%2FE00+0513443+001+15+2529.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D1%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="蜡染印花T恤" title="蜡染印花T恤" class="product-detail-list-item-image-image" src="./Your Shopping Bag _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2017%2FE00+0513443+001+15+2529.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Fcart]">
-						 
-			    </a>
-			 </div>  
-		</div>
-		<div class="product-detail-list-item-details">
-		
-				<div class="product-detail-list-item-price-info">
-					<p class="product-detail-list-item-total-price">
-						总价：<span id="entry_new_price" class="ng-binding">¥149.00</span>
-					</p>
-				</div>
-		
-				<!-- ngRepeat: marker in entry.productMarker --><div ng-repeat="marker in entry.productMarker" class="ng-scope">
-					<img alt="COACHELLA" class="label" ng-src="/medias/Coachella-en.jpg?context=bWFzdGVyfHJvb3R8MzEyM3xpbWFnZS9qcGVnfGgyNi9oZDgvMTAyNjIzMTI4NzgxMTAuanBnfGEzZjc0YjA3ZjhhNjY1ZmZjNjk5NTVlYzYyYjg2ODVlMzMxYTczNjJlMDdjMWM2ODYyYmVhMzZhNDNlOTUwMzQ" title="COACHELLA" src="./Your Shopping Bag _ H&amp;M China_files/Coachella-en.jpg">
-				</div><!-- end ngRepeat: marker in entry.productMarker -->
-							
-				<h3 class="sub-sub-heading ng-binding">蜡染印花T恤</h3>
-				<div ng-show="entry.isYellowPriceAvailable" class="ng-hide">
-	<p ng-class="{&#39;original-price&#39; : getContext().isClubMember ,&#39;product-detail-price&#39;:!getContext().isClubMember }" class="ng-binding product-detail-price">
-		¥149.00</p>
-
-	<p class="club-price-text">
-		CLUB PRICE<!-- ngIf: getContext().isClubMember --> 
-		<!-- ngIf: !getContext().isClubMember --><span ng-if="!getContext().isClubMember" class="club-price ng-binding ng-scope">  </span><!-- end ngIf: !getContext().isClubMember -->
-	</p>
-</div>
-
-<div ng-hide="entry.isYellowPriceAvailable">
-	<p class="product-detail-price ng-binding" ng-class="{&#39;sale-price&#39; : entry.strikedPrice}">
-		¥149.00 <!-- ngIf: entry.strikedPrice -->
-	</p>
-</div>
-
-<p class="product-detail-selection">
-					</p><div class="product-item-selection ng-binding"></div>
-				<p></p>
-				<dl class="product-detail-list-item-details-list">
-					<dt>
-						商品编号：</dt>
-					<dd class="ng-binding">0513443001</dd>
-					
-					<dt>
-						颜色：</dt>
-					<dd class="ng-binding">深蓝色/绿松石色</dd>
-
-					<dt>
-						尺码：</dt>
-					<dd class="ng-binding">XS (165|84A)</dd>
-				</dl>
-				
-			</div>
-			<div class="product-detail-list-item-actions">
-                <button class="button secondary icon icon-trash" type="button" title="Remove product" ng-click="removeItem(entry.variantCode,entry)"></button>
-                <!-- ngIf: true --><button class="button secondary icon icon-move-favorite ng-scope" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" ng-click="addToFavourite(entry.variantCode,entry.isFavourite,entry)" ng-class="{&#39;is-favorite&#39;:entry.isFavourite}" ng-if="true"></button><!-- end ngIf: true -->
-                <label class="product-detail-list-item-actions-label" for="shopping-bag-quantity-options-4"></label>
-				<div class="select-primary product-detail-list-item-quantity">
-    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid"><option value="0" selected="selected" label="1">1</option><option value="1" label="2">2</option><option value="2" label="3">3</option><option value="3" label="4">4</option><option value="4" label="5">5</option><option value="5" label="6">6</option><option value="6" label="7">7</option><option value="7" label="8">8</option><option value="8" label="9">9</option><option value="9" label="10">10</option></select>
-				</div>
-           	</div>
-			<!-- ngIf: entry.hazmat -->
-	</li><!-- end ngRepeat: entry in getContext().cartEntries -->
-
-	<!-- /Shopping bag item --></ul><!-- end ngIf: getContext().cartEntries.length > 0 -->
-					<!-- ngIf: getContext().cartEntries.length == 0 -->
+	</li>
+						</foreach>
+					</ul>
+					</if>
 			</div>
 			<div id="cartPage-summary" class="grid col-4">
 				<div style="" class="shopping-bag-order-total sticky-on-scroll semi-sticky" data-sticky-offset="-20" data-sticky-stop-offset="-70">
@@ -173,36 +112,31 @@
 	<div class="shopping-bag-total">
 		<table class="order-total">
 	<tbody>
-	    <!-- ngRepeat: (key,value) in getContext().orderTotals.impositionType -->
-		<!-- ngIf: getContext().orderTotals.externalTaxApplied && getContext().orderTotals.maxTaxApplied -->
 		<tr>
 			<th scope="row">订单价值：</th>
-			<td><span id="newPriceSubtotal" class="ng-binding">¥248.90</span></td>
-		</tr>		
-		<!-- ngIf: getContext().orderTotals.totalDiscount -->
-		<!-- ngIf: getContext().orderTotals.staffCardDiscount -->			
-		<!-- ngIf: getContext().orderTotals.clubVoucherDiscount -->	
-		<!-- ngIf: getContext().orderTotals.totalGiftCardAmount -->			
-		<!-- ngIf: getContext().cartEntries.length > 0 || getContext().deliveryMode --><tr ng-if="getContext().cartEntries.length &gt; 0 || getContext().deliveryMode" class="ng-scope">
-			<th scope="row">送货：</th>
-			<td class="ng-binding">¥10.00</td>
-		</tr><!-- end ngIf: getContext().cartEntries.length > 0 || getContext().deliveryMode -->
-		<!-- ngIf: getContext().orderTotals.paymentCost -->
+			<td><span id="newPriceSubtotal" class="ng-binding">¥
+				<if condition="$data = 'empty'">0.00
+				<else />{$ov.totalPrice}
+				</if>
+			</span></td>
+		</tr>
 	</tbody>
 	<tfoot>
-		<!-- ngIf: getContext().orderTotals.totalBeforeRounding -->
-		<!-- ngIf: getContext().orderTotals.rounding -->
 		<tr>
 			<th scope="row">总价:</th>
 			<td id="total_price_of_basket" class="ng-binding">
-				¥258.90
+				¥<if condition="$data = 'empty'">0.00
+				<else />{$ov.totalPrice}
+				</if>
 		    	</td>
 		   </tr>
 		 </tfoot>
 </table>
-	<!-- ngIf: getContext().codLimitReached -->
 				
-			<button ng-click="proceedToCheckout()" class="button button-big" ng-disabled="getContext().cartEntries.length == 0 || (!isBrowserCompatible &amp;&amp; false)">
+			<button  class="button button-big" <if condition="$data = 'empty'">disabled
+				<else />
+				</if>
+				>
 				前往结账</button> 
 	</div>
 		<p class="fine-print">价格和运费在结账时才会最终确认。</p>
@@ -213,35 +147,8 @@
 		</div>
 	<div class="product-warning notice responsive ng-hide" ng-show="!isBrowserCompatible &amp;&amp; false"><p class="text icon-notice normal">basket.page.disabled.button.description</p></div>
 </div>
-<!-- ngIf: getContext().messageToDisplayMap['Text_A'] --> 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-.agreement-link {
-text-decoration: underline; 
-}
-.agreement-link:hover {
-text-decoration: none; 
-} 
-</style>
 
  <form id="view-join-club-modal" ng-submit="createClubAccount()" aria-hidden="true" class="hidden modal-content create-account-modal ng-pristine ng-valid">
 	<h2 class="heading">Join H&amp;M Club!</h2>
