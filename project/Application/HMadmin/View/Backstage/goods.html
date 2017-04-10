@@ -70,6 +70,7 @@
                 <th class="table-title">价格</th>
                 <th class="table-type">一级</th>
                 <th class="table-type">描述</th>
+                <th class="table-type">颜色/尺码/库存</th>
                 <th class="table-type">详情</th>
                 <th class="table-type">状态</th>
                 <th class="table-type">此商品图片详情</th>
@@ -92,6 +93,7 @@
                 <td>{$vo.tid}</td>
                 <!-- <td class="am-hide-sm-only"><i class="am-icon-check am-text-warning"></i></td> -->
                 <td class="am-hide-sm-only">{$vo.des}</td>
+                <td><a href="__CONTROLLER__/stockDeatil/gid/{$vo.id}">库存详情</a></td>
                 <td class="am-hide-sm-only">{$vo['detail'][0].detail}</td>
                 <td class="goodtr"><a href="javascript:;" value="{$vo.id}">{$vo.status}</a></td>
                 <td><a href="__CONTROLLER__/goodsDetail/id/{$vo.id}">详情图</a></td>

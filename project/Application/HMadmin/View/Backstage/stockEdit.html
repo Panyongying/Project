@@ -1,0 +1,65 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>库存管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="__APP__/HMadmin/Goods/Index">商品列表</a></dl>
+
+
+
+    </div>
+
+    <div class="fbneirong">
+      <form  class="am-form am-g" action="__CONTROLLER__/stockEdit" method="post">
+        库存：<input type="text" name="goodsNum" value="{$stockOne.goodsnum}">
+        颜色：<select name="aid[]">
+        <foreach name="attrColor" item="vo">
+          <option value="{$vo.id}" class="attrColor">{$vo.attrname}</option>
+        </foreach>
+        </select>
+        尺码：<select name="aid[]">
+        <foreach name="attrSize" item="vos">
+          <option value="{$vos.id}" class="attrSize">{$vos.attrname}</option>
+        </foreach>
+        </select>
+
+        <input type="submit" value="提交" class="am-btn am-btn-success am-radius" style="margin-top:20px">
+
+        <a href="__APP__/HMadmin/Goods/Index" class="am-btn am-btn-success am-radius" style="margin-top:20px">返回</a>
+
+        <input type="hidden" name="id" value="{$stockOne.id}">
+      </form>
+    </div>
+
+    <script>
+
+      var value = {$stockOne['aid'][0]};
+      var values = {$stockOne['aid'][1]};
+      var v = $('.attrColor');
+      var vs = $('.attrSize');
+
+      for (var i=0; i<v.length; i++) {
+
+        if ( value == v[i].value ) {
+
+          v[i].setAttribute('selected', true);
+        }
+      }
+
+      for (var i=0; i<vs.length; i++) {
+
+        if ( values == vs[i].value ) {
+
+          vs[i].setAttribute('selected', true);
+        }
+      }
+
+    </script>
+
+
+</block>

@@ -184,11 +184,11 @@
             } else {
 
                 $goodData = D('goods')->goodsEdit();
-                $attr = D('goods')->selectAttr();
+
+                // dump($goodData);exit;
                 $type = D('goods')->selectType();
 
                 $this->assign('goodData', $goodData);
-                $this->assign('attr', $attr);
                 $this->assign('type', $type);
                 $this->display('Backstage/goodsEdit');
             }
@@ -222,5 +222,89 @@
             }
         }
 
+        //库存详情
+        public function stockDeatil()
+        {
+            if (IS_POST) {
+
+
+            } else {
+
+                $gid = I('get.gid');
+                $stockNums = D('goods')->stockDetail();
+
+                $this->assign('stockDetail', $stockNums);
+                $this->assign('gid', $gid);
+                $this->display('Backstage/stockDetail');
+            }
+        }
+
+        //库存/颜色/尺码修改
+        public function stockEdit()
+        {
+
+            if (IS_POST) {
+
+                $res = D('goods')->stockEditOne();
+
+                if ($res !== false) {
+
+                    $this->success('更新成功', 'Index/index');
+                } else {
+
+                    $this->error('更新失败', 'Index/index');
+
+                }
+
+            } else {
+
+                $res = D('goods')->stockFind();
+                $attrColor = M('attr')->field('id,attrName')->where('id<4')->select();
+                $attrSize = M('attr')->field('id,attrName')->where('id>3')->select();
+
+                $this->assign('attrColor', $attrColor);
+                $this->assign('attrSize', $attrSize);
+                $this->assign('stockOne', $res);
+                $this->display('Backstage/stockEdit');
+            }
+        }
+
+        //addstock添加库存/颜色/尺码
+        public function addStock()
+        {
+
+            if (IS_POST) {
+
+                $res = D('goods')->addStock();
+
+                if ($res != false) {
+
+                    $this->success('添加成功', 'Index/index');
+                }
+
+            } else {
+
+                $gid = I('get.gid');
+                $attrColor = M('attr')->field('id,attrName')->where('id<4')->select();
+                $attrSize = M('attr')->field('id,attrName')->where('id>3')->select();
+
+                $this->assign('attrColor', $attrColor);
+                $this->assign('attrSize', $attrSize);
+                $this->assign('gid', $gid);
+                $this->display('Backstage/addstock');
+            }
+        }
+
+        //删除商品属性
+        public function stockDel()
+        {
+
+            if (IS_AJAX) {
+
+                $res = D('goods')->stockDel();
+
+                $this->ajaxReturn($res);
+            }
+        }
     }
 

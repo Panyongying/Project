@@ -43,34 +43,6 @@
           </div>
         </div>
 
-        <div class="am-form-group am-cf">
-          <div class="zuo">库存：</div>
-          <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="必填" name="goodsNum">
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">颜色：</div>
-          <div class="you">
-            <foreach name="attr" item="vo">
-              <if condition="$vo.attrtype eq '1'">
-              <input type="checkbox" name="aid[]" value="{$vo.id}">{$vo['attrname']}&nbsp;
-              </if>
-            </foreach>
-          </div>
-        </div>
-
-        <div class="am-form-group am-cf">
-          <div class="zuo">衣服/鞋子尺寸：</div>
-          <div class="you">
-            <foreach name="attr" item="vo">
-            <if condition="($vo.attrtype eq 2) OR ($vo.attrtype eq 3)">
-              <input type="checkbox" name="aid[]" value="{$vo.id}">{$vo['attrname']}&nbsp;&nbsp;
-            </if>
-            </foreach>
-          </div>
-        </div>
 
         <div class="am-form-group am-cf">
           <div class="zuo">在售/下架：</div>

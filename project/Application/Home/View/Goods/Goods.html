@@ -1,7 +1,11 @@
 <extend name="Base:base" />
 
 <block name="title">
-    <title>Lady</title>
+<foreach name="OneList" item="vo">
+
+    <title>{$vo.name}</title>
+
+</foreach>
 </block>
 
 

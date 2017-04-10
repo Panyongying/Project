@@ -15,7 +15,6 @@
             array('des', 'require', '描述不能为空'),
             array('detail', 'require', '详情不能为空'),
             array('goodsNum', '/[0-9]{1,10}/', '库存只能为数字'),
-            array('aid', 'require', '请选择颜色/尺码'),
             array('pic', 'require', '必须上传一张以上的图'),
         );
 
@@ -23,7 +22,7 @@
         public function selectAll()
         {
 
-            $name = I('post.name');
+            $name = I('get.name');
 
             if ( !empty($name) ) {
 
@@ -101,18 +100,16 @@
                 $flag = false;
             }
 
-
             $res = M('goods_pic')->where('gid='.$id)->delete();
 
-            if ($res != 1) {
+            if ($res == false) {
 
                 $flag = false;
             }
 
-
             $res = M('stock')->where('gid='.$id)->delete();
 
-            if ($res != 1) {
+            if ($res == false) {
 
                 $flag = false;
             }
@@ -218,15 +215,6 @@
 
             $data['addtime'] = time();
 
-            //没有这个就跳过处理
-            if ( !isset($_POST['aid']) ) {
-
-                $data['aid'] = '';
-
-            } else {
-
-                $data['aid'] = join(',', $data['aid']);
-            }
 
             if (!M('goods')->create($data)) {
 
@@ -266,14 +254,7 @@
 
                 $flag = false;
             }
-            //遍历图片插入
 
-            $res = M('stock')->field('gid,aid,goodsNum')->data($data)->add();
-
-            if (!$res) {
-
-                $flag = false;
-            }
 
             $res = M('goods_detail')->field('gid,detail')->data($data)->add();
 
@@ -336,11 +317,9 @@
 
             $Model = new Model();
 
-            $res = $Model->query("SELECT g.id,g.name,g.tid,g.price,g.des,g.status,t.name tname,d.detail,s.aid,s.goodsNum FROM __GOODS__ g,__GOODS_DETAIL__ d,__TYPE__ t,__STOCK__ s,__ATTR__ a WHERE g.id={$id} AND d.gid={$id} AND g.tid=t.id AND s.gid={$id} AND s.aid=a.id");
+            $res = $Model->query("SELECT g.id,g.name,g.tid,g.price,g.des,g.status,t.name tname,d.detail FROM __GOODS__ g,__GOODS_DETAIL__ d,__TYPE__ t WHERE g.id={$id} AND d.gid={$id} AND g.tid=t.id");
 
             $pic = M('goods_pic')->field('pic')->where("gid='{$id}'")->select();
-
-            $attr = M('attr')->field('attrName,attrType')->where($map)->select();
 
             for ($i=0; $i<count($pic); $i++) {
                 $pic[$i]['pic'] = ltrim($pic[$i]['pic'], './');
@@ -348,7 +327,6 @@
 
             $res[0]['addtime'] = time();
             $res[0]['pic'] = $pic;
-            $res[0]['aid'] = explode(',', $res[0]['aid']);
 
             foreach ($res as $val) {
 
@@ -380,13 +358,6 @@
                 $flag = false;
             }
 
-            $res = M('stock')->where('gid='.$data['id'])->field('aid,goodsNum')->save($data);
-
-             if ($res === false) {
-
-                $flag = false;
-            }
-
             $res = M('goods_detail')->where('gid='.$data['id'])->field('detail')->save($data);
 
             if ($res === false) {
@@ -411,7 +382,6 @@
                 }
 
             }
-
 
             if ($flag) {
 
@@ -455,6 +425,76 @@
             }
         }
 
+        //库存
+        public function stockDetail()
+        {
+            $gid = I('get.gid');
 
+            $stockDetail = M('stock')->field('id,aid,goodsNum')->where('gid='.$gid)->select();
+
+            foreach ($stockDetail as $value) {
+
+                $value['aid'] = explode(',', $value['aid']);
+
+                for ($i=0; $i<count($value['aid']); $i++) {
+
+                    $value['aid'][$i] = M('attr')->field('attrName')->select($value['aid'][$i]);
+
+                    $value['aid'][$i] = join($value['aid'][$i][0]);
+
+                }
+
+                $stocks[] = $value;
+            }
+
+            return $stocks;
+        }
+
+        //查看修改库存情况
+        public function stockFind()
+        {
+            $id = I('get.id');
+
+            $stockOne = M('stock')->find($id);
+
+            $stockOne['aid'] = explode(',', $stockOne['aid']);
+
+            return $stockOne;
+        }
+
+        //修改库存颜色尺码
+        public function stockEditOne()
+        {
+
+            $data = I('post.');
+
+            $data['aid'] = join(',', $data['aid']);
+
+            $res = M('stock')->where('id='.$data['id'])->save($data);
+
+            return $res;
+        }
+
+        //添加库存颜色尺码
+        public function addStock()
+        {
+            $data = I('post.');
+
+            $data['aid'] = join(',', $data['aid']);
+
+            $res = M('stock')->add($data);
+
+            return $res;
+        }
+
+        // 删除stockDel
+        public function stockDel()
+        {
+            $id = I('get.id');
+
+            $res = M('stock')->delete($id);
+
+            return $res;
+        }
 
     }

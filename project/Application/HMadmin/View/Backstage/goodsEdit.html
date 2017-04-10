@@ -43,34 +43,10 @@
           </div>
         </div>
 
-        <div class="am-form-group am-cf">
-          <div class="zuo">库存：</div>
-          <div class="you">
-            <input type="text" class="am-input-sm" id="doc-ipt-email-1" placeholder="必填" name="goodsNum" value="{$goodData.goodsnum}">
-          </div>
-        </div>
 
-        <div class="am-form-group am-cf">
-          <div class="zuo">颜色：</div>
-          <div class="you">
-            <foreach name="attr" item="vo" key="k">
-              <if condition="$vo.attrtype eq '1'">
-              <input type="checkbox" name="aid[]" value="{$vo.id}">{$vo['attrname']}&nbsp;
-              </if>
-            </foreach>
-          </div>
-        </div>
 
-        <div class="am-form-group am-cf">
-          <div class="zuo">衣服/鞋子尺寸：</div>
-          <div class="you">
-            <foreach name="attr" item="vo" key="k">
-            <if condition="($vo.attrtype eq 2) OR ($vo.attrtype eq 3)">
-              <input type="checkbox" name="aid[]" value="{$vo.id}">{$vo['attrname']}&nbsp;&nbsp;
-            </if>
-            </foreach>
-          </div>
-        </div>
+
+
 
         <div class="am-form-group am-cf">
           <div class="zuo">在售/下架：</div>
@@ -102,7 +78,7 @@
           <div class="you"><input type="file" id="doc-ipt-file-1" name="pic[]"> </div>
         </div> -->
         <div class="am-form-group am-cf">
-          <div class="zuo">更新图片：</div>
+          <div class="zuo">产品图片：</div>
           <div class="you" style="height: 145px;">
             <foreach name="goodData['pic']" item="vp">
 
@@ -138,7 +114,7 @@
         </script>
 
         <div class="am-form-group am-cf">
-          <div class="zuo">产品图片：</div>
+          <div class="zuo">更新图片：</div>
           <div class="you" style="height: 45px;">
             <div class="dropzone"></div>
           </div>
@@ -219,20 +195,6 @@
           });
         </script>
         <script>
-          //默认选中checked
-
-          var attrId = <?php echo json_encode($goodData['aid'])?>;
-          // console.log(attrId);
-          $('input[type=checkbox]').each(function(i) {
-
-            for (var j=0; j<attrId.length; j++) {
-
-              if ($(this).attr('value') == attrId[j]) {
-
-                $(this).attr('checked', true);
-              }
-            }
-          });
 
           //默认选中selected
 
