@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>后台首页</title>
+  <title>友情链接列表</title>
 
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
@@ -148,6 +148,10 @@
         <li><a href="/2nd Project/04.10/project/index.php/HMadmin/Links/index">友链列表</a></li>
         <li><a href="/2nd Project/04.10/project/index.php/HMadmin/Links/addLinks">添加友链</a></li>
       </ul>
+      <h3 class="am-icon-gears"><em></em> <a href="#">商品评论</a></h3>
+      <ul>
+        <li><a href="/2nd Project/04.10/project/index.php/HMadmin/Commentary/index">评论列表</a></li>
+      </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">首页大图</a></h3>
       <ul>
         <li><a href="/2nd Project/04.10/project/index.php/HMadmin/IndexPic/index">大图列表</a></li>
@@ -206,320 +210,167 @@
 <!-- admin-content part end -->
 
 
-
-
-
+<div class="admin-biaogelist">
 	
-	
-<!-- admin part start -->
-
-<div class="admin">
-	
-
-	
-	
-   
-   <div class="admin-index">
-      <dl data-am-scrollspy="{animation: 'slide-right', delay: 100}">
-        <dt class="qs"><i class="am-icon-users"></i></dt>
-        <dd>455</dd>
-        <dd class="f12">团队数量</dd>
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 友情链接列表</ul>
+      
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">友情链接列表</a></dl>
+      
+      <dl>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus add-btn" > 添加友链</button>
       </dl>
-      <dl data-am-scrollspy="{animation: 'slide-right', delay: 300}">
-        <dt class="cs"><i class="am-icon-area-chart"></i></dt>
-        <dd>455</dd>
-        <dd class="f12">今日收入</dd>
-      </dl>
-      <dl data-am-scrollspy="{animation: 'slide-right', delay: 600}">
-        <dt class="hs"><i class="am-icon-shopping-cart"></i></dt>
-        <dd>455</dd>
-        <dd class="f12">商品数量</dd>
-      </dl>
-      <dl data-am-scrollspy="{animation: 'slide-right', delay: 900}">
-        <dt class="ls"><i class="am-icon-cny"></i></dt>
-        <dd>455</dd>
-        <dd class="f12">全部收入</dd>
-      </dl>
+      <!--这里打开的是新页面-->
     </div>
-    <div class="admin-biaoge">
-      <div class="xinxitj">信息概况</div>
-      <table class="am-table">
-        <thead>
-          <tr>
-            <th>团队统计</th>
-            <th>全部会员</th>
-            <th>全部未激活</th>
-            <th>今日新增</th>
-            <th>今日未激活</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>普卡</td>
-            <td>普卡</td>
-            <td><a href="#">4534</a></td>
-            <td>+20</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>银卡</td>
-            <td>银卡</td>
-            <td>4534</td>
-            <td>+2</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>金卡</td>
-            <td>金卡</td>
-            <td>4534</td>
-            <td>+10</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>钻卡</td>
-            <td>钻卡</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>合计</td>
-            <td>合计</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="am-table">
-        <thead>
-          <tr>
-            <th>团队统计</th>
-            <th>全部会员</th>
-            <th>全部未激活</th>
-            <th>今日新增</th>
-            <th>今日未激活</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>普卡</td>
-            <td>普卡</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>银卡</td>
-            <td>银卡</td>
-            <td>4534</td>
-            <td>+2</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>金卡</td>
-            <td>金卡</td>
-            <td>4534</td>
-            <td>+10</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>钻卡</td>
-            <td>钻卡</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>合计</td>
-            <td>合计</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="am-table">
-        <thead>
-          <tr>
-            <th>资金统计</th>
-            <th>账户总收入</th>
-            <th>账户总支出</th>
-            <th>账户余额</th>
-            <th>今日收入</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>普卡</td>
-            <td>普卡</td>
-            <td>4534</td>
-            <td>+20</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>银卡</td>
-            <td>银卡</td>
-            <td>4534</td>
-            <td>+2</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>金卡</td>
-            <td>金卡</td>
-            <td>4534</td>
-            <td>+10</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>钻卡</td>
-            <td>钻卡</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-          <tr>
-            <td>合计</td>
-            <td>合计</td>
-            <td>4534</td>
-            <td>+50</td>
-            <td> 4534 </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="shuju">
-      <div class="shujuone">
-        <dl>
-          <dt>全盘收入：  1356666</dt>
-          <dt>全盘支出：   5646465.98</dt>
-          <dt>全盘利润：  546464</dt>
-        </dl>
-        <ul>
-          <h2>26.83%</h2>
-          <li>全盘拨出</li>
-        </ul>
-      </div>
-      <div class="shujutow">
-        <dl>
-          <dt>全盘收入：  1356666</dt>
-          <dt>全盘支出：   5646465.98</dt>
-          <dt>全盘利润：  546464</dt>
-        </dl>
-        <ul>
-          <h2>26.83%</h2>
-          <li>全盘拨出</li>
-        </ul>
-      </div>
-      <div class="slideTxtBox">
-        <div class="hd">
-          <ul>
-            <li>其他信息</li>
-            <li>工作进度表</li>
-          </ul>
-        </div>
-        <div class="bd">
-          <ul>
-            <table width="100%" class="am-table">
-              <tbody>
-                <tr>
-                  <td width="7%"  align="center">1 </td>
-                  <td width="83%" >工作进度名称</td>
-                  <td width="10%"  align="center"><a href="#">10%</a></td>
-                </tr>
-                <tr>
-                  <td align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                <tr>
-                  <td  align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                <tr>
-                  <td  align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                
-                <tr>
-                  <td  align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                
-                <tr>
-                  <td  align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                
-                <tr>
-                  <td  align="center">1 </td>
-                  <td>工作进度名称</td>
-                  <td  align="center"><a href="#">10%</a></td>
-                </tr>
-                
-                
-                
-                
-                
-                
-                
-                
-              </tbody>
-            </table>
-          </ul>
-          <ul>
-            <table class="am-table">
-              <tbody>
-                <tr>
-                  <td>普卡</td>
-                  <td>普卡</td>
-                  <td><a href="#">4534</a></td>
-                  <td>+20</td>
-                  <td> 4534 </td>
-                </tr>
-                <tr>
-                  <td>银卡</td>
-                  <td>银卡</td>
-                  <td>4534</td>
-                  <td>+2</td>
-                  <td> 4534 </td>
-                </tr>
-                <tr>
-                  <td>金卡</td>
-                  <td>金卡</td>
-                  <td>4534</td>
-                  <td>+10</td>
-                  <td> 4534 </td>
-                </tr>
-                <tr>
-                  <td>钻卡</td>
-                  <td>钻卡</td>
-                  <td>4534</td>
-                  <td>+50</td>
-                  <td> 4534 </td>
-                </tr>
-                <tr>
-                  <td>合计</td>
-                  <td>合计</td>
-                  <td>4534</td>
-                  <td>+50</td>
-                  <td> 4534 </td>
-                </tr>
-              </tbody>
-            </table>
-          </ul>
-        </div>
-      </div>
-      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
-   
-   
-   
-<!-- admin part end --> 
-   
+    <form class="am-form am-g">
+          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+            <thead>
+              <tr class="am-success">
+                <th class="table-check"></th>
+                <th class="table-id">序号</th>
+                <th class="table-author am-hide-sm-only">名字</th>
+                <th class="table-author am-hide-sm-only">描述</th>
+                <th class="table-author am-hide-sm-only">链接地址</th>
+                <th class="table-author am-hide-sm-only">状态</th>
+                <th width="130px" class="table-set">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if(is_array($list)): foreach($list as $key=>$ov): ?><tr>
+                  <td><input type="checkbox" value="<?php echo ($ov["id"]); ?>" /></td>
+                  
+                  <td><?php echo ($ov["id"]); ?></td>
+                  <td class="am-hide-sm-only"><?php echo ($ov["name"]); ?></td>
+                  <td class="am-hide-sm-only"><?php echo ($ov["des"]); ?></td>
+                  <td class="am-hide-sm-only"><?php echo ($ov["url"]); ?></td>
+                  <td class="am-hide-sm-only"><?php echo ($ov["status"]); ?></td>
+                  <td>
+                  	
+                  	
+                        	
+                  	<div class="am-btn-toolbar">
+                      <div class="am-btn-group am-btn-group-xs">
+                        <!-- <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button> -->
+                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round mo-btn" data-am-modal="{target: '#my-popups'}" lid="<?php echo ($ov["id"]); ?>" title="修改友链"><span class="am-icon-pencil-square-o"></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" lid="<?php echo ($ov["id"]); ?>" title="删除友链"><span class="am-icon-trash-o" ></span></button>
+                      </div>
+                    </div>
+                  	
+                  	
+                  	
+                  	
+                  	
+                  	
+                  </td>
+                </tr><?php endforeach; endif; ?>
+            </tbody>
+          </table>
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default" id="selectAllBtn"><span class="am-icon-plus"></span> 全选</button>
+              <button type="button" class="am-btn am-btn-default" id="revSelectBtn"><span class="am-icon-plus"></span> 反选</button>
+              <button type="button" class="am-btn am-btn-default" id="allNotBtn"><span class="am-icon-plus"></span> 全不选</button>
+              <button type="button" class="am-btn am-btn-default" id="deleteSelect"><span class="am-icon-trash-o"></span> 删除</button>
+            </div>
+          
+          <?php echo ($pageBtn); ?>
+          
+          
+      
+          <hr />
+          <p>注：.....</p>
+        </form>
+</div>
+
+<script>
+  $('.add-btn').click(function () {
+    location.href = "/2nd Project/04.10/project/index.php/HMadmin/Links/addLinks";
+
+    return false;
+  });
+
+  $('.mo-btn').click(function () {
+    var lid = $(this).attr('lid');
+
+    location.href = "/2nd Project/04.10/project/index.php/HMadmin/Links/editLinks/id/" + lid;
+
+    return false;
+  });
+
+  $('.rm-btn').click(function () {
+    var that = $(this);
+
+    var id = $(this).attr("lid");
+
+    var bool = confirm('此操作无法恢复，确定删除？');
+
+    if (bool) {
+      // alert(id);
+      $.get(
+        // '<?php echo U(HMadmin/Order/deleteOrder);?>',
+        '/2nd Project/04.10/project/index.php/HMadmin/Links/deleteLinks',
+        {id:id},
+        function (data) {
+          if (data == 1) {
+            that.parent().parent().parent().parent().remove();
+          } else {
+            alter('操作失败，请稍后再试。');
+          }
+        },
+        'json'
+      );
+    };
+
+    return false;
+  });
+
+  $('#selectAllBtn').click(function () {
+    $('input[type=checkbox]').prop('checked', true);
+  });
+
+  $('#revSelectBtn').click(function () {
+    $('input[type=checkbox]').each(function () {
+      $(this).prop('checked', !$(this).prop('checked'));
+    });
+  });
+
+  $('#allNotBtn').click(function () {
+    $('input[type=checkbox]').removeAttr('checked');
+  });
+
+  $('#deleteSelect').click(function () {
+    var ids = '';
+
+    if ($('input:checked').length == 0) {
+      alert('请选择要删除的友链。');
+
+      return false;
+    }
+
+    var bool = confirm('此操作无法恢复，确定删除？');
+
+    if (bool) {
+      $('input:checked').each(function () {
+        ids += $(this).val() + ',';
+      });
+      
+      $.post(
+        '/2nd Project/04.10/project/index.php/HMadmin/Links/multipleDelete',
+        {ids:ids},
+        function (data) {
+          if (data == 1) {
+              $('input:checked').parent().parent().remove();
+            } else {
+              alter('操作失败，请稍后再试。');
+            }
+          },
+          'json'
+      );
+    }
+  });
+
+</script>
+
+
 
 
 

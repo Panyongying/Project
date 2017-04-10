@@ -8,6 +8,9 @@ class IndexController extends Controller
 {
     public function index()
     {
+    	$data = D('cart')->showCart();
+
+		$this->assign('data', $data);
 
         $this->display();
     }

@@ -34,7 +34,9 @@
     	    <meta property="fb:app_id" content="1433700643510498">
 
 
-       <title>H&M</title>
+       
+	<title>Your Shopping Cart | H&amp;M CN</title>
+
 </head>
 
 
@@ -1661,426 +1663,277 @@
 <!-- HeaderLife -->
 
 
-         
-        <main role="main" class="responsive segments">
-                <!--AEMPUBPRDAP16-->
-            <div class="layout">
-                <div class="parsys main">
-                    <section class="segment section singleteasercontainer">
-                    	                    		
-                        <article class="default-m-serif  teaser-media  single-cta" data-item-ratio="16x9" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NB" data-promotion-creative="8NB Teaser Page prio 1" id="track_832536">
-                            <a href="http://www2.hm.com/zh_cn/ladies/shop-by-feature/8nb-spring-fashion.html" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
-                        	
-                          <div class="background-image teaser-image rimd">
+        
+	<main role="main" class="favorites-active">
+			<div class="wrapper">    
+				<nav class="breadcrumbs">
+					<ul>
+	<li>
+		<a href="http://www2.hm.com/zh_cn/">HM.COM</a>
+	</li>
 
-                            <img src="/2nd Project/04.10/project/Public/show/1.jpg"> <!-- 首页大图 -->
-                          </div>
+	<li class="active">
 
-                 <!-- 大图描述1 -->
-                                <div class="text-container" data-text-placement="right middle" data-text-alignment="center" data-text-color="black">
-                                	<p class="vignette">H&amp;M 激情呈现</p>
-                                	
-                                	<h3 class="heading">夏季内衣</h3>
-                                	
-                                	
-                                	<ul class="cta-list" data-cta-color="black">
-                                		<li class="item"><a href="http://www2.hm.com/zh_cn/ladies/shop-by-feature/8nb-spring-fashion.html" data-cta-tracking="true" class="cta button" target="_self">即刻选购</a>
-                                        </li>
-                                	</ul>
-                                </div>
-                <!--大图描述结束-->
-                       </article>	  
-                    </section>
+			<a href="http://www2.hm.com/zh_cn/cart#" onclick="return false;"> 购物袋</a>
+				</li>
+	</ul>
+</nav>
+				<script type="text/javascript">$("body").addClass("checkout-loader-layer");</script>
+	<header class="checkout-header"><h1>购物袋</h1></header>	
+		<div class="row sticky-wrapper ng-scope" ng-controller="CartContextController">
+			<div class="grid col-8">
+				<h2 class="visuallyhidden">购物袋商品</h2>
+					<?php if($data = 'empty' ): ?><div class="ng-scope">
+							<div id="cartPage-body-empty" class="box">
+								<div class="box-content shopping-bag-empty">
+									<h2>您的购物袋是空的</h2>
+									<div class="ng-scope">
+										请登录保存商品到购物袋,或读取购物袋中已保存商品。 <br><br>
+										<a href="/zh_cn/login">登录</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php else: ?>
+					<ul ng-if="getContext().cartEntries.length &gt; 0" class="product-detail-list responsive ng-scope" id="cartPage-items">
+						<?php if(is_array($$data["cartList"])): foreach($$data["cartList"] as $key=>$ov): ?><li class="product-detail-list-item ng-scope" id="0401021001" ng-repeat="entry in getContext().cartEntries" >
+		<div class="product-detail-list-item-image-wrapper">
+			<div class="wrapper-inner">
+				<a href="http://www2.hm.com/zh_cn/productpage.0401021001.html" class="product-detail-list-item-image ">
+					<img alt="<?php echo ($ov["name"]); ?>" title="<?php echo ($ov["name"]); ?>" class="product-detail-list-item-image-image" src="<?php echo ($ov["pic"]); ?>">
+						 
+			    </a>
+			 </div>  
+		</div>
+		<div class="product-detail-list-item-details">
+		
+				<div class="product-detail-list-item-price-info">
+					<p class="product-detail-list-item-total-price">
+						总价：<span id="entry_new_price" class="ng-binding">¥<?php echo ($ov["price * $ov"]["gnum"]); ?></span>
+					</p>
+				</div>
+		
+				<!-- ngRepeat: marker in entry.productMarker -->
+							
+				<h3 class="sub-sub-heading ng-binding"><?php echo ($ov["name"]); ?></h3>
+<div ng-hide="entry.isYellowPriceAvailable">
+	<p class="product-detail-price ng-binding">
+		¥<?php echo ($ov["price"]); ?>
+	</p>
+</div>
 
-                <div class="parbase newarrivalscontainer section">  <!-- 第二版图片 -->
+<p class="product-detail-selection">
+					</p><div class="product-item-selection ng-binding"></div>
+				<p></p>
+				<dl class="product-detail-list-item-details-list">
+					<dt>
+						商品编号：</dt>
+					<dd class="ng-binding"><?php echo ($ov["id"]); ?></dd>
+					
+					<dt>
+						颜色：</dt>
+					<dd class="ng-binding"><?php echo ($ov["color"]); ?></dd>
 
-
-                    <section class="segment new-arrivals">  
-
-                        <h2 class="heading">新品</h2>
-
-                        <div class="four modules">
-                          
-                            <div class="department-product-item">
-                              <article class="product-item" data-articlecode="0484891003" data-newarrivals-first-article="true" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0484891003&#39;);"><!-- Product item -->
-                    				<a href="http://www2.hm.com/zh_cn/productpage.0484891003.html" data-cta-tracking="false" title="双层雪纺上衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="双层雪纺上衣" class="product-item-image" src="/2nd Project/04.10/project/Public/show/hmprod(1)" title="双层雪纺上衣">
-                    	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0484891003|双层雪纺上衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
-                    	            </a>
-                    	            <div class="product-item-details">
-                    	            	<h3 class="product-item-heading">
-                    			    		<a href="http://www2.hm.com/zh_cn/productpage.0484891003.html" data-cta-tracking="false">双层雪纺上衣</a>
-                    		        	</h3>
-                    		        	<strong class="price">¥249.00</strong>
-                    	            </div>
-                               </article><!-- /Product item -->
-                               <a href="http://www2.hm.com/zh_cn/ladies/new-arrivals/clothes.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Ladies : New Arrivals : Clothing : Viewall" data-promotion-page-category="LADIES_NEW ARRIVALS : CLOTHING_CLOTHING : VIEWALL_VIEW_ALL">即刻选购</a>
-                             </div>
-                          
-                            <div class="department-product-item">
-                              <article class="product-item" data-articlecode="0504168001" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0504168001&#39;);"><!-- Product item -->
-                    				<a href="http://www2.hm.com/zh_cn/productpage.0504168001.html" data-cta-tracking="false" title="提花梭织紧身胸衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="提花梭织紧身胸衣" class="product-item-image" src="/2nd Project/04.10/project/Public/show/hmprod(2)" title="提花梭织紧身胸衣">
-                    	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0504168001|提花梭织紧身胸衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
-                    	            </a>
-                    	            <div class="product-item-details">
-                    	            	<h3 class="product-item-heading">
-                    			    		<a href="http://www2.hm.com/zh_cn/productpage.0504168001.html" data-cta-tracking="false">提花梭织紧身胸衣</a>
-                    		        	</h3>
-                    		        	<strong class="price">¥199.00</strong>
-                    	            </div>
-                               </article><!-- /Product item -->
-                               <a href="http://www2.hm.com/zh_cn/ladies/new-arrivals/clothes.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Ladies : New Arrivals : Clothing : Viewall" data-promotion-page-category="LADIES_NEW ARRIVALS : CLOTHING_CLOTHING : VIEWALL_VIEW_ALL">即刻选购</a>
-                             </div>
-                          
-                            <div class="department-product-item">
-                            <article class="product-item" data-articlecode="0524124002" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0524124002&#39;);"><!-- Product item -->
-                    				<a href="http://www2.hm.com/zh_cn/productpage.0524124002.html" data-cta-tracking="false" title="褶边上衣" class="product-item-link">
-                    	               <img width="260" height="390" alt="褶边上衣" class="product-item-image" src="/2nd Project/04.10/project/Public/show/hmprod(3)" title="褶边上衣">
-                    	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0524124002|褶边上衣|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
-                    	            </a>
-                    	            <div class="product-item-details">
-                    	            	<h3 class="product-item-heading">
-                    			    		<a href="http://www2.hm.com/zh_cn/productpage.0524124002.html" data-cta-tracking="false">褶边上衣</a>
-                    		        	</h3>
-                    		        	<strong class="price">¥399.00</strong>
-                    	            </div>
-                            </article><!-- /Product item -->
-                               <a href="http://www2.hm.com/zh_cn/ladies/new-arrivals/clothes.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Ladies : New Arrivals : Clothing : Viewall" data-promotion-page-category="LADIES_NEW ARRIVALS : CLOTHING_CLOTHING : VIEWALL_VIEW_ALL">即刻选购</a>
-                             </div>
-                          
-                            <div class="department-product-item">
-                              <article class="product-item" data-articlecode="0482832001" data-newarrivals-first-article="false" data-activity-type="MERCH" data-activity-code="NEWS_161102" data-promotion-creative="new arrivals 17-03-22" onclick="setOsaParameters(utag_data.category_id,&#39;NEW_ARRIVALS&#39;, &#39;0482832001&#39;);"><!-- Product item -->
-                    				<a href="http://www2.hm.com/zh_cn/productpage.0482832001.html" data-cta-tracking="false" title="绑带棉质衬衫" class="product-item-link">
-                    	               <img width="260" height="390" alt="绑带棉质衬衫" class="product-item-image" src="/2nd Project/04.10/project/Public/show/hmprod(4)" title="绑带棉质衬衫">
-                    	               <button data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0482832001|绑带棉质衬衫|HM" type="button" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
-                    	            </a>
-                    	            <div class="product-item-details">
-                    	            	<h3 class="product-item-heading">
-                    			    		<a href="http://www2.hm.com/zh_cn/productpage.0482832001.html" data-cta-tracking="false">绑带棉质衬衫</a>
-                    		        	</h3>
-                    		        	<strong class="price">¥299.00</strong>
-                    	            </div>
-                               </article><!-- /Product item -->
-                               <a href="http://www2.hm.com/zh_cn/ladies/new-arrivals/clothes.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Ladies : New Arrivals : Clothing : Viewall" data-promotion-page-category="LADIES_NEW ARRIVALS : CLOTHING_CLOTHING : VIEWALL_VIEW_ALL">即刻选购</a>
-                             </div>     
-                        </div>
-                    </section>
-
-
-                </div>
-                <section class="segment section"><!-- 第三版/ -->
-                	
-                	<div class="two modules">
-                		<article class="default-m-sans  teaser-media  single-cta" data-item-ratio="2x3" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NA" data-promotion-creative="8NA Teaser Page Prio 1" id="track_832537"><a href="http://www2.hm.com/zh_cn/ladies/shop-by-feature/8na-hm-loves-coachella-2017.html" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
-
-                            
-                	<div class="background-image teaser-image rimd">
-                 
-                        <img src="/2nd Project/04.10/project/Public/show/hmprod(5)">
-                    </div>
-                    	<div class="text-container" data-text-placement="center bottom" data-text-alignment="center" data-text-color="black">
-                    	
-                    	<div class="logo-image rimd" style="padding-bottom:41.875%;">
-                    	
-                    	   <img src="/2nd Project/04.10/project/Public/show/hmprod(6)">
-                        </div>
-                    	
-                    	
-                    	
-                    	<ul class="cta-list" data-cta-color="white">
-                    		<li class="item"><a href="http://www2.hm.com/zh_cn/ladies/shop-by-feature/8na-hm-loves-coachella-2017.html" data-cta-tracking="true" class="cta button" target="_self">即刻选购</a></li>
-                    	</ul>
-                        </div>
-                    </article>
-                	
-                		<article class="merch-ladder-plate teaser-media " data-item-ratio="2x3" data-view-tracking="false" data-activity-type="MERCH" data-activity-code="CN31_QINGMING" data-promotion-creative="CN31 QINGMING">
-                	<div class="background-image teaser-image rimd">
-
-                        <img src="/2nd Project/04.10/project/Public/show/hmprod(7)">
-                        </div>
-                    	<div class="background-plate" data-background-color="white">
-                    </div>
-                    	<div class="text-container" data-text-color="black">
-                    	
-                    	<p class="vignette">踏青特惠+包邮<br></p>
-                    	<p class="preamble-top">立减40元</p>
-                    	<h3 class="heading">购物满399元立减40元<br>
-                    使用代码5001<br></h3>
-                    	<p class="preamble-bottom">立减80元</p>
-                    	<p class="text-1">购物满599元立减80元<br>
-                    使用代码5002</p>
-                    	<p class="text-2">立减150元</p>
-                    	<p class="text-3">购物满799元立减150元<br>
-                    使用代码5003</p>
-                    	<p class="legal-text">优惠适用于hm.com，截至2017年4月5日17:00。</p>
-                    	
-                    </div>
-                    </article>
-                    	</div>
-                    	
-                </section> <!--第三结束-->
+					<dt>
+						尺码：</dt>
+					<dd class="ng-binding"><?php echo ($ov["size"]); ?></dd>
+				</dl>
+				
+			</div>
+			<div class="product-detail-list-item-actions">
+                <button class="button secondary icon icon-trash" type="button" title="Remove product" ng-click="removeItem(entry.variantCode,entry)"></button>
+                <button class="button secondary icon icon-move-favorite ng-scope" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" ng-click="addToFavourite(entry.variantCode,entry.isFavourite,entry)"></button>
+                <label class="product-detail-list-item-actions-label" for="shopping-bag-quantity-options-4"></label>
+				<div class="select-primary product-detail-list-item-quantity">
+    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid">
+    					<?php if($ov["stock"] >= 10): $__FOR_START_23594__=1;$__FOR_END_23594__=11;for($i=$__FOR_START_23594__;$i < $__FOR_END_23594__;$i+=1){ ?><option value="<?php echo ($i); ?>" <?php if($i = $ov.stock): ?>selected<?php endif; ?> label="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
+    					<?php else: ?>
+    						<?php $__FOR_START_14875__=1;$__FOR_END_14875__=$ov["stock + 1"];for($i=$__FOR_START_14875__;$i < $__FOR_END_14875__;$i+=1){ ?><option value="<?php echo ($i); ?>" <?php if($i = $ov.stock): ?>selected<?php endif; ?> label="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } endif; ?>
+    				</select>
+				</div>
+           	</div>
+	</li><?php endforeach; endif; ?>
+					</ul><?php endif; ?>
+			</div>
+			<div id="cartPage-summary" class="grid col-4">
+				<div style="" class="shopping-bag-order-total sticky-on-scroll semi-sticky" data-sticky-offset="-20" data-sticky-stop-offset="-70">
+					<div class="box">
+	<h2 class="box-headline">购物袋总金额</h2>
+	<div class="box-content">
+	<div class="shopping-bag-total">
+		<table class="order-total">
+	<tbody>
+		<tr>
+			<th scope="row">订单价值：</th>
+			<td><span id="newPriceSubtotal" class="ng-binding">¥
+				<?php if($data = 'empty'): ?>0.00
+				<?php else: echo ($ov["totalPrice"]); endif; ?>
+			</span></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th scope="row">总价:</th>
+			<td id="total_price_of_basket" class="ng-binding">
+				¥<?php if($data = 'empty'): ?>0.00
+				<?php else: echo ($ov["totalPrice"]); endif; ?>
+		    	</td>
+		   </tr>
+		 </tfoot>
+</table>
+				
+			<button  class="button button-big" <?php if($data = 'empty'): ?>disabled
+				<?php else: endif; ?>
+				>
+				前往结账</button> 
+	</div>
+		<p class="fine-print">价格和运费在结账时才会最终确认。</p>
+		<p class="fine-print">
+				您可以取消订单，前提是您希望退回的商品在不迟于您收到订单商品后的30天内送达给我们。您可在此找到退换货政策全文&nbsp;
+				<a class="overlay-trigger underline" href="http://www2.hm.com/zh_cn/customer-service/return-link.html"> 退货和退款</a>
+			</p>
+		</div>
+	<div class="product-warning notice responsive ng-hide" ng-show="!isBrowserCompatible &amp;&amp; false"><p class="text icon-notice normal">basket.page.disabled.button.description</p></div>
+</div>
 
 
 
-                <section class="segment section"> <!--第四开始-->
-                	
-                	<div class="three modules">
-                    	<article class="merch-sgi-bottom teaser-media  single-cta" data-item-ratio="2x3" data-view-tracking="true" data-activity-type="MERCH" data-activity-code="CNL12_SEASONSSHIRTS_WEEK13" data-promotion-creative="Shirts and Blouses Week 13" id="track_832538">
-                        <a href="http://www2.hm.com/zh_cn/ladies/offers-highlights/season-s-shirts.html" data-promotion-page-id="Ladies : Offersandhighlights : Cnl12 - Seasons Shirts : Seasons shirts" data-promotion-page-category="LADIES_OFFERSANDHIGHLIGHTS : CNL12 - SEASONS SHIRTS_CNL12 - SEASONS SHIRTS : SEASONS SHIRTS_VIEW_ALL" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
-                        	<div class="background-image teaser-image rimd">
-
-                                <img src="/2nd Project/04.10/project/Public/show/hmprod(8)"></div>
-                        	
-                            <div class="text-container" data-text-color="black">
-                            	
-                            	<p class="vignette">热门精选</p>
-                            	
-                            	<h3 class="heading">当季衬衫</h3>
-                            	
-                            	
-                            	
-                            	
-                            	
-                            	<ul class="cta-list" data-cta-color="black">
-                            		<li class="item"><a href="http://www2.hm.com/zh_cn/ladies/offers-highlights/season-s-shirts.html" data-promotion-page-id="Ladies : Offersandhighlights : Cnl12 - Seasons Shirts : Seasons shirts" data-promotion-page-category="LADIES_OFFERSANDHIGHLIGHTS : CNL12 - SEASONS SHIRTS_CNL12 - SEASONS SHIRTS : SEASONS SHIRTS_VIEW_ALL" data-cta-tracking="true" class="cta link" target="_self">即刻选购</a></li>
-                            	</ul>
-                            </div>
-                        </article>
-                    	
-                        <article class="default-m-sans  teaser-media  single-cta" data-item-ratio="2x3" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NC" data-promotion-creative="8NC Teaser page part 1" id="track_832539"><a href="https://globalchangeaward.com/" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">阅读更多</a>
-                            	<div class="background-image teaser-image rimd">
-                             
-                                    <img src="/2nd Project/04.10/project/Public/show/hmprod(9)">
-                                </div>
-                                	<div class="text-container" data-text-placement="center middle" data-text-alignment="center" data-text-color="white">
-                                	
-                                	<div class="logo-image rimd" style="padding-bottom:32.8125%;">
-
-                                	<img src="/2nd Project/04.10/project/Public/show/hmprod(10)"></div>
-                                	<h3 class="heading">为时尚新理念投票</h3>
-                                	<p class="preamble-bottom">五大新創意，為保護地球出一分力。百萬歐元大獎花落誰家，你們來決定！<br>
-                                <br></p>
-                                	
-                                	<ul class="cta-list" data-cta-color="white">
-                                		<li class="item"><a href="https://globalchangeaward.com/" data-cta-tracking="true" class="cta button" target="_self">阅读更多</a></li>
-                                	</ul>
-                                </div>
-                        </article>
-                        	
-                        <article class="default-m-sans  teaser-media  single-cta" data-item-ratio="2x3" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NE" data-promotion-creative="8NE Teaser page" id="track_832540"><a href="http://www2.hm.com/zh_cn/men/shop-by-feature/8ne-modern-casual.html" data-promotion-page-id="Men : Shopbyfeature : 8Ne - Modern Casual" data-promotion-page-category="MEN_SHOPBYFEATURE _8NE - MODERN CASUAL" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
-                            	<div class="background-image teaser-image rimd">
-
-                                     <img src="/2nd Project/04.10/project/Public/show/hmprod(11)">
-                                </div>
-                            	<div class="text-container" data-text-placement="center bottom" data-text-alignment="center" data-text-color="white">
-                                	<p class="vignette">春季风尚</p>
-                                	
-                                	<h3 class="heading">摩登休闲</h3>
-                                	
-                                	
-                                	<ul class="cta-list" data-cta-color="white">
-                                		<li class="item"><a href="http://www2.hm.com/zh_cn/men/shop-by-feature/8ne-modern-casual.html" data-promotion-page-id="Men : Shopbyfeature : 8Ne - Modern Casual" data-promotion-page-category="MEN_SHOPBYFEATURE _8NE - MODERN CASUAL" data-cta-tracking="true" class="cta button" target="_self">即刻选购</a></li>
-                                	</ul>
-                                 </div>
-                        </article>
-                	</div>
-                	
-                </section><!--第四部开始-->
-                <section class="segment section singleteasercontainer">
-                	
-                	
-                		
-                	<article class="default-m-sans  teaser-media  single-cta" data-item-ratio="3x2" style="position:relative;" data-view-tracking="true" data-activity-type="CAMPAIGN" data-activity-code="8NK" data-promotion-creative="8NK Teaser Page" id="track_832541"><a href="http://www2.hm.com/zh_cn/kids/shop-by-concept/basics.html" data-promotion-page-id="Kids : Shopbyconcept : Basics : Viewall" data-promotion-page-category="KIDS_SHOPBYCONCEPT : BASICS_BASICS : VIEWALL_VIEW_ALL" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">即刻选购</a>
-                	
-                    	<div class="background-image teaser-image rimd">
-                     
-                            <img src="/2nd Project/04.10/project/Public/show/hmprod(12)">
-                        </div>
-                        	<div class="text-container" data-text-placement="right middle" data-text-alignment="center" data-text-color="white">
-                        	<p class="vignette">尺码 18个月-14岁+</p>
-                        	
-                        	<h3 class="heading">回归基本款</h3>
-                        	
-                        	
-                        	<ul class="cta-list" data-cta-color="white">
-                        		<li class="item"><a href="http://www2.hm.com/zh_cn/kids/shop-by-concept/basics.html" data-promotion-page-id="Kids : Shopbyconcept : Basics : Viewall" data-promotion-page-category="KIDS_SHOPBYCONCEPT : BASICS_BASICS : VIEWALL_VIEW_ALL" data-cta-tracking="true" class="cta button" target="_self">即刻选购</a></li>
-                        	</ul>
-                        </div>
-                    </article>
-                	
-                </section>
-                <section class="segment section">
-                    <h2 class="heading">发现 H&amp;M</h2> <!-- 发现HM -->
-                    <div class="three modules">
-                        <article class="merch-deal-middle-plate teaser-media  single-cta" data-item-ratio="2x3" data-view-tracking="true" data-activity-type="MERCH" data-promotion-creative="Newsletter" id="track_832542">
-                                <a href="http://www2.hm.com/zh_cn/customer-service/newsletter.html" data-promotion-page-id="CUSTOMER_SERVICE_NEWSLETTER" data-promotion-page-category="CUSTOMER_SERVICE_NEWSLETTER" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">注册</a>
-                        	<div class="background-image teaser-image rimd">
-
-                                <img src="/2nd Project/04.10/project/Public/show/hmprod(13)">
-                            </div>
-                        	<div class="background-plate" data-background-color="white"> </div>
-                       
-                        	<div class="text-container" data-text-color="black">
-                    	
-                        	<p class="vignette">时尚资讯</p>
-                        	<p class="preamble-top">订阅即享</p>
-                        	<h3 class="heading">任一单品<br>85折优惠</h3>
-                       
-                        	
-                        	
-                        	
-                        	<ul class="cta-list" data-cta-color="black">
-                        		<li class="item">
-                                     <a href="http://www2.hm.com/zh_cn/customer-service/newsletter.html" data-promotion-page-id="CUSTOMER_SERVICE_NEWSLETTER" data-promotion-page-category="CUSTOMER_SERVICE_NEWSLETTER" data-cta-tracking="true" class="cta link" target="_self">注册</a>
-                                </li>
-                        	</ul>
-                            </div>
-                        </article>
-                    	
-                        <article class="merch-customer-deal-small-top teaser-media " data-item-ratio="2x3" data-view-tracking="false" data-activity-type="MERCH" data-promotion-creative="Wechat Follow Us">
-                        	<div class="background-image teaser-image rimd">
-                         
-                                <img src="/2nd Project/04.10/project/Public/show/hmprod(14)">
-                            </div>
-                                	
-                            <div class="text-container" data-text-color="black">
-                                	
-                                	<p class="vignette">微信</p>
-                                	<p class="preamble-top">关注H&amp;M官方微信</p>
-                                	<h3 class="heading">任一单品<br>
-                                    85折</h3>
-                                    <p class="preamble-bottom">扫描二维码</p>
-                       	
-                            </div>
-                        </article>
-                        	
-                        <article class="merch-deal-small-top teaser-media  single-cta" data-item-ratio="2x3" data-view-tracking="true" data-activity-type="MERCH" data-promotion-creative="Download the app" id="track_832543">
-                                <a href="http://www2.hm.com/zh_cn/customer-service/download-app.html" data-promotion-page-id="Customer Service Downloadapp (View All)" data-promotion-page-category="CUSTOMER_SERVICE_DOWNLOADAPP" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">阅读更多</a>
-                                <div class="background-image teaser-image rimd">
-                             
-                                    <img src="/2nd Project/04.10/project/Public/show/hmprod(15)">
-                                </div>
-                        	
-                                <div class="text-container" data-text-color="black">
-                            	
-                                	<p class="vignette">轻松时尚</p>
-                                	
-                                	<h3 class="heading">下载H&amp;M APP</h3>
-                                	
-
-                            	   <ul class="cta-list" data-cta-color="black">
-                                		<li class="item">
-                                            <a href="http://www2.hm.com/zh_cn/customer-service/download-app.html" data-promotion-page-id="Customer Service Downloadapp (View All)" data-promotion-page-category="CUSTOMER_SERVICE_DOWNLOADAPP" data-cta-tracking="true" class="cta button" target="_self">阅读更多</a>
-                                        </li>
-                            	   </ul>
-                                </div>
-                        </article>
-                    </div>
-                    	
-                </section>
-                <section class="segment section singleteasercontainer">
-                	
-                	
-                		
-                    <article class="default-m-serif  teaser-media  single-cta" data-item-ratio="3x2" style="position:relative;" data-view-tracking="true" data-activity-type="LIFE" data-activity-code="IN LOVE WITH LULAMA" data-promotion-creative="Magazine_w12_InLoveWithLulama" id="track_832544">
-                        <a href="http://www2.hm.com/content/hmonline/en_us/life/fashion/everyday-icon/in-love-with-lulama" data-cta-tracking="true" target="_self" class="hidden-text cta-overlay">阅读更多</a>
-                        	
-                        	<div class="background-image teaser-image rimd">
-
-                                <img src="/2nd Project/04.10/project/Public/show/hmprod(16)">
-                            </div>
-                            <div class="text-container" data-text-placement="right middle" data-text-alignment="center" data-text-color="black">
-                            	<p class="vignette">MAGAZINE</p>
-                            	
-                            	<h3 class="heading">IN LOVE WITH <br>LULAMA</h3>
-                                
-                                
-                                <ul class="cta-list" data-cta-color="black">
-                                    <li class="item"><a href="http://www2.hm.com/content/hmonline/en_us/life/fashion/everyday-icon/in-love-with-lulama" data-cta-tracking="true" class="cta button" target="_self">阅读更多</a></li>
-                                </ul>
-                            </div>
-                    </article>
-                		
-                </section>
-                <section class="hm-life-promo segment section">
+ <form id="view-join-club-modal" ng-submit="createClubAccount()" aria-hidden="true" class="hidden modal-content create-account-modal ng-pristine ng-valid">
+	<h2 class="heading">Join H&amp;M Club!</h2>
+	<article class="hero-unit responsive ">
+    	<header class="hero-logo icon-hm-club-logo-light">H&amp;M CLUB</header>
+        <p class="hero-text">You have items in your shopping bag that are eligible for special Club prices. Join H&amp;M Club to get this deal!</p>   
+    </article>
+    <div class="modal-text">
+    
+    
+    <div class="inputwrapper prefilled">		
+				<h3 class="label">1996/05/03</h3>
+				<div class="input-info">You have already entered your date of birth.</div>			
+			</div>
+    
+    
+		
+   </div>
+   <div class="sticky button-group">
+		<div class="inputwrapper list-group required">
+	      <ul class="input-list">
+			<li class="item">
+				<input class="checkbox-input ng-pristine ng-untouched ng-valid" type="checkbox" id="club-concent_0" name="club-concent" data-validation-required="true" ng-model="birthDateForm.consent">
+                <label class="checkbox-label" for="club-concent_0">
+				        
+				        I accept the H&amp;M Club <a href="http://www2.hm.com/zh_cn/customer-service/club-terms-link.html" class="agreement-link overlay-trigger">Terms &amp; conditions </a> and I am  16 years old.
+				</label>
+			</li>
+	</ul>
+   </div>
+	<p class="input-info">I am not interested in joining the H&amp;M Club at the moment.</p>
+		<button class="modalclose button secondary" type="button" ng-click="denyClubBenefits()">Skip</button>
+		<input class="button primary" type="submit" value="JOIN H&amp;M CLUB" data-custom-classname="content-fill no-border" data-validate-before-open-modal="true">
+	
+  </div>
+</form>
 
 
-                    <!-- HM life promotion -->
-                        
-                        <h2 class="heading">MAGAZINE</h2>
-                        <h3 class="sub-heading">A world of inspiration</h3>
-                            
-                        <ul class="cta container">
-                            <li class="item">
-                            <a href="http://www2.hm.com/zh_cn/life.html" class="cta button">Read H&amp;M Magazine</a>
-                            </li>
-                        </ul>
-                        
-                        <div class="modules three">
-                            
-                                    
-                                        <article class="hm-life teaser-media single-cta" data-view-tracking="true" data-activity-type="LIFE" data-activity-code="Dree and Drake wear Spring’s essentials" data-promotion-creative="Dree and Drake wear Spring’s essentials" id="track_832545">
-                                            <a href="http://www2.hm.com/zh_cn/life/fashion/featured-fashion/dree-and-drake-wear-springs-essentials.html" data-cta-tracking="true" data-promotion-page-id="Dree and Drake wear Spring’s essentials" data-promotion-page-category="LIFE_FASHION_FEATUREDFASHION_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
-                                            <div class="background-image teaser-image rimd">
-                                        
-                                                <img src="/2nd Project/04.10/project/Public/show/hmprod(17)" alt="FEATURED FASHION" title="FEATURED FASHION">
-                                            </div>
-                                                
-                                            <div class="text-container">
-                                                	<p class="vignette">FEATURED FASHION</p>
-                    								<h3 class="heading">Dree 和 Drake 身穿春季必备款式</h3>
-                                                    <ul class="cta-list">
-                                                	
-                                        			<li class="item">
-                                                    <a href="http://www2.hm.com/zh_cn/life/fashion/featured-fashion/dree-and-drake-wear-springs-essentials.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Dree and Drake wear Spring’s essentials" data-promotion-page-category="LIFE_FASHION_FEATUREDFASHION_ARTICLES">Read The Story</a>
-                                                    </li>
-                                    			     </ul>
-                                            </div>
-                                       	</article>                
-                                       
-                                        <article class="hm-life teaser-media single-cta" data-view-tracking="true" data-activity-type="LIFE" data-activity-code="This week’s fashion finds_2017 03 B3" data-promotion-creative="This week’s fashion finds_2017 03 B3" id="track_832546">
-                                        <a href="http://www2.hm.com/zh_cn/life/fashion/editors-picks/this-week_s-fashion-finds2017-03-b3.html" data-cta-tracking="true" data-promotion-page-id="This week’s fashion finds_2017 03 B3" data-promotion-page-category="LIFE_FASHION_EDITORSPICKS_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
-                                            <div class="background-image teaser-image rimd">
-                                            
-                                            <img src="/2nd Project/04.10/project/Public/show/hmprod(18)" alt="EDITORS PICKS" title="EDITORS PICKS"></div>
-                                                
-                                                <div class="text-container">
-                                                	<p class="vignette">EDITORS PICKS</p>
-                    								<h3 class="heading">本周时尚动态</h3>
-                                                <ul class="cta-list">
-                                                	
-                                        			<li class="item"><a href="http://www2.hm.com/zh_cn/life/fashion/editors-picks/this-week_s-fashion-finds2017-03-b3.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="This week’s fashion finds_2017 03 B3" data-promotion-page-category="LIFE_FASHION_EDITORSPICKS_ARTICLES">Read The Story</a></li>
-                                    			</ul>
-                                            	</div>
-                                       	</article>                
-                                       
-                                        <article class="hm-life teaser-media single-cta" data-view-tracking="true" data-activity-type="LIFE" data-activity-code="Zara Larsson’s top music and fashion picks" data-promotion-creative="Zara Larsson’s top music and fashion picks" id="track_832547"><a href="http://www2.hm.com/zh_cn/life/culture/interview/zara-larsson_s-top-music-and-fashion-picks.html" data-cta-tracking="true" data-promotion-page-id="Zara Larsson’s top music and fashion picks" data-promotion-page-category="LIFE_CULTURE_INTERVIEW_ARTICLES" class="hidden-text cta-overlay">Read The Story</a>
-                                            <div class="background-image teaser-image rimd">
-                                          
-                                            <img src="/2nd Project/04.10/project/Public/show/hmprod(19)" alt="INTERVIEW" title="INTERVIEW"></div>
-                                                
-                                                <div class="text-container">
-                                                	<p class="vignette">INTERVIEW</p>
-                    								<h3 class="heading">Zara Larsson最喜爱的音乐和时装</h3>
-                                                <ul class="cta-list">
-                                                	
-                                        			<li class="item"><a href="http://www2.hm.com/zh_cn/life/culture/interview/zara-larsson_s-top-music-and-fashion-picks.html" class="cta button" data-cta-tracking="true" data-promotion-page-id="Zara Larsson’s top music and fashion picks" data-promotion-page-category="LIFE_CULTURE_INTERVIEW_ARTICLES">Read The Story</a></li>
-                                    			</ul>
-                                            	</div>
-                                       	</article>                
-                                       
-                        </div>
-                    <!-- /HM life promotion -->
 
-                </section>
 
-                </div>
-            </div>
-                	              
-        </main>
+
+
+
+
+
+
+
+<div id="confirm-modal" aria-hidden="true" class="hidden no-border modal-content create-account-modal">
+	<div class="modal-text responsive">
+		<h2 class="heading">Welcome to H&amp;M Club!</h2>
+        
+		<article class="hero-unit responsive ">
+    	    <header class="hero-logo icon-hm-club-logo-light">H&amp;M CLUB</header>
+            <p class="hero-text">You are now a member of H&amp;M Club. You can earn pointson everything you buy! Use&nbsp;your&nbsp;points to unlock customised offers,fashionable rewards and invitations to exclusive events.</p>
+        </article>
+	</div>
+	<div class="sticky button-group">
+		
+		<button onclick="location.href = &#39;https://www2.hm.com/zh_cn/checkout&#39;;" class="modalclose button secondary">确认</button>
+	</div>
+</div>
+	<section class="legaltext parbase section ng-hide" ng-show="containsYellowPrice">
+	<h3 class="sub-sub-heading">CLUB BENEFITS</h3>
+	<p class="text">Join the club to receive fantastic offers!</p>
+	<p class="text">You can apply discount code for H&amp;M club in the checkout process</p>
+	<p class="text">There are many club benefits.</p>
+	<p class="text">You will get prompted to sign up for the club if you are not a club member and you have a club priced item in your shopping bag</p>
+</section>
+
+
 
     
+    
+<!-- Only Content -->
+<!--AEMPUBPRDAP15-->
+<div class="parsys main"><section class="legaltext parbase section">
+<h1 class="sub-sub-heading"></h1>
+<p class="text"></p><p><b>请在结账时，在”支付”栏中点击编辑，添加折扣代码。、</b></p>
+<p>&nbsp;</p>
+<p><b>踏青特惠+包邮</b></p>
+<p>购物满399元立减40元，使用代码5001</p>
+<p>购物满599元立减80元，使用代码5002&nbsp;</p>
+<p>购物满799元立减150元，使用代码5003</p>
+<p>&nbsp;</p>
+<p><b>退货和退款</b></p>
+<p>如果要退货，请自行安排快递并承担快递费用。<a class="underline overlay-trigger" href="http://www2.hm.com/zh_cn/customer-service/return-link.html">在此处</a>了解更多有关退货和退款的信息。<br>
+您的发票将会在您提出要求后，为您提供。在&nbsp;<a class="underline overlay-trigger" href="http://www2.hm.com/zh_cn/customer-service/fapiao.html">这里</a>&nbsp;了解更多有关发票的信息</p>
+<div style="left: -10000px; top: 0px; width: 9000px; position: absolute;">时髦11.11 + 包邮</div>
+<div style="left: -10000px; top: 0px; width: 9000px; position: absolute;">时髦11.11 + 包邮</div>
+<p></p>	</section>
+
+</div>
+
+<!-- /Only Content -->
+
+					 
+				</div>
+			</div>
+			
+			<div class="modaloverlay responsive ng-hide" ng-show="getContext().showPopup &amp;&amp; getContext().popupType==&#39;UPDATE_ENTRY&#39;">
+	<div class="modalbackground"></div>
+	<div class="modal responsive">
+	<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents">
+			<section class="responsive">
+				<div class="shopping-bag-message">
+					<h2 class="ng-binding"></h2>
+					<p class="ng-binding"></p>
+					<p class="shopping-bag-changed-availablity">
+						</p><!-- ngRepeat: entry in getContext().cartModificationEntries -->	
+					<p></p>
+				<div class="buttons clearfix">
+					<button ng-click="getContext().showPopup = false" class="modalclose button">确定</button>
+				</div>
+				</div>
+			</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="hidden modal-content" id="error-popup">
+	<div class="modal-text">
+		<div class="shopping-bag-message">
+			<h1 class="heading ng-binding"></h1>
+			<p ng-bind-html="getContext().popupMessage" class="ng-binding"></p>
+			<form class="ng-pristine ng-valid">
+				<div class="sticky button-group">
+					<button ng-click="closePopup()" class="modalclose button">确定</button>
+				</div>
+			</form>
+		</div>	
+	</div>
+</div>
+</main>
+
 
 
         <footer class="footer-global responsive"><!-- Footer -->
