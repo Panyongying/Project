@@ -8,8 +8,14 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $OneList = D('goods')->OneList();
+
         $this->assign('OneList' ,$OneList);
+
+        $data = D('cart')->showCart();
+
+        $OneList = D('goods')->OneList();
+		$this->assign('data', $data);
+
         $this->display();
     }
 

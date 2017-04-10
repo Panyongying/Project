@@ -1,0 +1,2076 @@
+
+	function StringBuffer()
+	{ 
+	    this.buffer = []; 
+	} 
+
+	StringBuffer.prototype.append = function append(string)
+	{ 
+	    this.buffer.push(string); 
+	    return this; 
+	}; 
+
+	StringBuffer.prototype.toString = function toString()
+	{ 
+	    return this.buffer.join(""); 
+	}; 
+
+	var Base64 =
+	{
+	    codex : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+
+	    encode : function (input)
+	    {
+	        var output = new StringBuffer();
+
+	        var enumerator = new Utf8EncodeEnumerator(input);
+	        while (enumerator.moveNext())
+	        {
+	            var chr1 = enumerator.current;
+
+	            enumerator.moveNext();
+	            var chr2 = enumerator.current;
+
+	            enumerator.moveNext();
+	            var chr3 = enumerator.current;
+
+	            var enc1 = chr1 >> 2;
+	            var enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+	            var enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+	            var enc4 = chr3 & 63;
+
+	            if (isNaN(chr2))
+	            {
+	                enc3 = enc4 = 64;
+	            }
+	            else if (isNaN(chr3))
+	            {
+	                enc4 = 64;
+	            }
+
+	            output.append(this.codex.charAt(enc1) + this.codex.charAt(enc2) + this.codex.charAt(enc3) + this.codex.charAt(enc4));
+	        }
+
+	        return output.toString();
+	    },
+
+	    decode : function (input)
+	    {
+	        var output = new StringBuffer();
+
+	        var enumerator = new Base64DecodeEnumerator(input);
+	        while (enumerator.moveNext())
+	        {
+	            var charCode = enumerator.current;
+
+	            if (charCode < 128)
+	                output.append(String.fromCharCode(charCode));
+	            else if ((charCode > 191) && (charCode < 224))
+	            {
+	                enumerator.moveNext();
+	                var charCode2 = enumerator.current;
+
+	                output.append(String.fromCharCode(((charCode & 31) << 6) | (charCode2 & 63)));
+	            }
+	            else
+	            {
+	                enumerator.moveNext();
+	                var charCode2 = enumerator.current;
+
+	                enumerator.moveNext();
+	                var charCode3 = enumerator.current;
+
+	                output.append(String.fromCharCode(((charCode & 15) << 12) | ((charCode2 & 63) << 6) | (charCode3 & 63)));
+	            }
+	        }
+
+	        return output.toString();
+	    }
+	}
+
+
+	function Utf8EncodeEnumerator(input)
+	{
+	    this._input = input;
+	    this._index = -1;
+	    this._buffer = [];
+	}
+
+	Utf8EncodeEnumerator.prototype =
+	{
+	    current: Number.NaN,
+
+	    moveNext: function()
+	    {
+	        if (this._buffer.length > 0)
+	        {
+	            this.current = this._buffer.shift();
+	            return true;
+	        }
+	        else if (this._index >= (this._input.length - 1))
+	        {
+	            this.current = Number.NaN;
+	            return false;
+	        }
+	        else
+	        {
+	            var charCode = this._input.charCodeAt(++this._index);
+
+	            // "\r\n" -> "\n"
+	            //
+	            if ((charCode == 13) && (this._input.charCodeAt(this._index + 1) == 10))
+	            {
+	                charCode = 10;
+	                this._index += 2;
+	            }
+
+	            if (charCode < 128)
+	            {
+	                this.current = charCode;
+	            }
+	            else if ((charCode > 127) && (charCode < 2048))
+	            {
+	                this.current = (charCode >> 6) | 192;
+	                this._buffer.push((charCode & 63) | 128);
+	            }
+	            else
+	            {
+	                this.current = (charCode >> 12) | 224;
+	                this._buffer.push(((charCode >> 6) & 63) | 128);
+	                this._buffer.push((charCode & 63) | 128);
+	            }
+
+	            return true;
+	        }
+	    }
+	}
+
+	function Base64DecodeEnumerator(input)
+	{
+	    this._input = input;
+	    this._index = -1;
+	    this._buffer = [];
+	}
+
+	Base64DecodeEnumerator.prototype =
+	{
+	    current: 64,
+
+	    moveNext: function()
+	    {
+	        if (this._buffer.length > 0)
+	        {
+	            this.current = this._buffer.shift();
+	            return true;
+	        }
+	        else if (this._index >= (this._input.length - 1))
+	        {
+	            this.current = 64;
+	            return false;
+	        }
+	        else
+	        {
+	            var enc1 = Base64.codex.indexOf(this._input.charAt(++this._index));
+	            var enc2 = Base64.codex.indexOf(this._input.charAt(++this._index));
+	            var enc3 = Base64.codex.indexOf(this._input.charAt(++this._index));
+	            var enc4 = Base64.codex.indexOf(this._input.charAt(++this._index));
+
+	            var chr1 = (enc1 << 2) | (enc2 >> 4);
+	            var chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+	            var chr3 = ((enc3 & 3) << 6) | enc4;
+
+	            this.current = chr1;
+
+	            if (enc3 != 64)
+	                this._buffer.push(chr2);
+
+	            if (enc4 != 64)
+	                this._buffer.push(chr3);
+
+	            return true;
+	        }
+	    }
+	};
+
+	var JSON;
+	if (!JSON) {
+	    JSON = {};
+	}
+
+	(function () {
+	    'use strict';
+
+	    function f(n) {
+	        // Format integers to have at least two digits.
+	        return n < 10 ? '0' + n : n;
+	    }
+
+	    if (typeof Date.prototype.toJSON !== 'function') {
+
+	        Date.prototype.toJSON = function (key) {
+
+	            return isFinite(this.valueOf())
+	                ? this.getUTCFullYear()     + '-' +
+	                    f(this.getUTCMonth() + 1) + '-' +
+	                    f(this.getUTCDate())      + 'T' +
+	                    f(this.getUTCHours())     + ':' +
+	                    f(this.getUTCMinutes())   + ':' +
+	                    f(this.getUTCSeconds())   + 'Z'
+	                : null;
+	        };
+
+	        String.prototype.toJSON      =
+	            Number.prototype.toJSON  =
+	            Boolean.prototype.toJSON = function (key) {
+	                return this.valueOf();
+	            };
+	    }
+
+	    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+	        escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+	        gap,
+	        indent,
+	        meta = {    // table of character substitutions
+	            '\b': '\\b',
+	            '\t': '\\t',
+	            '\n': '\\n',
+	            '\f': '\\f',
+	            '\r': '\\r',
+	            '"' : '\\"',
+	            '\\': '\\\\'
+	        },
+	        rep;
+
+
+	    function quote(string) {
+
+	// If the string contains no control characters, no quote characters, and no
+	// backslash characters, then we can safely slap some quotes around it.
+	// Otherwise we must also replace the offending characters with safe escape
+	// sequences.
+
+	        escapable.lastIndex = 0;
+	        return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+	            var c = meta[a];
+	            return typeof c === 'string'
+	                ? c
+	                : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+	        }) + '"' : '"' + string + '"';
+	    }
+
+
+	    function str(key, holder) {
+
+	// Produce a string from holder[key].
+
+	        var i,          // The loop counter.
+	            k,          // The member key.
+	            v,          // The member value.
+	            length,
+	            mind = gap,
+	            partial,
+	            value = holder[key];
+
+	// If the value has a toJSON method, call it to obtain a replacement value.
+
+	        if (value && typeof value === 'object' &&
+	                typeof value.toJSON === 'function') {
+	            value = value.toJSON(key);
+	        }
+
+	// If we were called with a replacer function, then call the replacer to
+	// obtain a replacement value.
+
+	        if (typeof rep === 'function') {
+	            value = rep.call(holder, key, value);
+	        }
+
+	// What happens next depends on the value's type.
+
+	        switch (typeof value) {
+	        case 'string':
+	            return quote(value);
+
+	        case 'number':
+
+	// JSON numbers must be finite. Encode non-finite numbers as null.
+
+	            return isFinite(value) ? String(value) : 'null';
+
+	        case 'boolean':
+	        case 'null':
+
+	// If the value is a boolean or null, convert it to a string. Note:
+	// typeof null does not produce 'null'. The case is included here in
+	// the remote chance that this gets fixed someday.
+
+	            return String(value);
+
+	// If the type is 'object', we might be dealing with an object or an array or
+	// null.
+
+	        case 'object':
+
+	// Due to a specification blunder in ECMAScript, typeof null is 'object',
+	// so watch out for that case.
+
+	            if (!value) {
+	                return 'null';
+	            }
+
+	// Make an array to hold the partial results of stringifying this object value.
+
+	            gap += indent;
+	            partial = [];
+
+	// Is the value an array?
+
+	            if (Object.prototype.toString.apply(value) === '[object Array]') {
+
+	// The value is an array. Stringify every element. Use null as a placeholder
+	// for non-JSON values.
+
+	                length = value.length;
+	                for (i = 0; i < length; i += 1) {
+	                    partial[i] = str(i, value) || 'null';
+	                }
+
+	// Join all of the elements together, separated with commas, and wrap them in
+	// brackets.
+
+	                v = partial.length === 0
+	                    ? '[]'
+	                    : gap
+	                    ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+	                    : '[' + partial.join(',') + ']';
+	                gap = mind;
+	                return v;
+	            }
+
+	// If the replacer is an array, use it to select the members to be stringified.
+
+	            if (rep && typeof rep === 'object') {
+	                length = rep.length;
+	                for (i = 0; i < length; i += 1) {
+	                    if (typeof rep[i] === 'string') {
+	                        k = rep[i];
+	                        v = str(k, value);
+	                        if (v) {
+	                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+	                        }
+	                    }
+	                }
+	            } else {
+
+	// Otherwise, iterate through all of the keys in the object.
+
+	                for (k in value) {
+	                    if (Object.prototype.hasOwnProperty.call(value, k)) {
+	                        v = str(k, value);
+	                        if (v) {
+	                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+	                        }
+	                    }
+	                }
+	            }
+
+	// Join all of the member texts together, separated with commas,
+	// and wrap them in braces.
+
+	            v = partial.length === 0
+	                ? '{}'
+	                : gap
+	                ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+	                : '{' + partial.join(',') + '}';
+	            gap = mind;
+	            return v;
+	        }
+	    }
+
+	// If the JSON object does not yet have a stringify method, give it one.
+
+	    if (typeof JSON.stringify !== 'function') {
+	        JSON.stringify = function (value, replacer, space) {
+
+	            var i;
+	            gap = '';
+	            indent = '';
+
+	// If the space parameter is a number, make an indent string containing that
+	// many spaces.
+
+	            if (typeof space === 'number') {
+	                for (i = 0; i < space; i += 1) {
+	                    indent += ' ';
+	                }
+
+	// If the space parameter is a string, it will be used as the indent string.
+
+	            } else if (typeof space === 'string') {
+	                indent = space;
+	            }
+
+	// If there is a replacer, it must be a function or an array.
+	// Otherwise, throw an error.
+
+	            rep = replacer;
+	            if (replacer && typeof replacer !== 'function' &&
+	                    (typeof replacer !== 'object' ||
+	                    typeof replacer.length !== 'number')) {
+	                throw new Error('JSON.stringify');
+	            }
+
+	// Make a fake root object containing our value under the key of ''.
+	// Return the result of stringifying the value.
+
+	            return str('', {'': value});
+	        };
+	    }
+
+
+	// If the JSON object does not yet have a parse method, give it one.
+
+	    if (typeof JSON.parse !== 'function') {
+	        JSON.parse = function (text, reviver) {
+
+	// The parse method takes a text and an optional reviver function, and returns
+	// a JavaScript value if the text is a valid JSON text.
+
+	            var j;
+
+	            function walk(holder, key) {
+
+	// The walk method is used to recursively walk the resulting structure so
+	// that modifications can be made.
+
+	                var k, v, value = holder[key];
+	                if (value && typeof value === 'object') {
+	                    for (k in value) {
+	                        if (Object.prototype.hasOwnProperty.call(value, k)) {
+	                            v = walk(value, k);
+	                            if (v !== undefined) {
+	                                value[k] = v;
+	                            } else {
+	                                delete value[k];
+	                            }
+	                        }
+	                    }
+	                }
+	                return reviver.call(holder, key, value);
+	            }
+
+	            text = String(text);
+	            cx.lastIndex = 0;
+	            if (cx.test(text)) {
+	                text = text.replace(cx, function (a) {
+	                    return '\\u' +
+	                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+	                });
+	            }
+
+	            if (/^[\],:{}\s]*$/
+	                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+	                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+	                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+
+	                j = eval('(' + text + ')');
+
+
+	                return typeof reviver === 'function'
+	                    ? walk({'': j}, '')
+	                    : j;
+	            }
+
+
+	            throw new SyntaxError('JSON.parse');
+	        };
+	    }
+	}());
+
+	String.prototype.replaceAll = function (s1, s2) {
+	    return this.replace(new RegExp(s1, "gm"), s2);
+	};
+	String.prototype.parseJSON = function () {
+	    return JSON.parse(this);
+	};
+	
+(function(scope) {
+		 scope.blinkTitle = {
+			reshow : function (msg) {
+				scope.blinkTitle.clear();
+	            if (!scope.blinkTitle._title) {
+					scope.blinkTitle._title = document.title;
+				}
+				var step = 0,
+				_title = scope.blinkTitle._title;
+				var blankStr = '\u3000\u3000\u3000';
+				if (!msg) {
+					msg = "new message";
+				} else {
+							blankStr = '';
+							for (var j = 0 ; j < msg.length; j++ ) {
+								blankStr += '\u3000';
+							}
+				}
+				var timer = setInterval(function() {
+							step++;
+							if (step == 3) {
+								step = 1;
+							};
+							if (step == 1) {
+								document.title = '\u3010' + blankStr + '\u3011' + _title;
+							};
+							if (step == 2) {
+								document.title = '\u3010' + msg + '\u3011' + _title;
+							};
+						},
+				500);
+				scope.blinkTitle.timerArr = timer;
+				try {
+					document.getElementById('chat_plugin0').startWindowFlash();
+				} catch (e) {
+					
+				}
+	        },
+			clear: function() {  
+	            if (scope.blinkTitle.timerArr) {
+					clearInterval(scope.blinkTitle.timerArr);
+					document.title = scope.blinkTitle._title;
+					scope.blinkTitle.timerArr = undefined;
+	            };
+	            try {
+					document.getElementById('chat_plugin0').stopWindowFlash();
+				} catch (e) {
+					
+				}
+	        }
+		 };
+		 scope.onFocusEvent =      function () {
+			scope.blinkTitle.clear();
+	        try {
+	                if (typeof scope.blinkTitle.onFocusEvents === "function") {
+	                    scope.blinkTitle.onFocusEvents();
+	                }
+	            }   catch (e) {
+	        }
+	    };
+	})(window);
+
+	var faceInfo = [["[\u5FAE\u7B11]","BQ_r1_c1"],["[\u6487\u5634]","BQ_r1_c3"],["[\u8272]","BQ_r1_c5"],["[\u53D1\u5446]","BQ_r1_c7"],["[\u5F97\u610F]","BQ_r1_c9"],["[\u6D41\u6CEA]","BQ_r1_c11"],["[\u5BB3\u7F9E]","BQ_r1_c13"],["[\u95ED\u5634]","BQ_r1_c15"],["[\u7761]","BQ_r1_c17"],["[\u5927\u54ED]","BQ_r1_c19"],["[\u5C34\u5C2C]","BQ_r1_c21"],["[\u53D1\u6012]","BQ_r1_c23"],["[\u8C03\u76AE]","BQ_r1_c25"],["[\u5472\u7259]","BQ_r1_c27"],["[\u60CA\u8BB6]","BQ_r3_c1"],["[\u96BE\u8FC7]","BQ_r3_c3"],["[\u9177]","BQ_r3_c5"],["[\u51B7\u6C57]","BQ_r3_c7"],["[\u6293\u72C2]","BQ_r3_c9"],["[\u5410]","BQ_r3_c11"],["[\u5077\u7B11]","BQ_r3_c13"],["[\u53EF\u7231]","BQ_r3_c15"],["[\u767D\u773C]","BQ_r3_c17"],["[\u50B2\u6162]","BQ_r3_c19"],["[\u9965\u997F]","BQ_r3_c21"],["[\u56F0]","BQ_r3_c23"],["[\u60CA\u6050]","BQ_r3_c25"],["[\u6D41\u6C57]","BQ_r3_c27"],["[\u61A8\u7B11]","BQ_r5_c1"],["[\u5927\u5175]","BQ_r5_c3"],["[\u594B\u6597]","BQ_r5_c5"],["[\u5492\u9A82]","BQ_r5_c7"],["[\u7591\u95EE]","BQ_r5_c9"],["[\u5618]","BQ_r5_c11"],["[\u6655]","BQ_r5_c13"],["[\u6298\u78E8]","BQ_r5_c15"],["[\u8870]","BQ_r5_c17"],["[\u9AB7\u9AC5]","BQ_r5_c19"],["[\u6572\u6253]","BQ_r5_c21"],["[\u518D\u89C1]","BQ_r5_c23"],["[\u64E6\u6C57]","BQ_r5_c25"],["[\u62A0\u9F3B]","BQ_r5_c27"],["[\u9F13\u638C]","BQ_r7_c1"],["[\u7CD7\u5927\u4E86]","BQ_r7_c3"],["[\u574F\u7B11]","BQ_r7_c5"],["[\u5DE6\u54FC\u54FC]","BQ_r7_c7"],["[\u53F3\u54FC\u54FC]","BQ_r7_c9"],["[\u54C8\u6B20]","BQ_r7_c11"],["[\u9119\u89C6]","BQ_r7_c13"],["[\u59D4\u5C48]","BQ_r7_c15"],["[\u5FEB\u54ED\u4E86]","BQ_r7_c17"],["[\u9634\u9669]","BQ_r7_c19"],["[\u4EB2\u4EB2]","BQ_r7_c21"],["[\u5413]","BQ_r7_c23"],["[\u53EF\u601C]","BQ_r7_c25"]];
+	window.faceReplaceReg = new Array(faceInfo.length);
+	function relaceFaceInfo(source) {
+		if (!source) return "";
+		if (source.indexOf('[') != -1 && source.indexOf(']') != -1) {
+			for (var i = 0 ;i < faceInfo.length;i++) {
+				var one = faceInfo[i];
+				if (!window.faceReplaceReg[i]) {
+					window.faceReplaceReg[i] = new RegExp("\\[" + one[0].substring(1,one[0].length-1) + "\\]" ,"gm"); 
+				}
+				var img = '<img width="24" height="24" class="faceSendImg" src="../img/face/' + one[1] + '.gif" />';
+				source = source.replace(window.faceReplaceReg[i],img);
+			}
+			return source;
+		} else {
+			return source;
+		}
+	}
+
+	function openfacediv(fac) {
+		var html = "";
+		for (var i = 0 ;i < faceInfo.length;i++) {
+			var one = faceInfo[i];
+			html += '<li><img width="30" height="30" class="faceSendImg"  src="../img/face/' + one[1] + '.jpg" \
+			onmouseover="this.src=\'../img/face/' + one[1] + '.gif\';" style="cursor:pointer;" onmouseout="this.src=\'../img/face/' + one[1] + '.jpg\';"\ onclick="addFaceImg(\'' + one[0] + '\');"/></li>';
+		}
+		$('#face_div_outer').html('<ul>' + html + '<span style=\"font-size:12px;\" ><span style=\"text-decoration: underline;line-height:28px;cursor: pointer;\" onclick=\"closefacediv();\" >' + chat_i18n.close + '</span></span></ul>');
+		$('#face_div_outer').css({'top':document.getElementById('body_talk_tooldiv').offsetTop -90,
+				'left':document.getElementById('body_talk_tooldiv').offsetLeft + $('#body_list_div').width()}		
+		);
+		$('#face_div_outer').show();
+	}
+
+	function closefacediv() {
+		$('#face_div_outer').hide();
+	}
+	function addFaceImg(str) {
+		var txt = document.getElementById("msgSend");
+		txt.value += str;
+		$('#face_div_outer').hide();
+	}
+/******************************************************************
+ * 
+ *  chat.js version 4.2.1
+ *  Author Harbor.
+ *  Copyright(c) 2001-2014 VXICHINA, LTD. All rights reserved.
+ */
+	function ChatInputMessage() {
+		this.taskid = undefined;
+		this.count = 0;
+		this.isSend = false;
+	}
+	ChatInputMessage.prototype.init = function () {
+		this.taskid = undefined;
+		this.count = 0;
+		//this.isSend = false;
+	};
+	ChatInputMessage.prototype.clearTask = function () {
+		clearInterval(this.taskid);
+		this.init();
+	};
+	
+var chat = {
+	autoLoginInterval : undefined,
+	autoLogin : function () {
+		try {
+			window.chatocx = document.getElementById("VisionIM");
+			chatocx.loadManualPolicyFile("xmlsocket://" + chat_i18n.hostIP + ":" + chat_i18n.policyPort);
+	        if (!chat.Login()) {
+	        	setTimeout(chat.Login,1000);
+	        }
+	        if (!!chat.autoLoginInterval)
+	        	clearInterval(chat.autoLoginInterval);
+		} catch (e1) {
+			//alert(e1.message + " loadManualPolicyFile:" + chatocx + "---" + "xmlsocket://" + chat_i18n.hostIP + ":" + chat_i18n.policyPort);
+		}
+	},
+	initTcp : function () {
+
+		if (hasRequestedVersion) {
+			try {
+				chat.autoLoginInterval = setInterval(chat.autoLogin, 1000);
+			} catch (e) {
+				alert("__initTcp:" + e);
+			}
+		} else {   
+		    var alternateContent = '<p> Adobe Flash Player (version 9.0+)'
+		   	+ 'Please install: <a href="../js/install_flash_player_11_active_x_32bit.zip" >Local download</a> <a href="http://www.adobe.com/go/getflash/">Offical download</a></p>';
+		    
+		    BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_DANGER,
+                title: 'Error',
+                message: $(alternateContent),
+                buttons: [{
+                    label: 'Close.'
+                }]
+            }); 
+		}
+	},
+	togCsrList : function (type,ele) {
+		if ($(ele).css("background-color") == "#7db5d2") return;
+		if (type==1) {
+			$(ele).next().css({"background-color":"#FFFFFF"});
+			$(ele).css({"background-color":"#7DB5D2"});
+			$(".table_cs_list").find("tr[accounttype='agent']").hide();
+			$(".table_cs_list").find("tr[accounttype='customer']").show();
+		} else {
+			$(ele).css({"background-color":"#7DB5D2"});
+			$(ele).prev().css({"background-color":"#FFFFFF"});
+			$(".table_cs_list").find("tr[accounttype='customer']").hide();
+			$(".table_cs_list").find("tr[accounttype='agent']").show();
+		}
+	},
+	trigSessionClose : function (current) {
+		BootstrapDialog.confirm(chat_i18n.closesession_prompt, function(result){
+	        if(result) {
+	            //alert('Yup.');
+	        	closeSession();
+	        }else {
+	            //alert('Nope.');
+	        }
+	    });
+	},
+	isTcpReady : false ,
+	Login : function () {
+		try{
+			chatocx.setDebugLevel(0);
+			chatocx.SetupConnection(chat_i18n.hostIP, parseInt(chat_i18n.tcpPort) );
+			chatocx.SetupClient(chat_i18n.tcp_username,Base64.decode( chat_i18n.tcp_password ), 
+					parseInt(chat_i18n.tcp_logintype) ,Base64.encode(chat_i18n.tcp_displayname).replaceAll("=","#"),"" );
+			return true;
+		} catch(e) {
+			alert("Login:" + e);
+			return false;
+		}
+	},
+	Logout : function () {
+		chatocx.Logout();
+	},
+	progressInterval : undefined,
+	progressCount : 1,
+	startProgress :function (ele) {
+		chat.progressInterval = setInterval(function () {
+    		if (chat.progressCount > 10 ) {
+    			chat.progressCount = 1;
+    		}
+    		$(ele).css("width",chat.progressCount*10 + "%");
+    		chat.progressCount ++ ;
+    	}, 300);
+	} ,
+	stopProgress :function () {
+		clearInterval(chat.progressInterval);
+		if (chat.progressDialog) chat.progressDialog.close();
+	} ,
+	progressDialog :undefined,
+	initToolbar : function () {
+		$('.toolbar_ul').find('img').each(function () {
+			$(this).mouseout(function () {
+				$(this).removeClass("toolbar_img_over").addClass("toolbar_img_out");
+			}).mouseover(function () {
+				$(this).removeClass("toolbar_img_out").addClass("toolbar_img_over");
+			});
+		});
+		if (chat_i18n.tcp_logintype == 1) {
+			chat.progressDialog = BootstrapDialog.show({
+		        type: BootstrapDialog.TYPE_DEFAULT,
+		        title: chat_i18n.chat_i18n_loading,
+		        message: $('<div class="progress">\
+		        		  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">\
+		        		    <span class="sr-only">60% Complete</span>\
+		        		  </div>\
+		        		</div>'),
+		        closable: false ,
+		        onshow:function () {
+		        	chat.startProgress(".progress-bar");
+		        }
+		    });
+		} else {
+			$(".div_information").html("<p class='text-info'>&nbsp;&nbsp;" + chat_i18n.beforeServiceMsg + "</p>");
+		}
+	},
+	openLog : function () {
+	    
+	    var showwidth = 850;
+	    var showheight = 400;
+	    
+	    var url = chat_i18n.externalPath + "/livechat001/log" + chat_i18n.externalPage +"?customid=" ;
+	    
+	    if (chat_i18n.tcp_logintype == "1") {
+	    	if (!chat.getTabClient() || chat.getTabClient().length ==0) return;
+	    	url += Base64.encode(chat.getTabClient()) + "&agent=" + Base64.encode(chat_i18n.tcp_username);
+	    } else {
+	    	url += Base64.encode(chat_i18n.tcp_username);
+	    }
+	    
+		window.open(url, "webchat_log", "toolbar=0,scrollbars=1,location=0,menubar=0,resizable=1,width=" + showwidth + ",height=" + showheight);
+	},
+	showMessages :function () {
+		window.open(chat_i18n.externalPath + "/livechat001/messages" + chat_i18n.externalPage +"", "webchat_messages", "toolbar=0,scrollbars=1,location=0,menubar=0,resizable=1,width=850,height=520");
+	},
+	stat_change : function(obj) {
+		chatocx.setAgentState(obj.value);
+	},
+	replaceMessage : function (msg) {
+		//replace emotjions
+		//replace capture
+		//replace uploadfile
+		msg = relaceFaceInfo(msg);
+		msg = replaceAttachment(msg);
+		msg = replaceCaptureImg(msg);
+		return msg;
+	},
+	addTab : function (html) {
+		$(".nav-pills").append(html);
+	},
+	addTabContent : function (html) {
+		$(".body_talk_listdiv").append(html);
+	},
+	getTab : function (sid) {
+		if (!sid) return $(".nav-pills").find('li.active');
+		else return $(".nav-pills").find('li[sid="' + sid + '"]');
+	},
+	getTabSessionId : function () {
+		return chat.getTab().attr('sid');
+	},
+	getTabClient : function () {
+		return chat.getTab().attr('originateUser');
+	},
+	initUploadFile :function () {
+		var imgshow=new Image();
+		imgshow.src = ("../js/uploadify/fileico.png");
+		$('#file_upload').uploadify({
+			'swf'      : '../js/uploadify/uploadify.swf',
+			'uploader' :chat_i18n.externalPath + Base64.decode("L0ZpbGV1cGxvYWRTZXJ2bGV0") , 
+			fileTypeExts :'*.xls;*.xlsx;*.doc;*.docx;*.ppt;*.pdf;*.txt;*.jpg;*.gif;*.png;*.bmp;',
+			fileTypeDesc : 'Files',
+			fileSizeLimit : 3072,//12 * 1024 KB
+			buttonImage : chat_i18n.fileupload_img,
+			button_image_url : chat_i18n.fileupload_img,
+			buttonText:null,
+			removeCompleted :true,
+			queueSizeLimit:1,
+			uploadLimit:9999,
+			height: chat_i18n.fileupload_img_width,
+			queueID:"queue",
+			width:chat_i18n.fileupload_img_width,
+			removeTimeout:2,
+			successTimeout:10,
+			multi:false,
+			button_disabled:true,
+			preventCaching:false,
+			onSelect: function (file) {
+				try {
+				var tab = chat.getTab();
+				if (tab.length == 0) {
+					this.cancelUpload(file.id);
+					return;
+				} else {
+					var from = Base64.encode(chat_i18n.tcp_username);
+					var to = Base64.encode(tab.attr("originateUser"));
+					$('#file_upload').uploadify('settings','formData',{"from":from, "to":to, "client_type":chat_i18n.tcp_logintype,"sid":Base64.encode(tab.attr("sid"))});
+					//
+						//$($('div#' + file.id).find("span.toSomebody").get(0)).html(" to " + tab.attr("originateUser")+ " send file.");
+					//} catch(e) {
+						//alert(e);
+					//}
+					try {
+						if (document.getElementById('body_talk_tooldiv')) {
+						$('#queue').css({'top':document.getElementById('body_talk_tooldiv').offsetTop -90,
+							'left':document.getElementById('body_talk_tooldiv').offsetLeft + $('#body_list_div').width() + 5 });
+						}
+						$('#queue').show();
+					} catch(e) {
+						
+					}
+				}
+				} catch(e) {
+					alert(e);
+				}
+			},
+			onUploadStart:function () {
+				
+			},
+			onUploadSuccess: function (file, data, response){
+				try {
+					 var d = $.parseJSON(data);
+					 if (d.statusCode == "300") {
+						 
+					 }
+					 else if (d.statusCode == "200" && d.filename.length >0) {
+						 SendAttachment(file,d.filename,d.sid);
+					 }
+				} catch(e) {
+					
+				}
+			}
+		});
+		$('#file_upload').attr("title",chat_i18n.csr_page_button_file);
+	},
+	sendInviteSurvey : function () {
+		var sid = chat.getTabSessionId();
+		if (sid && sid > 0 ) {
+			SendText(sid,chat_i18n.csr_satis_survey);
+		}
+	},
+	openSatissurvey : function () {
+		$('#customer_survery_id').css({'top':document.getElementById('body_talk_tooldiv').offsetTop -198,
+			'left':document.getElementById('body_talk_tooldiv').offsetLeft + $('#body_list_div').width() + 70 }		
+		);
+		$('#customer_survery_id').show();
+	},
+	cancelSurvey :function () {
+		$('#customer_survery_id').hide();
+	},
+	doSurvey : function () {
+		var sid = chat.getTabSessionId();
+		if (sid == "" ||  sid <= 0 ) {
+			return;
+		}
+		var score =  $('input:radio:checked').val();
+		if(!score) {
+			alert('Please choice a evaluation!');
+			return;
+		}
+		if($('#adviceSend').val().length > 500) {
+			alert('Suggestion length of 500 words or less!');
+			return;
+		}
+    	$.ajax({
+			  url: chat_i18n.path + "/client/doSurvey" ,
+			  contentType : "application/x-www-form-urlencoded",
+			  data: {
+				  curdType : Base64.decode("aW5zZXJ0QWR2aWNl") ,
+				  sid : Base64.encode(sid),
+				  customerName : Base64.encode(chat_i18n.tcp_username),
+				  score : score,
+				  advice : Base64.encode($('#adviceSend').val())
+			  },
+			  async :true,
+			  success: function (data) {
+				  alert('Successfully,Thank you');
+				  try {
+					  SendText(sid,'My evaluation is '+score + ' score.');
+				  } catch(e) {
+					  
+				  }
+				  $('#customer_survery_id').hide();
+			  },
+			  dataType: "json"
+		});
+	},
+	
+	openMessageBox : function () {
+		$('#msgboxModal').modal().off('click');
+		$('[data-dismiss="modal"]').on('click',function () {
+			$('#msgboxModal').modal('hide');
+		});
+		$('#msgboxModalConfirm').on('click',function () {
+			chat.submitMessageBox();
+		});
+	},
+	reloadVerifyCode : function () {
+		$('#mes_code_img').attr('src', '../code.jsp?randomP=' + BootstrapDialog.newGuid());
+	},
+	submitMessageBox :function () {
+		 var name = $( "#mes_name" ),
+ 	 	phone = $( "#mes_phone" ),
+ 	 	email = $( "#mes_email" ),
+ 	 	topic = $( "#mes_topic" ),
+ 	 	content = $( "#messageSend" ),
+ 	    tips = $( "#erro_message" );
+ 	 	code = $( "#mes_code" );
+ 		function updateTips( t ) {
+ 			tips.text( t );
+ 		}
+ 		function checkLength( o, min, max ) {
+ 			if ( o.val().length > max || o.val().length < min ) {
+ 				if (min != max) {
+ 					updateTips(  o.attr('title') + " length between " + min + " and " + max + " ." );
+ 				} else {
+ 					updateTips(  o.attr('title') + " length must " + min + " ." );
+ 				}
+ 			    
+ 			    return false;
+ 			} else {
+ 			    return true;
+ 			}
+ 		}
+ 		function checkRegexp( o, regexp, n ) {
+ 			if ( !( regexp.test( o.val() ) ) ) {
+ 			    updateTips( n );
+ 			    return false;
+ 			} else {
+ 			    return true;
+ 			}
+ 		}
+ 		var bValid = true;
+         bValid = bValid && checkLength( name,2,30 );
+         bValid = bValid && checkLength( phone,7,30 );
+         bValid = bValid && checkLength( email,3,30 );
+         bValid = bValid && checkRegexp( email, /^\s*\w+(?:\.{0,1}[\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]+\s*$/i, "Email address format error." );
+         bValid = bValid && checkLength( topic,0,50 );
+         bValid = bValid && checkLength( content,5,500 );
+         bValid = bValid && checkLength( code,4,4);
+         bValid = bValid && checkRegexp( code, /^\w+$/, "Verify code format error" );
+         if(bValid) {
+         	updateTips("");
+         	$.ajax({
+ 				  url: chat_i18n.path + '/client/doMessagebox' ,
+ 				  contentType : "application/x-www-form-urlencoded",
+ 				  data: {
+ 					  curdType : Base64.decode("aW5zZXJ0TWVzc2FnZQ==") ,
+ 					  user    : Base64.encode(jQuery.trim(name.val())),
+ 					  number  : Base64.encode(jQuery.trim(phone.val())),
+ 					  email   : Base64.encode(jQuery.trim(email.val())),
+ 					  subject : Base64.encode(jQuery.trim(topic.val())),
+   					  content : Base64.encode(jQuery.trim(content.val())),
+   					  code    : Base64.encode(jQuery.trim(code.val())),
+   					  cus     : chat_i18n.tcp_username,
+   					  ref     : ''
+ 				  },
+ 				  async :true,
+ 				  success: function (data) {
+ 					  if (data) {
+ 						  var obj = data;
+ 						  if (obj.success == "ok") {
+ 							  alert('Successfully, we will reply you as soon as possible.Thank you!');
+ 							 $('#msgboxModal').modal('hide');
+								  code.val('');
+								  name.val('');
+								  email.val('');
+								  topic.val('');
+								  content.val('');
+								  phone.val('');
+ 						  } else if (obj.success == "invalid") {
+ 							  alert("Verify code has failed, please try again!");
+ 						  } else if (obj.success == "invalid2") {
+ 							  alert("Verification code entered is incorrect, please re-enter!");
+ 						  } else {
+ 							  alert('Failed ,try again');
+ 						  }
+ 					  } else {
+ 						  alert('Failed ,try again');
+ 					  }
+ 					  chat.reloadVerifyCode();
+ 					  
+ 				  },
+   				  error: function () {
+   					 alert('Failed ,try again');
+   				  },
+     			 dataType: "json"
+ 			});
+         }
+	},
+	showMakecall : function () {
+		$("#makecall_div_outer").css({'top':document.getElementById('body_talk_tooldiv').offsetTop + 65 ,
+				'left':$('#body_list_div').width() + 80}).show();
+		
+	},
+	hideMakeCall :function () {
+		$("#makecall_div_outer").hide();
+	},
+	showConfTrans : function () {
+		$("#conf_trans_div_outer").css({'top':document.getElementById('body_talk_tooldiv').offsetTop + 65 ,
+				'left':$('#body_list_div').width() + 200}).show();
+		
+	},
+	hideConfTrans :function () {
+		$("#conf_trans_div_outer").hide();
+	},
+	doMakeConferenceOrTransfer : function (type,agent) {
+		var tab = chat.getTab();
+		if (tab.length==0)  return ;
+		var sid = tab.attr('sid');
+		if (type == 1) {
+			chatocx.Conference(sid,agent,"agent");
+		} else if (type == 2){
+			chatocx.Transfer(sid,agent,"agent");
+		}
+		chat.hideConfTrans();
+	},
+	showSettingsmenu : function () {
+		$("#settings_menu").css({'top':document.getElementById('body_talk_tooldiv').offsetTop + 55 ,
+			'left':$('#body_list_div').width() + 220}).show().find(".dropdown-menu").show();
+	},
+	hideSettingsmenu : function() {
+		$("#settings_menu").hide().find(".dropdown-menu").hide();
+	},
+	openQuickMessage : function (settingStr) {
+		var shortUrl =chat_i18n.externalPath + "/livechat001/shortcuts" + chat_i18n.externalPage +"?queryKey="+Base64.encode(chat_i18n.tcp_username + '_@livechat@_' + Base64.decode( chat_i18n.tcp_password ));
+		/*
+		if (settingStr && settingStr.indexOf('\u8BBE\u7F6E') >=0) {
+			shortUrl =chat_i18n.externalPath + "/livechat/shortcuts" + chat_i18n.externalPage +"?queryKey="+Base64.encode(chat_i18n.tcp_username + '_@livechat@_' + Base64.decode( chat_i18n.tcp_password ));
+		}*/
+		var showwidth = 860;
+        var showheight = 550;
+		window.open(shortUrl, "chat_shortcuts", "toolbar=0,scrollbars=1,location=0,menubar=0,resizable=1,width=" + showwidth + ",height=" + showheight);
+		chat.hideSettingsmenu();
+	}
+	,getQuickMessageContent : function (sc) {
+		document.getElementById("msgSend").value += Base64.decode(sc);
+	}
+	,showQuickMessage :function () {
+		if ($("#quick_message_show").is(':visible')) {
+			chat.hideQuickMessage();
+			return;
+		}
+		$.getJSON(chat_i18n.externalPath + "/ShortcutServlet?curdType=queryShortcut&own=" + Base64.encode(chat_i18n.tcp_username + '_@livechat@_' + Base64.decode( chat_i18n.tcp_password )) , function(data) { 
+			  if (data) {
+				  var tml = "";
+				  for (var j = 0 ;j <data.count;j++) { 
+					var nl = data.session[j];
+					tml += '<tr><td d="' + nl.s +'" style="cursor:pointer;" ondblclick="chat.getQuickMessageContent(this.getAttribute(\'d\'));">' + Base64.decode(nl.t)+ '</td></tr>'
+				  }
+				  tml = "<tbody>" + tml + "</tbody>";
+				  $("#quick_message_show").find('.table').html(tml);
+			  } else {
+				  
+			  }
+		});
+		$("#quick_message_show").css({'top':document.getElementById('body_talk_tooldiv').offsetTop + 55 ,
+			'left':$('#body_list_div').width() + 200}).animate({top:document.getElementById('body_kbm_div').offsetTop
+			,left:document.getElementById('body_kbm_div').offsetLeft,
+			width:$("#body_kbm_div").width(),height:"100%"
+		}).show();
+		
+	},hideQuickMessage :function () {
+		$("#quick_message_show").animate(
+				{'top':document.getElementById('body_talk_tooldiv').offsetTop + 55 ,
+					'left':$('#body_list_div').width() + 200,width:0,height:0},"normal",function () {$("#quick_message_show").hide()}
+		);
+	},showQuickMessageNew :function () {
+		if ($("#quick_message_show").is(':visible')) {
+			chat.hideQuickMessageNew();
+			return;
+		}
+		$.getJSON( chat_i18n.path + "/csr/quickmsg_group", function(data) { 
+			  if (data) {
+				  var html = "";
+				  if (data.g && data.g.length >0) {
+					  for (var i = 0 ;i < data.g.length ; i++) {
+						  html += '<div id="accordion-qm' + i + '" class="panel-group">\
+			                  <div class="panel panel-default">\
+			                    <div class="panel-heading"> <a href="#accordion-element-qm' + i + '" data-parent="#accordion-qm' + i + '" data-toggle="collapse" class="accordion-toggle"> ' + data.g[i].group + ' </a> </div>\
+			                    <div class="panel-collapse collapse" id="accordion-element-qm' + i + '" style="height: auto;">\
+			                      <div class="panel-body" style="padding:0px"> <table class="table table-striped" >' ;
+			              if (data.g[i].quickMsgs && data.g[i].quickMsgs.length) {
+			            	  for (var j = 0 ; j < data.g[i].quickMsgs.length ; j++) {
+			            		  html += '<tr ondblclick="document.getElementById(\'msgSend\').value += (this.firstChild.nextSibling.innerHTML);"><td>' + data.g[i].quickMsgs[j].title + '</td><td>' + data.g[i].quickMsgs[j].content + '</td></tr>';
+			            	  }
+			              }
+						  
+						  html += ' </table></div></div></div>';
+					  }
+				  }
+				  $("#accordion-quickmsg").html(html);
+			  } else {
+				  
+			  }
+		});
+		$("#body_talk_div").css({"margin-right":270});
+		$("#body_kbm_div").css({width:270}).show(function () {
+			$("#quick_message_show").css({'top':document.getElementById('body_talk_tooldiv').offsetTop + 55 ,
+				'left':$('#body_list_div').width() + 90}).animate({top:document.getElementById('body_kbm_div').offsetTop
+				,left:document.getElementById('body_kbm_div').offsetLeft,
+				width:$("#body_kbm_div").width(),height:"100%"
+			}).show();
+		});
+		
+	},hideQuickMessageNew :function () {
+		$("#quick_message_show").animate(
+				{'top':document.getElementById('body_talk_tooldiv').offsetTop + 55 ,
+					'left':$('#body_list_div').width() + 90,width:0,height:0},"normal",function () {
+						$("#quick_message_show").hide();
+						$("#body_kbm_div").css({width:0}).hide();
+						$("#body_talk_div").css({"margin-right":0});
+					}
+		);
+	},doMakeCall : function () {
+		var dev = jQuery.trim( chat_i18n.device );
+		if (dev.length == 0) {
+			return;
+		}
+		var v = jQuery.trim($("#exampleInputEmail2").val());
+		if (!/\d{8,15}/.test(v)) {
+			return ;
+		}
+		if (v .length > 0 ) {
+			$.ajax({
+				  url: "/RTM/makecall/"+dev+"/"+v ,
+				  data: {},
+				  success: function () {
+					  BootstrapDialog.show({
+					         title: 'Prompt',
+					         message: "Make call successfully!"
+					  }); 
+					  chat.hideMakeCall();
+				  },
+				  error: function () {
+					  
+				  },
+				  dataType:"html" 
+			});
+		}
+	},
+	openSnapshot : function () {
+		window.open(chat_i18n.path + "/snapshot.jsp","snapshot_page", "toolbar=0,scrollbars=1,location=0,menubar=0,resizable=1,width=" + screen.availWidth + ",height=" + screen.availHeight);
+	} ,
+	createCutScreen : function () {
+		$(document.body).append('<object id="chat_plugin0" type="application/x-scrcap" width="0" height="0"><param name="onload" value="snapshotPluginLoaded" /></object>');
+	}
+	,doCutScreen : function () {
+		var capPlu = document.getElementById('chat_plugin0');
+		if (!capPlu || (typeof capPlu.cap ==="undefined") || (typeof capPlu.readFile ==="undefined") ) {
+			$('#chat_plugin0').remove();
+			chat.createCutScreen();
+		}
+		if ( (typeof capPlu.cap ==="undefined") || (typeof capPlu.readFile ==="undefined") ) {
+			BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_WARNING,
+                title: 'Snapshot ActiveX Object not install',
+                message: $("<p class='text-success'>Snapshot ActiveX Object hash been not installed.<br/><br/>Please <a href='#' onclick='chat.openSnapshot();'>click here</a> to get installation (scrcap1.0.2 zip package).</p>"),
+                buttons: [{
+                    label: 'Close.',
+                    action: function(dialog) {
+                        typeof dialog.getData('callback') === 'function' && dialog.getData('callback')(true);
+                        dialog.close();
+                    }
+                }]
+            }); 
+			return ;
+		}
+		var tab = chat.getTab();
+		if (tab.length==0) {
+			BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_WARNING,
+                title: 'No chat session',
+                message:"Please choice a chat session",
+                buttons: [{
+                    label: 'Close.',
+                    action: function(dialog) {
+                        typeof dialog.getData('callback') === 'function' && dialog.getData('callback')(true);
+                        dialog.close();
+                    }
+                }]
+            }); 
+			return;
+		}
+		$(document.body).attr("_snap_sid",tab.attr("sid")).attr("_snap_to",tab.attr("originateUser"));
+	    var result = capPlu.cap('', true);
+	},startSessionWithAgent :function (agent) {
+		if (!agent) return ;
+		if ( $(".nav-pills").find('li[originateUser="'+ agent+'"]') .length > 0 ) return;
+		chatocx.StartSession(agent,1);
+	},convertStateToName : function (state) {
+		state = parseInt(state);
+		var x = "Offline";
+		switch (state) {
+			case 1:x = "Online"; break;
+			case 0:x = "Offline"; break;
+			case 3:x = "Ready"; break;
+			case 7:x = "NotReady";break;
+		}
+		return x;
+	},getFormatDate:function (date_obj,date_templet) {
+		  var year,month,day,hour,minutes,seconds,short_year,full_month,full_day,full_day,full_hour,full_minutes,full_seconds;
+		  if(!date_templet)date_templet = "yyyy-mm-dd hh:ii:ss";
+		  year = date_obj.getFullYear().toString();
+		  short_year = year.substring(2,4);
+		  month = (date_obj.getMonth()+1).toString();
+		  month.length == 1 ? full_month = "0"+month : full_month = month;
+		  day = date_obj.getDate().toString();
+		  day.length == 1 ? full_day = "0"+day : full_day = day;
+		  hour = date_obj.getHours().toString();
+		  hour.length == 1 ? full_hour = "0"+hour : full_hour = hour;
+		  minutes = date_obj.getMinutes().toString();
+		  minutes.length == 1 ? full_minutes = "0"+minutes : full_minutes = minutes;
+		  seconds = date_obj.getSeconds().toString();
+		  seconds.length == 1 ? full_seconds = "0"+seconds : full_seconds = seconds;
+		  return date_templet.replace("yyyy",year).replace("mm",full_month).replace("dd",full_day).replace("yy",short_year).replace("m",month).replace("d",day).replace("hh",full_hour).replace("ii",full_minutes).replace("ss",full_seconds).replace("h",hour).replace("i",minutes).replace("s",seconds);
+	},DisplayDateTime:function (callback) {
+		var curDateTime = new Date();
+		var strDate = chat.getFormatDate(curDateTime, "yyyy年mm月dd日 hh:ii:ss");
+		var strTime;
+
+		var iPos = strDate.indexOf(" ");
+		strTime = strDate.substring(iPos + 1, strDate.length);
+		strDate = strDate.substring(0, iPos);
+		
+		if(callback && typeof callback == "function") {
+			callback.call(arguments,strDate,strTime);
+		}
+	} ,updateVialogSessionId:function (sid,agent) {
+		$.ajax({
+			  url: chat_i18n.path + "/client/updateVialogSessionId" ,
+			  contentType : "application/x-www-form-urlencoded",
+			  data: {
+				  sid        : (jQuery.trim(sid)),
+				  customer   : (jQuery.trim(chat_i18n.tcp_username)),
+				  agent      : (jQuery.trim(agent))
+			  },
+			  async :true,
+			  success: function (data) {
+				  if (data) {
+				  }
+			  },
+			  error: function () {
+			  },
+			 dataType: "json"
+		});
+	} ,updateLeaveTime:function () {
+		if (chat_i18n.tcp_logintype != 3) return ;
+		
+		$.ajax({
+			  url: chat_i18n.path + "/client/updateLeaveTime" ,
+			  contentType : "application/x-www-form-urlencoded",
+			  data: {
+				  customer   : (jQuery.trim(chat_i18n.tcp_username)) 
+			  },
+			  async :true,
+			  success: function (data) {
+				  if (data) {
+				  }
+			  },
+			  error: function () {
+			  },
+			 dataType: "json"
+		});
+	},showPasswdWindow: function() {
+		chat.passwdwind = BootstrapDialog.show({
+	        type: BootstrapDialog.TYPE_DEFAULT,
+	        title: chat_i18n.mod_password_title,
+	        message: $('<h3 class="text-center text-danger" style="display:none" id="chat-passwdwind-id" >' + chat_i18n.mod_password_success + '</h3><iframe src="'+ chat_i18n.path +'/csr/password" frameborder="0" width="550" height="280"></iframe>'),
+	        closable: true ,
+	        onshow:function () {
+	        	
+	        }
+	    });
+	},hidePasswdWindow : function() {
+		try {
+			$("#chat-passwdwind-id").show();
+			setTimeout(function () {
+				chat.passwdwind.close();
+				chat.passwdwind = undefined;
+			},800);
+		}catch(e) {
+			
+		}
+		
+	}
+};
+
+function snapshotPluginLoaded() {
+	var capPlu = document.getElementById('chat_plugin0');
+	var uploadCapFile = function(file, result) {
+		if (result == 0) {
+			var filedata = capPlu.readFile(file);
+			var from = Base64.encode(chat_i18n.tcp_username);
+			var to = Base64.encode($(document.body).attr("_snap_to"));
+			var sid = Base64.encode($(document.body).attr("_snap_sid"));
+			$.post(chat_i18n.externalPath + Base64.decode("L0ZpbGV1cGxvYWRTZXJ2bGV0"),
+		        	{
+					  requestForCapture : Base64.decode("cmVxdWVzdEZvckNoYXRDYXB0dXJl") ,
+					  filedata : filedata,
+					  client_type:chat_i18n.tcp_logintype,
+					  from:from,
+					  to:to,
+					  sid:sid
+				  },     
+				  function (data, textStatus){   
+					  if (data.statusCode == "200" && data.filename) {
+						  var txt = document.getElementById("msgSend");
+						  if (navigator.userAgent.indexOf("MSIE")>0) {
+							  var oImg = document.createElement('img');
+				              oImg.src = ((chat_i18n.externalPage.length >0 ? chat_i18n.externalPath : chat_i18n.path) +"/"+ data.filename);
+				              txt.appendChild(oImg);
+						  } else {
+							 // txt.value +="file://|" + data.filename + "|" + getSuffixFileSize(data.size) + "|" + data.filetype + "|" + data.filename2.replace("chat","\u622A\u56FE");
+							  txt.value +="[\u622A\u56FE" + data.filename2 + "]";
+						  }
+					  } else {
+						  alert('Snapshot Error');
+					  }
+		        }, "json");
+		} else {
+			//alert('Snapshot Error!');
+		}
+    };
+	if (capPlu.attachEvent) {
+		capPlu.attachEvent("onCapReturned" , uploadCapFile);
+    } else {
+    	capPlu.addEventListener("CapReturned", uploadCapFile, false); 
+    }
+	
+}
+function replaceCaptureImg(str) {
+	var reg = new RegExp(/\[\u622A\u56FEchat\d{8}_\d{6}_\d{3}\.jpg\]/gm);
+	var key = null;
+	var imgPath = "";
+	while((key = reg.exec(str)) != null) { 
+		imgPath = (chat_i18n.externalPage.length >0 ? chat_i18n.externalPath : chat_i18n.path) +"/uploadfiles/" + key;
+		imgPath = imgPath.replace("[\u622A\u56FE","").replace("]","");
+		str = str.replace(key,"<img src=\"" + imgPath + "\" />");
+		imgPath = "";
+	}
+	return str;
+}
+function replaceAttachment(msg) {
+
+	if (!msg) return "";
+	if (jQuery.trim(msg).indexOf("file://") == 0) {
+		var file = msg.split("|");
+		if (file.length == 5) {
+			var isImage = false;
+			if (".jpg;*.gif;*.png;*.bmp" .indexOf(file[3])>0) {
+				isImage = true;
+			}
+			var itemData = {
+				'filerealpath' : (chat_i18n.externalPage.length >0 ? chat_i18n.externalPath : chat_i18n.path) + "/" + file[1],
+				'fileSize'   : file[2],
+				'extName'    : file[3],
+				'fileName'   : file[4],
+				'doaction' : isImage ? chat_i18n.chat_i18n_view : chat_i18n.chat_i18n_download
+			};
+				
+			var itemTemplate = '<div class="uploadify-queue-item" style="margin-top:5px"><span style=\"float:left;\" class=\"up-filetype-${extName}\">&nbsp;</span><span class="fileName"> ${fileName} (${fileSize}) - <span class="acceptattach">' + chat_i18n.chat_i18n_acceptattach + '</span> &nbsp;&nbsp; <span onclick="window.open(\'${filerealpath}\');" class="hot_line">${doaction}</span></span><span class="data"></span></div>';
+			for (var d in itemData) {
+				itemTemplate = itemTemplate.replace(new RegExp('\\$\\{' + d + '\\}', 'g'), itemData[d]);
+			}
+			return itemTemplate;
+		}
+	}
+	return msg;
+}
+
+function chat_OnSocketConnect() {
+	setTimeout(function () {
+		chatocx.Login();
+	},500);
+}
+function chat_OnSocketClose() {
+	$("#state_sel").attr("disabled",true);
+}
+function chat_OnLogin(str) {
+	var param = str.parseJSON();
+
+	if (chat_i18n.tcp_logintype == 3) {
+		reStartSession();
+    } else {
+    	$("#state_sel").attr("disabled",false);
+    	try {
+    		chatocx.QueryAgentState("-1");
+    	} catch (e) {
+    		
+    	}
+       	try {
+    		chatocx.QueryQueueNumber();
+    	} catch (e) {
+    		
+    	}
+    }
+	chat.stopProgress();
+}
+ 
+function StartSession() {
+	chatocx.StartSession("","");
+}
+function reStartSession() {
+	$(".div_information").html("<p class='text-info'>&nbsp;&nbsp;" + chat_i18n.beforeSessionMsg + "</p>");
+    setTimeout(StartSession, 1000);
+}
+function chat_OnAgentAvailable (str){
+	//if ( !isNotServiceTime() ){
+		var param = str.parseJSON();
+		var time = param.QueuePos*1000;
+		setTimeout( reStartSession ,time);
+	//}
+}
+function chat_OnLoginFailed(str) {
+	 BootstrapDialog.show({
+         type: BootstrapDialog.TYPE_DANGER,
+         title: 'Error',
+         message: "Login failed",
+         buttons: [{
+             label: 'Close.'
+         }]
+     }); 
+}
+function chat_OnLogoutFailed(str) {
+}
+function chat_OnStartSessionFailed(str) {
+	var param = str.parseJSON();
+	if (chat_i18n.tcp_logintype == 3) {//customer
+		var queHtm = chat_i18n.notAvailableQueueInfo.replace("{0}",param.QueueNumber).replace("{1}",param.QueueNumber * chat_i18n.waitingtime);
+		$(".div_information").html("<p class='text-warning  text-center'>&nbsp;&nbsp;" + chat_i18n.notAvailableMsg  + queHtm + "</p>");
+	} else if (chat_i18n.tcp_logintype == 1){
+		BootstrapDialog.show({
+	         type: BootstrapDialog.TYPE_DANGER,
+	         title: 'Error',
+	         message: "CSR " +  param.User + " is offline.",
+	         buttons: [{
+	             label: 'Close.'
+	         }]
+	     }); 
+	}
+}
+function chat_OnStateChange(str){
+	var param = str.parseJSON();
+	var state =(param.State == "undefined" ) ?  param.Mode : param.State;
+	var user = param.User;
+	if ( user == chat_i18n.tcp_username) {
+		/*
+		if (state == 1) {
+			setSelectValue(state);
+		} else if (state == 3) {
+			setSelectValue(state);
+		} else if (state == 7) {
+			setSelectValue(state);
+		}*/
+	} else  {// 
+		$("#agent_status_" + user).html(chat.convertStateToName(state));
+	}
+
+}
+function setSelectValue(state) {
+	try {
+		$('#state_sel').val(state);
+	} catch (e) {
+		
+	}
+}
+function chat_OnLogout(str) {
+	$("#state_sel").attr("disabled",false);
+}
+
+function chat_OnSessionStart(str) {
+	var param = str.parseJSON();
+	var sid = param.SessionId;
+	//var ipaddr = param.ipaddr;
+	//var userName = param.UserName;
+	
+	if ($('#panel_sid_' + sid) .length >0 ) return;
+	
+	$(".nav-pills").find('li').removeClass('active');
+	$(".body_talk_listdiv").find('div.tab-pane').removeClass('active');
+	var tabName = "";
+	$('#file_upload').uploadify("disable",false);
+	if (chat_i18n.tcp_logintype == 1) {
+		if (param.User.length > 10 ) {
+		tabName = chat_i18n.csr_page_client + param.User.substring(param.User.length-6,param.User.length);
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.User + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+				<div class="div_information" id="div_information_' + sid + '">&nbsp;&nbsp;  &nbsp;\
+				Name: <input name="tf_name_' + sid + '" type="text" class="input__basic_style"   />\
+			    Phone: <input name="tf_phone_' + sid + '" type="text" class="input__basic_style"   />\
+		Email: <input name="tf_email_' + sid + '" type="text" class="input__basic_style"   />\
+		   		</div><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		
+		SendText(sid, chat_i18n.csr_welcome);
+		
+		try {
+			var msg = chat_i18n.new_session_prompt.replace("{0}",tabName);
+			window.blinkTitle.reshow(msg);
+	    } catch (e) {
+	    	
+	    }
+		} else {//with agent
+			tabName = param.User;
+			chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.User + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+			chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+					<div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+			
+			try {
+				var msg = chat_i18n.new_session_prompt.replace("{0}",tabName);
+				window.blinkTitle.reshow(msg);
+		    } catch (e) {
+		    	
+		    }
+		}
+	} else {
+		tabName = chat_i18n.csr_at_service.replace("{0}",param.User);
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.User + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" > ' + tabName + '&nbsp;</a></li>');
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active"><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		$(".div_information").html("<p class='text-info'>&nbsp;&nbsp;" + chat_i18n.sessionBeginMsg + "</p>");
+		try {
+			chat.updateVialogSessionId(sid,param.User);
+		} catch(e) {}
+	}
+}
+
+function chat_OnSessionStop(str) {
+	var param = str.parseJSON();
+	var sid = param.SessionId;
+	
+	if (chat_i18n.tcp_logintype == 3) {
+		$(".div_information").html("<p class='text-danger'>&nbsp;&nbsp;" + chat_i18n.sessionEndMsg + "</p>");    
+	} else {
+		if ($('#panel_sid_' + sid) .length == 0 ) return;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-danger">' + chat_i18n.sessionEndMsg + '</p>\
+	            </li>\
+        </ul>' ) ;
+	}
+	$(".nav-pills").find('li[sid="' + sid + '"]').attr("isSessionStop", "true");
+}
+function triggerChatSessionClose(img) {
+	closeSession();
+}
+function closeSession(sid) {
+	if (!sid) {
+		sid = chat.getTabSessionId();
+		if (sid && sid > 0) {
+			
+			BootstrapDialog.confirm(chat_i18n.closeSessionMsg, function(result){
+	            if(result) {
+	            	chatocx.StopSession(sid);
+	            	$(".nav-pills").find('li[sid="' + sid + '"]').remove();
+	            	$('#panel_sid_' + sid).remove();
+	            }else {
+	            }
+	        });
+		}
+	} 
+}
+function chat_OnRecvText(str) {
+	var param = str.parseJSON();
+	var sid = param.SessionId;
+	var user = param.User;
+	var time = param.Time;//20120530 14:36:07
+	var text = param.Text;
+	try {
+		text = text.replaceAll("#","=");
+		text = Base64.decode(text);
+		text = chat.replaceMessage(text);
+	} catch (e) {
+		
+	}
+	if ($('#panel_sid_' + sid) .length >0 ) {
+		 var recName = "";
+		 var width = "50";
+		 if (user.length > 10) { recName = chat_i18n.csr_page_client + user.substring(user.length-6,user.length); width="80";}
+		 else recName = user;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><table width="100%" border="0" cellspacing="0" cellpadding="0">\
+				  <tr>\
+					<td width="' + width + '">' + recName + '</td>\
+				    <td width="56" class="table_kf_ico_td">&nbsp;</td>\
+				    <td align="left" valign="top" class="table_kf">'+text+'</td>\
+				  </tr>\
+				</table>\
+	            </li>\
+        </ul>' ) ;
+	}
+	if (text == chat_i18n.csr_satis_survey && chat_i18n.tcp_logintype == 3) {
+		//openSatisfied();
+		chat.openSatissurvey();
+	}
+	var txt0 = $('.body_talk_listdiv').get(0);
+	txt0.scrollTop = txt0.scrollHeight;
+	var msg = chat.getTabClient();
+	if (chat_i18n.tcp_logintype == 1) {
+		msg =  chat_i18n.csr_page_client   + msg.substring(msg.length-6,msg.length);
+	} else {
+		msg = chat_i18n.csr_page_csr + msg;
+	}	
+	window.blinkTitle.reshow(msg + chat_i18n.new_message_prompt);
+	
+}
+
+function SendText(sid,msg) {
+	if (!sid) {
+		var li = chat.getTab();
+		if (li.length == 0) return;
+		sid = parseInt(li.attr('sid'));
+		if ("true" == li.attr("isSessionStop") ) {// 
+			return ;
+		}
+	}
+	
+	if (!msg) {
+	    var txt = document.getElementById("msgSend");
+	    msg = txt.innerHTML;
+	    if (navigator.userAgent.indexOf("MSIE")>0) {
+	    	
+	    } else {
+	    	msg = txt.value;
+	    }
+	}
+    msg = msg.replaceAll("\r\n", "<br/>");
+    msg = msg.replaceAll("\n", "<br/>");
+    
+	if (msg == "")  {
+		return ;
+	}
+	if (msg.length > 1000) {
+		BootstrapDialog.show({
+	         type: BootstrapDialog.TYPE_DANGER,
+	         title: 'Error',
+	         message: "\u60A8\u8F93\u5165\u7684\u5185\u5BB9\u8FC7\u591A\uFF0C\u8BF7\u5220\u51CF\u540E\u91CD\u65B0\u53D1\u9001\uFF01",
+	         buttons: [{
+	             label: 'Close.'
+	         }]
+	     }); 
+		return ;
+	}
+	$('#panel_content_' + sid).append('<ul class="self"><li>\
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">\
+            <tr>\
+              <td class="table_kh" >' + chat.replaceMessage(msg) + '</p></td>\
+              <td width="56" height="48" class="table_kh_ico_td">\
+              </td>\
+            </tr>\
+          </table>\
+        </li>\
+        </ul>');
+	
+	try {
+		msg = Base64.encode(msg);
+		msg = msg.replaceAll("=","#");
+		chatocx.SendText(parseInt(sid), msg);
+		txt.value = "";
+	} catch (e) {
+		
+	}
+	var txt0 = $('.body_talk_listdiv').get(0);
+	txt0.scrollTop = txt0.scrollHeight;
+}
+function chat_OnQueryAgentState (str) {
+	var param = str.parseJSON();
+	try {
+		var a = param.Agentlist.split(",");
+		var s = param.Statelist.split(",");
+		for (var i = 0 ;i < a .length ; i++) {
+			$("#agent_status_" + a[i]).html(chat.convertStateToName(s[i]));
+		}
+	} catch (e) {
+		
+	}
+	
+}
+function chat_OnQueryAgentDetail (str) {
+	var param = str.parseJSON();
+	//param.Userlist
+	//param.Sessionlist
+}
+function chat_OnConferenceEcho (str) {
+	var param = str.parseJSON();
+	var result = param.Result;
+	var sid = param.SessionId;
+	//var ju = param.JoinUser;
+	if ($('#panel_sid_' + sid) .length == 0 ) return;
+	
+	if ("ok" == result) {
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-info">' + chat_i18n.start_conference_success + ' </p>\
+	            </li>\
+        </ul>' ) ;
+	} else {
+		
+		if ($('#panel_sid_' + sid) .length == 0 ) return;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-danger">' + chat_i18n.start_conference_fail + '</p>\
+	            </li>\
+        </ul>' ) ;
+		
+	}
+}
+function chat_OnConferenced (str) {
+	var param = str.parseJSON();
+//	param.JoinUser
+//	param.JoinUserType
+//	param.CtrlUser
+//	param.CtrlUserType
+	var sid = param.SessionId;
+	if (param.JoinUser == chat_i18n.tcp_username) {
+	
+		var tabName = chat_i18n.csr_page_button_conference + " " + param.CtrlUser ;
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.CtrlUser + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+		var confInfo = chat_i18n.start_conference_info.replace("{0}",param.CtrlUser).replace("{1}", chat_i18n.csr_page_client +
+				param.Usr.substring(param.Usr.length-6,param.Usr.length)		);
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+				<div class="div_information" id="div_information_' + sid + '">' + confInfo
+				+ '</div><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		try {
+			var msg = chat_i18n.new_session_prompt.replace("{0}",tabName);
+			window.blinkTitle.reshow(msg);
+	    } catch (e) {
+	    	
+	    }
+	} else {
+		if ($('#panel_sid_' + sid) .length == 0 ) return;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-info">' + param.JoinUser + ' ' + chat_i18n.join_in_session + ' </p>\
+	            </li>\
+        </ul>' ) ;
+	}
+}
+function chat_OnTransferEcho(str) {
+	var param = str.parseJSON();
+	var result = param.Result;
+	var sid = param.SessionId;
+	//var ju = param.JoinUser;
+	if ($('#panel_sid_' + sid) .length == 0 ) return;
+	
+	if ("ok" == result) {
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-info">' + chat_i18n.start_transfer_success + ' </p>\
+	            </li>\
+        </ul>' ) ;
+	} else {
+		
+		if ($('#panel_sid_' + sid) .length == 0 ) return;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-danger">' + chat_i18n.start_transfer_fail + '</p>\
+	            </li>\
+        </ul>' ) ;
+		
+	}
+}
+function chat_OnTransferred (str) {
+	var param = str.parseJSON();
+//	param.TransToUser
+//	param.TransToUserType
+//	param.CtrlUser
+//	param.CtrlUserType
+//	param.SessionId
+	if (param.TransToUser == chat_i18n.tcp_username) {
+	
+	var tabName = csr_page_button_transfer + " " + param.CtrlUser;
+	var sid = param.SessionId;
+	
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.CtrlUser + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+		var confInfo = chat_i18n.start_conference_info.replace("{0}",param.CtrlUser).replace("{1}", chat_i18n.csr_page_client +
+				param.Usr.substring(param.Usr.length-6,param.Usr.length)		);
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+				<div class="div_information" id="div_information_' + sid + '">' + confInfo
+				+ '</div><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		try {
+			var msg = chat_i18n.new_session_prompt.replace("{0}",tabName);
+			window.blinkTitle.reshow(msg);
+	    } catch (e) {
+	    	
+	    }
+	    
+	} else {
+		if ($('#panel_sid_' + sid) .length == 0 ) return;
+		$('#panel_content_' + sid).append( '<ul class="side">\
+	            <li><p class="text-info">' + param.TransToUser + ' ' + chat_i18n.join_in_session + ' </p>\
+	            </li>\
+        </ul>' ) ;
+	}
+}
+function chat_OnMonitored (str) {
+	var param = str.parseJSON();
+//	param.MonitoredUser
+//	param.MonitoredUserType
+//	param.CtrlUser
+//	param.CtrlUserType.
+//	param.SessionId
+	var sid = param.SessionId;
+	if (param.CtrlUser == chat_i18n.tcp_username) {
+		 //\u8033\u8BED
+		var tabName = "\u76D1\u542C" +  param.MonitoredUser;
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.MonitoredUser + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+		var confInfo = chat_i18n.start_monitor_info.replace("{0}",param.MonitoredUser).replace("{1}","");
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+				<div class="div_information" id="div_information_' + sid + '">' + confInfo
+				+ '</div><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		try {
+			showSessionWindow(true);
+	    } catch (e) {
+	    	
+	    }
+	}
+}
+function chat_OnWhispered (str) {
+	var param = str.parseJSON();
+//	param.JoinUser
+//	param.JoinUserType
+//	param.CtrlUser
+//	param.CtrlUserType
+//	param.SessionId
+	var sid = param.SessionId;
+	if (param.CtrlUser == chat_i18n.tcp_username) {
+		var tabName = "\u8033\u8BED" +  param.JoinUser;
+		chat.addTab('<li class="active" sid='+sid+' originateUser="' + param.JoinUser + '"><a  data-toggle="tab" href="#panel_sid_' + sid + '" >' + tabName + '&nbsp;&nbsp;<img src="../img/x_activate.png" width="8" height="7" onclick="triggerChatSessionClose(this)"/></a></li>');
+		var confInfo = "&nbsp;&nbsp;&nbsp;&nbsp;\u5750\u5E2D\uFF1A{0} &nbsp;&nbsp;&nbsp;&nbsp;\u5BA2\u6237\uFF1A{1}".replace("{0}",param.JoinUser).replace("{1}","");
+		chat.addTabContent('<div id="panel_sid_' + sid + '" class="tab-pane active" >\
+				<div class="div_information" id="div_information_' + sid + '">' + confInfo
+				+ '</div><div id="panel_content_' + sid + '" class="dialog-output" style="padding-top:10px;padding-bottom:10px;"></div></div>');
+		try {
+			showSessionWindow(true);
+	    } catch (e) {
+	    	
+	    }
+	}
+}
+function createUploadFileID (id) {
+    return  'b' + Math.round(Math.random()*1000000) + '_' + id;
+}
+function getSuffixFileSize(size) {
+	var byteSize = Math.round(size / 1024 * 100) * .01;
+	var suffix = 'KB';
+	if (byteSize > 1000) {
+		byteSize = Math.round(byteSize *.001 * 100) * .01;
+		suffix = 'MB';
+	}
+	var sizeParts = byteSize.toString().split('.');
+	if (sizeParts.length > 1) {
+		byteSize = sizeParts[0] + '.' + sizeParts[1].substr(0,2);
+	} else {
+		byteSize = sizeParts[0];
+	}
+	return byteSize + suffix;
+}
+function SendAttachment(file,filename,sid) {
+	var sid = Base64.decode(sid);
+	
+	var isImage = false;
+	if (".jpg;*.gif;*.png;*.bmp" .indexOf(file.type.replace(".",""))>0) {
+		isImage = true;
+	}
+	var itemData = {
+			'fileID'     : createUploadFileID(file.id) ,
+			'fileName'   : file.name,
+			'fileSize'   : getSuffixFileSize(file.size),
+			'extName'    : file.type.replace(".",""),
+            'filerealpath' :(chat_i18n.externalPage.length >0 ? chat_i18n.externalPath : chat_i18n.path)+ "/" + filename,
+            'doaction' : isImage ? chat_i18n.chat_i18n_view : chat_i18n.chat_i18n_download
+		};
+		
+		var itemTemplate = '<div id="${fileID}" class="uploadify-queue-item" style="margin-top:5px"><span style=\"float:left;\" class=\"up-filetype-${extName}\">&nbsp;</span><span class="fileName"> ${fileName} (${fileSize}) - <span class="acceptattach">' + chat_i18n.chat_i18n_sentsuccess + '</span> &nbsp;&nbsp; <span onclick="window.open(\'${filerealpath}\');" class="hot_line">${doaction}</span></span><span class="data"></span></div>';
+		for (var d in itemData) {
+			itemTemplate = itemTemplate.replace(new RegExp('\\$\\{' + d + '\\}', 'g'), itemData[d]);
+		}
+
+		$('#panel_content_' + sid).append('<ul class="self"><li>\
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">\
+	            <tr>\
+	              <td class="table_kh" >' + itemTemplate + '</p></td>\
+	              <td width="56" height="48" class="table_kh_ico_td">\
+	              </td>\
+	            </tr>\
+	          </table>\
+	        </li>\
+	        </ul>');
+		
+	    var txt0 = $('.body_talk_listdiv').get(0);
+		txt0.scrollTop = txt0.scrollHeight;
+	    try {
+	    	itemTemplate="file://|" + filename + "|" + getSuffixFileSize(file.size) + "|" + file.type.replace(".","") + "|" + file.name;
+	    	itemTemplate = Base64.encode(itemTemplate);
+	    	itemTemplate = itemTemplate.replaceAll("=","#");
+	    	chatocx.SendText(sid, itemTemplate);
+		} catch (e) {
+			
+		}
+}
+function chat_OnInputMessageEcho() {}
+function chat_OnInputMessageEchoFailed() {}
+function Chat_SendInputText(inputtype) {
+	try {
+		var li = chat.getTab();
+		if (li.length == 0) return;
+		var sid = parseInt(li.attr('sid'));
+		chatocx.SendInputText(sid, inputtype);
+	} catch(e) {
+		
+	}
+}
+function chat_OnInputMessage(str) {
+	var param = str.parseJSON();
+	//var usr = param.User;
+	var sid = param.SessionId;
+	var type = param.Inputtype;
+	var li = chat.getTab(sid);
+	if (li.length > 0) {
+		try {
+			if (chat_i18n.tcp_logintype == 1) {
+				if (type == 1) {
+					li.find('img').attr('src','../img/typing.gif').width(16).height(16);
+				} else {
+					if (li.hasClass('active')) {
+						li.find('img').attr('src','../img/x_activate.png').width(8).height(7);
+					} else {
+						li.find('img').attr('src','../img/x_wait.png').width(8).height(7);
+					}
+				}
+			} else {
+				li.find('img').remove();
+				if (type == 1) {
+					li.find('a').append('<img src="../img/typing.gif" />');
+				}
+			}
+		} catch(e) {
+			
+		}
+	}
+}
+var changeColors = ['red','blue','#FF00FF','#C71585','#FFBB00','#32CD32'];
+function chat_OnCustomerQueueNumber(str) {
+	var param = str.parseJSON();
+	if ($("#show_queuenumber").html().replace(" customer(s)","") == param.QueueNumber) {
+		return ;
+	}
+	var count = $("#show_queuenumber").data("count");
+	if (typeof(count) != "undefined") {
+		if (count == (changeColors.length -1)) {
+			count = 0;
+			$("#show_queuenumber").data("count",0);
+		} else {
+			$("#show_queuenumber").data("count",count + 1);
+		}
+	} else {
+		$("#show_queuenumber").data("count",0);
+	}
+	$("#show_queuenumber").css("color",changeColors[count]);
+	$("#show_queuenumber").html(param.QueueNumber + " customer(s)");
+}
+
+window.onbeforeunload=function (event){
+		try {
+			
+			if (chatocx && (chatocx.getConnectState() == 1 || chatocx.getConnectState() == 2)) {
+				return chat_i18n.before_leave_msg;
+			}
+			return undefined;	
+		} catch (e) {
+			return undefined;
+		}
+		
+		//return evt.returnValue;
+	};
+window.onunload = function () {
+	try { chat.updateLeaveTime(); }catch (e) {}
+	if (window.chatocx ) {
+		try { window.chatocx.Logout(); }catch (e) {}
+		try { window.chatocx.disconnect();}catch (e) {}
+	}
+};
+$(document.body).ready(function () {
+	
+	window.hasRequestedVersion = DetectFlashVer(9, 0, 124);
+	AC_FL_RunContent(
+			"src", "../js/VisionIM",
+			"width", "0",
+			"height", "0",
+			"align", "middle",
+			"id", "VisionIM",
+			"quality", "high",
+			"bgcolor", "#99CCFF",
+			"name", "VisionIM",
+			"allowScriptAccess","always",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+	
+	chat.initToolbar();
+	
+	chat.initTcp();
+	
+	 msgSend.onkeydown = function (e) {
+         e = e ? e : window.event;
+         if (e.ctrlKey && 13 == e.keyCode) {
+             msgSend.value =   msgSend.value + "\r\n";
+         }  else if (13 == e.keyCode) {
+             SendText();
+             return false;
+         }
+     };
+	window.inputMessage = new ChatInputMessage();
+		$("#msgSend").keypress(function (){
+			if (!inputMessage.isSend) {//
+				inputMessage.isSend = true;
+				Chat_SendInputText(1);//
+			}
+			if (inputMessage.taskid) {// 
+				inputMessage.clearTask();
+			}
+		});
+		$("#msgSend").keydown(function (){
+			if (!inputMessage.isSend) {//
+				inputMessage.isSend = true;
+				Chat_SendInputText(1);//
+			}
+			if (inputMessage.taskid) {
+				inputMessage.clearTask();
+			}
+		});
+		$("#msgSend").keyup(function (){
+			if (inputMessage.isSend && !inputMessage.taskid) {
+				inputMessage.taskid = setInterval(function () {
+					inputMessage.count ++;
+					if (inputMessage.count > 2) {
+						Chat_SendInputText(2);//
+						inputMessage.clearTask();
+						inputMessage.isSend = false;
+					}
+				},2500);
+			}
+		});
+		$("#msgSend").blur(function () {
+			if (inputMessage.taskid) {
+				inputMessage.clearTask();
+				inputMessage.isSend = false;
+				Chat_SendInputText(2);//
+			}
+		});
+     
+     chat.initUploadFile();
+     if (chat_i18n.tcp_logintype == 1) {
+    	 chat.createCutScreen();
+     }
+     
+}).click(function () {
+	window.blinkTitle.clear();
+});
