@@ -1,0 +1,277 @@
+
+<extend name="Base:base" />
+
+    <block name="title"><title>H&M--个人中心</title></block>
+
+    <block name="main"> 
+
+<main role="main" class="hm-club-overview my-hm responsive">
+			<div class="wrapper">    
+				<nav class="breadcrumbs">
+					<ul>
+	<li>
+	
+	
+	
+		<a href="/zh_cn/">HM.COM</a>
+	</li>
+
+	<li class="">
+
+			<a href="/zh_cn/my-account"> 您的账户</a>
+				</li>
+	<li class="active">
+
+			<a href="#" onclick="return false;"> 概览</a>
+				</li>
+	</ul>
+</nav>
+				<nav class="section navigation menu " role="navigation">
+	<ul role="menu">
+		<li class="current item" role="presentation" tabindex="0">
+				<a href="/zh_cn/my-account/overview" role="menuitem">
+					概览</a>
+			</li>
+		<li class="item" role="presentation" tabindex="-1">
+				<a href="/zh_cn/my-account/profile" role="menuitem">
+					个人信息</a>
+			</li>
+		<li class="item" role="presentation" tabindex="-1">
+				<a href="/zh_cn/my-account/orders" role="menuitem">
+					订单</a>
+			</li>
+		<li class="item" role="presentation" tabindex="-1">
+				<a href="/zh_cn/my-account/address-book" role="menuitem">
+					地址簿</a>
+			</li>
+		<li class="item" role="presentation" tabindex="-1">
+				<a href="/zh_cn/my-account/payment-details" role="menuitem">
+					银行卡信息</a>
+			</li>
+		</ul>
+</nav><div class="layout" ng-controller="MyOverviewController">
+			<div class="modules sidebarpluscontent">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+<aside role="presentation">
+					<section class="responsive club-user">
+						<div class="greeting">
+							<header class="module-heading">
+								<h1 class="module-heading-title"> 您好！</h1>
+							</header>
+							<div class="module-content">
+								<p>您好！这里是您的 H&M 个人控制面板，您可在此处更新个人详情、付款信息或查看订单。</p>
+							</div>
+						</div>
+
+						<header class="module-heading">
+							<h1 class="module-heading-title" id="personal-details-title">
+								个人信息
+							</h1>
+						</header>
+
+						<div class="module-content">
+							<dl role="person" class="user-details">
+
+								
+								<dt>
+									电子邮箱
+								</dt>
+
+								<dd>
+									<span>472671496@qq.com</span>
+								</dd>
+
+								
+									<dt>
+										电话号码
+									</dt>
+									<dd>&nbsp;</dd>
+								
+							</dl>
+						</div>
+						
+						<a href="/zh_cn/my-account/profile" id="personal-details-title-link"
+							class="navigate button"
+							aria-labelledby="personal-details-title personal-details-title-link"
+							title="View all personal details">查看更多</a>
+					</section>
+
+				</aside><div>
+				    
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="responsive orders-summary">
+	<header class="module-heading ">
+		<h1 class="module-heading-title">
+			订单
+		</h1>
+		
+			没有找到订单
+		
+		
+		<a href="/zh_cn/my-account/orders" class="view-all link" title="View all orders">查看所有订单</a>
+	</header>
+	<div class="module-content">
+	
+			<a href="/zh_cn/my-account/orders" class="navigate button" title="View all orders">查看所有订单</a>
+		</div>
+</section><div class="two modules">
+						
+
+
+
+
+
+
+<section class="responsive club-address">
+	<header class="module-heading">
+		<h1 class="module-heading-title" id="address-book-title">
+			地址簿
+		</h1>
+		
+		<a href="/zh_cn/my-account/address-book" class="view-all link" id="address-book-title-link" aria-labelledby="address-book-title address-book-title-link"
+			title="View all addresses">查看所有</a>
+	</header>
+	<div class="module-content">
+		<h2 class="module-subheading">家庭住址</h2>
+		<address itemscope="" class="address-summary"
+			itemtype="http://schema.org/person">
+			<div class="item">
+				<div class="address-item-street" itemprop="streetAddress">  </div>
+			</div>
+		</address>
+	</div>
+	<a href="/zh_cn/my-account/address-book" class="navigate button" title="View all addresses">查看所有</a>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+				</div>
+			</div>
+			<!-- Placeholder for sign-in form -->
+		</div>
+	<div class="hidden modal-content" id="address-validation-popup" ng-show="getContext().showPopup && getContext().popupType =='ADDRESSES'" ng-cloak>
+	<div class="modal-text">
+		<div class="address-validation">
+			<h1 class="heading">{{getContext().popupHeader}}</h1>
+			<p ng-bind-html="getContext().popupMessage"></p>
+			<form>
+				<div class="address-validation-addresses">
+					<div class="address-validation-un-validated">
+						<h3>您已输入：</h3>
+						<div class="address-validation-address">
+							<input type="radio" name="validation-address" value="-1" id="un-validated-address" ng-model="newAddress.selectedAddress">
+							<label for="un-validated-address">
+								 <span ng-bind-html="newAddress.formattedAddress"></span>
+								 <br/>
+								 <a class="address-validation-edit modalclose underline" ng-show="verifiedAddresses.length>0" ng-click="closePopup()" >编辑</a>
+							</label>
+						</div>
+					</div>
+					<div class="address-validation-suggestions" ng-show="verifiedAddresses.length>0">
+						<h3>您是否指：</h3>
+						<div class="address-validation-address-list " ng-class="{'scrollable' : verifiedAddresses.length>4}" >
+							<div class="address-validation-address" ng-repeat="address in verifiedAddresses">
+								<input type="radio" name="validation-address" value="{{$index}}" id="validated-address-{{$index}}" ng-model="newAddress.selectedAddress">
+								<label for="validated-address-{{$index}}" ng-bind-html="address.formattedAddress">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="buttons clearfix">
+					<button ng-click="closePopup()" class="modalclose button button-secondary">编辑</button>
+					<button ng-click="submitClosePopup()" class="modalclose button" >确定</button>
+				</div>
+			</form>
+		</div>	
+	</div>
+</div>
+
+<div class="hidden modal-content" id="error-popup">
+	<div class="modal-text">
+		<div class="shopping-bag-message">
+			<h1 class="heading">{{getContext().popupHeader}}</h1>
+			<p ng-bind-html="getContext().popupMessage"></p>
+			<form>
+				<div class="sticky button-group">
+					<button ng-click="closePopup()" class="modalclose button">确定</button>
+				</div>
+			</form>
+		</div>	
+	</div>
+</div>
+
+<div aria-hidden="true" id="generic-error-popup" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">出错了</h1>
+		<p style="text-align:center">该表格不能提交。请检查您的信息</p>
+		<div class="sticky button-group">
+			<button ng-click="closePopup()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
+
+<div aria-hidden="true" id="kcp-unavailable-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">checkout.error.kcp.unavailable.title</h1>
+		<p class="text">checkout.error.kcp.unavailable.message</p>
+		<div class="sticky button-group">
+			<button ng-click="closePopup()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
+
+<div aria-hidden="true" id="los-down-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">折扣代码未确认</h1>
+		<p class="text">很抱歉，您的折扣代码当前无法确认。请重试，或移除折扣代码完成购买。点击“确认”以返回结账。</p>
+		<div class="sticky button-group">
+			<button ng-click="closePopup()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
+
+<div aria-hidden="true" id="expired-idc-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">折扣代码无效</h1>
+		<p class="text">所输入代码已失效，无法享受折扣。您可打开经更新的订单汇总，查看实际订单金额。点击“确认”以返回结账。</p>
+		<div class="sticky button-group">
+			<button ng-click="removeExpiredIdc()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div></div>
+		</main>
+</block>
