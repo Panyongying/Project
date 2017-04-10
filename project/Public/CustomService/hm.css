@@ -1,0 +1,239 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding:0px;
+	margin:0px;
+	border:none;
+	letter-spacing:1px;
+	font-family:"微软雅黑",Arial, Helvetica, sans-serif;
+	color:#000;
+	font-size:12px;
+	}
+	
+/*CSS3样式下定义滚动条样式*/
+::-webkit-scrollbar {
+width:4px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset 0 0 6px #D6D6D6; 
+    -webkit-border:10px
+	}
+::-webkit-scrollbar-thumb {
+    -webkit-border:10px;
+    background:#aaa; 
+    -webkit-box-shadow: inset 0 0 6px #000; 
+	}
+::-webkit-scrollbar-thumb:hover {
+	background:#333; 
+	
+	
+	
+	}	
+img{
+	padding:0px;
+	margin:0px;
+	border:none;
+	}
+input{
+	font-family:"微软雅黑",Arial, Helvetica, sans-serif;
+	}
+	
+	
+	
+.img_logo{
+	margin-top:30px;
+	}
+.img_bgline{
+	height:30px;
+	line-height:30px;
+	background:url(../img/hm_bgline.png);
+	background-position:center top;
+	background-repeat:no-repeat;
+	}	
+.img_ico_16px{
+	margin-right:8px;
+	}
+	
+	
+	
+	
+.text_title{
+	font-size:18px;
+	font-weight:bold;
+	}
+.text_title_12px{
+	font-size:12px;
+	font-weight:bold;
+	color:#000000;
+	}
+.text_title_14px{
+	font-size:14px;
+	font-weight:bold;
+	}
+.text_title_12px_gray{
+	font-size:12px;
+	color:#A3A3A3;
+	}
+	
+	
+.text_common{
+	font-size:12px;
+	}
+.text_common_bold{
+	font-weight:bold;
+	}
+.text_common_gray{
+	color:#A3A3A3;
+	}
+	
+	
+	
+	
+	
+.text_common_14px_bold{
+	font-size:14px;
+	font-weight:bold;
+	}
+.text_common_14px_gray{
+	font-size:14px;
+	color:#A3A3A3;
+	margin-left:6px;
+	}
+.text_common_14px_bold_gray{
+	font-size:14px;
+	font-weight:bold;
+	color:#A3A3A3;
+	margin-left:10px;
+	}
+	
+	
+	
+.ul_talklist{
+	list-style:none;
+	margin-left:-36px;
+	}
+
+
+.input_132px{
+	width:132px;
+	height:40px;
+	color:#FFF;
+	font-weight:bold;
+	background:#000;
+	font-size:15px;
+	margin-left:20px;
+	}
+.input_132px_grey{
+	width:132px;
+	height:40px;
+	color:#FFF;
+	font-weight:bold;
+	background:#8D8D8D;
+	font-size:15px;
+	margin-left:20px;
+	}	
+.input_radio_marginright{/*单选框*/
+	margin-right:10px;
+	}
+.input_language{
+	margin-right:20px;
+	}
+	
+	
+	
+	
+	
+	
+.div_talklist{/*对话窗口LIST*/
+	width:548px;
+	height:270px;
+	overflow:auto;
+	padding:0px 0px 0px 30px;
+	}
+
+.div_talk_ul{/*对话窗口_单行样式集*/
+	width:500px;
+	padding:4px 0px; /*对话列表的上下间距*/
+	border-bottom:1px solid  #CCC;
+	}
+	
+.div_emojicons{/*表情区域div*/
+	position:absolute;
+	top:300px;
+	margin-left:28px;
+	height:160px;
+	width:465px;
+	background:#fff;
+	border:1px solid #D6D6D6;
+	padding:6px;
+	}	
+.div_emojicons_close{
+	position:relative;
+	float:right;
+	margin-right:5px;
+	margin-top:5px;
+	width:14px;
+	height:14px;
+	}
+	
+	
+.table_basic{
+	width:600px;
+	border:0px solid #CBC9C8;
+	}
+.table_close{
+	margin-top:20px;
+	font-size:13px;
+	font-weight:bold;
+	}
+.table_close td{
+	padding-right:10px;
+	text-align:right;
+	}
+.table_td_padding_20px{
+	padding:0px 20px;
+	}
+.table_talk_common{
+	border-left:1px solid  #D6D6D6;
+	border-top:1px solid  #D6D6D6;
+	border-right:1px solid  #D6D6D6;
+	}
+
+.table_talk_common td{
+	border-bottom:1px solid #D6D6D6;
+	}
+.table_tools_padding{ /*表情栏*/
+	padding:20px 20px 10px 20px;
+	}	
+
+.table_talk_input{ /*打字区域*/
+	padding:20px 10px;	
+	}
+.table_Progress{/*表格进度条样式*/
+	background:#D6D6D6;
+	border:1px solid #CECECE;
+	height:18px;
+	line-height:18px;
+	margin:0px auto 40px auto;
+	text-align:center;
+	font-size:12px;
+	color:#333;
+	}
+	
+.div_information p.text-info,p.text-warning {
+font-size:12px;
+color:#000;
+}
+.uploadify{
+	padding-top:0px;
+}
+#face_div_outer > ul {
+	width:465px;
+	list-style-type: none;
+}
+#face_div_outer > ul > li{
+	float :left;
+	width:30px;
+	height:30px;
+}

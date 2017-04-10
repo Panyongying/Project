@@ -7,6 +7,8 @@
 		public function index()
 		{
 			if (IS_GET) {
+				$data = D('links')->getAllLinks();
+
 				//关闭表单令牌
 				C('TOKEN_ON',false);
 
@@ -22,11 +24,29 @@
 		public function addLinks()
 		{
 			if (IS_POST) {
+				$res = D('links')->addLinks();
 
+				if ($res) {
+					$this->success('添加成功', U('addLinks'));
+				} else {
+					$this->error('操作失败');
+				}
+			} else if (IS_GET) {
+				$this->display();
 			}
+		}
 
-			if (IS_GET) {
-				
+		// 修改友情链接
+		public function editLinks()
+		{
+			if (IS_POST) {
+				$this->success('修改成功', U('index'));
+			} else if (IS_GET) {
+				$list = D('links')->editLinks();
+
+				$this->assign('list', $list);
+
+				$this->display();
 			}
 		}
 

@@ -11,7 +11,7 @@
       <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">友情链接列表</a></dl>
       
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 补充线订单</button>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus add-btn" > 添加友链</button>
       </dl>
       <!--这里打开的是新页面-->
     </div>
@@ -34,7 +34,7 @@
                   <td><input type="checkbox" value="{$ov.id}" /></td>
                   
                   <td>{$ov.id}</td>
-                  <td><a href="#">{$ov.name}</a></td>
+                  <td class="am-hide-sm-only">{$ov.name}</td>
                   <td class="am-hide-sm-only">{$ov.des}</td>
                   <td class="am-hide-sm-only">{$ov.url}</td>
                   <td class="am-hide-sm-only">{$ov.status}</td>
@@ -45,7 +45,7 @@
                   	<div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
                         <!-- <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button> -->
-                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改友链"><span class="am-icon-pencil-square-o"></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round mo-btn" data-am-modal="{target: '#my-popups'}" lid="{$ov.id}" title="修改友链"><span class="am-icon-pencil-square-o"></span></button>
                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" lid="{$ov.id}" title="删除友链"><span class="am-icon-trash-o" ></span></button>
                       </div>
                     </div>
@@ -77,7 +77,19 @@
 </div>
 
 <script>
+  $('.add-btn').click(function () {
+    location.href = "__CONTROLLER__/addLinks";
 
+    return false;
+  });
+
+  $('.mo-btn').click(function () {
+    var lid = $(this).attr('lid');
+
+    location.href = "__CONTROLLER__/editLinks/id/" + lid;
+
+    return false;
+  });
 
   $('.rm-btn').click(function () {
     var that = $(this);

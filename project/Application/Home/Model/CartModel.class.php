@@ -10,7 +10,7 @@
 			$bool = $this->checkLogin();
 
 			if ($bool) { // 已登录
-				// 查询出购物车的数据
+				// 查询出购物车表的数据
 				$uid = $_SESSION['userInfo']['id'];
 
 				$map['id'] = array('EQ', $uid);
@@ -21,17 +21,33 @@
 			}
 
 			// 购物车为空时
-			if ($cartList == null or empty($cartList)) {
+			if (!$cartList) {
 				return 'empty';
 			}
 
-			// 统计购物车的商品数量
-			$cartList['num'] = 0;
+			// 统计购物车的商品数量和总价
+			$data['num'] = 0;
+			$data['totalPrice'] = 0;
 
 			// 根据商品id，属性id查询价格，库存
 			foreach ($cartList as $k => $v) {
 				$gid = $v['gid'];
 				$aid = $v['aid'];
+
+				// 查询颜色
+				$map['id'] = array('IN', $aid);
+				$map['attrType'] = array('EQ', 1);
+				$color = M('goods_attr')->field('attrName')->where($map)->find()['attrName'];
+
+				// 查询尺码
+				$map['attrType'] = array('EQ', 2); // 先查询衣服的尺码
+				$size = M('goods_attr')->field('attrName')->where($map)->find()['attrName'];
+
+				// 当结果为空时说明不是衣服继续查鞋子尺码
+				if (!$size) {
+					$map['attrType'] = array('EQ', 3);
+					$size = M('goods_attr')->field('attrName')->where($map)->find()['attrName'];
+				}
 
 				$price = M('goods')->field('price')->where("id={$gid}")->find()['price'];
 
@@ -40,12 +56,16 @@
 
 				$stock = M('stock')->field('num')->where($where)->find()['stock'];
 
+				$cartList[$k]['color'] = $color;
+				$cartList[$k]['size']  = $size;
 				$cartList[$k]['price'] = $price;
 				$cartList[$k]['stock'] = $stock;
-				$cartList['num'] += $cartList[$k]['gnum'];
+				$data['num'] += $cartList[$k]['gnum'];
+				$data['totalPrice'] += $cartList[$k]['gnum'] * $price;
 			}
 
-			return $cartList;
+			$data['cartList'] = $cartList;
+			return $data;
 		}
 
 		// 这个方法检查用户是否登陆

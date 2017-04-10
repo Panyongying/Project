@@ -1435,7 +1435,11 @@
                         <div class="shopping-bag rollover-popdown is-loaded" data-cart="/zh_cn/minicart/view">
                             <a href="http://www2.hm.com/zh_cn/cart" class="goto-shopping-bag rollover-toggle">
                                购物袋
-                               (<span class="shoppingbag-item-count">0</span>)
+                               (<span class="shoppingbag-item-count">
+                                   <if condition="$data = 'empty'">0
+                                   <else />{$data.num}
+                                   </if>
+                               </span>)
                            </a>
                            <div class="shopping-bag-rollover row popdown">
                         		<div class="grid col-4">
@@ -1443,23 +1447,84 @@
                         				<div class="navigation-arrow-up"></div>
                         			</div>
                         			 <div class="shopping-bag-rollover-items-wrapper ">
+                                            <!-- 购物车为空时候 -->
+                                            <if condition="$data = 'empty' ">
+                            				    <div class="cart_modal_popup empty-popup-cart">
+                            						<dl class="clearfix">
+                            							<dd><h2>您的购物袋是空的</h2></dd>
+                            						</dl>
+                            					</div>
 
-                        				    <div class="cart_modal_popup empty-popup-cart">
-                        						<dl class="clearfix">
-                        							<dd><h2>您的购物袋是空的</h2></dd>
-                        						</dl>
-                        					</div>
-
-                        				    <div class="shopping-bag-rollover-summary">
-                        						<dl class="clearfix">
-                        							<dt>订单价值：</dt>
-                        							<dd>¥0.00</dd>
-                        						</dl>
-                        						<dl class="shopping-bag-rollover-order-total">
-                        							<dt>总价:</dt>
-                        							<dd>¥0.00</dd>
-                        						</dl>
-                        					</div>
+                            				    <div class="shopping-bag-rollover-summary">
+                            						<dl class="clearfix">
+                            							<dt>订单价值：</dt>
+                            							<dd>¥0.00</dd>
+                            						</dl>
+                            						<dl class="shopping-bag-rollover-order-total">
+                            							<dt>总价:</dt>
+                            							<dd>¥0.00</dd>
+                            						</dl>
+                            					</div>
+                                            <else />
+                                                <div class="grid col-4">
+                                                    <div class="shopping-bag-rollover-scroll-up disabled">
+                                                        <div class="navigation-arrow-up"></div>
+                                                    </div>
+                                                    <div class="shopping-bag-rollover-items-wrapper ">
+                                                        <ul class="shopping-bag-rollover-items" style="top: 0px;">
+                                                                <foreach name="data['cartList']" item="ov">
+                                                                    <li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
+                                                                            <a href=""> 
+                                                                                <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="{$ov.pic}" title="{$ov.name}">
+                                                                                    </a>
+                                                                            
+                                                                            <div class="shopping-bag-item-product">
+                                                                                    
+                                                                                <h3 class="product-item-headline">{$ov.name}</h3>
+                                                                                <div id="redWhitePrices_0506590001001" class="product-item-price ">
+                                        <span id="main_price" class="main_price_0506590001001">
+                                                            ¥{$ov.price}</span>
+                                                    <small id="white_price_0506590001001"></small>
+                                                </div>
+                                        <dl class="clearfix">
+                                                                                    <dt>数量：</dt>
+                                                                                    <dd>{$ov.gnum}</dd>
+                                                                                    <dt>颜色：</dt>
+                                                                                    <dd>{$ov.color}}</dd>
+                                                                                    <dt>尺码：</dt>
+                                                                                    <dd>{$ov.size}</dd>
+                                                                                </dl>
+                                                                            </div>
+                                                                            <div class="shopping-bag-item-total-price product-item-price">
+                                                                                总价:&nbsp;
+                                                                                ¥{$ov.price * $ov.gnum}</div>
+                                                                        </li>   
+                                                                    </foreach>
+                                                                    </ul>
+                                                            </div>
+                                                            <div class="shopping-bag-rollover-scroll-down">
+                                                                <div class="navigation-arrow-down"></div>
+                                                            </div>
+                                                            <div class="shopping-bag-rollover-summary">
+                                                                <dl class="clearfix">
+                                                                    <dt>订单价值：</dt>
+                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                </dl>
+                                                                <dl class="shopping-bag-rollover-order-total">
+                                                                    <dt>总价:</dt>
+                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                </dl>
+                                                                
+                                                                <a href="/zh_cn/checkout" class="button button-big">
+                                                                结账</a>
+                                                                <a href="/zh_cn/cart" class="button button-big button-secondary">
+                                                                    购物袋</a>
+                                                                <div ng-if="''">                
+                                                                 <p class="text"></p>
+                                                              </div>
+                                                            </div>              
+                                                        </div>
+                                            </if>
                         			</div>
                         	   </div>
                             </div>
@@ -1617,7 +1682,7 @@
             <div class="layout">
 
 
-                <a class="button button-chat" target="_blank" href="http://cnchat.hm.com/">在线客服
+                <a class="button button-chat" target="_blank" href="__APP__/Home/CustomService/index">在线客服
                     <span>嗨我们在这里如果您需要任何帮助</span>
                 </a>
 
@@ -2021,8 +2086,6 @@
 
 
             });
-
-
 
         </script>
     </body>

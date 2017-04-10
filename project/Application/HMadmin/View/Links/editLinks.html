@@ -1,0 +1,64 @@
+<extend name="Backstage/base" />
+<block name="title">
+  <title>修改友链</title>
+</block>
+<block name="content" >
+<div class="admin-biaogelist">
+  
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 修改友链</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">修改友链</a></dl>
+
+      
+      
+    </div>
+  
+    <div class="fbneirong">
+      <form class="am-form" action="" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">名字：</div>
+          <div class="you">
+            <input type="hidden" name="id" value="{$list.id}">
+            <input type="text" class="am-input-sm" id="doc-ipt-email-1" name="name" value="{$list.name}" placeholder="请输入名字">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">URL：</div>
+          <div class="you">
+            <input type="url" class="am-input-sm" id="doc-ipt-pwd-1" name="url" value="{$list.url}" placeholder="请输入URL">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">描述：</div>
+          <div class="you">
+            <textarea class="" rows="2" id="doc-ta-1" name="des">{$list.des}</textarea>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+        <div class="zuo">状态：</div>
+        <div class="you" style="margin-top: 5px;">
+          <label class="am-radio-inline">
+            <input type="radio" name="status"
+              <if condition="$list.status eq 1 ">checked
+              </if>
+            value="1">
+            显示 </label>
+          <label class="am-radio-inline">
+            <input type="radio" name="status"
+              <if condition="$list.status eq 2 ">checked
+              </if>  
+            value="2">
+            不显示 </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">修改</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</block>

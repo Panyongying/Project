@@ -1,0 +1,154 @@
+<extend name="Backstage/base" />
+<block name="title">
+  <title>评论列表</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 评论列表</ul>
+      
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">评论列表</a></dl>
+      
+      <!-- <dl>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 补充线订单</button>
+      </dl> -->
+      <!--这里打开的是新页面-->
+    </div>
+    <form class="am-form am-g">
+          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+            <thead>
+              <tr class="am-success">
+                <th class="table-check"></th>
+                <!-- <input type="checkbox" id="selectAll"/> -->
+                <th class="table-id">序号</th>
+                <th class="table-author am-hide-sm-only">用户id</th>
+                <th class="table-author am-hide-sm-only">商品id</th>
+                <th class="table-author am-hide-sm-only">订单id</th>
+                <th class="table-date am-hide-sm-only">内容</th>
+                <th class="table-date am-hide-sm-only">时间</th>
+                <th width="130px" class="table-set">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <foreach name="list" item="ov" >
+                <tr>
+                  <td><input type="checkbox" value="{$ov.id}" /></td>
+                  
+                  <td>{$ov.id}</td>
+                  <td>{$ov.uid}</td>
+                  <td class="am-hide-sm-only">{$ov.gid}</td>
+                  <td class="am-hide-sm-only">{$ov.oid}</td>
+                  <td class="am-hide-sm-only">{$ov.contents}</td>
+                  <td class="am-hide-sm-only">{$ov.addtime}</td>
+                  <td>
+                  	
+                  	
+                        	
+                  	<div class="am-btn-toolbar">
+                      <div class="am-btn-group am-btn-group-xs">
+                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" cid="{$ov.id}" title="删除评论"><span class="am-icon-trash-o" ></span></button>
+                      </div>
+                    </div>
+                  	
+                  	
+                  	
+                  	
+                  	
+                  	
+                  </td>
+                </tr>
+              </foreach>
+            </tbody>
+          </table>
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default" id="selectAllBtn"><span class="am-icon-plus"></span> 全选</button>
+              <button type="button" class="am-btn am-btn-default" id="revSelectBtn"><span class="am-icon-plus"></span> 反选</button>
+              <button type="button" class="am-btn am-btn-default" id="allNotBtn"><span class="am-icon-plus"></span> 全不选</button>
+              <button type="button" class="am-btn am-btn-default" id="deleteSelect"><span class="am-icon-trash-o"></span> 删除</button>
+            </div>
+          
+          {$pageBtn}
+          
+          
+      
+          <hr />
+          <p>注：.....</p>
+        </form>
+</div>
+
+<script>
+  $('.rm-btn').click(function () {
+    var that = $(this);
+
+    var id = $(this).attr("cid");
+
+    var bool = confirm('此操作无法恢复，确定删除？');
+
+    if (bool) {
+      $.get(
+        '__CONTROLLER__/deleteCommentary',
+        {id:id},
+        function (data) {
+          if (data == 1) {
+            that.parent().parent().parent().parent().remove();
+          } else {
+            alter('操作失败，请稍后再试。');
+          }
+        },
+        'json'
+      );
+    };
+
+    return false;
+  });
+
+  $('#selectAllBtn').click(function () {
+    $('input[type=checkbox]').prop('checked', true);
+  });
+
+  $('#revSelectBtn').click(function () {
+    $('input[type=checkbox]').each(function () {
+      $(this).prop('checked', !$(this).prop('checked'));
+    });
+  });
+
+  $('#allNotBtn').click(function () {
+    $('input[type=checkbox]').removeAttr('checked');
+  });
+
+  $('#deleteSelect').click(function () {
+    var ids = '';
+
+    if ($('input:checked').length == 0) {
+      alert('请选择要删除的评论。');
+
+      return false;
+    }
+
+    var bool = confirm('此操作无法恢复，确定删除？');
+
+    if (bool) {
+      $('input:checked').each(function () {
+        ids += $(this).val() + ',';
+      });
+      
+      $.post(
+        '__CONTROLLER__/multipleDelete',
+        {ids:ids},
+        function (data) {
+          if (data == 1) {
+              $('input:checked').parent().parent().remove();
+            } else {
+              alter('操作失败，请稍后再试。');
+            }
+          },
+          'json'
+      );
+    }
+  });
+
+</script>
+
+
+</block>

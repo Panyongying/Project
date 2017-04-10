@@ -8,11 +8,11 @@
     <div class="listbiaoti am-cf">
       <ul class="am-icon-flag on"> 订单列表</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">商品列表</a></dl>
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">订单列表</a></dl>
       
-      <dl>
+      <!-- <dl>
         <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus" > 补充线订单</button>
-      </dl>
+      </dl> -->
       <!--这里打开的是新页面-->
     </div>
     <form class="am-form am-g">
@@ -44,7 +44,7 @@
                         	
                   	<div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                        <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-success am-round de-btn"  oid="{$ov.id}" title="查看订单详情"><span class="am-icon-search"></span></button>
                         <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" oid="{$ov.id}" title="删除订单"><span class="am-icon-trash-o" ></span></button>
                       </div>
@@ -77,7 +77,13 @@
 </div>
 
 <script>
+  $('.de-btn').click(function () {
+    var oid = $(this).attr('oid');
 
+    location.href = '__MODULE__/OrderDetail/getOrderDetail/oid/' + oid;
+
+    return false;
+  });
 
   $('.rm-btn').click(function () {
     var that = $(this);
