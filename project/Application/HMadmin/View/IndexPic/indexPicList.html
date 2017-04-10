@@ -1,18 +1,14 @@
 <extend name="Backstage/base" />
 <block name="title">
-  <title>友情链接列表</title>
+  <title>大图列表</title>
 </block>
 <block name="content">
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 友情链接列表</ul>
+      <ul class="am-icon-flag on"> 大图列表</ul>
       
-      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">友情链接列表</a></dl>
-      
-      <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus add-btn" > 添加友链</button>
-      </dl>
+      <dl class="am-icon-home" style="float: right;">当前位置： 首页 > <a href="#">大图列表</a></dl>
       <!--这里打开的是新页面-->
     </div>
     <form class="am-form am-g">
@@ -21,10 +17,12 @@
               <tr class="am-success">
                 <th class="table-check"></th>
                 <th class="table-id">序号</th>
-                <th class="table-author am-hide-sm-only">名字</th>
-                <th class="table-author am-hide-sm-only">描述</th>
+                <th class="table-author am-hide-sm-only">小标题</th>
+                <th class="table-author am-hide-sm-only">大标题</th>
+                <th class="table-author am-hide-sm-only">缩略图</th>
                 <th class="table-author am-hide-sm-only">链接地址</th>
                 <th class="table-author am-hide-sm-only">状态</th>
+                <th class="table-date am-hide-sm-only">添加日期</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
@@ -34,19 +32,20 @@
                   <td><input type="checkbox" value="{$ov.id}" /></td>
                   
                   <td>{$ov.id}</td>
-                  <td class="am-hide-sm-only">{$ov.name}</td>
-                  <td class="am-hide-sm-only">{$ov.des}</td>
+                  <td>{$ov.smalltitle}</td>
+                  <td>{$ov.bigtitle}</td>
+                  <td><img src="__PUBLIC__{$ov.pic}" alt="" height="50"></td>
                   <td class="am-hide-sm-only">{$ov.url}</td>
                   <td class="am-hide-sm-only">{$ov.status}</td>
+                  <td class="am-hide-sm-only">{$ov.addtime}</td>
                   <td>
                   	
                   	
                         	
                   	<div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
-                        <!-- <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button> -->
-                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round mo-btn" data-am-modal="{target: '#my-popups'}" lid="{$ov.id}" title="修改友链"><span class="am-icon-pencil-square-o"></span></button>
-                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" lid="{$ov.id}" title="删除友链"><span class="am-icon-trash-o" ></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round mo-btn" data-am-modal="{target: '#my-popups'}" pid={$ov.id} title="修改大图"><span class="am-icon-pencil-square-o"></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" pid="{$ov.id}" title="删除大图"><span class="am-icon-trash-o" ></span></button>
                       </div>
                     </div>
                   	
@@ -77,16 +76,10 @@
 </div>
 
 <script>
-  $('.add-btn').click(function () {
-    location.href = "__CONTROLLER__/addLinks";
-
-    return false;
-  });
-
   $('.mo-btn').click(function () {
-    var lid = $(this).attr('lid');
+    var pid = $(this).attr('pid');
 
-    location.href = "__CONTROLLER__/editLinks/id/" + lid;
+    location.href = "__CONTROLLER__/editIndexPic/id/" + pid;
 
     return false;
   });
@@ -94,15 +87,13 @@
   $('.rm-btn').click(function () {
     var that = $(this);
 
-    var id = $(this).attr("lid");
+    var id = $(this).attr("pid");
 
     var bool = confirm('此操作无法恢复，确定删除？');
 
     if (bool) {
-      // alert(id);
       $.get(
-        // '{:U(HMadmin/Order/deleteOrder)}',
-        '__CONTROLLER__/deleteLinks',
+        '__CONTROLLER__/deleteIndexPic',
         {id:id},
         function (data) {
           if (data == 1) {
@@ -136,7 +127,7 @@
     var ids = '';
 
     if ($('input:checked').length == 0) {
-      alert('请选择要删除的友链。');
+      alert('请选择要删除的大图。');
 
       return false;
     }
