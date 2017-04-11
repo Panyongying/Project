@@ -59,7 +59,11 @@
           <div class="you">
             <select name="tid">
             <foreach name="type" item="vo">
-              <option value="{$vo.id}">{$vo.name}</option>
+              <option value="{$vo.id}"
+              <if condition="$vo.pid eq 0">
+                disabled  />{$vo.name}</option>
+                <else />  />----{$vo.name}</option>
+              </if>
             </foreach>
             </select>
           </div>
