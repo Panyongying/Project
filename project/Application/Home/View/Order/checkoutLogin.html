@@ -16,7 +16,7 @@
 
 	<li class="">
 
-			<a href="https://www2.hm.com/zh_cn/login/checkout#" onclick="return false;"> 登录/注册</a>
+			<a href="" onclick="return false;"> 登录/注册</a>
 				</li>
 	</ul>
 </nav>
@@ -40,17 +40,17 @@
 					<!-- Login form -->
 					<h3>
 						登录</h3>
-					<form id="loginForm" action="https://www2.hm.com/zh_cn/checkout/j_spring_security_check" method="post" onsubmit="utagTrackFormLink(this);" class="ng-pristine ng-valid"><input type="hidden" id="targetURL" name="targetURL" value="/login/checkout">
+					<form id="mainLoginForm" action="" method="post"  class="ng-pristine ng-valid"><input type="hidden" id="targetURL" name="targetURL" value="/login/checkout">
                           
 						<div class="inputwrapper required">
-							<label for="j_username" class="label">电子邮箱</label><input id="signin-email" name="j_username" data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" type="email" data-validation-inline="false" class="text-input" data-validation-email-text="请输入有效电子邮箱" value="" maxlength="40"></div>
+							<label class="label">电子邮箱</label><input id="signin-email"data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" type="email" data-validation-inline="false" class="text-input" data-validation-email-text="请输入有效电子邮箱" name="username" value="" maxlength="40"></div>
 						<div class="inputwrapper required">
-							<label for="j_password" class="label">密码</label><input id="txt-signin-password" name="j_password" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-minlength="6" data-validation-maxlength="25" data-validation-minlength-text="密码至少需要6位字符" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" class="password-input" type="password" value=""></div>
+							<label class="label">密码</label><input id="txt-signin-password" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-minlength="6" data-validation-maxlength="25" data-validation-minlength-text="密码至少需要6位字符" name="password" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" class="password-input" type="password" value=""></div>
 						<p>
 						<a href="https://www2.hm.com/zh_cn/password/request" class="forgotten-password underline">忘了密码？</a>
 						</p>
 						<div class="input-group">
-							<button type="submit" data-validation-text="继续操作前，请先核对信息" class="button">登录</button>
+							<button type="submit" id="loginBtn" data-validation-text="继续操作前，请先核对信息" class="button">登录</button>
 						</div>
 					<div>
 <input type="hidden" name="CSRFToken" value="bdec08c1-ed47-4f26-adca-1f32657a5eb0">
@@ -81,26 +81,24 @@
 			<h3>
 				输入您的个人信息</h3>
 			
-			<form ng-submit="registerUser()" method="post" class="responsive form-section ng-pristine ng-valid ng-valid-email ng-valid-maxlength" id="registration-form">
+			<form action="{:U('User/register')}" method="post" class="responsive form-section ng-pristine ng-valid ng-valid-email ng-valid-maxlength" id="registration-form">
 
 				<div class="input-group-separate">
 					<label for="txt-joinus-email">
 						电子邮箱</label>
-					<input ng-model="registerForm.email" id="txt-joinus-email" type="email" data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" data-validation-email-text="请输入有效电子邮箱" maxlength="80" ng-class="{&#39;invalid&#39; : errors.registerForm.email!=null}" class="ng-pristine ng-untouched ng-valid ng-valid-email ng-valid-maxlength">
-			 <!-- ngIf: errors.registerForm.email!=null --><span class="input-info">我们会为您发送订单确认邮件。</span>
+					<input ng-model="registerForm.email" id="txt-joinus-email" type="email" data-validation-required="true" data-validation-required-text="请输入您的电子邮箱" data-validation-email="true" data-validation-email-text="请输入有效电子邮箱" maxlength="80" ng-class="{&#39;invalid&#39; : errors.registerForm.email!=null}" name="eusermail" class="ng-pristine ng-untouched ng-valid ng-valid-email ng-valid-maxlength">
+			 
 				</div>
 				<input type="hidden" id="driver" value="1">
 				<div class="input-group">
 					<label for="txt-joinus-password">
 						密码</label>
-					<input type="password" ng-model="registerForm.pwd" id="txt-joinus-password" data-validation-maxlength="25" data-validation-minlength="6" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-nospaces="true" data-validation-nospaces-text="密码中不得有任何空白" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" data-validation-minlength-text="密码至少需要6位字符" class="ng-pristine ng-untouched ng-valid">
-					<span class="input-info">密码至少需要6位字符</span>
+					<input type="password" ng-model="registerForm.pwd" id="txt-joinus-password" data-validation-maxlength="25" data-validation-minlength="6" data-validation-required="true" data-validation-required-text="请输入密码" data-validation-nospaces="true" data-validation-nospaces-text="密码中不得有任何空白" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" data-validation-minlength-text="密码至少需要6位字符" name="userpass" class="ng-pristine ng-untouched ng-valid">
 				</div>
 				<div class="input-group">
 					<label for="txt-joinus-password-repeat">
 						再次输入密码</label>
 					<input type="password" ng-model="registerForm.checkPwd" id="txt-joinus-password-repeat" data-validation-minlength="6" data-validation-required="true" data-validation-maxlength="25" data-validation-maxlength-text="您的密码太长。密码最大长度是25个字符。" data-validation-required-text="请重新输入您的密码" data-validation-confirm-id="txt-joinus-password" data-validation-confirm-text="您的密码和您再次输入的密码不相符。" data-validation-minlength-text="密码至少需要6位字符" class="ng-pristine ng-untouched ng-valid">
-					<span class="input-info">密码至少需要6位字符</span>
 				</div>
 				<div class="input-group">
 					<div class="country-picker">
@@ -109,16 +107,7 @@
 						<span class="country-name">中国</span>
 						<a class="country-name overlay-trigger " data-layout="confirm" data-modal-scrollup="false" href="https://www2.hm.com/zh_cn/login/change-country">国家不正确吗？</a>
 					</div>
-				</div>
-				<div class="inputwrapper">
-					  <ul class="input-list">
-					      <li class="item subscriptions">
-					        <input type="checkbox" id="chb-signin-newsletter" name="hmNewsSubscription" ng-model="registerForm.hmNewsSubscription" class="checkbox-input ng-pristine ng-untouched ng-valid">
-					        <label class="checkbox-label" for="signin-newsletter_0">
-					        	是的，我希望收到“时尚快讯”且我的年龄在16岁或以上。</label>
-					      </li>
-					  </ul>
-					</div>	
+				</div>	
 				<div class="input-group terms">
 				
 					<input type="checkbox" id="check-terms" class="checkbox-input ng-pristine ng-untouched ng-valid" name="termsAndConditions" data-validation-required="true" ng-model="registerForm.termsAndConditions">
@@ -251,59 +240,18 @@ text-decoration: none;
 		您的订单
 	</h2>
 	<ul class="checkout-order-items">
-		
-			
-			
+	<foreach name="$data.cartList" item="ov">
 					<li class="checkout-order-item">
 			
-				<img src="./Proceed to Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2017%2FE00+0497510+001+68+1697.jpg],type[STILLLIFE_FRONT]&amp;hmver=5&amp;call=url[file-%2Fproduct%2Forder]" alt="Selvedge jeans" title="Selvedge jeans" class="checkout-order-item-image">
+				<img src="./Proceed to Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FE00+0438740+001+74+1904.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Forder]" alt="{$ov.name}" title="{$ov.name}" class="checkout-order-item-image">
 			
 
 				<div class="checkout-order-item-product-info">
-					<div class="product-item-headline">Selvedge jeans</div>
-
-					<div id="redWhitePrices_0497510001004" class="product-item-price ">
-<span id="main_price" class="main_price_0497510001004">
-					¥599.00</span>
-			<small id="white_price_0497510001004"></small>
-		</div>
-
-					<dl class="checkout-order-item-product-details">
-						<dt>
-							数量：
-						</dt>
-						<dd>1</dd>
-						<dt>
-							颜色：
-						</dt>
-						<dd>蓝色水洗</dd>
-						<dt>
-							尺码：
-						</dt>
-						<dd>28 (165|72A)</dd>
-					</dl>
-					<div class="shopping-bag-item-total-price product-item-price">
-						总价：
-						&nbsp;
-						¥599.00
-					</div>
-				</div>
-					
-			</li>
-		
-			
-			
-					<li class="checkout-order-item">
-			
-				<img src="./Proceed to Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FE00+0438740+001+74+1904.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Forder]" alt="蕾丝背上托文胸" title="蕾丝背上托文胸" class="checkout-order-item-image">
-			
-
-				<div class="checkout-order-item-product-info">
-					<div class="product-item-headline">蕾丝背上托文胸</div>
+					<div class="product-item-headline">{$ov.name}</div>
 
 					<div id="redWhitePrices_0438740001018" class="product-item-price ">
 <span id="main_price" class="main_price_0438740001018">
-					¥179.00</span>
+					¥{$ov.price}</span>
 			<small id="white_price_0438740001018"></small>
 		</div>
 
@@ -311,24 +259,25 @@ text-decoration: none;
 						<dt>
 							数量：
 						</dt>
-						<dd>1</dd>
+						<dd>{$ov.num}</dd>
 						<dt>
 							颜色：
 						</dt>
-						<dd>黑色</dd>
+						<dd>{$ov.color}</dd>
 						<dt>
 							尺码：
 						</dt>
-						<dd>75B</dd>
+						<dd>{$ov.size}</dd>
 					</dl>
 					<div class="shopping-bag-item-total-price product-item-price">
 						总价：
 						&nbsp;
-						¥179.00
+						¥{$ov.price * $ov.num}
 					</div>
 				</div>
 					
 			</li>
+			</foreach>
 		
 	</ul>
 	<div class="box-content">
@@ -338,26 +287,14 @@ text-decoration: none;
 				<tr>
 					<th scope="row">订单价值：
 					</th>
-					<td><span id="newPriceSubtotal"> ¥778.00
-					</span></td>
-				</tr>
-				
-					
-				
-				<tr style="display: none;">
-					<th scope="row">折扣：</th>
-					<td><span id="totalDiscountValue">- ¥0.00
+					<td><span id="newPriceSubtotal"> ¥
+						<if condition="$data = 'empty'">0.00
+                        <else />{$data.totalPrice}
+                        </if>
 					</span></td>
 				</tr>
                  
-				
-
-
-				
-					<tr>
-						<th scope="row">送货：</th>
-						<td>¥10.00</td>
-					</tr>
+			
 				
 
 
@@ -393,7 +330,9 @@ text-decoration: none;
 								总价:
 							</th>
 							<td id="total_price_of_basket">
-								¥788.00
+								¥<if condition="$data = 'empty'">0.00
+                        <else />{$data.totalPrice}
+                        </if>
 						    	
 							</td>
 						</tr>
@@ -427,9 +366,7 @@ text-decoration: none;
 
 </div>
 
-<!-- /Only Content -->
 
-[an error occurred while processing this directive]
 
 </div>
 	</div>
@@ -464,6 +401,225 @@ text-decoration: none;
 			if(typeof(utag) !== 'undefined'){
 				utagTrackOpeningView("Registration : Checkout", "CHECKOUT");
 			}		
+		});
+
+		$('#signin-email').blur(function () {
+			if ($(this).val() == '') {
+				$(this).siblings().not('label').remove();
+
+				$(this).removeClass('icon-invalid');
+			}
+		});
+
+		$('#txt-signin-password').blur(function () {
+			if ($(this).val() == '') {
+				$(this).siblings().not('label').remove();
+
+				$(this).removeClass('icon-invalid icon-valid');
+			} else {
+				var pass = $(this).val();
+
+				$(this).siblings().not('label').remove();
+
+				if (pass.length < 6) {
+					$(this).before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $(this).attr('data-validation-minlength-text') + '</span>').removeClass('icon-valid').addClass('icon-invalid');
+				} else if (pass.length > 25) {
+					$(this).before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $(this).attr('data-validation-maxlength-text') + '</span>').removeClass('icon-valid').addClass('icon-invalid');
+				} else {
+					$(this).removeClass('icon-invalid').addClass('icon-valid');
+				}
+			}
+		});
+
+		$('#mainLoginForm').submit(function () {
+			var email = $('#signin-email').val();
+			var pass = $('#txt-signin-password').val();
+			var flag = true;
+
+			if (email == '') {
+				$('#signin-email').siblings().not('label').remove();
+
+				$('#signin-email').before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#signin-email').attr('data-validation-required-text') + '</span>').addClass('icon-invalid');
+
+				flag = false;
+			}
+
+			if (pass == '') {
+				$('#txt-signin-password').siblings().not('label').remove();
+
+				$('#txt-signin-password').before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-signin-password').attr('data-validation-required-text') + '</span>').addClass('icon-invalid');
+
+				flag = false;
+			} else {
+				$('#txt-signin-password').siblings().not('label').remove();
+
+				if (pass.length < 6) {
+					$('#txt-signin-password').before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-signin-password').attr('data-validation-minlength-text') + '</span>').addClass('icon-invalid');
+
+					flag = false;
+				}
+
+				if (pass.length > 25) {
+					$('#txt-signin-password').before('<div class="invalid-border" style="top: 40px; width: 256px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-signin-password').attr('data-validation-maxlength-text') + '</span>').addClass('icon-invalid');
+
+					flag = false;
+				}
+			}
+
+			if (flag === false) {
+				$('#loginBtn').siblings().remove();
+
+				$('#loginBtn').before('<span class="input-info invalid button-validation-message">继续操作前，请先核对信息</span>');
+			}
+
+			return flag;
+		});
+
+
+		// 加入我们
+		$('#txt-joinus-email').blur(function () {
+			if ($(this).val() == '') {
+				$(this).siblings().not('label').remove();
+				
+				$(this).removeClass('icon-invalid icon-valid');
+			} else {
+				var email = $(this).val();
+
+				// var res = RegCheck(email,/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/);
+
+				var reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
+
+				var res = reg.test(email);
+
+
+
+				if (!res) {
+					$(this).removeClass('icon-valid').siblings().not('label').remove();
+
+					$(this).before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $(this).attr('data-validation-email-text') + '</span>').addClass('icon-invalid');
+				} else {
+					$(this).removeClass('icon-invalid').addClass('icon-valid').siblings().not('label').remove();
+				}
+			}
+		});
+
+		$('#txt-joinus-password').blur(function () {
+			if ($(this).val() == '') {
+				$(this).siblings().not('label').remove();
+				
+				$(this).removeClass('icon-invalid icon-valid');
+			} else {
+				var pass = $(this).val();
+
+				var reg = /^\w{6,12}$/;
+
+				var res = reg.test(pass);
+
+				if (pass.length < 6) {
+					$(this).removeClass('icon-valid').siblings().not('label').remove();
+
+					$(this).before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $(this).attr('data-validation-minlength-text') + '</span>').addClass('icon-invalid');
+				} else if (pass.length > 25) {
+					$(this).removeClass('icon-valid').siblings().not('label').remove();
+
+					$(this).before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $(this).attr('data-validation-maxlength-text') + '</span>').addClass('icon-invalid');
+				} else if (!res) {
+					$(this).removeClass('icon-valid').siblings().not('label').remove();
+
+					$(this).before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">密码由数字字母下划线组成</span>').addClass('icon-invalid');
+				} else {
+					$(this).removeClass('icon-invalid').addClass('icon-valid').siblings().not('label').remove();
+				}
+			}
+		});
+
+		$('#txt-joinus-password-repeat').blur(function () {
+			if ($(this).val() == '') {
+				$(this).siblings().not('label').remove();
+				
+				$(this).removeClass('icon-invalid icon-valid');
+			} else {
+				var pass2 = $(this).val();
+
+				if (pass2 != $('#txt-joinus-password').val()) {
+					$(this).removeClass('icon-valid').siblings().not('label').remove();
+
+					$(this).before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">两次密码不同</span>').addClass('icon-invalid');
+				} else {
+					$(this).removeClass('icon-invalid').addClass('icon-valid').siblings().not('label').remove();
+				}
+			}
+		});
+
+		$('#registration-form').submit(function () {
+			var flag = true;
+			var email = $('#txt-joinus-email').val();
+			var pass = $('#txt-joinus-password').val();
+			var pass2 = $('#txt-joinus-password-repeat').val();
+
+			if (email == '') {
+				$('#txt-joinus-email').siblings().not('label').remove();
+				
+				$('#txt-joinus-email').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-joinus-email').attr('data-validation-required-text') + '</span>').addClass('icon-invalid');
+
+				flag = false;
+			}
+
+			if (pass == '') {
+				$('#txt-joinus-password').siblings().not('label').remove();
+				
+				$('#txt-joinus-password').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-joinus-password').attr('data-validation-required-text') + '</span>').addClass('icon-invalid');
+
+				flag = false;
+			} else {
+				var reg = /^\w{6,12}$/;
+
+				var res = reg.test(pass);
+
+				if (pass.length < 6) {
+					$('#txt-joinus-password').siblings().not('label').remove();
+					
+					$('#txt-joinus-password').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-joinus-password').attr('data-validation-minlength-text') + '</span>').addClass('icon-invalid');
+
+					flag = false;
+				} else if (pass.length > 25) {
+					$('#txt-joinus-password').siblings().not('label').remove();
+					
+					$('#txt-joinus-password').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">' + $('#txt-joinus-password').attr('data-validation-maxlength-text') + '</span>').addClass('icon-invalid');
+
+					flag = false;
+				} else if (!res) {
+					$('#txt-joinus-password').siblings().not('label').remove();
+					
+					$('#txt-joinus-password').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">密码由数字字母下划线组成</span>').addClass('icon-invalid');
+
+					flag = false; 
+				}
+			}
+
+			if (pass2 != pass || pass2 == '') {
+				$('#txt-joinus-password-repeat').siblings().not('label').remove();
+					
+				$('#txt-joinus-password-repeat').before('<div class="invalid-border" style="top: 34px; width: 220px;"></div>').after('<span class="input-info invalid field-validation-message">两次密码不同</span>').addClass('icon-invalid');
+
+					flag = false;
+			}
+
+			if ($('#check-terms').attr('checked') != true) {
+				$('#check-terms').next().addClass('invalid');
+			}
+
+			if (flag === false) {
+				$('#checkoutRegisterNewUser').before('<span class="input-info invalid button-validation-message">该表格不能提交，请检查您的信息。</span>');
+			}
+
+			return flag;
+		});
+
+		$('#check-terms').click(function () {
+			if ($(this).prop('checked') == true) {
+				$(this).next().removeClass('invalid');
+			}
 		});
 	</script>
 </div>
