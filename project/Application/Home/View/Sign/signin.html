@@ -1,0 +1,103 @@
+<extend name="Base:base" />
+
+    <block name="title"><title>Login | H&amp;M China</title></block>
+
+    <block name="main"> 
+
+<main role="main" class="">
+	<div class="wrapper">    
+	   <nav class="breadcrumbs">
+			<ul>
+            	<li>
+            		<a href="/zh_cn/">HM.COM</a>
+            	</li>
+
+            	<li class="">
+            			<a href="#" onclick="return false;"> 登录/注册</a>
+            	</li>
+	       </ul>
+        </nav>
+    	<div class="row my-hm">
+    	  <div class="layout layout-eight">
+    		<div class="grid col-7">
+    			<h1>登录</h1>
+    				
+    			<div class="row">
+    			<div class="grid col-4">
+    	           <div class="login-form new-user">
+        		      <h3>老客户</h3>
+        			
+        		          <p>登录并继续</p>
+    			
+                		<form id="signinForm" class="responsive half-size" action="__URL__/login" method="post">
+                			<div class="inputwrapper required" style="width:350px">
+                <label for="txt-signin-email" class="label">电子邮箱</label><input id="txt-signin-email" name="username"  type="email"></div>
+                			<div class="inputwrapper required">
+                				<label for="txt-signin-password" class="label">密码</label><input id="txt-signin-password" name="password" type="password" value=""/>
+                            </div>
+                			<div class="input-group">
+                				<input type="submit" value="登录">
+                			</div>
+                			<a href="__URL__/forgetPassword"class="forgotten-password underline">忘了密码？</a>
+                				
+                    
+                        </form>
+                    </div>
+                </div>      
+                    <div class="grid col-3">
+        					<h3>
+        						新客户</h3>
+        					<p>
+        						创建新账户，让购物更简便。</p>
+        					<a href="__URL__/signUp"><button class="button button-secondary">加入我们</button></a>
+                             
+                                
+        			</div>
+    			</div>
+    		</div>
+    	  </div>	
+    	</div>
+
+    	<div aria-hidden="true" id="login-failed" class="hidden modal-content">
+        	<div class="modal-text">		
+        		  <h1>登录失败</h1>
+        		    <p>请检查电子邮箱和密码是否正确</p>
+            		<div class="sticky button-group">
+            			<input class="modalclose button" type="button" value='确定'>
+            		</div>
+        	</div>
+        </div>
+
+    </div>
+    <script> 
+         $('#signinForm').submit(function () {
+
+                var signInuser = $('#txt-signin-email').val();
+
+                var signInpass = $('#txt-signin-password').val();
+                //判断账号是否为空
+                if (signInuser == ''){
+
+                    $('#txt-signin-email').next('span').remove();
+
+                    $('#txt-signin-email').after('<span style="color:red";>*请输入邮箱账号!</span>');
+
+                    return false;
+                }
+                //判断密码是否为空
+                if (signInpass == ''){
+
+                    $('#txt-signin-password').next('span').remove();
+
+                    $('#txt-signin-password').after('<span style="color:red";>*请输入密码!</span>');
+
+                    return false;
+
+                }
+
+         });
+
+  
+    </script>   
+</main>
+</block>

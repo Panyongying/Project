@@ -1,0 +1,154 @@
+<extend name="Base:base" />
+
+    <block name="title"><title>Register | H&amp;M China</title></block>
+
+<block name="main"> 
+
+		
+
+ <main role="main" class="club-sign-up-customer hm-club responsive">
+	<div class="">    
+		<nav class="breadcrumbs">
+			<ul>
+            	<li>
+            		<a href="/zh_cn/">HM.COM</a>
+            	</li>
+
+            	<li class="">
+
+            			<a href="#" onclick="return false;"> 登录/注册</a>
+            	</li>
+	        </ul>
+        </nav>
+	    <section class="layout layout-six">
+	       <section class="responsive create-account">
+		        <form id="registration-form" class="responsive form-section" action="__URL__/register" method="post">
+                    <fieldset class="form-part">
+                    	<legend class="heading">加入我们</legend>
+                    	<p class="info-paragraph">请在此处输入以下详细信息</p>
+
+                    	<div class="inputwrapper">
+                    		<label for="remail">电子邮箱</label>
+                            <input type="email" id="remail"name="useremail" class="email-input" />
+                        </div>
+
+                    	<div class="inputwrapper">
+                    		<label for="regi-pwd" class="form-label">密码</label>
+                            <input id="regi-pwd" name="userpass" class="password-input" type="password" value=""/>
+                        </div>
+
+                    	<div class="inputwrapper">
+                    		<label for="recheckPwd" class="form-label">再次输入密码</label>
+                            <input id="recheckPwd" name="checkPwd" class="password-input" type="password" value=""/>
+                        </div>
+                    	<div class="inputwrapper">
+                    			<label class="form-label">国家</label>
+                    			<span class="country-name no-edit">中国</span>
+                    			<a class="country-name overlay-trigger "  href="/zh_cn/register/change-country">国家不正确吗？</a>
+                    			<input type="hidden" name="country" value="中国" />
+                    	</div>
+                    	</fieldset>
+                    <fieldset class="form-part">
+                        <ul class="input-list">
+                        	<li class="inputwrapper">
+                        		<input id="legal-requirements" name="termsAndConditions" class="checkbox-input"type="checkbox" value="on"/>
+                                <span id="privacy-policy">
+                        		  <a href="/zh_cn/customer-service/privacy-link.html" class="underline overlay-trigger">是的，我同意隐私政策。</a>
+                        		</span>
+                        				
+                        		</label>
+                            </li>
+                    	</ul>
+                    	<input type="submit" class="button" id="register-submit" value="加入我们">
+                    	
+                    </fieldset>
+                </form>
+            </section>
+        </section>
+    </div>
+
+     <script>
+
+        $('#registration-form').submit(function () {
+
+               
+                var recheckPwd = $('#recheckPwd').val();
+                var revalue = $('#remail').val();
+    
+                var rpvalue = $('#regi-pwd').val();
+
+                //判断邮箱格式
+                var res = RegCheck(revalue,/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/);
+                
+                if (res === null) {
+
+                   $('#remail').next('span').remove();
+
+                   $('#remail').after('<span style="color:red";>*邮箱格式不正确!</span>');
+
+                   return false;
+
+                }
+
+
+                //判断密码的长度
+                if (rpvalue.length < 6 || rpvalue.length > 12) {
+
+                    $('#regi-pwd').next('span').remove();
+
+                    $('#regi-pwd').after('<span style="color:red";>*请输入6-12位密码!</span>');
+
+                    return false;
+
+                }
+                 console.log($('#legal-requirements:checked').val());
+
+                // return false
+                // 判断用户有没阅读隐私政策
+                if ($('#legal-requirements:checked').val() == undefined){
+
+                    alert('请阅读隐私政策');
+
+                    return false;
+                }
+
+
+                //验证密码
+                var res = RegCheck(rpvalue, /^\w{6,12}$/);
+
+                if (res === null) {
+
+                   $('#regi-pwd').next('span').remove();
+
+                   $('#regi-pwd').after('<span style="color:red";>*密码由数字字母下划线组成!</span>');
+
+                   return false;
+
+                }
+
+
+                if (recheckPwd != rpvalue){
+
+                    $('#regi-pwd').next('span').remove();
+
+                   $('#regi-pwd').after('<span style="color:red";>*密码与确认密码不一样!</span>');
+
+                   return false;
+                }
+
+
+
+                //进行正则判断
+                function RegCheck(str, pattern){
+
+
+                    var res = str.match(pattern);
+
+                    return res;
+                }
+
+        });
+    </script>
+</main>
+   
+</block>	
