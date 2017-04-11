@@ -1,0 +1,271 @@
+
+<extend name="Base:base" />
+
+    <block name="title"><title>H&M.Personal</title></block>
+
+    <block name="main"> 
+
+<main role="main" class="responsive my-hm">
+	<div class="wrapper">    
+		<nav class="breadcrumbs">
+			<ul>
+				<li>
+				
+					<a href="__APP__/Home/Index/index">HM.COM</a>
+				</li>
+
+				<li class="">
+
+				<a href="javascript:;"> 您的账户</a>
+							</li>
+				<li class="active">
+
+					<a href="#" onclick="return false;"> 个人信息</a>
+				</li>
+			</ul>
+		</nav>
+				
+		<nav class="section navigation menu " role="navigation">
+			<ul role="menu">
+				<li class="item" role="presentation" tabindex="0">
+						<a href="__URL__/person/id/{$_SESSION['userInfo']['id']}" role="menuitem">
+							概览</a>
+					</li>
+				<li class="current item" role="presentation" tabindex="-1">
+						<a href="" role="menuitem">
+							个人信息</a>
+					</li>
+				<li class="item" role="presentation" tabindex="-1">
+						<a href="/zh_cn/my-account/orders" role="menuitem">
+							订单</a>
+					</li>
+				<li class="item" role="presentation" tabindex="-1">
+						<a href="/zh_cn/my-account/address-book" role="menuitem">
+							地址簿</a>
+					</li>
+				<li class="item" role="presentation" tabindex="-1">
+						<a href="/zh_cn/my-account/payment-details" role="menuitem">
+							银行卡信息</a>
+					</li>
+			</ul>
+		</nav>
+	<div class="layout layout-eight"id="profileDIV">
+
+	    
+	    <form class="form-section agile-form"novalidate id="profile">
+	        <fieldset class="form-part">
+	            <legend class="heading">个人信息</legend>
+	                
+                <div class="inputwrapper">
+                    <label class="label" for="myhm-email">电子邮箱</label>
+                    <input class="text-input field" 
+                    	type="email" 
+                    	name="email"          
+                       	value=""  
+                        autocomplete="email" 
+
+                        />
+                        <span class="static"> {$list['email']} </span>
+                       
+                     
+                </div>
+				
+					<div class="inputwrapper">
+						<label class="label" for="checkout.title"> 性别 </label>
+						<div class="select-primary input-info">
+						<select 		
+							id="profile-title" 
+							name="title" 
+							class="select field" 
+						>
+							<option value='2'> 请选择 </option>
+							<option value="0">小姐</option>
+							<option value="1">先生</option>
+							<option value="2">保密</option>
+
+
+						</select>
+						</div>
+						<div class="input-info"> </div>
+						<span class="static">{$list[sex]}</span>		
+					
+					</div>
+
+					<div class="inputwrapper">
+						<label class="label" for="checkout.lastName"> 称呼 </label>
+						
+				
+							<input 
+							required
+							type="text"
+							id="profile-lastName" 
+							name="lastName" 
+							maxlength="150"  
+							class="text-input field lastName " 
+							autocomplete="family-name"
+								
+							/>
+							<span class="static">{$list[nickname]} </span>	
+						<div class="input-info">  </div>				
+					</div>
+
+
+					<div class="inputwrapper select-date">
+						<label class="label" for="myhm-dob"> 出生日期 </label>
+						<div class="merged-inputs text-input" >
+						
+				
+							<input type="tel" ng-model="profile.year"
+								autocomplete="bday-year"
+								pattern="[0-9]*" 
+								inputmode="numeric" 
+								id="myhm-dob-year" 
+								
+								class="input-year text-input dateOfBirth"
+								placeholder="----" size="4" maxlenght="4" />
+
+									<span class="divider filled">年</span>
+
+								
+						
+							
+							<input type="tel" ng-model="profile.month"
+								autocomplete="bday-month"
+								pattern="[0-9]*" 
+								inputmode="numeric" 
+								id="myhm-dob-month" 
+								
+								class="input-month text-input dateOfBirth"
+								placeholder="--" size="2" maxlenght="2" />
+								
+									<span class="divider filled">月</span>
+								
+						
+							
+							<input type="tel" ng-model="profile.day"
+								autocomplete="bday-day"
+								pattern="[0-9]*" 
+								inputmode="numeric" 
+								id="myhm-dob-day" 
+								
+								class="input-day text-input dateOfBirth"
+								placeholder="--" size="2" maxlenght="2" />
+								
+									<span class="divider filled">日</span>
+								
+						
+						</div>
+				
+						<div class="input-info " >YYYY年MM月DD日  </div>
+						<span class="static" > {$list[birthyear]}年{$list[birthmonth]}月{$list[birthday]}日 </span>
+					</div>
+					<div class="inputwrapper" >
+						<label class="label" for="myhm-user-phone">电话号码</label>
+						<div class="phone-group">
+							<div class="phone-wrap">
+								<label for="user-country-code-number" class="visuallyhidden"></label>
+								<input type="tel" init-from-form  
+										        id="code" name="code" placeholder='例如 +86'
+										        class="number-input field country-code-number prefix to-hankaku text-input" maxlength="150"		
+										      
+										    />
+								</div>
+								<div class="phone-wrap">
+								    <input type="tel" class="text-input to-hankaku number-input field cellPhone" id="myhm-user-phone" name="myhm-user-phone"
+								            maxlength="15"
+								            value="" 	      
+								            data-validation-regex="^(?:\s*)[\s\d\-]+(?:\s*)$"/>	
+
+								        <span class="static">{$list[phone]}</span>				              
+								</div>
+								 <div class=" input-info" style="display:none" > 例如 +86</div>
+						</div>
+						<span class="static">	</span>
+						<span class="input-info invalid server-field-validation-message field-validation-message"></span>
+					</div>
+					<div class="inputwrapper">
+				        <label class="label" for="myhm-country">国家</label>
+				        <span class="" id="myhm-country">中国</span>
+				    </div>
+	           </fieldset>
+	        
+	        <!-- STAFF CARD PART BEGIN-->
+	        <fieldset class="form-part">
+			<legend class="heading">员工卡信息</legend>
+			<p>如果您拥有 H&M 员工卡，请在此处输入该卡号。</p>
+			<div class="inputwrapper">
+			    <label class="label " for="staff-number">员工卡号</label>
+			      		<input
+							type="text"
+							class="number-input  field text-input"
+							value=""
+			                name="myhm-staff-number"
+			                id="myhm-staff-number"
+							maxlength="25"
+						/>
+					
+						<span class="static"></span>
+			</div>
+			</fieldset>
+
+            <fieldset class="form-part" ng-show="isEditprofile"> 
+                <legend class="heading">确认密码</legend>
+                <div class="inputwrapper required">
+                    <input
+                        type="password"
+                        class="password-input password "
+                        name="password"
+                        id="password"
+
+                    >
+                    <span class="input-info invalid field-validation-message"></span>
+                    <span class="input-info">只在电子邮箱地址被更改的情况下需要完成</span>
+                </div>
+            </fieldset>
+            <!-- PASSWORD PART END -->
+            
+            <!-- BUTTON PART BEGIN -->
+	        <div class="button-group">
+				<p class="privacy-agreement">
+					点击“保存信息”我接受<a href="/zh_cn/customer-service/privacy-link.html" class="link overlay-trigger">
+						隐私政策</a>
+					<span class="input-info invalid server-field-validation-message"></span>
+				</p>
+	            <button id ="editInfo"type="button" class="secondary button">编辑</button>
+	            <button id="cancelEdit"type="button" class="secondary button"> 取消</button>
+	            <button type="submit" class="button save-form " id="saveProfileDetails" > 保存信息</button>
+
+                <a href="" class="button change-password'">更改密码</a>
+				
+				<div id="globalMessages"></div> 
+	        	
+	        </div>
+	    </form>
+	    
+		</div>
+	</div>
+
+	<script>
+		$('.text-input').hide();
+		$('.static').show();
+		$('.input-info').hide();
+	
+		$('#editInfo').click(function () {
+
+			$('.text-input').show();
+			$('.static').hide();
+			$('.input-info').show();
+
+		});
+
+		$('#cancelEdit').click(function () {
+
+			$('.text-input').hide();
+			$('.static').show();
+			$('.input-info').hide();
+		});
+
+		
+	</script>
+</main>
+</block>

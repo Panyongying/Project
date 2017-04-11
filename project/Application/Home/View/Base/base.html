@@ -241,10 +241,10 @@
                             <div class="signin-signed-in">
                             </if>
 
-                                <span class="greeting-text"> 您好,{$_SESSION[userInfo][email]} <a class="goto-signed-in" href="https://www2.hm.com/zh_cn/my-account" rel="noreferrer"> </a> </span>
+                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="__APP__/Home/User/person/id/{$_SESSION[userInfo][id]}" rel="noreferrer">{$_SESSION[userInfo][email]} </a> </span>
 
 
-                                <a class="goto-my-hm" href="javascript:;" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="__APP__/Home/User/person/id/{$_SESSION[userInfo][id]}" rel="noreferrer">我的H&amp;M</a>
 
                                 <a class="goto-sign-in" href="__APP__/Home/User/logout">退出</a>
                         </div>
@@ -255,7 +255,7 @@
                                 <div class="signin-not-signed-in">
                               </if>
 
-                                <a class="goto-my-hm" href="javascript:;" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="__APP__/Home/User/person" rel="noreferrer">我的H&amp;M</a>
 
                                 <a href="javascript:;" id="homelogin" class="goto-sign-in rollover-toggle">登录/加入</a>
                                 <div class="signin-rollover popdown row" id="bigdiv">
@@ -266,7 +266,7 @@
 
                                                 <div class="input-group">
                                                     <label for="txt-signin-rollover-email">用户名:</label>
-                                                    <input name="username" type="email" placeholder="" id="txt-signin-rollover-email">
+                                                    <input name="username" type="email"  id="txt-signin-rollover-email">
                                                 </div>
                                                 <div class="input-group">
                                                     <label for="txt-signin-rollover-password">密码:</label>
@@ -384,6 +384,11 @@
                 <a class="button button-chat" target="_blank" href="__APP__/Home/CustomService/index">在线客服
                     <span>嗨我们在这里如果您需要任何帮助</span>
                 </a>
+                <if condition="$_SESSION['userInfo']['status'] eq 1">
+                <a class="button button-chat" style="margin-right:1150px" href="__APP__/Home/User/active/email/{$_SESSION['userInfo']['email']}">激活邮箱
+                    <span>点击此处激活</span>
+                </a>
+                </if>
 
                 <div class="four modules footer-menu footer-content">
 
@@ -474,7 +479,7 @@
                         <div class="newsletter parbase newslettersignupform">
                         <h4 class="footer-heading">订阅通讯</h4>
                         <p class="text">立即注册，获得85折优惠</p>
-                        <a href="http://www2.hm.com/zh_cn/customer-service/newsletter.html" class="button">注册</a></div>
+                        <a href="__APP__/Home/User/signUp" class="button">注册</a></div>
 
 
                     </section>
@@ -676,7 +681,7 @@
 
             }
             //注册表单验证
-            $('input[name=useremail]').blur(function (){
+            $('#txt-signin-rollover-join-email').blur(function (){
 
                 if($(this).val() == ''){
 
@@ -691,7 +696,7 @@
 
             });
 
-            $('input[name=userpass]').blur(function () {
+            $('#txt-signin-rollover-join-password').blur(function () {
 
               if($(this).val() == ''){
 
@@ -715,18 +720,23 @@
 
             $('#registerForm').submit( function () {
 
-                var evalue = $('input[name=useremail]').val();
+                var evalue = $('#txt-signin-rollover-join-email').val();
 
-                var pvalue = $('input[name=userpass]').val();
+                var pvalue = $('#txt-signin-rollover-join-password').val();
+
+                var chckPwd = $('#txt-signin-rollover-join-password-confirm').val();
 
                 //判断邮箱格式
                 var res = RegCheck(evalue,/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/);
 
+
+
+
                 if (res === null) {
 
-                   $('input[name=useremail]').next('span').remove();
+                   $('#txt-signin-rollover-join-email').next('span').remove();
 
-                   $('input[name=useremail]').after('<span style="color:red";>*邮箱格式不正确!</span>');
+                   $('#txt-signin-rollover-join-email').after('<span style="color:red";>*邮箱格式不正确!</span>');
 
                    return false;
 
@@ -736,9 +746,9 @@
                 //判断密码的长度
                 if (pvalue.length < 6 || pvalue.length > 12) {
 
-                    $('input[name=userpass]').next('span').remove();
+                    $('#txt-signin-rollover-join-password').next('span').remove();
 
-                    $('input[name=userpass]').after('<span style="color:red";>*请输入6-12位密码!</span>');
+                    $('#txt-signin-rollover-join-password').after('<span style="color:red";>*请输入6-12位密码!</span>');
 
                     return false;
 
@@ -758,13 +768,26 @@
 
                 if (res === null) {
 
-                   $('input[name=userpass]').next('span').remove();
+                   $('#txt-signin-rollover-join-password').next('span').remove();
 
-                   $('input[name=userpass]').after('<span style="color:red";>*密码由数字字母下划线组成!</span>');
+                   $('#txt-signin-rollover-join-password').after('<span style="color:red";>*密码由数字字母下划线组成!</span>');
 
                    return false;
 
                 }
+
+                //验证密码与确认密码是否一致
+                
+                if (pvalue != chckPwd) {
+
+                   $('#txt-signin-rollover-join-password').next('span').remove();
+
+                   $('#txt-signin-rollover-join-password').after('<span style="color:red";>*密码与确认密码不相同!</span>');
+
+                   return false;
+
+                }
+
 
 
                 //进行正则判断
@@ -780,7 +803,7 @@
 
             //登录表单验证
 
-            $('input[name=username]').blur(function () {
+            $('#txt-signin-rollover-email').blur(function () {
 
                 if($(this).val() == ''){
 
@@ -803,7 +826,7 @@
             });
 
 
-            $('input[name=password]').blur(function () {
+            $('#txt-signin-rollover-password').blur(function () {
 
               if($(this).val() == ''){
 
@@ -827,24 +850,24 @@
 
             $('#loginForm').submit( function () {
 
-                var uvalue = $('input[name=username]').val();
+                var uvalue = $('#txt-signin-rollover-email').val();
 
-                var passvalue = $('input[name=password]').val();
+                var passvalue = $('#txt-signin-rollover-password').val();
                 //判断账号是否为空
                 if (uvalue == ''){
 
-                    $('input[name=username]').next('span').remove();
+                    $('#txt-signin-rollover-email').next('span').remove();
 
-                    $('input[name=username]').after('<span style="color:red";>*请输入邮箱账号!</span>');
+                    $('#txt-signin-rollover-email').after('<span style="color:red";>*请输入邮箱账号!</span>');
 
                     return false;
                 }
                 //判断密码是否为空
                 if (passvalue == ''){
 
-                    $('input[name=password]').next('span').remove();
+                    $('#txt-signin-rollover-password').next('span').remove();
 
-                    $('input[name=password]').after('<span style="color:red";>*请输入密码!</span>');
+                    $('#txt-signin-rollover-password').after('<span style="color:red";>*请输入密码!</span>');
 
                     return false;
 

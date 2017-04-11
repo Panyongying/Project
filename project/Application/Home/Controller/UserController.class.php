@@ -45,8 +45,7 @@
 	            //当邮箱发送后超过30分钟,使验证失效
 	            if ($nowtime - $addtime > 3600){
 	            	//跳转至激活页面
-	            	echo '<script> alert("链接已失效,请重新激活")</script>';
-	            	exit;
+	            	$this->error('邮件已过期', U('Index/index'),3);
 	            }
 
 	            $email = I('get.mail');
@@ -57,7 +56,7 @@
 
 				if ($res) {
 
-					$this->success('<script> alert("激活成功")</script>', U('Index/index'),3);
+					$this->success('激活成功', U('Index/index'),3);
 				}
 	        }
 	          	        
@@ -73,19 +72,19 @@
 	    	$status = D('user')->field('status')->where('email='."'$email'")->find();
 
 	    	$status = $status['status'];
-
+	    	//查询用户状态
 	    	if ($status == 3){
 
 	    		$this->error('该用户被禁用,请联系管理员');
 	    	}
-
+	    	//修改或者添加用户的登录资料
 	    	$num = D('user')->saveUserStatus();
 
 	    	if($num == 3) {
 
 	    		$this->error('该账户输入密码次数太多,暂时锁定30Min');
 	    	}
-
+	    	//判断用户的账号密码
 		    $res = D('user')->signIn();
 				
 			if ($res) {
@@ -98,9 +97,7 @@
 
 				$this->error('登录失败');
 			}
-	    	
-
-	    	
+	    		    	
 	    }
 
 	    //用户注销
@@ -140,7 +137,7 @@
 	    	}
 	    	
 	    }
-
+	    //收集发送邮件
 	    public function collectEmail()
 	    {
 	    	if (IS_GET) {
@@ -172,5 +169,63 @@
 
 	    	}
 	    }
+
+	    //激活用户	    
+	    public function active()
+	    {
+	    	$status = D('user')->activation();
+
+	    	// dump($status);exit;
+	        if ($status){
+
+		        $this->success('邮件已发送至你的邮箱,请前去激活',U('Index/index'),2);
+
+		    }else {
+
+		       $this->error('邮件发送失败,请稍后激活');
+		    }
+
+	    }
+	  	//个人中心首页
+	  	public function person()
+	  	{
+	  		if( !isset($_SESSION['userInfo']) ){
+
+	  			$this->display('Sign/signin');
+
+	  			exit;
+	  		}
+
+	  		$res = D('user')->showPersonal();
+	  		
+			$this->assign('user', $res);
+
+			$this->display('Person/person');
+
+			return $res;
+	  	}
+
+	  	//个人中心的个人信息页
+	  	public function account()
+	  	{	
+	  		$res = D('user')->showPersonal();
+
+	  		$this->assign('list', $res);
+
+	  		$this->display('Person/account');
+	  	}
+	  	//页面注册
+	  	public function signUp()
+	  	{	
+	  		$this->display('Sign/signup');
+	  	}
+	  	//页面登录
 	  	
+	  	public function signIn()
+	  	{
+	  		$this->display('Sign/signin');
+
+	  	}
+
+
 	} 
