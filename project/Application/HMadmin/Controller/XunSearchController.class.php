@@ -9,128 +9,122 @@ class XunSearchController extends CommonController {
     //xunsearch首页显示
     public function index()
     {
-       // $this->display('Backstage/xunsearch');
-       $xs = new \XS('demo');
-
-       $search = $xs->search;
-
-       $res = $search->search('项目');
-
-       dump($res);
-
+       $this->display('Backstage/xunsearch');
        
     }
 
-    //type添加分类页面
-    public function showAddType()
+    //直接构建索引
+    public function createIndex()
     {
-        //显示添加分类页面
-    	if(IS_GET) {
+    	$xs = new \XS('jhjy');
+    	$index = $xs->index;
+    	$search = $xs->search;
+   		$doc = new \XSDocument;
 
-            $id = I('get.id');
-            $path = I('get.path');
+    	//查数据库获取数据
+        $res =  M('goods')->field('hm_goods.id,hm_goods.name,hm_goods.price,hm_goods.tid,hm_goods.status,hm_stock.aid')->join('hm_stock ON hm_goods.id = hm_stock.gid')->select();
+	    foreach ($res as $v) {
+	        $res2 = M('attr')->field('attrName')->where("id in ({$v['aid']})")->select();
+	      	// var_dump($res2);
+	      	foreach ($res2 as $vo) {
+	      		@$v['attrName'] .= $vo['attrname'].',';
+	      	}
+	      	$v['attrName'] = rtrim($v['attrName'],',');
+	      	$data[] = $v;
+	    }
 
-            $this->assign('id', $id);
-            $this->assign('path', $path);
+	    if (!$data) {
+	    	echo 'false';
+	    	exit;
+	    }
 
-            $this->display('Backstage/addType');
-    		
-    	//根据有没POST.id分辨子类
-    	} elseif(IS_POST && $_POST['id']) {
-            $name = I('post.name');
-            $id = I('post.id');
-            $path = I('post.path').$id.',';
-            
-            $data['name'] = $name;
-            $data['pid'] = $id;
-            $data['path'] = $path;
 
-            $res = D('Type')->addChildType($data);
+	    // //创建索引
+	    foreach ($data as $v) {
+	    	$docs = $doc->setFields(array(
+	   			'id'=>$v['id'],
+	   			'name'=>$v['name'],
+	   			'price'=>$v['price'],
+	   			'tid'=>$v['tid'],
+	   			'status'=>$v['status'],
+	   			'attrname'=>$v['attrName'],
+	   		));
+	   		$res = $index->add($doc);
+	    }
 
-            if ($res) {
-                $this->success('添加成功', U('index'));
-            } else {
-                $this->error('添加失败', U('index'));
-            }
-
-           //父类分类添加 
-        } elseif (IS_POST) {
-
-            $name = I('post.name');
-            $res = D('Type')->addParentType($name);
-
-            if ($res) {
-                $this->success('添加成功', U('index'));
-            } else {
-                $this->error('添加失败', U('index'));
-            }
-
-        }
+	    if (!$res) {
+	    	echo 'false';
+	    	exit;
+	    } else {
+	    	echo 'true';
+	    	exit;
+	    }
     }
 
-    //type单条删除
-    public function deleteTypeOne()
+    //清空索引
+    public function cleanIndex()
     {
-
-    	$id = I('get.id');
-
-        $bRes = D('Type')->beforeDelete($id);
-        
-        if ($bRes) {
-            $this->error('删除失败,请先删除子级分类', U('index'));
-            exit;
-        }
-
-
-
-    	$res = D('Type')->deleteType($id);
+    	$xs = new \XS('jhjy');
+    	$index = $xs->index;
+    	$res = $index->clean();
 
     	if ($res) {
-    		$this->success('删除成功', U('index'));
+    		echo 'true';
     	} else {
-    		$this->error('删除失败', U('index'));
+    		echo 'false';
     	}
     }
 
-    //type批量删除
-    public function deleteTypeAll()
+    //平滑重构索引
+    public function smoothReIndex()
     {
+    	$xs = new \XS('jhjy');
+    	$index = $xs->index;
+    	$search = $xs->search;
+   		$doc = new \XSDocument;
 
-    	$ids = I('post.');
+    	//查数据库获取数据
+        $res =  M('goods')->field('hm_goods.id,hm_goods.name,hm_goods.price,hm_goods.tid,hm_goods.status,hm_stock.aid')->join('hm_stock ON hm_goods.id = hm_stock.gid')->select();
+	    foreach ($res as $v) {
+	        $res2 = M('attr')->field('attrName')->where("id in ({$v['aid']})")->select();
+	      	// var_dump($res2);
+	      	foreach ($res2 as $vo) {
+	      		@$v['attrName'] .= $vo['attrname'].',';
+	      	}
+	      	$v['attrName'] = rtrim($v['attrName'],',');
+	      	$data[] = $v;
+	    }
 
-        if (empty($ids)) {
-            $this->error('请先勾选要删除的分类');
-            exit;
-        }
+	    if (!$data) {
+	    	echo 'false';
+	    	exit;
+	    }
 
-    	$ids = join($ids['ids'], ',');
+	    //宣布开始重建索引
+	    $index->beginRebuild();
 
-        $bRes = D('Type')->beforeDelete($ids);
-        
-        if ($bRes) {
-            $this->error('删除失败,请先删除子级分类', U('index'));
-            exit;
-        }
+	    // //创建索引
+	    foreach ($data as $v) {
+	    	$docs = $doc->setFields(array(
+	   			'id'=>$v['id'],
+	   			'name'=>$v['name'],
+	   			'price'=>$v['price'],
+	   			'tid'=>$v['tid'],
+	   			'status'=>$v['status'],
+	   			'attrname'=>$v['attrName'],
+	   		));
+	   		$res = $index->add($doc);
+	    }
 
-    	$res = D('Type')->deleteType($ids);
+	    $res = $index->endRebuild();
 
-    	if ($res) {
-    		$this->success('删除成功', U('index'));
-    	} else {
-    		$this->error('删除失败', U('index'));
-    	}
+	    if ($res) {
+	    	echo 'true';
+	    } else {
+	    	echo 'false';
+	    }
+
     }
-    //type修改name
-    public function modifyTypeName()
-    {
-        $data = I('get.');
 
-        M('Type')->name = $data['name'];
-
-        $res = M('Type')->where("id={$data['id']}")->save();
-
-        echo $res;
-        exit;
-
-    }
+    
 }

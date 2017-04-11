@@ -1,25 +1,25 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html class="no-js">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<block name="title">
-<title></title>
-</block>
+
+	<title>库存管理</title>
+
 <meta name="description" content='learn more write less'>
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="__PUBLIC__/Backstage/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="__PUBLIC__/Backstage/i/app-icon72x72@2x.png">
-<link rel="stylesheet" href="__PUBLIC__/Dropzone/dropzone.css" />
+<link rel="icon" type="image/png" href="/Project/project/Public/Backstage/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="/Project/project/Public/Backstage/i/app-icon72x72@2x.png">
+<link rel="stylesheet" href="/Project/project/Public/Dropzone/dropzone.css" />
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="__PUBLIC__/Backstage/css/amazeui.min.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Backstage/css/admin.css">
-<script src="__PUBLIC__/Backstage/js/jquery.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/app.js"></script>
-<script src="__PUBLIC__/Dropzone/dropzone.js"></script>
+<link rel="stylesheet" href="/Project/project/Public/Backstage/css/amazeui.min.css"/>
+<link rel="stylesheet" href="/Project/project/Public/Backstage/css/admin.css">
+<script src="/Project/project/Public/Backstage/js/jquery.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/app.js"></script>
+<script src="/Project/project/Public/Dropzone/dropzone.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -35,7 +35,7 @@
 
 <!-- header part start -->
 <header class="am-topbar admin-header">
-    <div class="am-topbar-brand"><img src="__PUBLIC__/Backstage/i/logo.png"></div>
+    <div class="am-topbar-brand"><img src="/Project/project/Public/Backstage/i/logo.png"></div>
 
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
       <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
@@ -61,10 +61,10 @@
 
    <li class="kuanjie">
 
-   	<a href="__APP__/HMadmin/User/index">会员管理</a>
+   	<a href="/Project/project/index.php/HMadmin/User/index">会员管理</a>
    	<a href="#">奖金管理</a>
    	<a href="#">订单管理</a>
-   	<a href="__APP__/HMadmin/Goods/index">商品管理</a>
+   	<a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a>
    	<a href="#">个人中心</a>
    	<a href="#">系统设置</a>
    </li>
@@ -102,34 +102,34 @@
 <div class="nav-navicon admin-main admin-sidebar">
 
 
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：{$_SESSION['adminInfo']['name']}</div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：<?php echo ($_SESSION['adminInfo']['name']); ?></div>
     <div class="sideMenu">
-      <h3 class="am-icon-flag"><em></em> <a href="__APP__/HMadmin/Goods/index">商品管理</a></h3>
+      <h3 class="am-icon-flag"><em></em> <a href="/Project/project/index.php/HMadmin/Goods/index">商品管理</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/Goods/index">商品列表</a></li>
-        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'><a href="__APP__/HMadmin/Goods/addGood">添加新商品</a></li>
-        <li><a href="__APP__/HMadmin/Type/index">商品分类</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Goods/index">商品列表</a></li>
+        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'><a href="/Project/project/index.php/HMadmin/Goods/addGood">添加新商品</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Type/index">商品分类</a></li>
         <li>用户评论</li>
         <li>商品回收站</li>
         <li>库存管理 </li>
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/Order/index">订单列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Order/index">订单列表</a></li>
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="__APP__/HMadmin/User/index">会员管理</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="/Project/project/index.php/HMadmin/User/index">会员管理</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/User/index">会员列表</a> </li>
-        <li><a href="__APP__/HMadmin/User/addUser">添加会员</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/User/index">会员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/User/addUser">添加会员</a></li>
         <li>未激活会员</li>
         <li>推荐列表</li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="">权限管理</a></h3>
       <ul>
 
-        <li><a href="__APP__/HMadmin/Admin/index">管理员列表</a> </li>
-        <li><a href="__APP__/HMadmin/AuthGroup/index">管理组列表</a></li>
-        <li><a href="__APP__/HMadmin/AuthRule/index">权限列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Admin/index">管理员列表</a> </li>
+        <li><a href="/Project/project/index.php/HMadmin/AuthGroup/index">管理组列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/AuthRule/index">权限列表</a></li>
 
         <li>团队系谱图</li>
         <li>会员推荐图</li>
@@ -141,21 +141,21 @@
         <li>短信</li>
         <li>邮件</li>
         <li>微信</li>
-        <li><a href="__APP__/HMadmin/CustomService/index">客服</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/CustomService/index">客服</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">友情链接</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/Links/index">友链列表</a></li>
-        <li><a href="__APP__/HMadmin/Links/addLinks">添加友链</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Links/index">友链列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Links/addLinks">添加友链</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">商品评论</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/Commentary/index">评论列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Commentary/index">评论列表</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">首页大图</a></h3>
       <ul>
-        <li><a href="__APP__/HMadmin/IndexPic/index">大图列表</a></li>
-        <li><a href="__APP__/HMadmin/IndexPic/addIndexPic">添加大图</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/IndexPic/index">大图列表</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/IndexPic/addIndexPic">添加大图</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
@@ -166,7 +166,7 @@
         <!-- <li>第三方支付</li> -->
         <!-- <li>提现 /转账 出入账汇率</li> -->
         <!-- <li>平台设置</li> -->
-        <li><a href="__APP__/HMadmin/XunSearch/index">迅搜</a></li>
+        <li><a href="/Project/project/index.php/HMadmin/XunSearch/index">迅搜</a></li>
       </ul>
     </div>
     <!-- sideMenu End -->
@@ -198,7 +198,7 @@
 
     <div class="daohang">
       <ul>
-        <li><a href="__APP__/HMadmin/Index/index" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </a></li>
+        <li><a href="/Project/project/index.php/HMadmin/Index/index" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </a></li>
         <li></li>
         <li></li>
         <li></li>
@@ -208,11 +208,70 @@
 </div>
 <!-- admin-content part end -->
 
-<block name="content">
-<!-- admin-content part start -->
+
+<div class="admin-biaogelist">
+
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="/Project/project/index.php/HMadmin/Goods/Index">商品列表</a></dl>
+
+      <dl>
+        <a href="/Project/project/index.php/HMadmin/Goods/addstock/gid/<?php echo ($gid); ?>"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加库存/颜色/尺码</button></a>
+      </dl>
+
+    </div>
+
+    <div class="fbneirong">
+      <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+      <th>序号</th>
+      <th>库存</th>
+      <th>颜色/尺码</th>
+      <th>操作</th>
+      <?php if(is_array($stockDetail)): foreach($stockDetail as $key=>$vo): ?><tr>
+          <td>
+            <?php echo ($vo["id"]); ?>
+          </td>
+          <td>
+            <?php echo ($vo["goodsnum"]); ?>
+          </td>
+          <td>
+            <?php if(is_array($vo['aid'])): foreach($vo['aid'] as $key=>$v): echo ($v); ?>,<?php endforeach; endif; ?>
+          </td>
+          <td><a href="/Project/project/index.php/HMadmin/Goods/stockEdit/id/<?php echo ($vo["id"]); ?>">修改</a>
+              <a href="javascript:;" data-id="<?php echo ($vo["id"]); ?>" class="stockDel">删除</a></td>
+        </tr><?php endforeach; endif; ?>
+      </table>
+      <div class="am-form-group am-cf">
+        <div class="you">
+            <a href="/Project/project/index.php/HMadmin/Goods/Index" class="am-btn am-btn-success am-radius">返回</a>
+        </div>
+      </div>
+    </div>
+
+  <script>
+
+    $('.stockDel').on('click', function() {
+
+      var url = "/Project/project/index.php/HMadmin/Goods/stockDel";
+
+      var id = $(this).attr('data-id');
+
+      var that = $(this);
+
+      $.get(url, {id:id}, function(data) {
+
+        if (data == 1) {
+
+          that.parent().parent().remove();
+        }
+      });
+
+    });
+
+  </script>
 
 
-</block>
 
 
 
@@ -235,13 +294,13 @@
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="__PUBLIC__/Backstage/js/polyfill/rem.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/polyfill/respond.min.js"></script>
-<script src="__PUBLIC__/Backstage/js/amazeui.legacy.js"></script>
+<script src="/Project/project/Public/Backstage/js/polyfill/rem.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/polyfill/respond.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/amazeui.legacy.js"></script>
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="__PUBLIC__/Backstage/js/amazeui.min.js"></script>
+<script src="/Project/project/Public/Backstage/js/amazeui.min.js"></script>
 <!--<![endif]-->
 
 

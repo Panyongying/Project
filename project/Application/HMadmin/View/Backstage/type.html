@@ -52,7 +52,38 @@
                 </tr>
             
            </foreach>
-          <script>
+          
+          
+          </tbody>
+        </table>
+        <div class="am-btn-group am-btn-group-xs">
+          <input type="submit"  class="am-btn am-btn-default deleteBtn" value="删除">
+        </div>
+       <!--  <ul class="am-pagination am-fr">
+          <li class="am-disabled"><a href="#">«</a></li>
+          <li class="am-active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">»</a></li>
+        </ul> -->
+        <hr />
+        <p>
+        备注：操作图标含义
+         <a class="am-text-success am-icon-file" title="添加子栏目"> 添加子栏目</a> 
+         <a class="am-icon-pencil-square-o am-text-secondary" title="修改"> 修改栏目</a> 
+         <a class="am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
+         
+
+        
+        
+        
+        
+        </p>
+      </form>
+
+      <script>
             //删除按钮的确定判定
             $('.deleteBtn').on('click', function() {
               var bool = confirm('确定删除？');
@@ -84,35 +115,6 @@
                  $('input[type="checkbox"]').prop('checked', bool) ;
             });
           </script>
-          
-          </tbody>
-        </table>
-        <div class="am-btn-group am-btn-group-xs">
-          <input type="submit"  class="am-btn am-btn-default" value="删除">
-        </div>
-       <!--  <ul class="am-pagination am-fr">
-          <li class="am-disabled"><a href="#">«</a></li>
-          <li class="am-active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">»</a></li>
-        </ul> -->
-        <hr />
-        <p>
-        备注：操作图标含义
-         <a class="am-text-success am-icon-file" title="添加子栏目"> 添加子栏目</a> 
-         <a class="am-icon-pencil-square-o am-text-secondary" title="修改"> 修改栏目</a> 
-         <a class="am-icon-trash-o am-text-danger" title="删除"> 删除栏目</a>
-         
-
-        
-        
-        
-        
-        </p>
-      </form>
 
      
      
