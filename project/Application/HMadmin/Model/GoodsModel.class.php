@@ -33,7 +33,7 @@
 
             $total = count($goodsList);
 
-            $page = new \Think\Page($total, 4);
+            $page = new \Think\Page($total, 10);
 
             //分页
             $goodsList = $this->field('id,name,price,tid,des,status,viewtimes,saled,addtime')->where($search)->limit($page->firstRow.','.$page->listRows)->select();
@@ -187,7 +187,7 @@
         public function selectType()
         {
 
-            $typeAll = M('type')->where('pid=0')->select();
+            $typeAll = M('type')->order('concat(path, id)')->select();
 
             return $typeAll;
         }

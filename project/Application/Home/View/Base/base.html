@@ -7,6 +7,8 @@
         </style>
 
             <script src="__PUBLIC__/Backstage/js/jquery.min.js"></script>
+            <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" type="text/css">
             <link rel="stylesheet" href="__PUBLIC__/show/icons.data.svg.css" media="all">
             <link rel="stylesheet" href="__PUBLIC__/show/shared.min.css" type="text/css">
             <link rel="stylesheet" href="__PUBLIC__/show/general.min.css" type="text/css">
@@ -14,6 +16,7 @@
             <link rel="stylesheet" href="__PUBLIC__/show/checkout.min.css" type="text/css">
 
             <link rel="stylesheet" href="__PUBLIC__/show/myhm.min.css" type="text/css">
+
 
             <link href="__PUBLIC__/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
 
@@ -64,20 +67,22 @@
                                     <a id="nav-one" href="__APP__/Home/Index/goods/pid/{$vo.id}" data-id="{$vo.id}" class="lists">{$vo.name}</a>
 
                                         <div id="nav-one-div" class="primary-menu-sub-menu" style="display: none;">
-                                            <div class="primary-menu-sub-menu-inner">
+                                            <div class="appends primary-menu-sub-menu-inner">
 
-                                                <div class="menucolumn">
-                                                    <div class="primary-menu-categories">
-                                                            <div class="parbase navgroup section menucategory">
-                                                                <div class="appends primary-menu-category ">
+                                                <!-- <div class="menucolumn"> -->
+                                                    <!-- <div class="primary-menu-categories"> -->
+                                                            <!-- <div class="parbase navgroup section menucategory"> -->
+                                                                <!-- <div class="primary-menu-category "> -->
 
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                </div>
+                                                                <!-- </div> -->
+                                                            <!-- </div> -->
+                                                    <!-- </div> -->
+                                                <!-- </div> -->
 
 
-                                            </div><!-- /primary-menu-sub-menu-inner topnav 1 -->
+
+
+                                            </div>
                                         </div><!-- primary-menu-sub-menu topnav 1 -->
                                 </li>
                             </foreach>
@@ -169,12 +174,12 @@
                                                         <ul class="shopping-bag-rollover-items" style="top: 0px;">
                                                                 <foreach name="data['cartList']" item="ov">
                                                                     <li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
-                                                                            <a href=""> 
+                                                                            <a href="">
                                                                                 <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="{$ov.pic}" title="{$ov.name}">
                                                                                     </a>
-                                                                            
+
                                                                             <div class="shopping-bag-item-product">
-                                                                                    
+
                                                                                 <h3 class="product-item-headline">{$ov.name}</h3>
                                                                                 <div id="redWhitePrices_0506590001001" class="product-item-price ">
                                         <span id="main_price" class="main_price_0506590001001">
@@ -193,7 +198,7 @@
                                                                             <div class="shopping-bag-item-total-price product-item-price">
                                                                                 总价:&nbsp;
                                                                                 ¥{$ov.price * $ov.gnum}</div>
-                                                                        </li>   
+                                                                        </li>
                                                                     </foreach>
                                                                     </ul>
                                                             </div>
@@ -209,15 +214,15 @@
                                                                     <dt>总价:</dt>
                                                                     <dd>¥{$ov.totalPirce}</dd>
                                                                 </dl>
-                                                                
+
                                                                 <a href="/zh_cn/checkout" class="button button-big">
                                                                 结账</a>
                                                                 <a href="/zh_cn/cart" class="button button-big button-secondary">
                                                                     购物袋</a>
-                                                                <div ng-if="''">                
+                                                                <div ng-if="''">
                                                                  <p class="text"></p>
                                                               </div>
-                                                            </div>              
+                                                            </div>
                                                         </div>
                                             </if>
                         			</div>
@@ -531,6 +536,7 @@
 
             var datas = [];
 
+            //鼠标进去触发
             $('.lists').on('mouseover', function() {
 
                 var url = '__CONTROLLER__/base';
@@ -546,11 +552,11 @@
 
                     $.post(url, {'pid':that.attr('data-id')}, function(data) {
 
-                        var res = '<ul>';
+                        var res = '<ul style="float:left;column-count:5;" class="primary-menu-category">';
 
                         for (var i=0; i<data.length; i++) {
 
-                            res += '<li><a href="http://www2.hm.com/zh_cn/ladies/new-arrivals/clothes.html">'+ data[i].name +'</a></li>';
+                            res += '<li style="float:left;margin-left:40px;padding:10px;width:150px" ><a href="__APP__/Home/Index/goodsList/tid/'+data[i].id+'/pid/'+that.attr('data-id')+'">'+ data[i].name +'</a></li>';
 
                         }
                         res += '</ul>';
@@ -568,6 +574,7 @@
                     $('.appends').html(datas[that.attr('data-id')]);
                 }
 
+                //鼠标出来触发
             }).on('mouseout', function() {
 
                 $(this).parent().removeClass('open');

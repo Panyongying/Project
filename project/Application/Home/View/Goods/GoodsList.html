@@ -1,0 +1,142 @@
+<extend name="Base:base" />
+
+<block name="title">
+<foreach name="OneList" item="vo">
+    <if condition="$pid eq $vo['id']">
+    <title>{$vo.name}</title>
+    </if>
+</foreach>
+</block>
+
+
+<block name="main">
+    <main role="main" class="responsive segments"><!-- Main -->
+        <!--AEMPUBPRDAP12-->
+    	<div class="layout">
+    		<section class="sidebarpluscontent modules">
+    			<aside class="aside section-menu">
+    				<div class="left parbase">
+
+
+        	<nav class="section-menu  ">
+        		<ul>
+        		  <li>
+
+        		      <h2>
+        		          <a href="./时尚女装——潮流购物 _ H&M CN_files/时尚女装——潮流购物 _ H&M CN.html">女士</a>
+        		      </h2>
+        	          <div class="section-menu-sub-menu">
+        	              <div class="section-menu-sub-menu-inner">
+        	                  <div class="section-menu-categories">
+
+        	                          <div class="section-menu-category">
+        	                              <h4 class="">
+        	                                   <span>通过产品筛选</span>
+        	                              </h4>
+        	                              <ul style="display: block;">
+                                                <foreach name="twoList" item="v">
+        	                                      <li class="section-menu-subdepartment" style="padding:5px 0px">
+        	                                           <a href="__URL__/goodsList/tid/{$v.id}/pid/{$pid}">
+        	                                               {$v.name}
+        	                                           </a>
+
+                                                  </li>
+                                                </foreach>
+        	                              </ul>
+        	                          </div>
+
+        	                  </div>
+        	              </div>
+        	          </div>
+
+                  </li>
+                </ul>
+        	</nav>
+        </div>
+
+
+
+    			</aside>
+    			<div class="parsys main">
+
+        <section class="segment section singleteasercontainer">
+            <div class="row">
+                <foreach name="lists" item="vv">
+
+                <div class="grid col-3">
+
+                    <article class="product-item club-price-item" data-articlecode="0481148009" onclick="setOsaParameters(utag_data.category_id,'SMALL', '0481148009'); setNotificationTicket('Oy9wbHAvcHJvZHVjdC1saXN0LXdpdGgtY291bnQvcHJvZHVjdC1saXN0OyM7cHJvZHVjdF9rZXk7MDQ4MTE0OF96aF9jbjswNDgxMTQ4MDEwX3poX2NuOzsjOzU7','0481148009');">
+                        <a href="/zh_cn/productpage.0481148009.html" title="缩褶连衣裙" class="product-item-link"> <img width="222" height="333" src="//lp2.hm.com/hmprod?set=source[/environment/2017/8RZ_0460_016R.jpg],width[4132],height[4832],y[-12],type[FASHION_FRONT]&amp;hmver=0&amp;call=url[file:/product/main]" data-altimage="//lp2.hm.com/hmprod?set=source[/model/2017/E00 0481148 009 62 3245.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file:/product/style]" class="product-item-image" alt="缩褶连衣裙 模特款型" data-alttext="缩褶连衣裙 " title="缩褶连衣裙 模特款型">
+
+
+                                <button type="button" class="favorite icon icon-favorites js-favorite" data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0481148009|缩褶连衣裙|LADIES_SHOPBYPRODUCT : DRESSES_DRESSES : VIEWALL_VIEW_ALL" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
+
+
+
+
+
+
+
+
+
+
+                        </a>
+
+
+                        <div class="product-item-details">
+
+
+
+                            <h3 class="product-item-heading">
+                                <a href="/zh_cn/productpage.0481148009.html">缩褶连衣裙</a>
+                            </h3>
+
+
+
+
+                                        <strong class="price">
+                                            ¥ 199.00 </strong>
+
+
+
+
+
+                                <div class="product-item-selection">新品</div>
+
+
+                            <ul class="list-swatches">
+
+                                    <li class="item">
+
+                                        <img class="swatch" src="//lp2.hm.com/hmprod?set=source[/fabric/2017/6C926A60-F4AC-43E9-A0D6-690402A52CED.jpg],type[FABRICSWATCH]&amp;hmver=0&amp;call=url[file:/product/fabricsmall]" alt="黑色" title="黑色">
+                                    </li>
+
+                                    <li class="item">
+
+                                        <img class="swatch" src="//lp2.hm.com/hmprod?set=source[/fabric/2017/798CB05B-F6DC-4C08-8535-5EA9B06FEFB3.jpg],type[FABRICSWATCH]&amp;hmver=0&amp;call=url[file:/product/fabricsmall]" alt="白色/花朵" title="白色/花朵">
+                                    </li>
+
+                                    <li class="item">
+
+                                        <img class="swatch" src="//lp2.hm.com/hmprod?set=source[/fabric/2017/76516E57-7322-46A0-B888-70E6C580F50A.jpg],type[FABRICSWATCH]&amp;hmver=0&amp;call=url[file:/product/fabricsmall]" alt="红色波点" title="红色波点">
+                                    </li>
+
+                                    <li class="item">
+
+                                        <img class="swatch" src="//lp2.hm.com/hmprod?set=source[/fabric/2017/9A0ECEC4-0AC8-4174-AC60-8079FBFA8E3D.jpg],type[FABRICSWATCH]&amp;hmver=0&amp;call=url[file:/product/fabricsmall]" alt="白色" title="白色">
+                                    </li>
+
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                </foreach>
+            </div>
+
+
+
+
+        </section>
+    </main>
+</block>
