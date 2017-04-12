@@ -34,6 +34,7 @@ class IndexController extends Controller
             $this->assign('OneList', $OneList);
             $this->display('Base/base');
         }
+
     }
 
     //拿取商品
@@ -59,32 +60,11 @@ class IndexController extends Controller
         $OneList = D('goods')->OneList();
         $twoList = D('goods')->twoList();
         $lists = D('goods')->lists();
-        $typeOne = D('goods')->typeOne();
-        $typeTwo = D('goods')->typeTwo();
 
         $this->assign('OneList', $OneList);
         $this->assign('twoList', $twoList);
         $this->assign('lists', $lists);
-        $this->assign('typeOne', $typeOne);
-        $this->assign('typeTwo', $typeTwo);
         $this->assign('pid', $pid);
         $this->display('Goods/GoodsList');
-    }
-
-    //商品详情页
-    public function goodsDeatil()
-    {
-        if (IS_POST) {
-
-        } else {
-
-            $goodsDeatil = D('goods')->goodsDeatil();
-            $OneList = D('goods')->OneList();
-
-            $this->assign('OneList', $OneList);
-            $this->display('Goods/GoodsDetail');
-        }
-
-
     }
 }

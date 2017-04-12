@@ -40,7 +40,13 @@
 		public function editLinks()
 		{
 			if (IS_POST) {
-				$this->success('修改成功', U('index'));
+				$res = D('links')->editLinks();
+
+				if ($res) {
+					$this->success('修改成功', U('index'));
+				} else {
+					$this->success('操作失败');
+				}
 			} else if (IS_GET) {
 				$list = D('links')->editLinks();
 

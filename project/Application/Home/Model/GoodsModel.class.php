@@ -88,55 +88,8 @@ class GoodsModel extends Model
             }
         }
 
-        return $data;
-    }
-
-    //查颜色
-    public function typeOne()
-    {
-
-        $attrName = M('attr')->field('attrName')->where('attrType=1')->select();
-
-        return $attrName;
-    }
-
-    //查尺码
-    public function typeTwo()
-    {
-
-        $attrName = M('attr')->field('attrName')->where('attrType=2')->select();
-
-        return $attrName;
-    }
-
-    //商品详情信息
-    public function goodsDeatil()
-    {
-        $id = I('get.id');
-
-        $data = M('goods')->field('name,price')->where('id='.$id)->find();
-
-        $data['pic'] = M('goods_pic')->field('pic')->where('gid='.$id)->select();
-
-        $data['aid'] = M('stock')->field('aid')->where('gid='.$id)->select();
-
-        for ($i=0; $i<count($data['pic']); $i++) {
-
-            $data['pic'][$i]['pic'] = ltrim($data['pic'][$i]['pic'], './');
-        }
-        for ($j=0; $j<count($data['aid']); $j++) {
-
-            $data['aid'][$j] = explode(',', $data['aid'][$j]['aid']);
-
-            for ($k=0; $k<count($data['aid'][$j]); $k++) {
-
-                $data['aid'][$j][$k] = M('attr')->field('attrName')->select($data['aid'][$j][$k]);
-
-            }
-        }
-
         dump($data);exit;
-
+        return $data;
     }
 
 }

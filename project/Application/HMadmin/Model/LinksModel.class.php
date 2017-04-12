@@ -99,22 +99,22 @@
 		{
 			if (IS_POST) {
 				foreach (I('post.') as $k => $v) {
-				if (empty($v)) {
-					return false;
+					if (empty($v)) {
+						return false;
+					}
 				}
-			}
 
-			if (D('links')->create(I('post.'))) {
-				$res = M('links')->save(I('post.'));
+				if (D('links')->create(I('post.'))) {
+					$res = M('links')->save(I('post.'));
 
-				if ($res) {
-					return ture;
+					if ($res) {
+						return ture;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}
-			} else {
-				return false;
-			}
 			} else if (IS_GET) {
 				$id = I('get.id');
 

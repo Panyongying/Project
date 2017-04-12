@@ -69,7 +69,7 @@
 				<dl class="product-detail-list-item-details-list">
 					<dt>
 						商品编号：</dt>
-					<dd class="ng-binding">{$ov.id}</dd>
+					<dd class="ng-binding">{$ov.gid}</dd>
 					
 					<dt>
 						颜色：</dt>
@@ -82,11 +82,11 @@
 				
 			</div>
 			<div class="product-detail-list-item-actions">
-                <button class="button secondary icon icon-trash" type="button" title="Remove product" ng-click="removeItem(entry.variantCode,entry)"></button>
-                <button class="button secondary icon icon-move-favorite ng-scope" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" ng-click="addToFavourite(entry.variantCode,entry.isFavourite,entry)"></button>
+                <button class="button secondary icon icon-trash rm-btn" type="button" title="Remove product"  aid="{$ov.aid}" gid="{$ov.gid}" gnum="{$ov.gnum}"></button>
+                <button class="button secondary icon icon-move-favorite ng-scope fav-btn" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" aid="{$ov.aid}" gid="{$ov.gid}" gnum="{$ov.gnum}"></button>
                 <label class="product-detail-list-item-actions-label" for="shopping-bag-quantity-options-4"></label>
 				<div class="select-primary product-detail-list-item-quantity">
-    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid">
+    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid"  aid="{$ov.aid}" gid="{$ov.gid}">
     					<if condition="$ov.stock egt 10">
     						<for start="1" end="11">
     							<option value="{$i}" <if condition="$i = $ov.stock">selected</if> label="{$i}">{$i}</option>
@@ -285,4 +285,15 @@
 	</div>
 </div>
 </main>
+
+<script>
+	// 删除按钮
+	$('.rm-btn').click(function () {
+		$.get(
+			'__CONTROLLER__/'
+		);
+	});
+
+	// 去收藏按钮
+</script>
 </block>

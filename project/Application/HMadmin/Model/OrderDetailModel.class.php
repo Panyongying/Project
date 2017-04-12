@@ -32,6 +32,17 @@
 				return false;
 			}
 
+			foreach ($orderDetail as $k => $v) {
+				// 查出商品名并存入数组
+				$orderDetail[$k]['gname'] = M('goods')->field('name')->where("id={$v['id']}")->find()['name'];
+
+				// 查出属性名并存入数组
+				$map3['attrName'] = array('IN', $orderDetail[$k]['aid']);
+
+				$orderDetail[$k]['attrName'] = M('goods_attr')->field('group_concat(attrName)')->where($map3)->find()['attrName'];
+			}
+
+
 			// 存入数组返回
 			$data['orderData'] = $orderData;
 			$data['orderDetail'] = $orderDetail;

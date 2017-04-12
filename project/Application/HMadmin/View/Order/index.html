@@ -15,7 +15,46 @@
       </dl> -->
       <!--这里打开的是新页面-->
     </div>
+    <div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+    <form action="__CONTROLLER__/index" method="get">
+  <ul>
+    <li>
+      <div class="am-btn-group am-btn-group-xs" style="z-index: 999">
+        <select name="orderStatus" data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+          <option value="0">订单状态</option>
+          <option value="1">未付款</option>
+          <option value="2">已付款</option>
+          <option value="3">已取消</option>
+        </select>
+      </div>
+    </li>
+    <li>
+      <div class="am-btn-group am-btn-group-xs">
+      <select name="orderSendStatus" data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+        <option value="0">配送状态</option>
+        <option value="1">未配送</option>
+        <option value="2">配送中</option>
+        <option value="3">已收货</option>
+      </select>
+      </div>
+    </li>
+    <!-- <li style="margin-right: 0;">
+      <span class="tubiao am-icon-calendar"></span>
+      <input name="startdate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}"/>
+    </li>
+       <li style="margin-left: -4px;">
+      <span class="tubiao am-icon-calendar"></span>
+      <input  name="enddate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="结束日期" data-am-datepicker="{theme: 'success',}"/>
+    </li> -->
+
+    
+    <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="用户ID搜索" name="uid" /></li>
+    <li><button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">搜索</button></li>
+  </ul>
+    </form>
+</div>
     <form class="am-form am-g">
+      
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
             <thead>
               <tr class="am-success">
@@ -25,8 +64,8 @@
                 <th class="table-author am-hide-sm-only">购买人</th>
                 <th class="table-author am-hide-sm-only">订单状态</th>
                 <th class="table-author am-hide-sm-only">配送状态</th>
-                <th class="table-date am-hide-sm-only">生成日期</th>
-                <th width="130px" class="table-set">操作</th>
+                <th class="table-author am-hide-sm-only">生成日期</th>
+                <th width="180px" class="table-set">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -45,7 +84,10 @@
                   	<div class="am-btn-toolbar">
                       <div class="am-btn-group am-btn-group-xs">
                         <button class="am-btn am-btn-default am-btn-xs am-text-success am-round de-btn"  oid="{$ov.id}" title="查看订单详情"><span class="am-icon-search"></span></button>
-                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
+                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round mo-btn" data-am-modal="{target: '#my-popups'}" oid="{$ov.id}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
+                        <if condition="($ov.orderstatus eq '已付款') AND ($ov.ordersendstatus eq '等待配送')">
+                          <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="发货"><span class="am-icon-plane"></span></button>
+                        </if>
                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round rm-btn" oid="{$ov.id}" title="删除订单"><span class="am-icon-trash-o" ></span></button>
                       </div>
                     </div>
@@ -60,7 +102,7 @@
               </foreach>
             </tbody>
           </table>
-            <div class="am-btn-group am-btn-group-xs">
+            <div class="am-btn-group am-btn-group-xs" style="z-index: 1;">
               <button type="button" class="am-btn am-btn-default" id="selectAllBtn"><span class="am-icon-plus"></span> 全选</button>
               <button type="button" class="am-btn am-btn-default" id="revSelectBtn"><span class="am-icon-plus"></span> 反选</button>
               <button type="button" class="am-btn am-btn-default" id="allNotBtn"><span class="am-icon-plus"></span> 全不选</button>
@@ -68,8 +110,6 @@
             </div>
           
           {$pageBtn}
-          
-          
       
           <hr />
           <p>注：.....</p>
@@ -81,6 +121,14 @@
     var oid = $(this).attr('oid');
 
     location.href = '__MODULE__/OrderDetail/getOrderDetail/oid/' + oid;
+
+    return false;
+  });
+
+  $('.mo-btn').click(function () {
+    var oid = $(this).attr('oid');
+
+    location.href = '__MODULE__/Order/editOrder/id/' + oid;
 
     return false;
   });
@@ -99,6 +147,7 @@
         '__CONTROLLER__/deleteOrder',
         {id:id},
         function (data) {
+          console.log(data);
           if (data == 1) {
             that.parent().parent().parent().parent().remove();
           } else {

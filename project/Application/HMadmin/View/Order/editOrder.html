@@ -1,0 +1,113 @@
+<extend name="Backstage/base" />
+<block name="title">
+  <title>修改订单</title>
+</block>
+<block name="content" >
+<div class="admin-biaogelist">
+  
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 修改订单</ul>
+      
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">修改订单</a></dl>
+
+      
+      
+    </div>
+  
+    <div class="fbneirong">
+      <form class="am-form" action="" method="post">
+      <input type="hidden" name="id" value="{$list.id}">
+        <div class="am-form-group am-cf">
+          <div class="zuo">订单号：</div>
+          <div class="zuo">{$list.id}</div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">用户ID：</div>
+          <div class="zuo">{$list.uid}</div>
+        </div>
+        <div class="am-form-group am-cf">
+        <div class="zuo">订单状态：</div>
+        <div class="you" style="margin-top: 5px;">
+          <label class="am-radio-inline">
+            <input type="radio" name="orderStatus"
+              <if condition="$list.orderstatus eq 1 ">checked
+              </if>
+            value="1">
+            未付款 </label>
+          <label class="am-radio-inline">
+            <input type="radio" name="orderStatus"
+              <if condition="$list.orderstatus eq 2 ">checked
+              </if>  
+            value="2">
+            已付款 </label>
+          <label class="am-radio-inline">
+            <input type="radio" name="orderStatus"
+              <if condition="$list.orderstatus eq 3 ">checked
+              </if>  
+            value="3">
+            已取消 </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+        <div class="zuo">配送状态：</div>
+        <div class="you" style="margin-top: 5px;">
+          <label class="am-radio-inline">
+            <input type="radio" name="orderSendStatus"
+              <if condition="$list.ordersendstatus eq 1 ">checked
+              </if>
+            value="1">
+            等待配送 </label>
+          <label class="am-radio-inline">
+            <input type="radio" name="orderSendStatus"
+              <if condition="$list.ordersendstatus eq 2 ">checked
+              </if>  
+            value="2">
+            配送中 </label>
+          <label class="am-radio-inline">
+            <input type="radio" name="orderSendStatus"
+              <if condition="$list.ordersendstatus eq 3 ">checked
+              </if>  
+            value="3">
+            已收货 </label>
+            </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">接收人：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="orderRecName" value="{$list.orderrecname}" placeholder="请输入接收人">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">手机号码：</div>
+          <div class="you">
+            <input type="text" maxlength="11" class="am-input-sm" id="doc-ipt-pwd-1" name="orderRecPhone" value="{$list.orderrecphone}" placeholder="请输入手机号码">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">邮编：</div>
+          <div class="you">
+            <input type="text" maxlength="6" class="am-input-sm" id="doc-ipt-pwd-1" name="orderRecZip" value="{$list.orderreczip}" placeholder="请输入邮编">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">地址：</div>
+          <div class="you">
+            <input type="text" class="am-input-sm" id="doc-ipt-pwd-1" name="orderRecAddr" value="{$list.orderrecaddr}" placeholder="请输入地址">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="zuo">总价：</div>
+          <div class="you">
+            <input type="number" class="am-input-sm" id="doc-ipt-pwd-1" name="orderTotalPrice" value="{$list.ordertotalprice}" placeholder="请输入总价">
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">修改</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+</block>
