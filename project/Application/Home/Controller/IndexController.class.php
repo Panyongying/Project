@@ -34,7 +34,6 @@ class IndexController extends Controller
             $this->assign('OneList', $OneList);
             $this->display('Base/base');
         }
-
     }
 
     //拿取商品
@@ -79,6 +78,7 @@ class IndexController extends Controller
 
         } else {
 
+            $goodsDeatil = D('goods')->goodsDeatil();
             $OneList = D('goods')->OneList();
 
             $this->assign('OneList', $OneList);
