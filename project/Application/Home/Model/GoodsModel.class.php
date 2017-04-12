@@ -88,8 +88,26 @@ class GoodsModel extends Model
             }
         }
 
-        dump($data);exit;
+        // dump($data);exit;
         return $data;
+    }
+
+    //查颜色
+    public function typeOne()
+    {
+
+        $attrName = M('attr')->field('attrName')->where('attrType=1')->select();
+
+        return $attrName;
+    }
+
+    //查尺码
+    public function typeTwo()
+    {
+
+        $attrName = M('attr')->field('attrName')->where('attrType=2')->select();
+
+        return $attrName;
     }
 
 }

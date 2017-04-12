@@ -10,6 +10,8 @@ class AuthRuleModel extends Model {
 
         array('name', 'require', '权限路径不能为空'),
 
+        array('name','','权限路径名称已经存在！',0,'unique',1), 
+
         array('title', 'require', '功能名不能为空'),
 
    );

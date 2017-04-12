@@ -69,9 +69,14 @@ class TypeController extends CommonController {
     	$id = I('get.id');
 
         $bRes = D('Type')->beforeDelete($id);
+
+        $gRes = D('Type')->checkGoodsInOrNot($id);
         
         if ($bRes) {
             $this->error('删除失败,请先删除子级分类', U('index'));
+            exit;
+        } elseif ($gRes) {
+            $this->error('分类下还有商品，请先删除', U('index'));
             exit;
         }
 
@@ -100,9 +105,15 @@ class TypeController extends CommonController {
     	$ids = join($ids['ids'], ',');
 
         $bRes = D('Type')->beforeDelete($ids);
+
+        $gRes = D('Type')->checkGoodsInOrNot($ids);
+
         
         if ($bRes) {
             $this->error('删除失败,请先删除子级分类', U('index'));
+            exit;
+        } elseif ($gRes) {
+            $this->error('分类下还有商品，请先删除', U('index'));
             exit;
         }
 
