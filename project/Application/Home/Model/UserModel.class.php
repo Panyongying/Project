@@ -273,14 +273,13 @@
 			return $status;
 		}
 
-		//个人中心
+		//拿到数据给个人中心
 		
 		public function showPersonal()
 		{
 			$id = I('get.id');
 
 			$res = M('user')->field('hm_user.id,hm_user.email,hm_user.addtime,hm_account.birthday,hm_account.nickname,hm_account.sex,hm_account.phone')->join('left join hm_account ON hm_account.uid = hm_user.id')->where("hm_user.id=$id")->find();
-
 
 			$res['addtime'] = date('Y-m-d H:i:s',$res['addtime']);
 
@@ -295,5 +294,64 @@
 			$res['birthday'] = substr($res['birthday'],6);
 
 			return $res;
+		}
+
+		//修改个人资料,如果开始account没有资料则为添加,如果有就为修改
+		public function savePersonal()
+		{	
+
+			$id = I('post.id');
+
+			$number = M('account')->field('uid')->where('uid='.$id)->find();
+			//判断用户在account表是否有信息
+
+			if ($number) {
+
+				$year = I('post.birthyear');
+
+				$month = I('post.birthmonth');
+
+				$day = I('post.birthday');
+
+				$data['birthday'] = $year.$month.$day;
+
+				$data['phone'] = I('post.phone');
+
+				$data['nickname'] = I('post.nickname');
+
+				$data['sex'] = I('post.sex');
+
+				$res = M('account')->where('uid='.$id)->save($data);
+
+
+				return $res;
+
+			} else{
+
+				$year = I('post.birthyear');
+
+				$month = I('post.birthmonth');
+
+				$day = I('post.birthday');
+
+				$data['uid'] = $id;
+
+				$data['nickname'] = I('post.nickname');
+
+				$data['birthday'] = $year.$month.$day;
+
+				$data['phone'] = I('post.phone');
+
+				$data['sex'] = I('post.sex');
+
+				$res = M('account')->add($data);
+
+
+
+				return $res;
+
+			}
+
+
 		}
 	}

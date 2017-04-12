@@ -52,7 +52,7 @@
 	<div class="layout layout-eight"id="profileDIV">
 
 	    
-	    <form class="form-section agile-form"novalidate id="profile">
+	    <form class="form-section agile-form" id="profile">
 	        <fieldset class="form-part">
 	            <legend class="heading">个人信息</legend>
 	                
@@ -61,13 +61,11 @@
                     <input class="text-input field" 
                     	type="email" 
                     	name="email"          
-                       	value=""  
+                       	value="{$list['email']}"  
                         autocomplete="email" 
 
                         />
-                        <span class="static"> {$list['email']} </span>
-                       
-                     
+                        <span class="static"> {$list['email']} </span>                    
                 </div>
 				
 					<div class="inputwrapper">
@@ -75,37 +73,33 @@
 						<div class="select-primary input-info">
 						<select 		
 							id="profile-title" 
-							name="title" 
+							name="sex" 
 							class="select field" 
 						>
-							<option value='2'> 请选择 </option>
+							<option value='2'> 请选择 </option>						
 							<option value="0">小姐</option>
 							<option value="1">先生</option>
 							<option value="2">保密</option>
-
-
 						</select>
 						</div>
 						<div class="input-info"> </div>
-						<span class="static">{$list[sex]}</span>		
+						<span class="static" id="account_sex">{$list[sex]}</span>		
 					
 					</div>
 
 					<div class="inputwrapper">
-						<label class="label" for="checkout.lastName"> 称呼 </label>
-						
-				
+						<label class="label" for="checkout.lastName"> 称呼 </label>				
 							<input 
 							required
 							type="text"
 							id="profile-lastName" 
-							name="lastName" 
+							name="nickname" 
 							maxlength="150"  
 							class="text-input field lastName " 
 							autocomplete="family-name"
-								
+							value = "{$list[nickname]}"
 							/>
-							<span class="static">{$list[nickname]} </span>	
+							<span id="account_nickname"class="static">{$list[nickname]} </span>	
 						<div class="input-info">  </div>				
 					</div>
 
@@ -115,98 +109,103 @@
 						<div class="merged-inputs text-input" >
 						
 				
-							<input type="tel" ng-model="profile.year"
+							<input type="tel"
 								autocomplete="bday-year"
 								pattern="[0-9]*" 
 								inputmode="numeric" 
 								id="myhm-dob-year" 
-								
+								name="birthyear"
+								value="{$list[birthyear]}"
 								class="input-year text-input dateOfBirth"
-								placeholder="----" size="4" maxlenght="4" />
+								placeholder="----" size="4" maxlength="4" />
 
 									<span class="divider filled">年</span>
 
 								
 						
 							
-							<input type="tel" ng-model="profile.month"
+							<input type="tel"
 								autocomplete="bday-month"
 								pattern="[0-9]*" 
 								inputmode="numeric" 
 								id="myhm-dob-month" 
-								
+								name="birthmonth"
+								value="{$list[birthmonth]}"
 								class="input-month text-input dateOfBirth"
-								placeholder="--" size="2" maxlenght="2" />
+								placeholder="--" size="2" maxlength="2"
+			
+								/>
 								
-									<span class="divider filled">月</span>
+								<span class="divider filled">月</span>
 								
 						
 							
-							<input type="tel" ng-model="profile.day"
+							<input type="tel"
 								autocomplete="bday-day"
 								pattern="[0-9]*" 
+								value="{$list[birthday]}"
 								inputmode="numeric" 
 								id="myhm-dob-day" 
-								
+								name="birthday"
 								class="input-day text-input dateOfBirth"
-								placeholder="--" size="2" maxlenght="2" />
+								placeholder="--" size="2" maxlength="2" />
 								
-									<span class="divider filled">日</span>
+								<span class="divider filled">日</span>
 								
 						
 						</div>
 				
 						<div class="input-info " >YYYY年MM月DD日  </div>
-						<span class="static" > {$list[birthyear]}年{$list[birthmonth]}月{$list[birthday]}日 </span>
+						<span class="static" id="account_birthday"> {$list[birthyear]}年{$list[birthmonth]}月{$list[birthday]}日 </span>
 					</div>
 					<div class="inputwrapper" >
 						<label class="label" for="myhm-user-phone">电话号码</label>
 						<div class="phone-group">
 							<div class="phone-wrap">
 								<label for="user-country-code-number" class="visuallyhidden"></label>
-								<input type="tel" init-from-form  
-										        id="code" name="code" placeholder='例如 +86'
-										        class="number-input field country-code-number prefix to-hankaku text-input" maxlength="150"		
+								<input type="tel"  
+										id="code"
+										placeholder='例如 +86'
+										class="number-input field country-code-number prefix to-hankaku text-input" maxlength="150"		
 										      
 										    />
-								</div>
+							</div>
 								<div class="phone-wrap">
-								    <input type="tel" class="text-input to-hankaku number-input field cellPhone" id="myhm-user-phone" name="myhm-user-phone"
-								            maxlength="15"
-								            value="" 	      
-								            data-validation-regex="^(?:\s*)[\s\d\-]+(?:\s*)$"/>	
-
-								        <span class="static">{$list[phone]}</span>				              
+								    <input type="number"  oninput="if(value.length>11)value=value.slice(0,11)" class="text-input to-hankaku number-input field cellPhone" id="myhm-user-phone" name="phone" value="{$list[phone]}" />	
+								            
+								            	   
+								            					 
+								        <span id="account_phone" class="static">{$list[phone]}</span>				              
 								</div>
-								 <div class=" input-info" style="display:none" > 例如 +86</div>
+								
 						</div>
 						<span class="static">	</span>
 						<span class="input-info invalid server-field-validation-message field-validation-message"></span>
 					</div>
 					<div class="inputwrapper">
-				        <label class="label" for="myhm-country">国家</label>
-				        <span class="" id="myhm-country">中国</span>
-				    </div>
+	                <label class="label"  for="myhm-country">国家</label>
+	                <span class="ng-binding" id="myhm-country">中国</span>
+	            	</div>
 	           </fieldset>
 	        
 	        <!-- STAFF CARD PART BEGIN-->
 	        <fieldset class="form-part">
-			<legend class="heading">员工卡信息</legend>
-			<p>如果您拥有 H&M 员工卡，请在此处输入该卡号。</p>
-			<div class="inputwrapper">
-			    <label class="label " for="staff-number">员工卡号</label>
-			      		<input
-							type="text"
-							class="number-input  field text-input"
-							value=""
-			                name="myhm-staff-number"
-			                id="myhm-staff-number"
-							maxlength="25"
-						/>
-					
-						<span class="static"></span>
-			</div>
-			</fieldset>
+				<legend class="heading">员工卡信息</legend>
+				<p>如果您拥有 H&M 员工卡，请在此处输入该卡号。</p>
+				<div class="inputwrapper">
+				    <label class="label " for="staff-number">员工卡号</label>
+				      		<input
+								type="text"
+								class="number-input  field text-input"
+								value=""
+				               
+				                id="myhm-staff-number"
+								maxlength="25"
+							/>
+						
+							<span class="static"></span>
+				</div>
+				</fieldset>
 
             <fieldset class="form-part" ng-show="isEditprofile"> 
                 <legend class="heading">确认密码</legend>
@@ -232,13 +231,13 @@
 					<span class="input-info invalid server-field-validation-message"></span>
 				</p>
 	            <button id ="editInfo"type="button" class="secondary button">编辑</button>
-	            <button id="cancelEdit"type="button" class="secondary button"> 取消</button>
-	            <button type="submit" class="button save-form " id="saveProfileDetails" > 保存信息</button>
+	            <button id="cancelEdit"type="button" class="secondary button text-input"> 取消</button>
+	            <button type="button" class="button save-form text-input"  style="color:white" id="saveProfileDetails" > 保存信息</button>
 
-                <a href="" class="button change-password'">更改密码</a>
+                <a href="" class="button change-password">更改密码</a>
 				
-				<div id="globalMessages"></div> 
-	        	
+				<div id="globalMessages"></div>
+
 	        </div>
 	    </form>
 	    
@@ -265,7 +264,46 @@
 			$('.input-info').hide();
 		});
 
-		
+		//AJAX修改或者添加个人详情
+
+		$('#saveProfileDetails').click(function () {
+
+			$.post('__URL__/account', {
+				'id':{$list['id']},
+				'sex':$('#profile-title').val(),
+				'nickname':$('#profile-lastName').val(),
+				'birthyear':$('#myhm-dob-year').val(),
+				'birthmonth':$('#myhm-dob-month').val(),
+				'birthday':$('#myhm-dob-day').val(),
+				'phone':$('#myhm-user-phone').val(),
+
+			}, function (data) {
+
+				if (data == 1){
+
+					$('#account_nickname').html($('#profile-lastName').val());
+					$('#account_phone').html($('#myhm-user-phone').val());
+					$('#account_birthday').html($('#myhm-dob-year').val()+'年'+$('#myhm-dob-month').val()+'月'+$('#myhm-dob-day').val()+'日');
+					var sex = new Array();
+
+					sex[0] = '小姐';
+
+					sex[1] = '先生';
+
+					sex[2] = '保密';
+
+					$('#account_sex').html(sex[$('#profile-title').val() ]);
+
+				}
+
+
+			}, 'json');
+
+			$('.text-input').hide();
+			$('.static').show();
+			$('.input-info').hide();
+		});
+
 	</script>
 </main>
 </block>

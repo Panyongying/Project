@@ -11,12 +11,12 @@
             <link rel="stylesheet" href="__PUBLIC__/show/icons.data.svg.css" media="all">
             <link rel="stylesheet" href="__PUBLIC__/show/shared.min.css" type="text/css">
             <link rel="stylesheet" href="__PUBLIC__/show/general.min.css" type="text/css">
-
+            
             <link rel="stylesheet" href="__PUBLIC__/show/checkout.min.css" type="text/css">
 
             <link rel="stylesheet" href="__PUBLIC__/show/myhm.min.css" type="text/css">
 
-
+            <link rel="shortcut icon" type="image/x-icon" media="all" href="__PUBLIC__/show/favicon.ico">
             <link href="__PUBLIC__/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
 
             <!-- to include grunticon -->
@@ -131,16 +131,16 @@
                         </a>
 
                     <span class="parbase minicart">
-                        <div class="shopping-bag rollover-popdown is-loaded" data-cart="/zh_cn/minicart/view">
-                            <a href="http://www2.hm.com/zh_cn/cart" class="goto-shopping-bag rollover-toggle">
-                               购物袋
+                        <div id="shopbag"  class="shopping-bag rollover-popdown is-loaded">
+                            <a id="overcar" href="javascritp:;"class="goto-shopping-bag rollover-toggle">
+                               购物袋  
                                (<span class="shoppingbag-item-count">
                                    <if condition="$data = 'empty'">0
                                    <else />{$data.num}
                                    </if>
                                </span>)
                            </a>
-                           <div class="shopping-bag-rollover row popdown">
+                           <div id="showcart"class="shopping-bag-rollover row popdown">
                         		<div class="grid col-4">
                         			<div class="shopping-bag-rollover-scroll-up disabled">
                         				<div class="navigation-arrow-up"></div>
@@ -148,7 +148,7 @@
                         			 <div class="shopping-bag-rollover-items-wrapper ">
                                             <!-- 购物车为空时候 -->
                                             <if condition="$data = 'empty' ">
-                            				    <div class="cart_modal_popup empty-popup-cart">
+                            				    <div  class="cart_modal_popup empty-popup-cart">
                             						<dl class="clearfix">
                             							<dd><h2>您的购物袋是空的</h2></dd>
                             						</dl>
@@ -255,7 +255,7 @@
                                 <div class="signin-not-signed-in">
                               </if>
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/person" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="__APP__/Home/User/signIn" rel="noreferrer">我的H&amp;M</a>
 
                                 <a href="javascript:;" id="homelogin" class="goto-sign-in rollover-toggle">登录/加入</a>
                                 <div class="signin-rollover popdown row" id="bigdiv">
@@ -354,7 +354,7 @@
                         		<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
                         		<input id="main-search" type="text"  name="q" placeholder="搜索产品" minlength="1" maxlength="200"  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
                         </form>
-                        <span class="magnify"></span>
+                        <span class="magnify" style="background-image: url('__PUBLIC__/show/sprites.png');"></span>
 
                         <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;">
 
@@ -875,6 +875,46 @@
 
 
             });
+            //购物车迷你显示
+
+            $('#overcar').mouseover(function () {
+
+               $('#showcart').show();
+
+            });
+
+
+
+            $(document).click(function () {
+
+                $('#showcart').hide();
+
+            });
+
+            var showcart = document.getElementById('showcart');
+            var overcar = document.getElementById('overcar');
+
+            overcar.onclick = function (e) {
+
+                var ev = e||event;
+
+                //阻止事件冒泡，防止点击了div#overcar标签，点击事件继续触发父标签document点击事件
+                ev.cancelBubble = true;
+
+            }
+
+
+            showcart.onclick = function (e) {
+
+                var ev = e||event;
+
+                //阻止事件冒泡，防止点击了div#showcart标签，点击事件继续触发父标签document点击事件
+                ev.cancelBubble = true;
+
+            }
+
+
+
 
         </script>
     </body>
