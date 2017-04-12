@@ -105,10 +105,10 @@
 	    public function logout()
 	    {	
 
-
 	    	unset($_SESSION['userInfo']);
 
-	    	$this->display('Index/index');
+	    	$this->redirect('Home/Index/index');
+	    	
 	    }
 	    //找回密码    
 	    public function forgetPassword()
@@ -188,7 +188,17 @@
 	    }
 	  	//个人中心首页
 	  	public function person()
-	  	{
+	  	{	
+
+
+	  		if( empty( I('get.id') )){
+
+	  			$this->display('Index/index');
+
+	  			exit;
+
+	  		}
+
 	  		if( !isset($_SESSION['userInfo']) ){
 
 	  			$this->display('Sign/signin');
@@ -205,15 +215,44 @@
 			return $res;
 	  	}
 
-	  	//个人中心的个人信息页
+	  	//个人中心的个人信息页的修改和添加
 	  	public function account()
 	  	{	
-	  		$res = D('user')->showPersonal();
 
-	  		$this->assign('list', $res);
+	  		if (IS_GET){
 
-	  		$this->display('Person/account');
+	  			if( empty( I('get.id') )){
+
+	  				$this->display('Index/index');
+
+	  				exit;
+	  		}
+
+	  		if( !isset($_SESSION['userInfo']) ){
+
+	  			$this->display('Sign/signin');
+
+	  			exit;
+	  		}
+
+	  			$res = D('user')->showPersonal();
+
+	  			$this->assign('list', $res);
+
+	  			$this->display('Person/account');
+	  		}
+
+	  		if (IS_AJAX){
+	  			//保存个人信息
+	  			$res = D('user')->savePersonal();
+
+
+	  			echo $res;
+	  		}
+
+	  	
 	  	}
+
 	  	//页面注册
 	  	public function signUp()
 	  	{	
