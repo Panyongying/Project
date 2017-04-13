@@ -1,0 +1,62 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>库存管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="__APP__/HMadmin/Goods/Index">商品列表</a></dl>
+
+      <dl>
+        <a href="__CONTROLLER__/GoodsColorPic/gid/{$g_a_id.gid}/aid/{$g_a_id.aid}"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs"> 添加颜色对应图片</button></a>
+      </dl>
+
+    </div>
+
+    <div class="fbneirong">
+      <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+      <th>图片</th>
+        <tr>
+          <td>
+          <foreach name="data" item="vo">
+            <empty name="vo.pic">暂无图片<else /> <img src="__PUBLIC__/{$vo.pic}" alt="" width="100px" style="margin-top:12px"><a href="javascript:;" style="position:relative;top:80px;left:-55px; margin-top:30px" class="del" data-id="{$vo.id}">X</a>&nbsp;</empty>
+          </foreach>
+          </td>
+
+        </tr>
+      </table>
+      <p>注: 点击 X 可删除图片</p>
+      <div class="am-form-group am-cf">
+        <div class="you">
+            <a href="__APP__/HMadmin/Goods/showGoodsPic" class="am-btn am-btn-success am-radius" style="margin-top:15px;">返回</a>
+        </div>
+      </div>
+    </div>
+
+      <script type="text/javascript">
+        //ajax删除图片
+          var url = "__CONTROLLER__/editDelPic";
+
+          $('.del').on('click', function() {
+
+            var that = $(this);
+
+            $.get(url, {pic:$(this).prev('img')[0].src}, function(data) {
+
+              if (data == 1) {
+
+                $(that.prev('img')[0]).remove();//删除图片
+
+                that.remove();//删除x
+
+              }
+
+            }, 'json');
+
+          });
+        </script>
+
+</block>

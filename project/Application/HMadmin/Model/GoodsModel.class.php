@@ -201,6 +201,14 @@
             return $attr;
         }
 
+        //查询颜色属性
+        public function findAttrColor()
+        {
+            $attrColor = M('attr')->where('attrType=1')->select();
+
+            return $attrColor;
+        }
+
         //添加商品
         public function addGood()
         {
@@ -493,6 +501,89 @@
             $id = I('get.id');
 
             $res = M('stock')->delete($id);
+
+            return $res;
+        }
+
+        //查看商品对应颜色对应图片
+        public function GoodsDetailPic()
+        {
+
+            $name = I('get.name');
+
+            if ( !empty($name) ) {
+
+                $search['name'] = array('like', "%{$name}%");
+            }
+
+
+            $data = M('goods')->field('id,name')->where($search)->order('id desc')->select();
+
+
+            $total = count($data);
+
+            $page = new \Think\Page($total, 8);
+
+            //分页
+            $data = $this->field('id,name')->where($search)->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
+
+            $show = $page->show();
+
+            for ($i=0; $i<count($data); $i++) {
+
+                //根据id查商品有什么颜色，再根据颜色查商品有多少张图
+                $data[$i]['aid'] = M('goods_pic')->distinct(true)->field('aid')->where('gid='.$data[$i]['id'])->select();
+
+                for ($j=0; $j<count($data[$i]['aid']); $j++) {
+
+                    $data[$i]['aid'][$j] = explode(',', $data[$i]['aid'][$j]['aid'][0]);
+
+                }
+            }
+
+            // dump($data);exit;
+            $data['show'] = $show;
+
+            return $data;
+        }
+
+        //根据aid和gid查找对应图片
+        public function seePics()
+        {
+            $g_a_id = I('get.');
+
+            $data = M('goods_pic')->field('id,pic')->where($g_a_id)->select();
+
+            // dump($data);exit;
+            for ($i=0; $i<count($data); $i++) {
+
+                $data[$i]['pic'] = ltrim($data[$i]['pic'], './');
+            }
+
+            $data['g_a_id'] = $g_a_id;
+
+
+            return $data;
+        }
+
+        // 添加商品对应颜色对应图片
+        public function addColorPic()
+        {
+            $data = I('post.');
+
+            $num = count($data['pic']);
+
+            for ($i=0; $i<$num; $i++) {
+
+                $data['p'][$i] = $data['pic'][$i];
+            }
+
+            for ($i=0; $i<$num; $i++) {
+
+                $data['pic'] = $data['p'][$i];
+
+                $res[] = M('goods_pic')->data($data)->add();
+            }
 
             return $res;
         }

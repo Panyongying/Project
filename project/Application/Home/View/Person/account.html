@@ -7,6 +7,8 @@
 
 <main role="main" class="responsive my-hm">
 	<div class="wrapper">    
+
+
 		<nav class="breadcrumbs">
 			<ul>
 				<li>
@@ -28,7 +30,7 @@
 		<nav class="section navigation menu " role="navigation">
 			<ul role="menu">
 				<li class="item" role="presentation" tabindex="0">
-						<a href="__URL__/person/id/{$_SESSION['userInfo']['id']}" role="menuitem">
+						<a href="__URL__/person" role="menuitem">
 							概览</a>
 					</li>
 				<li class="current item" role="presentation" tabindex="-1">
@@ -63,6 +65,7 @@
                     	name="email"          
                        	value="{$list['email']}"  
                         autocomplete="email" 
+                        readonly 
 
                         />
                         <span class="static"> {$list['email']} </span>                    
@@ -90,8 +93,8 @@
 					<div class="inputwrapper">
 						<label class="label" for="checkout.lastName"> 称呼 </label>				
 							<input 
-							required
 							type="text"
+							required
 							id="profile-lastName" 
 							name="nickname" 
 							maxlength="150"  
@@ -207,20 +210,23 @@
 				</div>
 				</fieldset>
 
-            <fieldset class="form-part" ng-show="isEditprofile"> 
-                <legend class="heading">确认密码</legend>
-                <div class="inputwrapper required">
-                    <input
-                        type="password"
-                        class="password-input password "
-                        name="password"
-                        id="password"
+    		<fieldset class="form-part" data-change-text="Your subscription settings has been updated">
+					<legend class="heading">订阅</legend>
 
-                    >
-                    <span class="input-info invalid field-validation-message"></span>
-                    <span class="input-info">只在电子邮箱地址被更改的情况下需要完成</span>
-                </div>
-            </fieldset>
+		            <div class="inputwrapper list-group optional hidden-field" ng-class="{'hidden-field' : isEditprofile}">
+						<input type="hidden" ng-model="profile.hmCatalogueSubscription" value="" init-from-form="" class="ng-pristine ng-untouched ng-valid">
+			            <label class="label" for="chb-catalogue" id="chb-newsletter-label">营销型印刷品</label>
+			            <ul class="input-list   ">
+							<li class="item">
+								<input class="checkbox-input disabled-input ng-pristine ng-untouched ng-valid" type="checkbox" checked="checked" name="catalogue" id="chb-catalogue" ng-model="profile.hmCatalogueSubscription" ng-disabled="!isEditprofile">
+								<span class="no-edit show-if-checked ng-hide" ng-show="profile.hmCatalogueSubscription &amp;&amp; !isEditprofile"> 已订阅</span>
+			                    <span class="no-edit show-if-unchecked ng-hide" ng-show="!profile.hmCatalogueSubscription &amp;&amp; !isEditprofile"> 未订阅</span>
+			                    <label for="chb-catalogue" id="chb-newsletter-label" class="checkbox-label">
+									我有兴趣接收 H&amp;M 营销型印刷品。</label>
+							</li>  
+			            </ul> 
+			            </div>
+			</fieldset>
             <!-- PASSWORD PART END -->
             
             <!-- BUTTON PART BEGIN -->
@@ -233,18 +239,20 @@
 	            <button id ="editInfo"type="button" class="secondary button">编辑</button>
 	            <button id="cancelEdit"type="button" class="secondary button text-input"> 取消</button>
 	            <button type="button" class="button save-form text-input"  style="color:white" id="saveProfileDetails" > 保存信息</button>
-
-                <a href="" class="button change-password">更改密码</a>
+				
+                <a href="__URL__/updatePassword" class="button change-password">更改密码</a>
 				
 				<div id="globalMessages"></div>
 
+
 	        </div>
 	    </form>
-	    
+	  
 		</div>
 	</div>
 
 	<script>
+
 		$('.text-input').hide();
 		$('.static').show();
 		$('.input-info').hide();
@@ -268,6 +276,62 @@
 
 		$('#saveProfileDetails').click(function () {
 
+			var that = $(this);
+
+			var	res = RegCheck($('#myhm-user-phone').val(),/^1(3|4|5|7|8)\d{9}$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+				$(this).after('<span style="color:red">号码有误</span>');
+
+				return false;
+			}
+
+			var res = RegCheck($('#myhm-dob-year').val(),/^(19|20)\d{2}$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+
+				$(this).after('<span style="color:red">你生日的年份输入错误</span>');
+
+				return false;
+			}
+
+			var res = RegCheck($('#myhm-dob-month').val(),/^0[1-9]|1[0-2]$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+				$(this).after('<span style="color:red">你生日的月份输入错误</span>');
+
+				return false;
+			}
+
+			var res = RegCheck($('#myhm-dob-day').val(),/^0[1-9]|[1-2][0-9]|3[0-1]$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+				$(this).after('<span style="color:red">你生日的日份输入错误</span>');
+
+				return false;
+			}
+
+			 //进行正则判断
+            function RegCheck(str, pattern){
+
+                var res = str.match(pattern);
+
+                 return res;
+            }
+
+
 			$.post('__URL__/account', {
 				'id':{$list['id']},
 				'sex':$('#profile-title').val(),
@@ -279,11 +343,14 @@
 
 			}, function (data) {
 
-				if (data == 1){
+				if (data >= 1){
 
 					$('#account_nickname').html($('#profile-lastName').val());
+
 					$('#account_phone').html($('#myhm-user-phone').val());
+
 					$('#account_birthday').html($('#myhm-dob-year').val()+'年'+$('#myhm-dob-month').val()+'月'+$('#myhm-dob-day').val()+'日');
+
 					var sex = new Array();
 
 					sex[0] = '小姐';
@@ -294,6 +361,13 @@
 
 					$('#account_sex').html(sex[$('#profile-title').val() ]);
 
+					that.next('span').remove();
+
+					show_msg('修改成功');
+
+				}else {
+
+					show_msg('修改失败');
 				}
 
 
@@ -302,8 +376,44 @@
 			$('.text-input').hide();
 			$('.static').show();
 			$('.input-info').hide();
+
+
 		});
 
+		function show_msg(msg){	
+
+		 $('body').append('<div class="sub_err" style="position:absolute;top:60px;left:0;width:500px;z-index:999999;"></div>');
+
+			var htmltop='<div class="bac" style="padding:8px 0px;border:1px solid #090;width:100%;margin:0 auto;background-color:white;color:#0d0d0d;border:2px black solid;text-align:center;font-size:16px;">';
+
+			var htmlfoot = '</div>';
+
+			$('.sub_err').html(htmltop+msg+htmlfoot); 
+
+			var left=($(document).width()-500)/2;
+
+			$('.sub_err').css({'left':left+'px'});
+
+			var scroll_height=$(document).scrollTop();
+
+			 $('.sub_err').animate({'top': scroll_height+120},100);
+
+			 msgdsq=setTimeout(function(){	
+
+				$('.sub_err').animate({'top': scroll_height+80},100);
+
+				setTimeout(function(){	
+
+			 	 $('.sub_err').remove();	
+
+		   		},100);	 
+		   
+			}, "1200");  
+		}
+
 	</script>
+
+
+
 </main>
 </block>
