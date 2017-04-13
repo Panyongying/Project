@@ -219,7 +219,7 @@
 			return $status;
 		}
 
-		//修改密码
+		//不知道密码的情况下修改密码
 		public function savePassword()
 		{
 			$i = I('post.');
@@ -273,11 +273,10 @@
 			return $status;
 		}
 
-		//拿到数据给个人中心
-		
+		//拿到数据给个人中心	
 		public function showPersonal()
 		{
-			$id = I('get.id');
+			$id = $_SESSION['userInfo']['id'];
 
 			$res = M('user')->field('hm_user.id,hm_user.email,hm_user.addtime,hm_account.birthday,hm_account.nickname,hm_account.sex,hm_account.phone')->join('left join hm_account ON hm_account.uid = hm_user.id')->where("hm_user.id=$id")->find();
 
@@ -304,7 +303,7 @@
 
 			$number = M('account')->field('uid')->where('uid='.$id)->find();
 			//判断用户在account表是否有信息
-
+			//有用户，用修改操作
 			if ($number) {
 
 				$year = I('post.birthyear');
@@ -325,7 +324,7 @@
 
 
 				return $res;
-
+				//用户资料不在数据库中，用插入操作
 			} else{
 
 				$year = I('post.birthyear');
@@ -352,6 +351,57 @@
 
 			}
 
+
+		}
+
+		//原密码修改密码
+		public function updatePassword()
+		{
+			$id = $_SESSION['userInfo']['id'];
+
+			$oldpass = I('post.oldpass');
+
+			$newpass = I('post.newpass');
+
+			$checkpass = I('post.checkpass');
+			//修改密码与确认不一致
+			if ( $newpass != $checkpass ) {
+
+				return 2;
+
+				exit;
+			}
+
+			$truePassword = $this->field('password')->where('id='.$id)->find();
+
+			$truePassword = $truePassword['password'];
+
+			$bool = password_verify($oldpass, $truePassword );
+
+			if ($bool) {
+
+				$data['password'] =  password_hash($newpass, PASSWORD_DEFAULT);
+
+				$map['id'] = $id;
+
+				$res = $this->where($map)->save($data);
+				//修改成功
+				if ($res == 1) {
+
+					return 1;
+					//修改失败
+				} else {
+
+					return 0;
+				}
+
+				//原密码输入错误
+			} else {
+
+				return 3;
+			} 
+
+		
 
 		}
 	}

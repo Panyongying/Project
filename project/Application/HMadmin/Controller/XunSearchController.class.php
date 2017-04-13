@@ -20,6 +20,7 @@ class XunSearchController extends CommonController {
     	$index = $xs->index;
     	$search = $xs->search;
    		$doc = new \XSDocument;
+    	$res = $index->clean();
 
     	//查数据库获取数据
         $res =  M('goods')->field('hm_goods.id,hm_goods.name,hm_goods.price,hm_goods.tid,hm_goods.status,hm_stock.aid')->join('hm_stock ON hm_goods.id = hm_stock.gid')->select();
@@ -82,6 +83,8 @@ class XunSearchController extends CommonController {
     	$index = $xs->index;
     	$search = $xs->search;
    		$doc = new \XSDocument;
+    	$res = $index->clean();
+   		
 
     	//查数据库获取数据
         $res =  M('goods')->field('hm_goods.id,hm_goods.name,hm_goods.price,hm_goods.tid,hm_goods.status,hm_stock.aid')->join('hm_stock ON hm_goods.id = hm_stock.gid')->select();

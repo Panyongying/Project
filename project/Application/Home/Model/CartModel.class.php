@@ -17,7 +17,7 @@
 
 				$cartList = M('cart')->where($map)->select();
 			} else { // 未登录
-				$cartList = $_SESSION['cart'];
+				$cartList = @$_SESSION['cart'];
 			}
 
 			// 购物车为空时

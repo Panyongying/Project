@@ -241,10 +241,10 @@
                             <div class="signin-signed-in">
                             </if>
 
-                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="__APP__/Home/User/person/id/{$_SESSION[userInfo][id]}" rel="noreferrer">{$_SESSION[userInfo][email]} </a> </span>
+                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="__APP__/Home/User/person" rel="noreferrer">{$_SESSION[userInfo][email]} </a> </span>
 
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/person/id/{$_SESSION[userInfo][id]}" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="__APP__/Home/User/person" rel="noreferrer">我的H&amp;M</a>
 
                                 <a class="goto-sign-in" href="__APP__/Home/User/logout">退出</a>
                         </div>
@@ -350,9 +350,9 @@
                 <div class="autosuggestsearch parbase">
                     <div id="search-field" class="ui-widget">
 
-                        <form method="get" action="http://www2.hm.com/zh_cn/search-results.html" class="ng-pristine ng-valid">
+                        <form method="get" action="__CONTROLLER__/searchGoods" class="ng-pristine ng-valid">
                         		<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-                        		<input id="main-search" type="text"  name="q" placeholder="搜索产品" minlength="1" maxlength="200"  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
+                        		<input id="main-search" type="text"  name="keyword" placeholder="搜索产品" minlength="1" maxlength="200"  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
                         </form>
                         <span class="magnify" style="background-image: url('__PUBLIC__/show/sprites.png');"></span>
 
@@ -580,6 +580,7 @@
 
                 //鼠标出来触发
             }).on('mouseout', function() {
+                
 
                 $(this).parent().removeClass('open');
 

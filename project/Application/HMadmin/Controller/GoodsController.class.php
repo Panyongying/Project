@@ -306,5 +306,81 @@
                 $this->ajaxReturn($res);
             }
         }
+
+        //商品图片颜色列表
+        public function showGoodsPic()
+        {
+            if (IS_POST) {
+
+            } else {
+
+                $data = D('goods')->GoodsDetailPic();
+                $show = array_pop($data);
+
+                $this->assign('show', $show);
+                $this->assign('data', $data);
+                $this->display('GoodsDetailPic/showGoodsPic');
+            }
+
+        }
+
+        //根据aid和gid查找对应图片
+        public function seePics()
+        {
+            if (IS_POST) {
+
+            } else {
+
+                $data = D('goods')->seePics();
+                $g_a_id = array_pop($data);
+
+                $this->assign('data', $data);
+                $this->assign('g_a_id', $g_a_id);
+                $this->display('GoodsDetailPic/seePics');
+            }
+        }
+
+        //加载页面
+        public function GoodsColorPic()
+        {
+            if (IS_POST) {
+
+            } else {
+
+                $id = I('get.');
+
+                $this->assign('id', $id);
+                $this->display('GoodsDetailPic/GoodsColorPic');
+
+            }
+        }
+
+        //添加商品的颜色对应图片
+        public function addColorPic()
+        {
+
+            if (IS_POST) {
+
+                $gid = I('post.gid');
+                $aid = I('post.aid');
+
+                $res = D('goods')->addColorPic();
+
+                if ($res) {
+
+                    $this->success('添加成功', U('Goods/showGoodsPic'));
+                }
+
+            } else {
+
+                $gid = I('get.gid');
+                $attrColor = D('goods')->findAttrColor();
+
+                $this->assign('gid', $gid);
+                $this->assign('attrColor', $attrColor);
+                $this->display('GoodsDetailPic/addColorPic');
+            }
+
+        }
     }
 
