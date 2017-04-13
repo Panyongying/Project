@@ -1,0 +1,141 @@
+<extend name="Backstage/base" />
+<block name="title">
+	<title>库存管理</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 栏目名称</ul>
+
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="__APP__/HMadmin/Goods/Index">商品列表</a></dl>
+
+      <dl>
+        <a href="javascript:;"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs"> 颜色对应图片</button></a>
+      </dl>
+
+    </div>
+
+    <div class="fbneirong">
+      <form class="Forms am-form" action="__URL__/addColorPic" method="post">
+        <div class="am-form-group am-cf">
+          <div class="zuo">产品图片：</div>
+          <div class="you" style="height: 45px;">
+            <div class="dropzone"></div>
+          </div>
+        </div>
+        <div class="am-form-group am-cf">
+          <div class="you" style="margin-left: 11%;margin-top: 9%;">
+              <button type="submit" class="am-btn am-btn-success am-radius">添加</button>
+          </div>
+        </div>
+        <input type="hidden" name="gid" value="{$id.gid}">
+        <input type="hidden" name="aid" value="{$id.aid}">
+      </form>
+    </div>
+
+      <script type="text/javascript">
+        //ajax删除图片
+          var url = "__CONTROLLER__/editDelPic";
+
+          $('.del').on('click', function() {
+
+            var that = $(this);
+
+            $.get(url, {pic:$(this).prev('img')[0].src}, function(data) {
+
+              if (data == 1) {
+
+                $(that.prev('img')[0]).remove();//删除图片
+
+                that.remove();//删除x
+
+              }
+
+            }, 'json');
+
+          });
+        </script>
+                <!-- 图片上传 -->
+        <script>
+          //防止报"Dropzone already
+          Dropzone.autoDiscover = false;
+
+          $(".dropzone").dropzone({
+
+            url:"__URL__/upload/",
+
+            //是否显示删除图片按钮
+            addRemoveLinks:true,
+
+             //删除按钮样子
+            dictRemoveLinks: "x",
+
+            //取消上传样式
+            dictCancelUpload: "x",
+
+            paramName: "pic",
+
+            //上传数
+            maxFiles: 10,
+
+            //每张大小
+            maxFilesize: 5,
+
+            acceptedFiles: "image/*",
+            init: function() {
+
+              this.on("success", function(file, res) {
+
+                var obj = JSON.parse(res);
+
+                //res为dropzone.js返回的图片路经
+                file.path = res;
+
+                //拿到图片路劲
+                var filePath = obj['details'].savepath + obj['details'].savename;
+
+                if ( obj.status == 200 ) {
+                  //将服务器得到的数据生成一个隐藏域。做商品添加的时候就可以获取到了
+                  var input = '<input type="hidden" name="pic[]" value="'+filePath+'" />';
+
+                  $('.Forms').append(input);
+
+                } else {
+
+                  alert('上传失败');
+                }
+
+              })
+
+              //每次删除图片触发
+              this.on("removedfile", function(file) {
+
+                var filePath = JSON.parse(file.path, true);
+
+                filePath = filePath['details'].savepath + filePath['details'].savename;
+
+                console.log(filePath);
+
+                $.ajax({
+
+                  url: "__CONTROLLER__/deletePic",
+                  type: "post",
+
+                  //file.path可以获取到点击删除按钮的那张图片
+                  data: { 'path': filePath }
+                });
+
+
+
+
+
+
+              });
+
+            }
+          });
+
+        </script>
+
+</block>

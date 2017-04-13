@@ -1,0 +1,67 @@
+<extend name="Backstage/base" />
+<block name="title">
+  <title>订单详情</title>
+</block>
+<block name="content">
+<div class="admin-biaogelist">
+	
+    <div class="listbiaoti am-cf">
+      <ul class="am-icon-flag on"> 订单详情</ul>
+      <dl>
+        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-close back-btn" >返回</button>
+      </dl>
+      <!--这里打开的是新页面-->
+    </div>
+    <div class="am-g">
+      <div class="am-u-sm-6">
+        <div><span>订单号：{$data.orderData.id}</span></div>
+        <div><span>生成时间：{$data.orderData.orderaddtime}</span></div>
+        <div><span>确认时间：{$data.orderData.orderconfirmtime}</span></div>
+        <div><span>订单状态：{$data.orderData.orderstatus}</span></div>
+        <div><span>发送状态：{$data.orderData.ordersendstatus}</span></div>
+      </div>
+      <div class="am-u-sm-6">
+        <div><span>用户id：{$data.orderData.uid}</span></div>
+        <div><span>收件人：{$data.orderData.orderrecname}</span></div>
+        <div><span>电话：{$data.orderData.orderrecphone}</span></div>
+        <div><span>收件地址：{$data.orderData.orderrecaddr}</span></div>
+        <div><span>总价：￥{$data.orderData.ordertotalprice}</span></div>
+      </div>
+    </div>
+    <form class="am-form am-g">
+      
+          <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+            <thead>
+              <tr class="am-success">
+                <th class="table-author am-hide-sm-only">商品名</th>
+                <th class="table-author am-hide-sm-only">商品属性</th>
+                <th class="table-author am-hide-sm-only">商品数量</th>
+                <th class="table-author am-hide-sm-only">商品价格</th>
+                <th class="table-author am-hide-sm-only">总价</th>
+              </tr>
+            </thead>
+            <tbody>
+              <foreach name="$data.orderDetail" item="ov" >
+                <tr>                  
+                  <td>{$ov.gname}</td>
+                  <td>{$ov.attrName}</td>
+                  <td class="am-hide-sm-only">{$ov.gnum}</td>
+                  <td class="am-hide-sm-only">{$ov.gprice}</td>
+                  <td class="am-hide-sm-only">{$ov.gnum * $ov.gprice}</td>
+                </tr>
+              </foreach>
+            </tbody>
+          </table>
+          <hr />
+          <p>注：.....</p>
+        </form>
+</div>
+
+<script>
+  $('.back-btn').click(function () {
+    history.back();
+  });
+</script>
+
+
+</block>

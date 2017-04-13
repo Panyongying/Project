@@ -77,4 +77,165 @@
 				return ture;
 			}
 		}
+
+		// 添加进购物车
+		public function addToCart()
+		{
+			$bool = $this->checkLogin();
+
+			if ($bool) { // 已登录
+				$map = I('get.');
+
+				$map['uid'] = $_SESSION['userInfo']['id'];
+
+				$res = M('cart')->add($map);
+
+				if ($res) {
+					return 1;
+				} else {
+					return 2;
+				}
+			} else {
+				$_SESSION['cart'][] = I('get.');
+
+				return 1;
+			}
+		}
+
+		// 删除购物车中的商品
+		public function delFromCart()
+		{
+			$bool = $this->checkLogin();
+
+			if ($bool) { // 已登录
+				$map = I('get.');
+
+				$map['uid'] = $_SESSION['userInfo']['id'];
+
+				$res = M('cart')->where($map)->delete();
+
+				if ($res) {
+					$cartList = M('cart')->where("uid={$map['uid']}")->select();
+
+					$totalPrice = 0;
+
+					// 根据商品id，属性id查询价格
+					foreach ($cartList as $k => $v) {
+						$gid = $v['gid'];
+
+						$price = M('goods')->field('price')->where("id={$gid}")->find()['price'];
+
+						$totalPrice += $cartList[$k]['gnum'] * $price;
+					}
+
+					return $totalPrice;
+				} else {
+					return 2;
+				}
+			} else { // 未登录
+				foreach ($_SESSION['cart'] as $k => $v) {
+					if ($v['gid'] = I('get.gid')) {
+						unset($_SESSION['cart'][$k]);
+					}
+				}
+
+				$cartList = $_SESSION['cart'];
+
+				$totalPrice = 0;
+
+				// 根据商品id，属性id查询价格
+				foreach ($cartList as $k => $v) {
+					$gid = $v['gid'];
+
+					$price = M('goods')->field('price')->where("id={$gid}")->find()['price'];
+
+					$totalPrice += $cartList[$k]['gnum'] * $price;
+				}
+
+				return $totalPrice;
+			}
+		}
+
+		// 更改购物车中商品的数量
+		public function changeNum()
+		{
+			$bool = $this->checkLogin();
+
+			if ($bool) { // 已登录
+				$data = I('get.gnum');
+
+				$map['gid'] = I('get.gid');
+				$map['uid'] = $_SESSION['userInfo']['id'];
+
+				$res = M('cart')->where($map)->save($data);
+
+				if ($res) {
+					return 1;
+				} else {
+					return 2;
+				}
+			} else { // 未登录
+				foreach ($_SESSION['cart'] as $k => $v) {
+					if ($v['gid'] = I('get.gid')) {
+						$_SESSION['cart'][$k]['gnum'] = I('get.gnum');
+					}
+				}
+
+				return 1;
+			}
+		}
+
+		// 购物车到收藏夹
+		public function cartToFav()
+		{
+			$bool = $this->checkLogin();
+
+			if ($bool) { // 已登录
+				$map = I('get.');
+				$map['uid'] = $_SESSION['userInfo']['id'];
+
+				// 开启事务
+				$this->startTrans();
+
+				// 添加数据给收藏表
+				$res = M('favorite')->add($map);
+
+				if (!$res) {
+					// 回滚
+					$this->rollback();
+
+					return 2;
+				}
+
+				// 删除购物车表数据
+				$res = M('cart')->where($map)->delete();
+
+				if (!$res) {
+					// 回滚
+					$this->rollback();
+
+					return 2;
+				}
+
+				// 提交事务
+				$this->commit();
+
+				$cartList = M('cart')->where("uid={$map['uid']}")->select();
+
+				$totalPrice = 0;
+
+				// 根据商品id，属性id查询价格
+				foreach ($cartList as $k => $v) {
+					$gid = $v['gid'];
+
+					$price = M('goods')->field('price')->where("id={$gid}")->find()['price'];
+
+					$totalPrice += $cartList[$k]['gnum'] * $price;
+				}
+
+				return $totalPrice;
+			} else { // 未登录
+				return 3;
+			}
+		}
 	}
