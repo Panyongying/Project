@@ -1,0 +1,537 @@
+<extend name="Base:base" />
+
+    <block name="title"><title>H&M</title></block>
+
+    <block name="main"> 
+
+
+	    
+
+    <img src="__PUBLIC__/Search/user" width="1" height="1" style="position: absolute; left: -999px">
+                    
+	    <main role="main"><!-- Main -->
+
+	<div class="wrapper">
+		<div class="breadcrumb">
+
+
+
+	<nav class="breadcrumbs">
+		<!-- Breadcrumbs -->
+		<ul>
+			<li><a href="http://www2.hm.com/zh_cn/index.html">HM.com</a></li>
+			
+				
+					
+						<li>Search Results </li>
+					
+					
+				
+			
+		</ul>
+	</nav>
+	<!-- /Breadcrumbs -->
+</div>
+
+		<div class="search productlisting parbase">
+
+
+
+
+
+
+
+
+
+
+
+<!--PAGE:searchProductListing -->
+<div class="catalogwarning parbase">
+
+</div>
+
+<div class="row">
+   
+       
+       
+           
+       
+   
+   <div>
+       
+                   
+       
+           
+           
+               
+                   
+                   
+                       <article class="search-autocorrect">
+                           <h1>
+                               正在显示有关 "{$keyword}" 的结果
+                           </h1>
+                           
+                       </article>
+                       <!--/.search-autocorrect-->
+                   
+               
+           
+       
+   </div>
+
+
+   <div class="col-12">
+       <div class="product-list-title"></div>
+       
+           <!-- Product filters -->
+
+           <div class="row">
+               <div class="product-filters sticky-on-scroll" data-sticky-width="100%" data-sticky-stop-offset="24" data-sticky-fill="true">
+                   <div class="row">
+                       <div class="totop">
+                           <a href="http://www2.hm.com/zh_cn/search-results.html?q=%E8%BF%9E%E8%A1%A3%E8%A3%99&amp;sort=stock&amp;offset=0&amp;page-size=80#" class="toptrigger">返回到顶部</a> <a href="http://www2.hm.com/zh_cn/index.html" class="filterlogo">返回到开始</a>
+                       </div>
+                       <div class="filteractions clearfix">
+                           <ul class="triggers clearfix">
+                               
+                               <li class="js-clickexpand clickexpand filter" style="border-right:1px solid #d1d1d1" data-expandoptions="{&quot;toggle&quot;:&quot;true&quot;}">
+                                <a href="javascript:;" class="trigger js-expandtrigger"><strong>筛选</strong></a>
+                                <div class="expandtarget js-expandtarget filters">
+                                <form id="option-form1" action="__CONTROLLER__/goodsFilter" method="get" >
+
+
+
+
+
+                                <div class="row shut">
+                                    <div class="cols clearfix">
+                                                  <style>
+                                                    .borderBlack{
+                                                      border: 3px solid black;
+                                                    }
+                                                  </style>
+
+                                                <div class="col">
+                                                    <h4>颜色</h4>
+                                                    <ul class="inputlist grid" data-filter-param-name="colorWithNames">
+                                                          <foreach name="typeOne" item="vc">
+                                                         <li>
+                                                            <label  for="{$vc.attrname}" class="filter-option choose" ><input  class="choose-input"  type="checkbox" name="color" id="{$vc.attrname}" data-value="{$vc.attrname}"><span class="pattern" data-value="{$vc.attrname}" style="background:{$vc.attrname};margin-left:2px"></span>
+                                                        
+                                                            </label>
+                                                        </li>
+                                                    </foreach>
+                                                    <script>
+                                                        var postData = {
+                                                          'attr':[],
+                                                          'keyword':'{$keyword}',
+                                                          'orderBy':'',
+                                                        };
+
+                                                        var data1;
+
+                                                        // alert(data);
+
+                                                        $('input[name="color"]').on('click', function() {
+                                                            if ($(this).prop('checked')) {
+                                                              $(this).next().addClass('borderBlack');
+                                                            } else {
+                                                              $(this).next().removeClass('borderBlack');
+                                                            }
+                                                        });
+
+                                                      
+                                                      
+                                                    </script>
+                                                      
+                                                    </ul>
+                                                </div>
+
+
+                                                <div class="col">
+                                                    <h4>尺码</h4>
+                                                    <ul class="inputlist row-cols">
+
+                                                    <foreach name="typeTwo" item="vt">
+                                                        <li class="row-col">
+                                                            <ul data-filter-param-name="sizes" class="inputlist rows"> 
+                                                                <li>
+                                                                    <label class="choose" for="{$vt.attrname}">
+                                                                        <input class="choose-input" id="{$vt.attrname}" type="checkbox" name="size[]" data-value="{$vt.attrname}">
+                                                                                        <div class="detailbox detailbox-value"><span>{$vt.attrname}</span></div>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </foreach>
+                                                    </ul>
+                                                </div>
+                                                <script>
+                                                //ajax筛选
+                                                    $('.choose-input').on('click', function() {
+                                                        //处理传输数据
+                                                        if ($(this).prop('checked')) {
+                                                          postData.attr.push($(this).attr('data-value'));
+                                                        } else {
+                                                          for (i in postData.attr){
+                                                            if (postData.attr[i] == $(this).attr('data-value')) {
+                                                              postData.attr.splice(i, 1);
+                                                            }
+                                                          }
+                                                        }
+
+                                                        data1 = JSON.stringify(postData);
+                                                        //ajax
+                                                        $.ajax({
+                                                          type:'post',
+                                                          url:'__CONTROLLER__/goodsFilter',
+                                                          data:'data=' + data1,
+                                                          success:function(data) {
+                                                            var data = JSON.parse(data);
+                                                            if (data == '') {
+                                                              $('.product-items').remove();
+                                                              alert('数据为空');
+                                                            } else {
+
+                                                              $('.product-items').remove();
+                                                              var items = '';
+                                                              for (i in data) {
+                                                                items += '<section class="product-items productlist-row"><div class="product-items-content"><div class="row"><!-- Product item --><div class="grid col-3"><article class="product-item club-price-item" data-articlecode="0453424002" onclick="setVCParameter(&#39;SEARCH&#39;,&#39;0453424002&#39;); setNotificationTicket(&#39;Oy9zZWFyY2gvc2VhcmNoLWhpdHMtd2l0aC1jb3VudC9zZWFyY2gtaGl0czsjO3Byb2R1Y3Rfa2V5OzA0NTM0MjRfZ3JvdXBfMDAyX3poX2NuOzA0NTM0MjQwMDJfemhfY247OyM7NTc7&#39;,&#39;0453424002&#39;); setOsaParameters(utag_data.category_id,&#39;SMALL&#39;,&#39;0453424002&#39;);"><!-- Product item --><a href="' + data[i].name + '" title="' +  data[i].name + '" class="product-item-link"> <img width="222" height="333" src="" data-altimage="//lp2.hm.com/hmprod?set=source[/environment/2016/8AQ_0260_018R.jpg],width[3863],height[4517],x[678],y[371],type[FASHION_FRONT]&amp;hmver=0&amp;call=url[file:/product/main]" class="product-item-image" alt="' + data[i].name + ' " data-alttext="' + data[i].name + ' 模特款型" title="' + data[i].name + ' "><button type="button" data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0453424002|' + data[i].name + '|SEARCH" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button><!-- <div class="marker "><img class="marker-image" data-legal-text="优惠适用于hm.com,截至2017年4月18日17:00 " alt="优惠适用于hm.com,截至2017年4月18日17:00 " src="__PUBLIC__/Search/off-10-black-ZH-CN.png" title="优惠适用于hm.com,截至2017年4月18日17:00 "></div> --></a><div class="product-item-details"><h3 class="product-item-heading"><a href="">' + data[i].name + '</a></h3><strong class="price">¥' + data[i].price + '.00 </strong><ul class="list-swatches"><li class="item"><img class="swatch" src="" alt="黑色" title="黑色"></li></ul></div></article></div>';
+                                                              }
+                                                                $('.product-items-wrapper').append(items);
+                                                                $('.total-count').html(data[0].lastCount);
+                                                              
+                                                            }
+                                                          }
+                                                        });
+
+
+                                                    });
+
+                                                </script>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="row clearfilters shut">
+                                    <button class="button button-secondary js-filters-clear">清除所有</button>
+                                    <a class="button js-filters-close close" href="javascript:;">关闭</a>
+                                </div>
+
+                                <input type="hidden" name="image" value="model" class="filter-toggle-images-value" data-filter-param-name="image">
+
+
+                                </form>
+                                </div>
+                            </li>
+                               <li class="js-clickexpand clickexpand sort-by">
+                                   <a href="javascript:;" class="trigger js-expandtrigger"><strong>排序方式</strong></a>
+                                   <div class="expandtarget js-expandtarget sort">
+                                       
+<ul class="menu toggleCurrent">
+    <li class="menu-sub-item"><label class="menu-link" >默认排序<input type="radio" style="display:none" name="choose-radio" data-value="default" ></label></li>
+    <li class="menu-sub-item"><label class="menu-link" >最佳匹配<input type="radio" style="display:none" name="choose-radio" data-value="stock" ></label></li>
+    <li class="menu-sub-item"><label class="menu-link" >最低价格<input type="radio" style="display:none" name="choose-radio" data-value="ascPrice" ></label></li>
+    <li class="menu-sub-item"><label class="menu-link" >最高价格<input type="radio" style="display:none" name="choose-radio" data-value="descPrice" ></label></li>
+</ul>
+                                   </div>
+                                   <script>
+                                      $('.menu-link').on('click', function() {
+                                        // alert($(this).html());
+                                        var that = $(this);
+                                        $('.sort-by strong').text(that.text());
+                                        
+                                        
+                                      });
+
+                                      $('input[name="choose-radio"]').on('click', function() {
+
+                                        if ($(this).prop('checked')) {
+                                          postData.orderBy = $(this).attr('data-value');
+                                          
+                                            data2 = data1 || JSON.stringify(postData);
+                                                        //ajax
+                                                        $.ajax({
+                                                          type:'post',
+                                                          url:'__CONTROLLER__/goodsFilter',
+                                                          data:'data=' + data2,
+                                                          success:function(data) {
+                                                            var data = JSON.parse(data);
+                                                            if (data == '') {
+                                                              $('.product-items').remove();
+                                                              alert('数据为空');
+                                                            } else {
+
+                                                              $('.product-items').remove();
+                                                              var items = '';
+                                                              for (i in data) {
+                                                                items += '<section class="product-items productlist-row"><div class="product-items-content"><div class="row"><!-- Product item --><div class="grid col-3"><article class="product-item club-price-item" data-articlecode="0453424002" onclick="setVCParameter(&#39;SEARCH&#39;,&#39;0453424002&#39;); setNotificationTicket(&#39;Oy9zZWFyY2gvc2VhcmNoLWhpdHMtd2l0aC1jb3VudC9zZWFyY2gtaGl0czsjO3Byb2R1Y3Rfa2V5OzA0NTM0MjRfZ3JvdXBfMDAyX3poX2NuOzA0NTM0MjQwMDJfemhfY247OyM7NTc7&#39;,&#39;0453424002&#39;); setOsaParameters(utag_data.category_id,&#39;SMALL&#39;,&#39;0453424002&#39;);"><!-- Product item --><a href="' + data[i].name + '" title="' +  data[i].name + '" class="product-item-link"> <img width="222" height="333" src="" data-altimage="//lp2.hm.com/hmprod?set=source[/environment/2016/8AQ_0260_018R.jpg],width[3863],height[4517],x[678],y[371],type[FASHION_FRONT]&amp;hmver=0&amp;call=url[file:/product/main]" class="product-item-image" alt="' + data[i].name + ' " data-alttext="' + data[i].name + ' 模特款型" title="' + data[i].name + ' "><button type="button" data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0453424002|' + data[i].name + '|SEARCH" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button><!-- <div class="marker "><img class="marker-image" data-legal-text="优惠适用于hm.com,截至2017年4月18日17:00 " alt="优惠适用于hm.com,截至2017年4月18日17:00 " src="__PUBLIC__/Search/off-10-black-ZH-CN.png" title="优惠适用于hm.com,截至2017年4月18日17:00 "></div> --></a><div class="product-item-details"><h3 class="product-item-heading"><a href="">' + data[i].name + '</a></h3><strong class="price">¥' + data[i].price + '.00 </strong><ul class="list-swatches"><li class="item"><img class="swatch" src="" alt="黑色" title="黑色"></li></ul></div></article></div>';
+                                                              }
+                                                                $('.product-items-wrapper').append(items);
+                                                                $('.total-count').html(data[0].lastCount);
+                                                              
+                                                            }
+                                                          }
+                                                        });
+                                        }
+
+                                      });
+
+
+                                   </script>
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <!-- /Product filters -->                    
+           </div>
+               
+<div class="filters-applied hidden">
+   <strong>应用筛选器:</strong>
+   <p class="text">
+       <span class="name-of-filters-applied"></span>
+       <a href="javascript:;" class="link">清除所有</a>
+   </p>
+</div>                        
+           <div class="row">
+               <div class="model-and-product-switch">
+                   <div class="grid col-12">
+                       <div class="grid col-6">
+                           <ul>
+                               <li class="right">
+                               
+                               <span class="filterinfo pagination-count ">
+                               <strong>
+                               共 <span class="total-count">{$lastCount}</span> 商品
+                               </strong>
+                               </span>
+                               
+                                <span class="filterinfo filtered-count hidden">
+                                <!-- <strong>
+                                筛选结果：共1,066项，其中筛选出<span class="total-count">1066</span>项
+                               </strong> -->
+                               </span>
+                                              
+                               </li>               
+                           </ul>
+                       </div>
+                       
+                   </div>
+               </div>
+           </div>
+       
+   </div>
+</div>
+
+
+
+
+
+
+	
+	
+		
+		<div class="product-items-wrapper">
+      <foreach name="res" item="v">
+      <section class="product-items productlist-row">
+
+        <!-- Product items -->
+        <div class="product-items-content">
+          <div class="row">
+            
+            
+              
+              
+							
+							<!-- Product item -->
+							<div class="grid col-3">
+								
+								<article class="product-item club-price-item" data-articlecode="0453424002" onclick="setVCParameter(&#39;SEARCH&#39;,&#39;0453424002&#39;); setNotificationTicket(&#39;Oy9zZWFyY2gvc2VhcmNoLWhpdHMtd2l0aC1jb3VudC9zZWFyY2gtaGl0czsjO3Byb2R1Y3Rfa2V5OzA0NTM0MjRfZ3JvdXBfMDAyX3poX2NuOzA0NTM0MjQwMDJfemhfY247OyM7NTc7&#39;,&#39;0453424002&#39;); setOsaParameters(utag_data.category_id,&#39;SMALL&#39;,&#39;0453424002&#39;);">
+									<!-- Product item -->
+									
+										
+										
+											<a href="{$v:id}" title="{$v:name}" class="product-item-link"> <img width="222" height="333" src="" data-altimage="//lp2.hm.com/hmprod?set=source[/environment/2016/8AQ_0260_018R.jpg],width[3863],height[4517],x[678],y[371],type[FASHION_FRONT]&amp;hmver=0&amp;call=url[file:/product/main]" class="product-item-image" alt="{$v:name} " data-alttext="{$v:name} 模特款型" title="{$v:name} ">
+												
+												
+													<button type="button" data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0453424002|{$v:name}|SEARCH" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button> 
+												
+													
+												
+													
+													
+															 
+														
+													<!-- <div class="marker ">
+														<img class="marker-image" data-legal-text="优惠适用于hm.com,截至2017年4月18日17:00 " alt="优惠适用于hm.com,截至2017年4月18日17:00 " src="__PUBLIC__/Search/off-10-black-ZH-CN.png" title="优惠适用于hm.com,截至2017年4月18日17:00 ">
+													</div> -->
+
+												 
+													
+												
+
+											</a>
+										
+											
+											
+
+											<div class="product-item-details">
+												
+													
+												
+												<h3 class="product-item-heading">
+													
+														
+														
+															<a href="">{$v:name}</a>
+														
+															
+												</h3>
+												
+													
+														
+														
+															<strong class="price">
+																¥ {$v:price}.00 </strong>
+														
+													
+
+												
+												
+												
+												<ul class="list-swatches">
+													
+														<li class="item">
+															
+															<img class="swatch" src="__PUBLIC__/Search/hmprod(1)" alt="黑色" title="黑色">
+														</li>
+													
+												</ul>
+											</div>
+										</article>
+									</div>
+							<!-- /Product item -->
+							</foreach>
+			
+							
+							
+							
+			
+			
+			
+			<a href="http://www2.hm.com/zh_cn/search-results.html?q=%E8%BF%9E%E8%A1%A3%E8%A3%99&amp;sort=stock&amp;offset=0&amp;page-size=80#" class="hidden listing-total-count" data-total-count="1066"></a>
+		</div>
+		
+	
+
+
+<a class="load-more-link button infinite-scroll" data-offset-query-param="offset" data-searchterm-query-param="q" data-page-size-query-param="page-size" data-count-selector=".product-item" data-target-selector=".product-items-wrapper" data-per-page="40" data-per-page-query-param="per_page" data-page-query-param="page" data-load-more-url="/zh_cn/search-results/_jcr_content/search.display.html?q=连衣裙" data-is-product-list="true" href="http://www2.hm.com/zh_cn/search-results/_jcr_content/search.display.html">加载更多产品</a>
+<div class="clearfix"></div>
+
+
+   <script>
+
+            var num = 1;
+
+            var nums = 1;
+
+            $('.filter').on('click', function(event) {
+
+                var that = $(this);
+
+
+                if (num == 1) {
+
+                    that.addClass('isOpen');
+
+                    $('.sort-by').removeClass('isOpen');
+
+                    nums = 1;
+                } else {
+
+                    that.removeClass('isOpen');
+
+                    num = 0;
+                }
+
+                num += 1;
+
+                event.stopPropagation();
+            });
+
+            $('.close').click(function() {
+
+                $('.filter').removeClass('isOpen');
+
+                num = 1;
+            });
+
+            //阻止冒泡
+            $('.shut').click(function(event) {
+
+                event.stopPropagation();
+            });
+
+
+            $(document).click(function(event) {
+
+                $('.filter').removeClass('isOpen');
+                $('.sort-by').removeClass('isOpen');
+
+                num = 1;
+                nums = 1;
+                event.stopPropagation();
+            });
+
+            //阻止a跳转
+            $('.favorite').on('click', function() {
+
+                $(this).parent().one('click', function() {
+                    return false;
+                });
+
+            });
+
+
+            $('.sort-by').on('click', function(event) {
+
+                var that = $(this);
+
+                that.addClass('isOpen');
+
+                if (nums == 1) {
+
+                    that.addClass('isOpen');
+
+                    $('.filter').removeClass('isOpen');
+                    num = 1;
+                } else {
+
+                    that.removeClass('isOpen');
+
+                    nums = 0;
+                }
+
+                nums += 1;
+
+                event.stopPropagation();
+            });
+
+
+
+        </script>
+</div>
+
+		<div class="parsys main">
+</div>
+
+	</div>
+</main>
+
+</block>
+
+
+
+	    

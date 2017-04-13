@@ -17,6 +17,7 @@
  * @license http://www.xunsearch.com/license/
  * @version $Id$
  */
+error_reporting ( E_ALL  ^  E_NOTICE );
 define('XS_CMD_NONE',	0);
 define('XS_CMD_DEFAULT',	XS_CMD_NONE);
 define('XS_CMD_PROTOCOL',	20110707);

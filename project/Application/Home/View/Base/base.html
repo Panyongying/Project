@@ -350,9 +350,9 @@
                 <div class="autosuggestsearch parbase">
                     <div id="search-field" class="ui-widget">
 
-                        <form method="get" action="http://www2.hm.com/zh_cn/search-results.html" class="ng-pristine ng-valid">
+                        <form method="get" action="__CONTROLLER__/searchGoods" class="ng-pristine ng-valid">
                         		<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-                        		<input id="main-search" type="text"  name="q" placeholder="搜索产品" minlength="1" maxlength="200"  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
+                        		<input id="main-search" type="text"  name="keyword" placeholder="搜索产品" minlength="1" maxlength="200"  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
                         </form>
                         <span class="magnify"></span>
 
@@ -580,6 +580,7 @@
 
                 //鼠标出来触发
             }).on('mouseout', function() {
+                
 
                 $(this).parent().removeClass('open');
 
