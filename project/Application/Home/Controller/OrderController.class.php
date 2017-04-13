@@ -38,7 +38,7 @@
 
 				$this->assign('data', $data);
 
-				$this->display();
+				$this->display('checkoutLogin');
 			}
 		}
 

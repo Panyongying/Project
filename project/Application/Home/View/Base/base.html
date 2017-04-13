@@ -131,15 +131,9 @@
                         </a>
 
                     <span class="parbase minicart">
-<<<<<<< HEAD
                         <div class="shopping-bag rollover-popdown is-loaded" data-cart="/zh_cn/minicart/view">
-                            <a href="__APP__/Home/cart/index" class="goto-shopping-bag rollover-toggle">
+                            <a id="overcar" href="__APP__/Home/cart/index" class="goto-shopping-bag rollover-toggle">
                                购物袋
-=======
-                        <div id="shopbag"  class="shopping-bag rollover-popdown is-loaded">
-                            <a id="overcar" href="javascritp:;"class="goto-shopping-bag rollover-toggle">
-                               购物袋  
->>>>>>> ff83067ccbd38509ca9244417f45bdf344efeee2
                                (<span class="shoppingbag-item-count">
                                    <if condition="$data = 'empty'">0
                                    <else />{$data.num}
@@ -195,7 +189,7 @@
                                                                                     <dt>数量：</dt>
                                                                                     <dd>{$ov.gnum}</dd>
                                                                                     <dt>颜色：</dt>
-                                                                                    <dd>{$ov.color}}</dd>
+                                                                                    <dd>{$ov.color}</dd>
                                                                                     <dt>尺码：</dt>
                                                                                     <dd>{$ov.size}</dd>
                                                                                 </dl>
@@ -222,7 +216,7 @@
 
                                                                 <a href="/zh_cn/checkout" class="button button-big">
                                                                 结账</a>
-                                                                <a href="/zh_cn/cart" class="button button-big button-secondary">
+                                                                <a href="__APP__/Home/Cart/index" class="button button-big button-secondary">
                                                                     购物袋</a>
                                                                 <div ng-if="''">
                                                                  <p class="text"></p>

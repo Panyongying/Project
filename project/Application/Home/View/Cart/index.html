@@ -29,7 +29,7 @@
 									<h2>您的购物袋是空的</h2>
 									<div class="ng-scope">
 										请登录保存商品到购物袋,或读取购物袋中已保存商品。 <br><br>
-										<a href="/zh_cn/login">登录</a>
+										<a href="__APP__/Home/User/signIn">登录</a>
 									</div>
 								</div>
 							</div>
@@ -82,11 +82,11 @@
 				
 			</div>
 			<div class="product-detail-list-item-actions">
-                <button class="button secondary icon icon-trash rm-btn" type="button" title="Remove product"  aid="{$ov.aid}" gid="{$ov.gid}" gnum="{$ov.gnum}"></button>
-                <button class="button secondary icon icon-move-favorite ng-scope fav-btn" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" aid="{$ov.aid}" gid="{$ov.gid}" gnum="{$ov.gnum}"></button>
+                <button class="button secondary icon icon-trash rm-btn" type="button" title="Remove product"  aid="{$ov.aid}" gid="{$ov.gid}""></button>
+                <button class="button secondary icon icon-move-favorite ng-scope fav-btn" type="button" data-saved-text="Saved to favorites" data-not-saved-text="Not saved to favorites" title="Toggle favorite" aid="{$ov.aid}" gid="{$ov.gid}"></button>
                 <label class="product-detail-list-item-actions-label" for="shopping-bag-quantity-options-4"></label>
 				<div class="select-primary product-detail-list-item-quantity">
-    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid"  aid="{$ov.aid}" gid="{$ov.gid}">
+    				<select name="product-detail-list-item-quantity-options-4" id="shopping-bag-quantity-options-4" data-validation="false" ng-change="updateQuantity(entry,entry.quantity)" ng-model="entry.quantity" ng-options="option for option in range(entry.maxQuantity)" class="ng-pristine ng-untouched ng-valid num-sel"  aid="{$ov.aid}" gid="{$ov.gid}">
     					<if condition="$ov.stock egt 10">
     						<for start="1" end="11">
     							<option value="{$i}" <if condition="$i = $ov.stock">selected</if> label="{$i}">{$i}</option>
@@ -133,7 +133,7 @@
 		 </tfoot>
 </table>
 				
-			<button  class="button button-big" <if condition="$data = 'empty'">disabled
+			<button id="goToQuery" class="button button-big" <if condition="$data = 'empty'">disabled
 				<else />
 				</if>
 				>
@@ -289,11 +289,110 @@
 <script>
 	// 删除按钮
 	$('.rm-btn').click(function () {
+		var aid = $(this).attr('aid');
+		var gid = $(this).attr('gid');
+
 		$.get(
-			'__CONTROLLER__/'
+			'__CONTROLLER__/delFromCart',
+			{
+				aid:aid,
+				gid:gid
+			},
+			function (data) {
+				if (data == 2) {
+					alert('系统繁忙，请稍后再试')
+				} else {
+					$('.visuallyhidden').next().remove();
+					$('.visuallyhidden').after(data.mainCart);
+					$('.shopping-bag-rollover-items-wrapper').child().remove();
+					$('.shopping-bag-rollover-items-wrapper').append(data.topCart);
+					$('.clearfix').child().find('dd').text('￥' + data.totalPrice);
+					$('.shopping-bag-rollover-order-total').child().find('dd').text('￥' + data.totalPrice);
+					$('#total_price_of_basket').text('￥' + data.totalPrice);
+					$('#newPriceSubtotal').text('￥' + data.totalPrice);
+					if (data.totalPrice == '0.00') {
+						$('#goToQuery').attr('disabled', true);
+					} else {
+						$('#goToQuery').attr('disabled', false);
+					}
+				}
+			},
+			'json'
 		);
 	});
 
 	// 去收藏按钮
+	$('.fav-btn').click(function () {
+		var aid = $(this).attr('aid');
+		var gid = $(this).attr('gid');
+
+		$.get(
+			'__CONTROLLER__/cartToFav',
+			{
+				aid:aid,
+				gid:gid
+			},
+			function (data) {
+				if (data == 2) {
+					alert('系统繁忙，请稍后再试');
+				} else if (data == 3) {
+					alert('请登录再进行操作');
+				} else {
+					$('.visuallyhidden').next().remove();
+					$('.visuallyhidden').after(data.mainCart);
+					$('.shopping-bag-rollover-items-wrapper').child().remove();
+					$('.shopping-bag-rollover-items-wrapper').append(data.topCart);
+					$('.clearfix').child().find('dd').text('￥' + data.totalPrice);
+					$('.shopping-bag-rollover-order-total').child().find('dd').text('￥' + data.totalPrice);
+					$('#total_price_of_basket').text('￥' + data.totalPrice);
+					$('#newPriceSubtotal').text('￥' + data.totalPrice);
+
+					if (data.totalPrice == '0.00') {
+						$('#goToQuery').attr('disabled', true);
+					} else {
+						$('#goToQuery').attr('disabled', false);
+					}
+				}
+			},
+			'json'
+		);
+	});
+
+	// 改变商品数量
+	$('.num-sel').change(function () {
+		var gnum = $(this).val();
+		var aid = $(this).attr('aid');
+		var gid = $(this).attr('gid');
+
+		$.get(
+			'__CONTROLLER__/changeNum',
+			{
+				gnum:gnum,
+				aid:aid,
+				gid:gid
+			},
+			function (data) {
+				if (data == 2) {
+					alert('系统繁忙，请稍后再试');
+				} else {
+					$('.visuallyhidden').next().remove();
+					$('.visuallyhidden').after(data.mainCart);
+					$('.shopping-bag-rollover-items-wrapper').child().remove();
+					$('.shopping-bag-rollover-items-wrapper').append(data.topCart);
+					$('.clearfix').child().find('dd').text('￥' + data.totalPrice);
+					$('.shopping-bag-rollover-order-total').child().find('dd').text('￥' + data.totalPrice);
+					$('#total_price_of_basket').text('￥' + data.totalPrice);
+					$('#newPriceSubtotal').text('￥' + data.totalPrice);
+
+					if (data.totalPrice == '0.00') {
+						$('#goToQuery').attr('disabled', true);
+					} else {
+						$('#goToQuery').attr('disabled', false);
+					}
+				}
+			},
+			'json'
+		);
+	});
 </script>
 </block>
