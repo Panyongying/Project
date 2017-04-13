@@ -100,8 +100,7 @@
 	    		    	
 	    }
 
-	    //用户注销
-	    
+	    //用户注销	    
 	    public function logout()
 	    {	
 
@@ -190,15 +189,6 @@
 	  	public function person()
 	  	{	
 
-
-	  		if( empty( I('get.id') )){
-
-	  			$this->display('Index/index');
-
-	  			exit;
-
-	  		}
-
 	  		if( !isset($_SESSION['userInfo']) ){
 
 	  			$this->display('Sign/signin');
@@ -221,19 +211,12 @@
 
 	  		if (IS_GET){
 
-	  			if( empty( I('get.id') )){
+	  			if( !isset($_SESSION['userInfo']) ){
 
-	  				$this->display('Index/index');
+	  				$this->display('Sign/signin');
 
 	  				exit;
-	  		}
-
-	  		if( !isset($_SESSION['userInfo']) ){
-
-	  			$this->display('Sign/signin');
-
-	  			exit;
-	  		}
+	  			}
 
 	  			$res = D('user')->showPersonal();
 
@@ -245,7 +228,6 @@
 	  		if (IS_AJAX){
 	  			//保存个人信息
 	  			$res = D('user')->savePersonal();
-
 
 	  			echo $res;
 	  		}
@@ -263,6 +245,34 @@
 	  	public function signIn()
 	  	{
 	  		$this->display('Sign/signin');
+
+	  	}
+	  	//修改密码
+	  	public function updatePassword()
+	  	{
+
+			if( !isset($_SESSION['userInfo']) ){
+
+	  			$this->display('Sign/signin');
+
+	  			exit;
+	  		}
+
+	  		if (IS_GET) {
+
+				$this->display('Person/updatePassword');
+				
+	  		}		
+
+
+	  		if (IS_AJAX) {
+
+	  			$res = D('user')->updatePassword();
+
+	  			echo $res;
+
+	  		}
+	  	
 
 	  	}
 
