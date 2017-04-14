@@ -75,7 +75,6 @@ class IndexController extends Controller
         $this->display('Goods/GoodsList');
     }
 
-<<<<<<< HEAD
     //搜索商品
     public function searchGoods()
     {
@@ -92,7 +91,7 @@ class IndexController extends Controller
         $typeOne = D('goods')->typeOne();
         //size
         $typeTwo = D('goods')->typeTwo();
-        
+
         $this->assign('typeTwo', $typeTwo);
         $this->assign('typeOne', $typeOne);
         $this->assign('lastCount', $lastCount);
@@ -103,7 +102,7 @@ class IndexController extends Controller
 
 
 
-       
+
     }
 
     //商品筛选
@@ -119,27 +118,27 @@ class IndexController extends Controller
             $searchword .= $v.' ';
         }
         $searchword .= $data->keyword;
-        
+
         switch ($data->orderBy) {
             case 'default':
             $res = $search->setFuzzy()->search($searchword);
-                
+
                 break;
 
             case 'stock':
             $res = $search->search($searchword);
-                
+
                 break;
 
             case 'ascPrice':
             $res = $search->setSort('price', true)->search($searchword);
-                
+
                 break;
 
             case 'descPrice':
             $res = $search->setSort('price')->search($searchword);
-                
-                break;     
+
+                break;
         }
 
 
@@ -166,11 +165,7 @@ class IndexController extends Controller
     }
 
     //商品详情页
-    public function goodsDeatil()
-=======
-//商品详情页
     public function goodsDetail()
->>>>>>> 230219f5bba1a317aa8230e0eda7fecf3033c08e
     {
         if (IS_POST) {
 
@@ -179,7 +174,16 @@ class IndexController extends Controller
             $OneList = D('goods')->OneList();
 
             $this->assign('OneList', $OneList);
+            $this->assign('goodsDeatil', $goodsDeatil);
             $this->display('Goods/GoodsDetail');
         }
+    }
+
+    //ajax根据颜色查图片
+    public function colorPics()
+    {
+        $pics = D('goods')->colorPics();
+
+        echo json_encode($pics);
     }
 }
