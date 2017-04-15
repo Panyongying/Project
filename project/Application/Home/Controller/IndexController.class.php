@@ -137,7 +137,7 @@ class IndexController extends Controller
             }
 
 
-        
+        }
 
 
         $searchword .= $data->keyword;
