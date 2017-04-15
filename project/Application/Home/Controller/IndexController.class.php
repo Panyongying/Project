@@ -75,6 +75,17 @@ class IndexController extends Controller
         $this->display('Goods/GoodsList');
     }
 
+
+    //ajax获取图片
+    public function getGoodsPic()
+    {
+        $gid = I('get.id');
+        $res = M('goodsPic')->field('pic')->where("gid=$gid")->limit(1)->find();
+
+        echo trim($res['pic'], './');
+    }
+
+
     //搜索商品
     public function searchGoods()
     {
@@ -82,7 +93,7 @@ class IndexController extends Controller
         $search = $xs->search;
         //搜索关键字
         $keyword = I('get.keyword');
-        $res = $search->search($keyword);
+        $res = $search->setLimit(4)->search($keyword);
         //匹配数量
         $lastCount = $search->getLastCount();
         //一级菜单
@@ -91,7 +102,7 @@ class IndexController extends Controller
         $typeOne = D('goods')->typeOne();
         //size
         $typeTwo = D('goods')->typeTwo();
-        
+
         $this->assign('typeTwo', $typeTwo);
         $this->assign('typeOne', $typeOne);
         $this->assign('lastCount', $lastCount);
@@ -102,44 +113,85 @@ class IndexController extends Controller
 
 
 
-       
+
     }
 
-    //商品筛选
-    public function goodsFilter()
+    //商品筛选&ajax获取新数据
+    public function getGoods()
     {
         $xs = new \XS('jhjy');
         $search = $xs->search;
-        $data = I('post.data');
+
+        if (IS_POST) {
+            $data = I('post.data');
+        } else {
+            $data = I('get.data');
+        }
+
         $res = preg_replace('/&quot;/', '"', $data);
         $data = json_decode($res);
 
-        foreach ($data->attr as $v) {
+        if ($data->attr != '') {
+            foreach ($data->attr as $v) {
             $searchword .= $v.' ';
-        }
-        $searchword .= $data->keyword;
-        
-        switch ($data->orderBy) {
-            case 'default':
-            $res = $search->setFuzzy()->search($searchword);
-                
-                break;
+            }
 
+
+        
+
+
+        $searchword .= $data->keyword;
+
+        if (IS_POST) {
+            switch ($data->orderBy) {
             case 'stock':
-            $res = $search->search($searchword);
+            $res = $search->setLimit($data->showNum)->setFuzzy()->search($searchword);
                 
+
                 break;
 
             case 'ascPrice':
-            $res = $search->setSort('price', true)->search($searchword);
+            $res = $search->setLimit($data->showNum)->setSort('price', true)->search($searchword);
                 
                 break;
 
             case 'descPrice':
-            $res = $search->setSort('price')->search($searchword);
+            $res = $search->setLimit($data->showNum)->setSort('price')->search($searchword);
                 
+                break;
+
+            default:
+            $res = $search->setLimit($data->showNum)->search($searchword);
+
                 break;     
+            }
+        } else {
+            switch ($data->orderBy) {
+            case 'stock':
+
+            $res = $search->setLimit(4,$data->showNum)->setFuzzy()->search($searchword);
+                
+                break;
+
+            case 'ascPrice':
+            $res = $search->setLimit(4,$data->showNum)->setSort('price', true)->search($searchword);
+                
+                break;
+
+            case 'descPrice':
+            $res = $search->setLimit(4,$data->showNum)->setSort('price')->search($searchword);
+                
+                break;
+
+            default:
+            $res = $search->setLimit(4,$data->showNum)->search($searchword);
+
+                break;     
+            }
+
         }
+        
+
 
 
         //匹配条数
@@ -165,7 +217,8 @@ class IndexController extends Controller
     }
 
 
-//商品详情页
+    //商品详情页
+
     public function goodsDetail()
 
     {
@@ -176,7 +229,16 @@ class IndexController extends Controller
             $OneList = D('goods')->OneList();
 
             $this->assign('OneList', $OneList);
+            $this->assign('goodsDeatil', $goodsDeatil);
             $this->display('Goods/GoodsDetail');
         }
+    }
+
+    //ajax根据颜色查图片
+    public function colorPics()
+    {
+        $pics = D('goods')->colorPics();
+
+        echo json_encode($pics);
     }
 }

@@ -42,7 +42,11 @@
       </button>
       <div class="product-detail-thumbnails">
     <!-- 小图 -->
-        <ul><li class="product-detail-thumbnail current"><img alt="" src="" class="product-detail-thumbnail-image" title=""></li><li class="product-detail-thumbnail"><img alt="" src="" class="product-detail-thumbnail-image" title=""></li><li class="product-detail-thumbnail"><img alt="" src="" class="product-detail-thumbnail-image" title=""></li></ul>
+        <ul>
+        <foreach name="goodsDeatil['pic']" item="vp">
+        <li class="product-detail-thumbnail"><img alt="" src="__PUBLIC__/{$vp.pic}" class="product-detail-thumbnail-image" title=""></li>
+        </foreach>
+        </ul>
       </div>
       <button class="product-detail-thumbnails-scroll-down disabled">
           <div class="navigation-arrow-down"></div>
@@ -59,7 +63,7 @@
           <div class="product-detail-main-image-container">
     <!-- 大图 -->
 
-            <img width="384" height="576" alt="" class="product-detail-main-image-image" src="" title="">
+            <img width="384" height="576" alt="" class="product-detail-main-image-image" src="__PUBLIC__/{$goodsDeatil['pic'][0].pic}" title="">
 
 
 
@@ -78,12 +82,12 @@
                 <div class="product-detail-options">
 
                 <h1 class="product-item-headline">
-                    缩褶连衣裙
+                    {$goodsDeatil.name}
                 </h1>
                 <div class="price parbase">
 
             <div class="product-item-price">
-                <span class="price-value">¥199.00</span>
+                <span class="price-value">¥{$goodsDeatil.price}</span>
             </div>
 
 </div>
@@ -91,35 +95,37 @@
                 <div class="product-item-selection">新品</div>
                 <div id="swatchsize">
                     <div class="product-colors clearfix loaded">
-                        <div class="product-input-label" data-value="">颜色: <span>白色</span></div>
+                        <div class="product-input-label" data-value="">颜色: <span></span></div>
                         <ul class="inputlist clearfix">
 
 
-
+                        <foreach name="goodsDeatil['color']" item="v">
                                 <li>
 
-                                    <a href="" title="白色" data-articlecode="0481148009" data-sizes="" class="filter-option active">
-                                      <img class="pattern" src="" alt="" title="">
+                                    <a href="javascript:;" title="{$v.attrname}" data-articlecode="0481148009" data-sizes="" class="filter-option" style="background:{$v.attrname}">
+                                      <!-- <img class="pattern" src="" alt="" title=""> -->
+
                                     </a>
 
                                 </li>
 
-
+                        </foreach>
 
                         </ul>
                     </div>
                     <div class="product-sizes loaded">
                         <div class="product-input-label" data-value="选择尺码">尺码: <span>选择尺码</span></div>
                             <ul class="inputlist clearfix" data-sizelist="0481148009" style="display: block;">
-
+                            <foreach name="goodsDeatil['size']" item="v">
                                       <li>
                                         <label>
-                                            <input type="radio" name="product-size" value="32 (155|76A)" data-code="0481148009001" data-size="001">
+                                            <input type="radio" name="product-size" value="{$v.attrname}" data-code="0481148009001" data-size="001">
 
-                                            <div class="detailbox detailbox-value detailbox-flexible "><span>32 (155|76A)</span></div>
+                                            <div class="detailbox detailbox-value detailbox-flexible "><span>{$v.attrname}</span></div>
 
                                           </label>
                                       </li>
+                              </foreach>
                               </ul>
 
 
@@ -142,7 +148,7 @@
 
 
                       </div>
-                      <button class="button button-big button-buy product-details-favorite button-disabled" data-not-added-text="您必须选择一个可用的尺码" data-added-text="已添加商品" data-shopping-bag-text="购物袋" data-shopping-bag-failed-text="将商品添加到购物袋时出错" data-quantity-text="数量" data-color-text="颜色" data-size-text="尺码" data-default-quantity="1" data-sold-out-text="已售完" data-not-added-sold-out-text="该颜色的所有尺码已售完">添加到购物袋</button>
+                      <button class="button button-big button-buy product-details-favorite button-disabled" data-not-added-text="您必须选择一个可用的尺码" data-added-text="已添加商品" data-shopping-bag-text="购物袋" data-shopping-bag-failed-text="将商品添加到购物袋时出错" data-quantity-text="数量" data-color-text="颜色" data-size-text="尺码" data-default-quantity="1" data-sold-out-text="已售完" data-not-added-sold-out-text="该颜色的所有尺码已售完" data-gid="{$goodsDeatil.id}">添加到购物袋</button>
 
                         <div class="button-sold-out-warning" style="top: 316px;display:none"></div>
                          <button  class="button button-big button-secondary button-favorite icon icon-favorites-dark js-button-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button>
@@ -171,7 +177,7 @@
       <div class="tab-pane tab-description active">
 
 
-         <p class="product-detail-description-text" itemprop="description">粘纤绉织露肩连衣短裙，上部及短袖缩褶设计，腰部有接缝，微喇裙摆配衬里。</p>
+         <p class="product-detail-description-text" itemprop="description">{$goodsDeatil.des}。</p>
 
 
 
@@ -183,9 +189,9 @@
       <div class="tab-pane tab-details">
           <div class="article-concept">
 
-
-             <h4>护理说明</h4>
-             <ul><li>30°机洗</li></ul>
+          {$goodsDeatil['detail'].detail}
+<!--              <h4>护理说明</h4>
+             <ul><li>30°机洗</li></ul> -->
 
          </div>
 
@@ -200,12 +206,12 @@
 
 
 
-
+<!--
 
          <h4>商品号</h4>
           <ul>
               <li class="product-detail-article-code">0481148009</li>
-          </ul>
+          </ul> -->
 
       </div>
 
@@ -247,9 +253,52 @@
 
 <script>
 
+    //默认选择filter-option
+    // 给默认值/颜色/按钮
+    $('.filter-option:first').addClass('active');
+    $('.filter-option:first').parent().parent().prev('div').children().html( $('.filter-option:first').attr('title') );
+    $('.filter-option:first').parent().parent().prev('div').attr('data-value', $('.filter-option:first').attr('title'));
+    $('.button-buy').attr('data-color', $('.filter-option:first').attr('title'));
+
+    //点击换颜色
+    $('.filter-option').on('click', function() {
+
+      var url = '__CONTROLLER__/colorPics';
+
+      $(this).addClass('active').parent().siblings().children().removeClass('active');
+
+      $(this).parent().parent().prev('div').children().html($(this).attr('title'));
+
+      $(this).parent().parent().prev('div').attr('data-value', $(this).attr('title'));
+
+      //为购物车按钮添加颜色属性
+      $('.button-buy').attr('data-color', $(this).attr('title'));
+
+      //根据点击的值查询对应图片和size
+      $.post(url, {aid:$(this).attr('title'),gid:{$goodsDeatil['id']}}, function(data) {
+
+        var bigPic = '';
+        var res = '<ul>';
+
+        for (var i=0; i<data.length; i++) {
+
+          res += '<li class="product-detail-thumbnail"><img alt="" src="__PUBLIC__/'+data[i].pic+'" class="product-detail-thumbnail-image" title=""></li>';
+
+        }
+        res += '</ul>';
+
+        bigPic = '<img width="384" height="576" alt="" class="product-detail-main-image-image" src="__PUBLIC__/'+data[0].pic+'" title="">';
+        $('.product-detail-main-image-container').html(bigPic);
+
+        $('.product-detail-thumbnails').html(res);
+
+      }, 'json');
 
 
-    $('.tab-item-link').click(function() {
+    });
+
+    //切换详情
+    $('.tab-item-link').on('click', function() {
 
         $(this).addClass('active').parent().siblings().children().removeClass('active');
 
@@ -257,6 +306,47 @@
         $('.'+$(this).attr('data-target')).addClass('active').siblings().removeClass('active');
 
     });
+
+    //首张添加current
+    $('.product-detail-thumbnail:first').addClass('current');
+
+    //点击图片时图片变白current
+    $('.product-detail-thumbnails').on('click', '.product-detail-thumbnail', function() {
+      console.log(1);
+      $(this).addClass('current').siblings().removeClass('current');
+
+      $('.product-detail-main-image-image')[0].src = $(this).children()[0].src;
+
+    });
+
+
+    //获取尺码
+    $('input[type=radio]').on('click', function() {
+
+      $(this).parent().parent().parent().prev('div').children().html($(this).attr('value'));
+
+      $(this).parent().parent().parent().prev('div').attr('data-value', $(this).attr('value'));
+
+      //为购物车添加尺码属性
+      $('.button-buy').attr('data-size', $(this).attr('value'));
+    })
+
+    //gid,aid
+    // 点击购物车按钮
+    $('.button-buy').on('click', function() {
+
+      //如果没点size,不给请求
+      if ( !($(this).attr('data-size')) ) {
+
+        $('.button-sold-out-warning').css('display', 'block').html( $(this).attr('data-not-added-text') );
+      } else {
+
+        $('.button-sold-out-warning').css('display', 'none');
+      }
+
+
+    });
+
 
 
 </script>
