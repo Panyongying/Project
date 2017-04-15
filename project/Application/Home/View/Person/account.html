@@ -42,7 +42,7 @@
 							订单</a>
 					</li>
 				<li class="item" role="presentation" tabindex="-1">
-						<a href="/zh_cn/my-account/address-book" role="menuitem">
+						<a href="__URL__/addAddress" role="menuitem">
 							地址簿</a>
 					</li>
 				<li class="item" role="presentation" tabindex="-1">
@@ -276,6 +276,10 @@
 
 		$('#saveProfileDetails').click(function () {
 
+
+			window.scrollTo(0,200);
+					
+
 			var that = $(this);
 
 			var	res = RegCheck($('#myhm-user-phone').val(),/^1(3|4|5|7|8)\d{9}$/);
@@ -363,7 +367,10 @@
 
 					that.next('span').remove();
 
+					
+
 					show_msg('修改成功');
+	
 
 				}else {
 
@@ -396,7 +403,7 @@
 
 			var scroll_height=$(document).scrollTop();
 
-			 $('.sub_err').animate({'top': scroll_height+120},100);
+			 $('.sub_err').animate({'top': scroll_height+200},150);
 
 			 msgdsq=setTimeout(function(){	
 
