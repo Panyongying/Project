@@ -75,6 +75,10 @@ class IndexController extends Controller
         $this->display('Goods/GoodsList');
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
     //ajax获取图片
     public function ajaxGetGoodsPic()
     {
@@ -84,6 +88,10 @@ class IndexController extends Controller
         echo trim($res['pic'], './');
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
     //搜索商品
     public function searchGoods()
     {
@@ -137,9 +145,13 @@ class IndexController extends Controller
             foreach ($data->attr as $v) {
             $searchword .= $v.' ';
             }
+<<<<<<< HEAD
         }
+=======
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
 
-        
+
+        }
 
 
         $searchword .= $data->keyword;
@@ -150,6 +162,10 @@ class IndexController extends Controller
             case 'stock':
             $res = $search->setLimit($data->showNum)->setFuzzy()->search($searchword);
                 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
                 break;
 
             case 'ascPrice':
@@ -170,7 +186,12 @@ class IndexController extends Controller
         } else {
             switch ($data->orderBy) {
             case 'stock':
+<<<<<<< HEAD
             $res = $search->setLimit(8,$data->showNum)->setFuzzy()->search($searchword);
+=======
+
+            $res = $search->setLimit(4,$data->showNum)->setFuzzy()->search($searchword);
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
                 
                 break;
 
@@ -188,6 +209,10 @@ class IndexController extends Controller
             $res = $search->setLimit(8,$data->showNum)->search($searchword);
                 break;     
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
         }
         
 
@@ -216,8 +241,14 @@ class IndexController extends Controller
     }
 
 
+<<<<<<< HEAD
 //商品详情页
+=======
+    //商品详情页
+
+>>>>>>> 1462ca7c9d63045e835bd269d381d4e5041dd3ca
     public function goodsDetail()
+
     {
         if (IS_POST) {
 
