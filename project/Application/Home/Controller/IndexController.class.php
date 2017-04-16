@@ -75,7 +75,7 @@ class IndexController extends Controller
         $this->display('Goods/GoodsList');
     }
 
-<<<<<<< HEAD
+
     //搜索商品
     public function searchGoods()
     {
@@ -165,12 +165,8 @@ class IndexController extends Controller
 
     }
 
-    //商品详情页
-    public function goodsDeatil()
-=======
-//商品详情页
+	//商品详情页
     public function goodsDetail()
->>>>>>> 230219f5bba1a317aa8230e0eda7fecf3033c08e
     {
         if (IS_POST) {
 

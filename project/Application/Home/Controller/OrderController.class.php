@@ -29,8 +29,6 @@
 				if ($res) {
 					$this->redirect('Home/Order/checkout');
 				}else {
-					dump(I('post.'));
-					echo 1;exit;
 					$this->error('登录失败');
 				}
 			} else if (IS_GET) {
@@ -48,10 +46,59 @@
 
 			if (!$res) {
 				$this->checkoutLogin();
-
-				exit;
 			} else {
+				$data = D('cart')->showCart();
+
+				$addr = D('order')->showAddress();
+
+				$this->assign('data', $data);
+				$this->assign('addr', $addr);
+
 				$this->display();
+			}
+		}
+
+		public function addAddress()
+		{
+			$res = D('user')->addAddress();
+
+			if (!$res) {
+				echo 2;
+			}
+
+			echo $res;
+		}
+
+		public function queryOrder()
+		{
+			if (IS_POST) {
+				$res = D('order')->queryOrder();
+
+				if ($res === false) {
+					echo 2;
+				}
+
+				$this->redirect("queryOrder/oid/{$res}");
+			} else if (IS_GET) {
+				$oid = I('get.oid');
+
+				if (empty($oid)) {
+					$this->redirect('Cart/index');
+				}
+
+				// 获取订单数据
+				$order = D('order')->queryOrder();
+
+				if (!$order) { // 非法访问
+					$this->redirect('Cart/index');
+				}
+
+				// 购物车数据
+				$data = D('cart')->showCart();
+
+				$this->assign('data', $data);
+				$this->assign('orderData', $order['orderData']);
+				$this->assign('orderDetail', $order['orderDetail']);
 			}
 		}
 	}

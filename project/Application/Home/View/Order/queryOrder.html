@@ -1,0 +1,318 @@
+<extend name="Base:base" />
+<block name="main">
+<main role="main" class="">
+			<div class="wrapper">    
+				<nav class="breadcrumbs">
+					<ul>
+	<li>
+	
+	
+	
+		<a href="https://www2.hm.com/zh_cn/">HM.COM</a>
+	</li>
+
+	<li class="">
+
+			<a href="https://www2.hm.com/zh_cn/payment/orderPayment/54365404#" onclick="return false;"> 结账</a>
+				</li>
+	<li class="active">
+
+			<a href="https://www2.hm.com/zh_cn/payment/orderPayment/54365404#" onclick="return false;"> 结账</a>
+				</li>
+	</ul>
+</nav>
+				
+
+<header class="checkout-header">
+		<h1>结账</h1>
+		<ul class="checkout-breadcrumbs items-4 clearfix">
+	<li class="item">1. 登录</li>
+	<li class="item">2. 发货 &amp; 支付</li>
+	<li class="item item-current">3. 确认订单</li>
+	<li class="item item-last">4. 非常感谢</li>
+	</ul></header>
+	<div class="row ng-scope" ng-controller="PaymentController as paymentCtrl">
+		<div class="grid col-8 responsive">
+			<div class="responsive layout">
+				<div class="orders">
+					<div class="order-item is-open">
+						<div class="order-info">
+							<div class="order-info">
+								
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- CR 18208 Add Loader Key Start-->
+
+
+<!-- CR 18208 Add Loader Key End-->
+
+
+
+<style type="text/css">
+	.checkout-loader-layer-text{left:0%;line-height:25px;color:gray;position:fixed;top:54%;width:100%;text-align:center;z-index:1001;font-weight:bold;font-family:"HM Ampersand Bold",sans-serif}
+</style>
+
+<div class="order-details two modules">
+	<h3 class="sub-heading">已下订单</h3>
+	<p class="text">
+		感谢您在H&amp;M购物，为了保证及时处理您的订单，如果您使用支付宝作为付款方式且尚未付款，请在下单5小时内完成支付
+		如有任何疑问，请联系客户服务中心4008-215-500。
+		<br><br>
+		
+		    
+		    
+		    	点击现在支付，确认付款。
+		    
+		
+	</p>
+	
+	<ul class="details-list">
+		<li class="item">
+			<span class="label">订单号</span>
+			<span class="static">{$orderData.id}</span>
+			<input type="hidden" id="orderCode" value="{$orderData.id}">
+		</li>
+		<li class="item">
+			<span class="label">订单日期</span>
+			<span class="static">{date('Y-m-d H:i:s', $orderData.orderAddtime)}</span>
+		</li>
+	</ul>
+</div>
+
+<div class="order-tracking">
+	<h3 class="sub-heading">现在付款</h3>
+	<br>
+	<form method="post" class="checkout-place-order-section ng-pristine ng-valid" ng-submit="paymentCtrl.doPayment(&#39;54365404&#39;)">
+		 
+
+	    <input type="submit" id="checkoutViewPaymentButton" class="button-big" value="现在付款" data-not-added-text="页面正在跳转至您所选择的付款平台，请勿关闭或者回退页面，整个跳转过程可能需要持续60秒左右。">
+ 	     <!-- CR 18208 Add Loader Div Start-->
+ 	     <div class="payment-loader js-payment-loader" aria-hidden="true" style="display: none;" data-payment-loader-title="我们正在处理您的付款" data-payment-loader-text="这可能会花费一点时间，请耐心等候。请勿关闭窗口或点击后退键">
+            <div class="payment-loader-wrapper">
+                <div class="payment-loader-container">
+                    <span class="loader"></span>
+                    <h2 class="title"></h2>
+                    <p class="text"></p>
+                </div>
+            </div>
+        </div>
+           <!-- CR 18208 Add Loader Div End-->
+ 		
+ 		
+		<ul class="item-list">
+			<li class="item-list-item"><a href="https://www2.hm.com/zh_cn/my-account/orders">我的订单</a></li>
+			<li class="item-list-item"><a href="https://www2.hm.com/zh_cn/customer-service.html">客户服务</a></li>
+		</ul>
+	</form>
+	<div id="payeaseForm"></div>
+	<h3 class="heading">
+		订单汇总
+	</h3>
+</div>
+</div>
+							<ul class="order-products product-detail-list responsive">
+							<foreach name="$orderDetail" item="ov" >
+								<li class="product-detail-list-item" data-articlecode="0482071001">
+	<!-- Order confirmation item -->
+	<div class="product-detail-list-item-image-wrapper">
+		<div class="wrapper-inner">
+			<a href="https://www2.hm.com/zh_cn/payment/orderPayment/54365404#" class="product-detail-list-item-image ">
+				<img src="{$ov.pic}" alt="{$ov.name}" title="{$ov.name}" class="product-detail-list-item-image-image">
+			</a>
+			<!-- ngIf: false -->
+		</div>
+	</div>
+	<div class="product-detail-list-item-details">
+		
+		<div class="product-detail-list-item-price-info">
+	        <p class="product-detail-list-item-total-price">
+				总价：&nbsp;
+				¥134.10</p>
+		</div>
+	
+		<h3 class="sub-sub-heading">{$ov.name}</h3>
+		<div class="product-detail-price" ng-class="{&#39;sale-price&#39; : false }">
+					<span class="original-price">
+						¥{$ov.price}</span>
+				</div>
+			<p class="product-detail-selection"></p>
+		<dl class="product-detail-list-item-details-list">
+			<dt>
+				商品编号：</dt>
+			<dd>{$ov.gid} &nbsp;</dd>
+			<dt>
+				数量：</dt>
+			<dd>{$ov.gnum} &nbsp;</dd>
+			
+			<dt>
+				颜色：</dt>
+			<dd>{$ov.color} &nbsp;</dd>
+
+			<dt>
+				尺码:</dt>
+			<dd>{$ov.size} &nbsp;</dd>	
+		</dl>
+		
+		
+	</div>
+</li>
+	</foreach>
+</ul>
+							<ul class="order-table">
+								<li class="item">
+    <span class="label">总价：</span>
+    <span class="static ">¥{$orderData.totalPrice}</span>
+</li>
+
+<li class="item order-total">
+			<span class="label">总价：</span>
+			<span class="static ">¥{$orderData.totalPrice}</span>
+		</li>
+	</ul>
+							<script type="text/javascript">
+								$(".order-confirmation-total").addClass("order-confirmation-total-paid");
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<input id="cybersourceStatus" type="hidden" value="">
+		<input id="cybersourceReasonCode" type="hidden" value="">
+
+		<div class="modaloverlay responsive hidden" id="payment-palce-order-denied">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>出错了</h2>
+						<p>请确认您所输入的所有数据都正确无误。</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div class="modaloverlay responsive hidden" id="payment-system-unavailable-tech">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>支付被拒绝</h2>
+						<p>checkout.payment.popup.system.unavailable.technical.problems</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div class="modaloverlay responsive hidden" id="payment-system-unavailable">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>支付被拒绝</h2>
+						<p>当前无法处理您的订单。请检查付款详情并重试。(code “SU1”)</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div class="modaloverlay responsive hidden" id="payment-fraud-attempt">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>支付被拒绝</h2>
+						<p>当前无法处理您的订单。请联系客户服务，并提供代码“RM1”，以获得帮助。</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div class="modaloverlay responsive hidden" id="payment-invalid-data">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>支付被拒绝</h2>
+						<p>结账时所输入信息似乎有误，导致您的订单无法处理。请检查您的个人/付款/投递信息，并重试。如果问题仍未解决，请联系 H&amp;M 客户服务，并提供代码“VD1”，以获得帮助。</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div class="modaloverlay responsive hidden" id="payment-transaction-denied">
+	<div class="modalbackground"></div>
+	<div class="modal responsive" style="margin-top: -104.5px;">
+		<a class="modalclose icon-close-black" href="javascript:;"></a>
+		<div class="modalwrap">
+			<div class="modalcontents" style="max-height: 209px;">
+				<section class="responsive">
+					<div class="shopping-bag-message">
+						<h2>支付被拒绝</h2>
+						<p>当前无法处理您的订单。请检查您的付款信息，并重试。如果问题仍未解决，请联系您的银行，以获得帮助（代码“BD1”）</p>
+						<div class="buttons clearfix">
+							<input class="modalclose button" type="button" value="OK">
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div><div aria-hidden="true" id="generic-error-popup" class="hidden modal-content">
+			<div class="modal-text">
+				<h1 class="heading">出错了</h1>
+				<p class="text">该表格不能提交。请检查您的信息</p>
+				<div class="sticky button-group">
+					<button ng-click="closePopup()" class="modalclose button">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+		</main>
+</block>
