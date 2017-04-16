@@ -595,7 +595,7 @@
                         var id = $(this).attr('data-id');
                         var that = $(this);
                         $.ajax({
-                          url:'__CONTROLLER__/getGoodsPic/id/' + id,
+                          url:'__CONTROLLER__/ajaxGetGoodsPic/id/' + id,
                           beforeSend:function(){
                               that.attr('src', '__PUBLIC__/show/ajax-loader.gif');
                           },

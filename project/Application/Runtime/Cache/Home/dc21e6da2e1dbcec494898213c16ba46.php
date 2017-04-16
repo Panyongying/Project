@@ -943,7 +943,7 @@
                         var id = $(this).attr('data-id');
                         var that = $(this);
                         $.ajax({
-                          url:'/Project/project/index.php/Home/Index/getGoodsPic/id/' + id,
+                          url:'/Project/project/index.php/Home/Index/ajaxGetGoodsPic/id/' + id,
                           beforeSend:function(){
                               that.attr('src', '/Project/project/Public/show/ajax-loader.gif');
                           },
