@@ -7,9 +7,9 @@
                                   
 <main role="main" class="responsive my-hm">
 
-<!-- 	// <script src="__PUBLIC__/address/distpicker.data.js"></script>
-	// <script src="__PUBLIC__/address/distpicker.js"></script>
-	// <script src="__PUBLIC__/address/main.js"></script> -->
+	<script src="__PUBLIC__/address/distpicker.data.js"></script>
+	<script src="__PUBLIC__/address/distpicker.js"></script>
+	<script src="__PUBLIC__/address/main.js"></script>
 
 	<div class="wrapper">    
 		<nav class="breadcrumbs">
@@ -44,7 +44,7 @@
 							
 				</li>
 				<li class="current item" role="presentation" tabindex="-1">
-					<a href="/zh_cn/my-account/address-book" role="menuitem">地址簿</a>
+					<a href="" role="menuitem">地址簿</a>
 							
 				</li>
 				<li class="item" role="presentation" tabindex="-1">
@@ -57,7 +57,7 @@
 			<div class="hidden modal-content" id="address-validation-popup" ng-show="getContext().showPopup && getContext().popupType =='ADDRESSES'" ng-cloak>
 				<div class="modal-text">
 				<div class="address-validation">
-				<h1 class="heading">{{getContext().popupHeader}}416165165</h1>
+				<h1 class="heading">{{getContext().popupHeader}}</h1>
 				<p ng-bind-html="getContext().popupMessage"></p>
 				<form>
 					<div class="address-validation-addresses">
@@ -76,7 +76,7 @@
 							<h3>您是否指：</h3>
 							<div class="address-validation-address-list " ng-class="{'scrollable' : verifiedAddresses.length>4}" >
 								<div class="address-validation-address" ng-repeat="address in verifiedAddresses">
-									<input type="radio" name="validation-address" value="{{$index}}" id="validated-address-{{$index}}" ng-model="addresses[addressInEdit].selectedAddress">
+									<input type="radio" name="validation-address" value="{{$index}}" id="validated-address-{{$index}}">
 									<label for="validated-address-{{$index}}" ng-bind-html="address.formattedAddress">
 									</label>
 								</div>
@@ -117,73 +117,80 @@
 						<label for="default_00" class="preceding-label">
 							默认
 						</label>
-						<input type="radio" value="delivery2" id="default_02" name="use-as-default" class="radio-input" >
+						<input type="radio" value="{$v['id']}" data-uid = "{$v['uid']}" id="default_02" name="use-as-default" class="radio-input" 
+							<if condition="$v[status] eq 1 ">
+
+							checked
+
+							</if>
+
+						>
 					</div>
 					<form  id="delivery2AddressForm" name="delivery2AddressForm" class="form-section new-form delivery2Form" >
 					    <fieldset class="form-part">
 							<legend class="heading"> 邮递地址:&nbsp;{$k+1}</legend>
-							
-
-							<div class="inputwrapper">
-								<label class="label" for="checkout.firstName"> 名 </label>
-							
-									<span class="static" style="color:#555"> 11232</span>		
-							</div>
-
 
 							<div class="inputwrapper" >
-								<label class="label" for="checkout.lastName"> 姓 </label>
-				
+								<label class="label" for="checkout.lastName"> 姓名 </label>
+								<input 
+									required
+									type="text" 
+									maxlength="40"  
+									class="text-input  field firstName edit-input recname" 
+									autocomplete="given-name"
+									value="{$v['recname']}"	
+									
+									/>
 
-								<span class="static" style="color:#555"> 212</span>
+								<span class="static" style="color:#555"> {$v[recname]}</span>
 					
 							</div>
 
-							<div class="inputwrapper">
-								<label class="label" for="checkout.province"> 省份 </label>
-								
-								<span class="static" style="color:#555">2121</span>
-								
-							</div>
+						
 
-							<div class="inputwrapper">
-								<label class="label" for="checkout.town"> 城市 </label>
-								
-
-								<span class="static" style="color:#555">54545 </span>        				
-							</div>
-
-
-							<div class="inputwrapper">
-								<label class="label" for="checkout.district"> 区 </label>
-								
-
-								 
-								<span class="static"style="color:#555" >545454 </span>
-
-							</div>
-
-
-		
 							<div class="inputwrapper" >
 								<label class="label" for="checkout.line1"> 地址栏 </label>
 								
-								
-								<span class="static" style="color:#555"> 54545 </span>
+									<input 
+									required
+									type="text" 
+									maxlength="40"  
+									class="text-input  field firstName edit-input addr" 
+									autocomplete="given-name"
+									value="{$v['addr']}"	
+									/>
+								<span class="static" style="color:#555"> {$v[addr]} </span>
 									
 								
 							</div>
 
 							<div class="inputwrapper">
 								<label class="label" for="checkout.line2">电话 </label>
+								<input 
+									required
+									type="number" 
+									maxlength="40"  
+									class="text-input  field firstName edit-input phone" 
+									autocomplete="given-name"
+									value="{$v['phone']}"
+									oninput="if(value.length>11)value=value.slice(0,11)" 	
+									/>
 								
-								
-								<span class="static" style="color:#555"> 54545</span>				
+								<span class="static" style="color:#555">{$v[phone]}</span>				
 							</div>
 
 							<div class="inputwrapper">
 								<label class="label" for="checkout.postalCode"> 邮政编码 </label>
-									
+								<input 
+
+									required
+									type="number" 
+									maxlength="40"  
+									class="text-input  field firstName edit-input zip" 
+									autocomplete="given-name"
+									value="{$v['zip']}"	
+									oninput="if(value.length>6)value=value.slice(0,6)" 
+									/>
 								
 								<span class="static" style="color:#555" > {$v[zip]} </span>
 										
@@ -193,15 +200,15 @@
 
 								<label class="label" for="address-book.country"> 国家</label>			
 								
-								<span class="static" style="color:#555"> 中国 </span>
+								<span class="" style="color:#555"> 中国 </span>
 
 							</div>
 						</fieldset>
 						<div class="button-group">
-							<button class="button" type="button" >修改地址</button> 
-							<a class="secondary button hideInfo" href="#remove-address" > 删除地址</a> 
-							<button class="secondary button hideInfo" type="button" > 取消</button> 
-							<button class="button save-form hideInfo" type="button" > 保存信息</button>
+							<button class="button edit-addr " type="button" >修改地址</button> 
+							<a class="secondary button del-button" data-del="{$v['id']}" href="#remove-address" > 删除地址</a> 
+							<button class="secondary button hideInfo edit-cancel" type="button" > 取消</button> 
+							<button class="button save-form hideInfo save-addr " data-id="{$v['id']}" type="button" > 保存信息</button>
 						</div>
 					</form>
 				</div>
@@ -418,7 +425,9 @@
 		$('#field').hide();
 		$('#default').hide();
 		$('.hideInfo').hide();
-
+		$('.edit-input').hide();
+		$('.edit-cancel').hide();
+		$('.save-addr').hide();
 		$('#addInfo').click(function () {
 
 			$(this).hide();
@@ -576,6 +585,96 @@
             return res;
         }
 
+
+        $('.edit-addr').click( function () {
+
+        	$(this).parent().prev().find('.edit-input').show();
+
+        	$(this).parent().prev().find('.static').hide();
+
+        	$(this).next('.del-button').hide();
+
+        	$(this).siblings('.edit-cancel').show();
+
+        	$(this).hide();
+
+        	$(this).siblings('.save-addr').show();
+        });
+
+        $('.edit-cancel').click( function () {
+
+        	$(this).parent().prev().find('.edit-input').hide();
+
+        	$(this).parent().prev().find('.static').show();
+
+        	$(this).prev('.del-button').show();
+
+        	$(this).hide();
+
+			$(this).siblings('.save-addr').hide();
+
+        	$(this).siblings('.edit-addr').show();	 	
+
+        });
+               // 删除地址
+        $('.del-button').click(function () {
+
+        	var that = $(this);
+
+        	$.post('__URL__/delAddress', { 	id:$(this).attr("data-del") }, function (data) {
+
+        		if (data == 1){
+
+        			that.parent().parent().parent().remove();
+
+        			show_msg('删除成功');
+
+        		}else {
+
+        			show_msg('删除失败');
+        		}
+
+
+        	}, 'json');
+
+        });
+
+        //修改地址为默认地址
+        
+        $('.radio-input').click( function () {
+
+        	var that = $(this);
+
+        	$.post('__URL__/changeAddrStatus', {id: that.val(), uid:that.attr('data-uid')}, function (data) {
+
+
+
+
+        	}, 'json');
+
+        });
+
+        //修改地址
+        $('.save-addr').click( function () {
+        	var that = $(this);
+        	var them = that.parent().siblings();
+        	console.log( );
+        	$.post('__URL__/editAddress', {
+
+        		'recname':them.find('.recname').val(),
+        		'addr':them.find('.addr').val(),
+        		'phone':them.find('.phone').val(),
+        		'zip':them.find('.zip').val(),
+        		'id':that.attr('data-id'),
+
+        	}, function (data){
+
+
+
+
+        	}, 'json');
+
+        });
 
 	</script>
 </main>

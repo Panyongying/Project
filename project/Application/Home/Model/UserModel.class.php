@@ -364,15 +364,6 @@
 			$newpass = I('post.newpass');
 
 			$checkpass = I('post.checkpass');
-
-			if ( !preg_match('/^\w{6,12}$/', $newpass)) {
-
-				return 0;
-
-				exit;
-			}
-
-
 			//修改密码与确认不一致
 			if ( $newpass != $checkpass ) {
 
@@ -380,7 +371,6 @@
 
 				exit;
 			}
-
 
 			$truePassword = $this->field('password')->where('id='.$id)->find();
 
@@ -411,91 +401,57 @@
 				return 3;
 			} 
 
-			
+		
 
 		}
 
-		//添加地址
-		public function addAddress()
-		{	
+		//删除地址
+		public function deleteAddress()
+		{
+			$id = I('post.id');
 
-			$data['uid'] = $_SESSION['userInfo']['id'];
+			$res = M('addr')->where('id='.$id)->delete();
 
-			$data['recname'] = I('post.lastName').I('post.firstName');
+			return $res;
+		}
 
-			$data['addr'] = I('post.province').I('post.town').I('post.district').I('post.addr');
+		//修改地址为默认地址
+		public function changeAddrStat()
+		{
+			$id = I('post.id');
+
+			$uid = I('post.uid');
+
+			$data['status'] = 2;
+
+			$map['uid'] = $uid;
+
+			M('addr')->where($map)->save($data);
+
+			$data['status'] = 1;
+
+			$res = M('addr')->where('id='.$id)->save($data);
+
+			return $res;
+		}
+
+		//修改地址		
+		public function editAddr()
+		{
+			$id = I('post.id');
+
+			$data['recname'] = I('post.recname');
+
+			$data['addr'] = I('post.addr');
 
 			$data['phone'] = I('post.phone');
 
-			$data['zip'] = I('post.code');
+			$data['zip'] = I('post.zip');
 
+			$res = M('addr')->where('id='.$id)->save($data);
 
-			if ( empty($data['recname'] ) ){
-
-				return 0;
-
-				exit;
-			}
-
-			if ( empty( I('post.addr')) ) {
-
-				return 0;
-
-				exit;
-
-			}
-
-
-			if ( empty( I('post.province')) ) {
-
-				return 0;
-
-				exit;
-
-			}
-
-			if ( empty( I('post.town'))){
-
-				return 0;
-
-				exit;
-			}
-		
-			if (!preg_match('/^1(3|4|5|7|8)\d{9}$/',$data['phone']) ) {
-
-				return 0;
-
-				exit;
-			}
-
-			if ( !preg_match('/^[1-9]\d{5}$/', $data['zip']) )  {
-
-				return 0;
-
-				exit;
-			}
-
-
-			$res = M('addr')->add($data);
-
-			if ($res >= 1) {
-
-				return 1;
-
-			}else {
-
-				return 0;
-			}
+			return $res;
 
 		}
 
-		//显示用户地址
-		public function getAddress()
-		{
-			$uid = $_SESSION['userInfo']['id'];
-
-			$addressInfo = M('addr')->where('uid='.$uid)->select();
-
-			return $addressInfo;
-		}
 	}
