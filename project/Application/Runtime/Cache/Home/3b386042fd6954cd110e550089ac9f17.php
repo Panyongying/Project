@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 
 <html lang="zh" class="js history rgba no-touchevents lastchild nthchild oninput backgroundsize borderradius flexbox flexboxlegacy csstransforms csstransitions grunticon ng-scope" ng-app="hmApp">
 <head>
@@ -6,18 +6,18 @@
         <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
         </style>
 
-            <script src="__PUBLIC__/Backstage/js/jquery.min.js"></script>
+            <script src="/Project/project/Public/Backstage/js/jquery.min.js"></script>
 
-            <link rel="stylesheet" href="__PUBLIC__/show/icons.data.svg.css" media="all">
-            <link rel="stylesheet" href="__PUBLIC__/show/shared.min.css" type="text/css">
-            <link rel="stylesheet" href="__PUBLIC__/show/general.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/icons.data.svg.css" media="all">
+            <link rel="stylesheet" href="/Project/project/Public/show/shared.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/general.min.css" type="text/css">
             
-            <link rel="stylesheet" href="__PUBLIC__/show/checkout.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/checkout.min.css" type="text/css">
 
-            <link rel="stylesheet" href="__PUBLIC__/show/myhm.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/myhm.min.css" type="text/css">
 
-            <link rel="shortcut icon" type="image/x-icon" media="all" href="__PUBLIC__/show/favicon.ico">
-            <link href="__PUBLIC__/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
+            <link rel="shortcut icon" type="image/x-icon" media="all" href="/Project/project/Public/show/favicon.ico">
+            <link href="/Project/project/Public/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
 
             <!-- to include grunticon -->
     	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,9 +36,7 @@
     	    <meta property="fb:app_id" content="1433700643510498">
 
 
-       <block name="title">
-        <title>时尚服饰，一流品质，合理价位—— H&amp;M CN | H&amp;M CN</title>
-       </block>
+       <title>H&M.Personal</title>
 </head>
 
 
@@ -54,16 +52,15 @@
                     <div class="warehousemessage"></div>
 
                     <div class="wrapper" ng-init="hmClubEnabled=false; offersSpace=&#39;&#39;; hmClubServiceCacheDuration=0; hmRedirectPath=&#39;&#39;">
-                        <a  href="__APP__/Home/Index/index" title="HM.com" class="logotype" style='background-image: url("__PUBLIC__/show/sprites.png");'>
+                        <a  href="/Project/project/index.php/Home/Index/index" title="HM.com" class="logotype" style='background-image: url("/Project/project/Public/show/sprites.png");'>
                         </a>
                     <div class="parbase topnav">
 
                     <nav class="primary-menu"><!-- Primary menu -->
 
                         <ul>
-                            <foreach name="OneList" item="vo">
-                                <li class="">
-                                    <a id="nav-one" href="__APP__/Home/Index/goods/pid/{$vo.id}" data-id="{$vo.id}" class="lists">{$vo.name}</a>
+                            <?php if(is_array($OneList)): foreach($OneList as $key=>$vo): ?><li class="">
+                                    <a id="nav-one" href="/Project/project/index.php/Home/Index/goods/pid/<?php echo ($vo["id"]); ?>" data-id="<?php echo ($vo["id"]); ?>" class="lists"><?php echo ($vo["name"]); ?></a>
 
                                         <div id="nav-one-div" class="primary-menu-sub-menu" style="display: none;">
                                             <div class="appends primary-menu-sub-menu-inner">
@@ -83,8 +80,7 @@
 
                                             </div>
                                         </div><!-- primary-menu-sub-menu topnav 1 -->
-                                </li>
-                            </foreach>
+                                </li><?php endforeach; endif; ?>
                         </ul>
                     </nav><!-- /Primary Menu -->
 
@@ -132,12 +128,11 @@
 
                     <span class="parbase minicart">
                         <div class="shopping-bag rollover-popdown is-loaded" data-cart="/zh_cn/minicart/view">
-                            <a id="overcar" href="__APP__/Home/cart/index" class="goto-shopping-bag rollover-toggle">
+                            <a id="overcar" href="/Project/project/index.php/Home/cart/index" class="goto-shopping-bag rollover-toggle">
                                购物袋
                                (<span class="shoppingbag-item-count">
-                                   <if condition="$data = 'empty'">0
-                                   <else />{$data.num}
-                                   </if>
+                                   <?php if($data = 'empty'): ?>0
+                                   <?php else: echo ($data["num"]); endif; ?>
                                </span>)
                            </a>
                            <div id="showcart"class="shopping-bag-rollover row popdown">
@@ -147,8 +142,7 @@
                         			</div>
                         			 <div class="shopping-bag-rollover-items-wrapper ">
                                             <!-- 购物车为空时候 -->
-                                            <if condition="$data = 'empty' ">
-                            				    <div  class="cart_modal_popup empty-popup-cart">
+                                            <?php if($data = 'empty' ): ?><div  class="cart_modal_popup empty-popup-cart">
                             						<dl class="clearfix">
                             							<dd><h2>您的购物袋是空的</h2></dd>
                             						</dl>
@@ -164,41 +158,39 @@
                             							<dd>¥0.00</dd>
                             						</dl>
                             					</div>
-                                            <else />
+                                            <?php else: ?>
                                                 <div class="grid col-4">
                                                     <div class="shopping-bag-rollover-scroll-up disabled">
                                                         <div class="navigation-arrow-up"></div>
                                                     </div>
                                                     <div class="shopping-bag-rollover-items-wrapper ">
                                                         <ul class="shopping-bag-rollover-items" style="top: 0px;">
-                                                                <foreach name="data['cartList']" item="ov">
-                                                                    <li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
+                                                                <?php if(is_array($data['cartList'])): foreach($data['cartList'] as $key=>$ov): ?><li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
                                                                             <a href="">
-                                                                                <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="{$ov.pic}" title="{$ov.name}">
+                                                                                <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="<?php echo ($ov["pic"]); ?>" title="<?php echo ($ov["name"]); ?>">
                                                                                     </a>
 
                                                                             <div class="shopping-bag-item-product">
 
-                                                                                <h3 class="product-item-headline">{$ov.name}</h3>
+                                                                                <h3 class="product-item-headline"><?php echo ($ov["name"]); ?></h3>
                                                                                 <div id="redWhitePrices_0506590001001" class="product-item-price ">
                                         <span id="main_price" class="main_price_0506590001001">
-                                                            ¥{$ov.price}</span>
+                                                            ¥<?php echo ($ov["price"]); ?></span>
                                                     <small id="white_price_0506590001001"></small>
                                                 </div>
                                         <dl class="clearfix">
                                                                                     <dt>数量：</dt>
-                                                                                    <dd>{$ov.gnum}</dd>
+                                                                                    <dd><?php echo ($ov["gnum"]); ?></dd>
                                                                                     <dt>颜色：</dt>
-                                                                                    <dd>{$ov.color}</dd>
+                                                                                    <dd><?php echo ($ov["color"]); ?></dd>
                                                                                     <dt>尺码：</dt>
-                                                                                    <dd>{$ov.size}</dd>
+                                                                                    <dd><?php echo ($ov["size"]); ?></dd>
                                                                                 </dl>
                                                                             </div>
                                                                             <div class="shopping-bag-item-total-price product-item-price">
                                                                                 总价:&nbsp;
-                                                                                ¥{$ov.price * $ov.gnum}</div>
-                                                                        </li>
-                                                                    </foreach>
+                                                                                ¥<?php echo ($ov["price * $ov"]["gnum"]); ?></div>
+                                                                        </li><?php endforeach; endif; ?>
                                                                     </ul>
                                                             </div>
                                                             <div class="shopping-bag-rollover-scroll-down">
@@ -207,23 +199,22 @@
                                                             <div class="shopping-bag-rollover-summary">
                                                                 <dl class="clearfix">
                                                                     <dt>订单价值：</dt>
-                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                    <dd>¥<?php echo ($ov["totalPirce"]); ?></dd>
                                                                 </dl>
                                                                 <dl class="shopping-bag-rollover-order-total">
                                                                     <dt>总价:</dt>
-                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                    <dd>¥<?php echo ($ov["totalPirce"]); ?></dd>
                                                                 </dl>
 
                                                                 <a href="/zh_cn/checkout" class="button button-big">
                                                                 结账</a>
-                                                                <a href="__APP__/Home/Cart/index" class="button button-big button-secondary">
+                                                                <a href="/Project/project/index.php/Home/Cart/index" class="button button-big button-secondary">
                                                                     购物袋</a>
                                                                 <div ng-if="''">
                                                                  <p class="text"></p>
                                                               </div>
                                                             </div>
-                                                        </div>
-                                            </if>
+                                                        </div><?php endif; ?>
                         			</div>
                         	   </div>
                             </div>
@@ -235,33 +226,29 @@
                     <div class="parbase account">
 
                         <div class="signin rollover-popdown" >
-                            <if condition="isset($_SESSION['userInfo'])">
-                            <div class="signin-signed-in" style="display:block">
-                            <else />
-                            <div class="signin-signed-in">
-                            </if>
+                            <?php if(isset($_SESSION['userInfo'])): ?><div class="signin-signed-in" style="display:block">
+                            <?php else: ?>
+                            <div class="signin-signed-in"><?php endif; ?>
 
-                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="__APP__/Home/User/person" rel="noreferrer">{$_SESSION[userInfo][email]} </a> </span>
+                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="/Project/project/index.php/Home/User/person" rel="noreferrer"><?php echo ($_SESSION[userInfo][email]); ?> </a> </span>
 
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/person" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="/Project/project/index.php/Home/User/person" rel="noreferrer">我的H&amp;M</a>
 
-                                <a class="goto-sign-in" href="__APP__/Home/User/logout">退出</a>
+                                <a class="goto-sign-in" href="/Project/project/index.php/Home/User/logout">退出</a>
                         </div>
 
-                              <if condition="isset($_SESSION['userInfo'])">
-                                <div class="signin-not-signed-in" style="display:none;">
-                                <else />
-                                <div class="signin-not-signed-in">
-                              </if>
+                              <?php if(isset($_SESSION['userInfo'])): ?><div class="signin-not-signed-in" style="display:none;">
+                                <?php else: ?>
+                                <div class="signin-not-signed-in"><?php endif; ?>
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/signIn" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="/Project/project/index.php/Home/User/signIn" rel="noreferrer">我的H&amp;M</a>
 
                                 <a href="javascript:;" id="homelogin" class="goto-sign-in rollover-toggle">登录/加入</a>
                                 <div class="signin-rollover popdown row" id="bigdiv">
                                     <div class="inner">
                                       <div class="signin-rollover-login" id="showlogin">
-                                          <form id="loginForm"class="responsive form-section ng-pristine ng-valid" action="__APP__/Home/User/login" method="POST">
+                                          <form id="loginForm"class="responsive form-section ng-pristine ng-valid" action="/Project/project/index.php/Home/User/login" method="POST">
                                                 <h3>登录</h3>
 
                                                 <div class="input-group">
@@ -277,7 +264,7 @@
                                                 <div class="input-group">
                                                     <input type="submit" class="button-big" value="登录">
                                                     <p>
-                                                        <a href="__APP__/Home/User/forgetPassword" class="underline">忘了密码？</a>
+                                                        <a href="/Project/project/index.php/Home/User/forgetPassword" class="underline">忘了密码？</a>
                                                     </p>
                                                 </div>
                                                 <div class="input-group join">
@@ -289,7 +276,7 @@
                                       <div class="signin-rollover-join" id="showadd">
                                         	<section class="responsive create-account popdown-form">
 
-                        	                    <form id="registerForm" action="__APP__/Home/User/register" method="POST" class="responsive form-section ng-pristine ng-valid">
+                        	                    <form id="registerForm" action="/Project/project/index.php/Home/User/register" method="POST" class="responsive form-section ng-pristine ng-valid">
                         	                        <fieldset class="form-part">
                         		                        <legend class="heading">创建H&amp;M账户 </legend>
                         		                        <div class="inputwrapper">
@@ -350,12 +337,12 @@
                 <div class="autosuggestsearch parbase">
                     <div id="search-field" class="ui-widget">
 
-                        <form method="get" action="__APP__/Home/Index/searchGoods" class="ng-pristine ng-valid">
+                        <form method="get" action="/Project/project/index.php/Home/Index/searchGoods" class="ng-pristine ng-valid">
                         		<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
                         		<input id="main-search" type="text"  name="keyword" placeholder="搜索产品" minlength="1" maxlength="200" value=""  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
                                 
                         </form>
-                        <span class="magnify" style="background-image: url('__PUBLIC__/show/sprites.png');"></span>
+                        <span class="magnify" style="background-image: url('/Project/project/Public/show/sprites.png');"></span>
 
                         <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;">
 
@@ -372,8 +359,139 @@
 <!-- HeaderLife -->
 
 
-        <block name="main">
-        </block>
+         
+
+		<main role="main" class="hm-club-overview my-hm responsive">
+			<div class="wrapper">    
+				<nav class="breadcrumbs">
+					<ul>
+						<li>										
+							<a href="/Project/project/index.php/Home/Index/index">HM.COM</a>
+						</li>
+
+						<li class="">
+							<a href="javascript:;"> 您的账户</a>
+						</li>
+						<li class="active">
+
+							<a href="#" onclick="return false;"> 概览</a>
+						</li>
+					</ul>
+				</nav>
+				<nav class="section navigation menu " role="navigation">
+					<ul role="menu">
+						<li class="current item" role="presentation" tabindex="0">
+							<a href="" role="menuitem">概览</a>						
+						</li>
+						<li class="item" role="presentation" tabindex="-1">
+							<a href="/Project/project/index.php/Home/User/account" role="menuitem">个人信息</a>					
+						</li>
+						<li class="item" role="presentation" tabindex="-1">
+							<a href="/zh_cn/my-account/orders" role="menuitem">订单</a>
+					
+						</li>
+						<li class="item" role="presentation" tabindex="-1">
+							<a href="/Project/project/index.php/Home/User/addAddress" role="menuitem">地址簿</a>
+						</li>
+			
+						<li class="item" role="presentation" tabindex="-1">
+							<a href="/zh_cn/my-account/payment-details" role="menuitem">银行卡信息</a>
+						</li>			
+					</ul>
+				</nav>
+				<div class="layout" ng-controller="MyOverviewController">
+					<div class="modules sidebarpluscontent">
+
+						<aside role="presentation">
+						<section class="responsive club-user">
+							<div class="greeting">
+								<header class="module-heading">
+									<h1 class="module-heading-title"> 您好！<?php echo ($user['nickname']); ?></h1>
+								</header>
+								<div class="module-content">
+									<p>您好！这里是您的 H&M 个人控制面板，您可在此处更新个人详情、付款信息或查看订单。</p>
+								</div>
+							</div>
+							<header class="module-heading">
+								<h1 class="module-heading-title" id="personal-details-title">
+									个人信息
+								</h1>
+							</header>
+
+							<div class="module-content">
+								<dl role="person" class="user-details">								
+									<dt>
+										电子邮箱
+									</dt>
+
+									<dd>
+										<span><?php echo ($user["email"]); ?></span>
+									</dd>
+
+									
+										<dt>
+											电话号码
+										</dt>
+										<dd><?php echo ($user["phone"]); ?></dd>
+									<dt>
+											注册日期
+										</dt>
+										<dd><?php echo ($user["addtime"]); ?></dd>									
+								</dl>
+							</div>
+							
+							<a href="/Project/project/index.php/Home/User/account" id="personal-details-title-link"
+								class="navigate button"
+								aria-labelledby="personal-details-title personal-details-title-link"
+								title="View all personal details">查看更多</a>
+						</section>
+
+						</aside>
+						<div>
+
+							<section class="responsive orders-summary">
+								<header class="module-heading ">
+									<h1 class="module-heading-title">
+										订单
+									</h1>
+									
+									
+									<a href="/zh_cn/my-account/orders" class="view-all link" title="View all orders">查看所有订单</a>
+								</header>
+								<div class="module-content">
+								
+									<a href="/zh_cn/my-account/orders" class="navigate button" title="View all orders">查看所有订单</a>
+								</div>
+							</section>
+							<div class="two modules">
+								<section class="responsive club-address">
+									<header class="module-heading">
+										<h1 class="module-heading-title" id="address-book-title">
+											地址簿
+										</h1>
+										
+										<a href="/zh_cn/my-account/address-book" class="view-all link" id="address-book-title-link" aria-labelledby="address-book-title address-book-title-link"
+											title="View all addresses">查看所有</a>
+									</header>
+									<div class="module-content">
+										
+										<address itemscope="" class="address-summary"
+											itemtype="http://schema.org/person">
+											<div class="item">
+												<div class="address-item-street" itemprop="streetAddress">  </div>
+											</div>
+										</address>
+									</div>
+									<a href="/zh_cn/my-account/address-book" class="navigate button" title="View all addresses">查看所有</a>
+								</section>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</main>
+
 
 
         <footer class="footer-global responsive"><!-- Footer -->
@@ -382,14 +500,12 @@
             <div class="layout">
 
 
-                <a class="button button-chat" target="_blank" href="__APP__/Home/CustomService/index">在线客服
+                <a class="button button-chat" target="_blank" href="/Project/project/index.php/Home/CustomService/index">在线客服
                     <span>嗨我们在这里如果您需要任何帮助</span>
                 </a>
-                <if condition="$_SESSION['userInfo']['status'] eq 1">
-                <a class="button button-chat" style="margin-right:1150px" href="__APP__/Home/User/active/email/{$_SESSION['userInfo']['email']}">激活邮箱
+                <?php if($_SESSION['userInfo']['status'] == 1): ?><a class="button button-chat" style="margin-right:1150px" href="/Project/project/index.php/Home/User/active/email/<?php echo ($_SESSION['userInfo']['email']); ?>">激活邮箱
                     <span>点击此处激活</span>
-                </a>
-                </if>
+                </a><?php endif; ?>
 
                 <div class="four modules footer-menu footer-content">
 
@@ -480,7 +596,7 @@
                         <div class="newsletter parbase newslettersignupform">
                         <h4 class="footer-heading">订阅通讯</h4>
                         <p class="text">立即注册，获得85折优惠</p>
-                        <a href="__APP__/Home/User/signUp" class="button">注册</a></div>
+                        <a href="/Project/project/index.php/Home/User/signUp" class="button">注册</a></div>
 
 
                     </section>
@@ -544,7 +660,7 @@
             //鼠标进去触发
             $('.lists').on('mouseover', function() {
 
-                var url = '__CONTROLLER__/base';
+                var url = '/Project/project/index.php/Home/User/base';
 
                 var that = $(this);
 
@@ -561,7 +677,7 @@
 
                         for (var i=0; i<data.length; i++) {
 
-                            res += '<li style="float:left;margin-left:40px;padding:10px;width:150px" ><a href="__APP__/Home/Index/goodsList/tid/'+data[i].id+'/pid/'+that.attr('data-id')+'">'+ data[i].name +'</a></li>';
+                            res += '<li style="float:left;margin-left:40px;padding:10px;width:150px" ><a href="/Project/project/index.php/Home/Index/goodsList/tid/'+data[i].id+'/pid/'+that.attr('data-id')+'">'+ data[i].name +'</a></li>';
 
                         }
                         res += '</ul>';

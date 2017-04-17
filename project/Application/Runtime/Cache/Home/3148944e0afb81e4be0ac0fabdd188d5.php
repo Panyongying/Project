@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 
 <html lang="zh" class="js history rgba no-touchevents lastchild nthchild oninput backgroundsize borderradius flexbox flexboxlegacy csstransforms csstransitions grunticon ng-scope" ng-app="hmApp">
 <head>
@@ -6,18 +6,18 @@
         <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
         </style>
 
-            <script src="__PUBLIC__/Backstage/js/jquery.min.js"></script>
+            <script src="/Project/project/Public/Backstage/js/jquery.min.js"></script>
 
-            <link rel="stylesheet" href="__PUBLIC__/show/icons.data.svg.css" media="all">
-            <link rel="stylesheet" href="__PUBLIC__/show/shared.min.css" type="text/css">
-            <link rel="stylesheet" href="__PUBLIC__/show/general.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/icons.data.svg.css" media="all">
+            <link rel="stylesheet" href="/Project/project/Public/show/shared.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/general.min.css" type="text/css">
             
-            <link rel="stylesheet" href="__PUBLIC__/show/checkout.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/checkout.min.css" type="text/css">
 
-            <link rel="stylesheet" href="__PUBLIC__/show/myhm.min.css" type="text/css">
+            <link rel="stylesheet" href="/Project/project/Public/show/myhm.min.css" type="text/css">
 
-            <link rel="shortcut icon" type="image/x-icon" media="all" href="__PUBLIC__/show/favicon.ico">
-            <link href="__PUBLIC__/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
+            <link rel="shortcut icon" type="image/x-icon" media="all" href="/Project/project/Public/show/favicon.ico">
+            <link href="/Project/project/Public/show/icons.data.svg.css" media="screen" rel="stylesheet" type="text/css">
 
             <!-- to include grunticon -->
     	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,9 +36,7 @@
     	    <meta property="fb:app_id" content="1433700643510498">
 
 
-       <block name="title">
-        <title>时尚服饰，一流品质，合理价位—— H&amp;M CN | H&amp;M CN</title>
-       </block>
+       <title>Address Book | H&amp;M China</title>
 </head>
 
 
@@ -54,16 +52,15 @@
                     <div class="warehousemessage"></div>
 
                     <div class="wrapper" ng-init="hmClubEnabled=false; offersSpace=&#39;&#39;; hmClubServiceCacheDuration=0; hmRedirectPath=&#39;&#39;">
-                        <a  href="__APP__/Home/Index/index" title="HM.com" class="logotype" style='background-image: url("__PUBLIC__/show/sprites.png");'>
+                        <a  href="/Project/project/index.php/Home/Index/index" title="HM.com" class="logotype" style='background-image: url("/Project/project/Public/show/sprites.png");'>
                         </a>
                     <div class="parbase topnav">
 
                     <nav class="primary-menu"><!-- Primary menu -->
 
                         <ul>
-                            <foreach name="OneList" item="vo">
-                                <li class="">
-                                    <a id="nav-one" href="__APP__/Home/Index/goods/pid/{$vo.id}" data-id="{$vo.id}" class="lists">{$vo.name}</a>
+                            <?php if(is_array($OneList)): foreach($OneList as $key=>$vo): ?><li class="">
+                                    <a id="nav-one" href="/Project/project/index.php/Home/Index/goods/pid/<?php echo ($vo["id"]); ?>" data-id="<?php echo ($vo["id"]); ?>" class="lists"><?php echo ($vo["name"]); ?></a>
 
                                         <div id="nav-one-div" class="primary-menu-sub-menu" style="display: none;">
                                             <div class="appends primary-menu-sub-menu-inner">
@@ -83,8 +80,7 @@
 
                                             </div>
                                         </div><!-- primary-menu-sub-menu topnav 1 -->
-                                </li>
-                            </foreach>
+                                </li><?php endforeach; endif; ?>
                         </ul>
                     </nav><!-- /Primary Menu -->
 
@@ -132,12 +128,11 @@
 
                     <span class="parbase minicart">
                         <div class="shopping-bag rollover-popdown is-loaded" data-cart="/zh_cn/minicart/view">
-                            <a id="overcar" href="__APP__/Home/cart/index" class="goto-shopping-bag rollover-toggle">
+                            <a id="overcar" href="/Project/project/index.php/Home/cart/index" class="goto-shopping-bag rollover-toggle">
                                购物袋
                                (<span class="shoppingbag-item-count">
-                                   <if condition="$data = 'empty'">0
-                                   <else />{$data.num}
-                                   </if>
+                                   <?php if($data = 'empty'): ?>0
+                                   <?php else: echo ($data["num"]); endif; ?>
                                </span>)
                            </a>
                            <div id="showcart"class="shopping-bag-rollover row popdown">
@@ -147,8 +142,7 @@
                         			</div>
                         			 <div class="shopping-bag-rollover-items-wrapper ">
                                             <!-- 购物车为空时候 -->
-                                            <if condition="$data = 'empty' ">
-                            				    <div  class="cart_modal_popup empty-popup-cart">
+                                            <?php if($data = 'empty' ): ?><div  class="cart_modal_popup empty-popup-cart">
                             						<dl class="clearfix">
                             							<dd><h2>您的购物袋是空的</h2></dd>
                             						</dl>
@@ -164,41 +158,39 @@
                             							<dd>¥0.00</dd>
                             						</dl>
                             					</div>
-                                            <else />
+                                            <?php else: ?>
                                                 <div class="grid col-4">
                                                     <div class="shopping-bag-rollover-scroll-up disabled">
                                                         <div class="navigation-arrow-up"></div>
                                                     </div>
                                                     <div class="shopping-bag-rollover-items-wrapper ">
                                                         <ul class="shopping-bag-rollover-items" style="top: 0px;">
-                                                                <foreach name="data['cartList']" item="ov">
-                                                                    <li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
+                                                                <?php if(is_array($data['cartList'])): foreach($data['cartList'] as $key=>$ov): ?><li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
                                                                             <a href="">
-                                                                                <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="{$ov.pic}" title="{$ov.name}">
+                                                                                <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="<?php echo ($ov["pic"]); ?>" title="<?php echo ($ov["name"]); ?>">
                                                                                     </a>
 
                                                                             <div class="shopping-bag-item-product">
 
-                                                                                <h3 class="product-item-headline">{$ov.name}</h3>
+                                                                                <h3 class="product-item-headline"><?php echo ($ov["name"]); ?></h3>
                                                                                 <div id="redWhitePrices_0506590001001" class="product-item-price ">
                                         <span id="main_price" class="main_price_0506590001001">
-                                                            ¥{$ov.price}</span>
+                                                            ¥<?php echo ($ov["price"]); ?></span>
                                                     <small id="white_price_0506590001001"></small>
                                                 </div>
                                         <dl class="clearfix">
                                                                                     <dt>数量：</dt>
-                                                                                    <dd>{$ov.gnum}</dd>
+                                                                                    <dd><?php echo ($ov["gnum"]); ?></dd>
                                                                                     <dt>颜色：</dt>
-                                                                                    <dd>{$ov.color}</dd>
+                                                                                    <dd><?php echo ($ov["color"]); ?></dd>
                                                                                     <dt>尺码：</dt>
-                                                                                    <dd>{$ov.size}</dd>
+                                                                                    <dd><?php echo ($ov["size"]); ?></dd>
                                                                                 </dl>
                                                                             </div>
                                                                             <div class="shopping-bag-item-total-price product-item-price">
                                                                                 总价:&nbsp;
-                                                                                ¥{$ov.price * $ov.gnum}</div>
-                                                                        </li>
-                                                                    </foreach>
+                                                                                ¥<?php echo ($ov["price * $ov"]["gnum"]); ?></div>
+                                                                        </li><?php endforeach; endif; ?>
                                                                     </ul>
                                                             </div>
                                                             <div class="shopping-bag-rollover-scroll-down">
@@ -207,23 +199,22 @@
                                                             <div class="shopping-bag-rollover-summary">
                                                                 <dl class="clearfix">
                                                                     <dt>订单价值：</dt>
-                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                    <dd>¥<?php echo ($ov["totalPirce"]); ?></dd>
                                                                 </dl>
                                                                 <dl class="shopping-bag-rollover-order-total">
                                                                     <dt>总价:</dt>
-                                                                    <dd>¥{$ov.totalPirce}</dd>
+                                                                    <dd>¥<?php echo ($ov["totalPirce"]); ?></dd>
                                                                 </dl>
 
                                                                 <a href="/zh_cn/checkout" class="button button-big">
                                                                 结账</a>
-                                                                <a href="__APP__/Home/Cart/index" class="button button-big button-secondary">
+                                                                <a href="/Project/project/index.php/Home/Cart/index" class="button button-big button-secondary">
                                                                     购物袋</a>
                                                                 <div ng-if="''">
                                                                  <p class="text"></p>
                                                               </div>
                                                             </div>
-                                                        </div>
-                                            </if>
+                                                        </div><?php endif; ?>
                         			</div>
                         	   </div>
                             </div>
@@ -235,33 +226,29 @@
                     <div class="parbase account">
 
                         <div class="signin rollover-popdown" >
-                            <if condition="isset($_SESSION['userInfo'])">
-                            <div class="signin-signed-in" style="display:block">
-                            <else />
-                            <div class="signin-signed-in">
-                            </if>
+                            <?php if(isset($_SESSION['userInfo'])): ?><div class="signin-signed-in" style="display:block">
+                            <?php else: ?>
+                            <div class="signin-signed-in"><?php endif; ?>
 
-                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="__APP__/Home/User/person" rel="noreferrer">{$_SESSION[userInfo][email]} </a> </span>
+                                <span class="greeting-text"> 您好, <a class="goto-signed-in" href="/Project/project/index.php/Home/User/person" rel="noreferrer"><?php echo ($_SESSION[userInfo][email]); ?> </a> </span>
 
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/person" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="/Project/project/index.php/Home/User/person" rel="noreferrer">我的H&amp;M</a>
 
-                                <a class="goto-sign-in" href="__APP__/Home/User/logout">退出</a>
+                                <a class="goto-sign-in" href="/Project/project/index.php/Home/User/logout">退出</a>
                         </div>
 
-                              <if condition="isset($_SESSION['userInfo'])">
-                                <div class="signin-not-signed-in" style="display:none;">
-                                <else />
-                                <div class="signin-not-signed-in">
-                              </if>
+                              <?php if(isset($_SESSION['userInfo'])): ?><div class="signin-not-signed-in" style="display:none;">
+                                <?php else: ?>
+                                <div class="signin-not-signed-in"><?php endif; ?>
 
-                                <a class="goto-my-hm" href="__APP__/Home/User/signIn" rel="noreferrer">我的H&amp;M</a>
+                                <a class="goto-my-hm" href="/Project/project/index.php/Home/User/signIn" rel="noreferrer">我的H&amp;M</a>
 
                                 <a href="javascript:;" id="homelogin" class="goto-sign-in rollover-toggle">登录/加入</a>
                                 <div class="signin-rollover popdown row" id="bigdiv">
                                     <div class="inner">
                                       <div class="signin-rollover-login" id="showlogin">
-                                          <form id="loginForm"class="responsive form-section ng-pristine ng-valid" action="__APP__/Home/User/login" method="POST">
+                                          <form id="loginForm"class="responsive form-section ng-pristine ng-valid" action="/Project/project/index.php/Home/User/login" method="POST">
                                                 <h3>登录</h3>
 
                                                 <div class="input-group">
@@ -277,7 +264,7 @@
                                                 <div class="input-group">
                                                     <input type="submit" class="button-big" value="登录">
                                                     <p>
-                                                        <a href="__APP__/Home/User/forgetPassword" class="underline">忘了密码？</a>
+                                                        <a href="/Project/project/index.php/Home/User/forgetPassword" class="underline">忘了密码？</a>
                                                     </p>
                                                 </div>
                                                 <div class="input-group join">
@@ -289,7 +276,7 @@
                                       <div class="signin-rollover-join" id="showadd">
                                         	<section class="responsive create-account popdown-form">
 
-                        	                    <form id="registerForm" action="__APP__/Home/User/register" method="POST" class="responsive form-section ng-pristine ng-valid">
+                        	                    <form id="registerForm" action="/Project/project/index.php/Home/User/register" method="POST" class="responsive form-section ng-pristine ng-valid">
                         	                        <fieldset class="form-part">
                         		                        <legend class="heading">创建H&amp;M账户 </legend>
                         		                        <div class="inputwrapper">
@@ -350,12 +337,12 @@
                 <div class="autosuggestsearch parbase">
                     <div id="search-field" class="ui-widget">
 
-                        <form method="get" action="__APP__/Home/Index/searchGoods" class="ng-pristine ng-valid">
+                        <form method="get" action="/Project/project/index.php/Home/User/searchGoods" class="ng-pristine ng-valid">
                         		<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
                         		<input id="main-search" type="text"  name="keyword" placeholder="搜索产品" minlength="1" maxlength="200" value=""  class="ui-autocomplete-input" autocorrect="off" spellcheck="false" autocomplete="off">
                                 
                         </form>
-                        <span class="magnify" style="background-image: url('__PUBLIC__/show/sprites.png');"></span>
+                        <span class="magnify" style="background-image: url('/Project/project/Public/show/sprites.png');"></span>
 
                         <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;">
 
@@ -372,8 +359,579 @@
 <!-- HeaderLife -->
 
 
-        <block name="main">
-        </block>
+         
+	
+                                  
+<main role="main" class="responsive my-hm">
+
+<!-- 	// <script src="/Project/project/Public/address/distpicker.data.js"></script>
+	// <script src="/Project/project/Public/address/distpicker.js"></script>
+	// <script src="/Project/project/Public/address/main.js"></script> -->
+
+	<div class="wrapper">    
+		<nav class="breadcrumbs">
+			<ul>
+				<li>
+					
+					<a href="/zh_cn/">HM.COM</a>
+				</li>
+
+				<li class="">
+
+					<a href="/zh_cn/my-account"> 您的账户</a>
+				</li>
+				<li class="active">
+
+					<a href="#" onclick="return false;"> 地址簿</a>
+				</li>
+			</ul>
+		</nav>
+			
+		<nav class="section navigation menu " role="navigation">
+			<ul role="menu">
+				<li class="item" role="presentation" tabindex="0">
+					<a href="/Project/project/index.php/Home/User/person" role="menuitem">概览</a>				
+				</li>
+				<li class="item" role="presentation" tabindex="-1">
+					<a href="/Project/project/index.php/Home/User/account" role="menuitem">个人信息</a>
+							
+				</li>	
+				<li class="item" role="presentation" tabindex="-1">
+					<a href="/zh_cn/my-account/orders" role="menuitem">订单</a>
+							
+				</li>
+				<li class="current item" role="presentation" tabindex="-1">
+					<a href="/zh_cn/my-account/address-book" role="menuitem">地址簿</a>
+							
+				</li>
+				<li class="item" role="presentation" tabindex="-1">
+					<a href="/zh_cn/my-account/payment-details" role="menuitem">银行卡信息</a>
+							
+				</li>
+			</ul>
+		</nav>
+		<div class="layout layout-eight" >
+			<div class="hidden modal-content" id="address-validation-popup" ng-show="getContext().showPopup && getContext().popupType =='ADDRESSES'" ng-cloak>
+				<div class="modal-text">
+				<div class="address-validation">
+				<h1 class="heading">{{getContext().popupHeader}}416165165</h1>
+				<p ng-bind-html="getContext().popupMessage"></p>
+				<form>
+					<div class="address-validation-addresses">
+						<div class="address-validation-un-validated">
+							<h3>您已输入：</h3>
+							<div class="address-validation-address">
+								<input type="radio" name="validation-address" value="-1" id="un-validated-address" ng-model="addresses[addressInEdit].selectedAddress">
+								<label for="un-validated-address">
+								<span ng-bind-html="addresses[addressInEdit].formattedAddress"></span>
+								<br/>
+								  <a class="address-validation-edit modalclose underline" ng-show="verifiedAddresses.length>0" ng-click="getContext().showPopup = false; addresses[addressInEdit].selectedAddress=-1" >编辑</a>
+								</label>
+							</div>
+						</div>
+						<div class="address-validation-suggestions" ng-show="verifiedAddresses.length>0">
+							<h3>您是否指：</h3>
+							<div class="address-validation-address-list " ng-class="{'scrollable' : verifiedAddresses.length>4}" >
+								<div class="address-validation-address" ng-repeat="address in verifiedAddresses">
+									<input type="radio" name="validation-address" value="{<?php echo ($index); ?>}" id="validated-address-{<?php echo ($index); ?>}" ng-model="addresses[addressInEdit].selectedAddress">
+									<label for="validated-address-{<?php echo ($index); ?>}" ng-bind-html="address.formattedAddress">
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="buttons clearfix">
+						<button ng-click="getContext().showPopup = false" class="modalclose button button-secondary" ng-show="getContext().popupType=='ADDRESSES' && !verifiedAddresses.length>0"/>编辑</button>
+						<button ng-click="submitClosePopup()" class="modalclose button"/>确定</button>
+					</div>
+				</form>			
+			</div>
+		</div>
+	</div>
+
+	<div aria-hidden="true" id="remove-address-popup" class="hidden modal-content">
+		<div class="modal-text"  style="text-align:center">
+		<h1 class="heading">删除地址</h1>
+		<p class="text">您确实想删除这个地址吗？</p>
+		<div class="buttons clearfix">
+			<button ng-click="closePopup()" class="modalclose button secondary">取消</button>
+			<button ng-click="removeAddress()" class="modalclose button primary">确定</button>
+		</div>
+		</div>
+	</div>
+
+
+	<header class="page-header">
+		<h1>地址簿</h1>
+		<p>您可在结帐页添加新地址。</p><br />
+	</header>
+		<?php if(empty($list) != true ): if(is_array($list)): foreach($list as $k=>$v): ?><div class="form-group"  >		
+				<div ng-show="visibility.delivery2">
+					<div class="default-fieldset" >
+						<label for="default_00" class="preceding-label">
+							默认
+						</label>
+						<input type="radio" value="delivery2" id="default_02" name="use-as-default" class="radio-input" >
+					</div>
+					<form  id="delivery2AddressForm" name="delivery2AddressForm" class="form-section new-form delivery2Form" >
+					    <fieldset class="form-part">
+							<legend class="heading"> 邮递地址:&nbsp;<?php echo ($k+1); ?></legend>
+							
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.firstName"> 名 </label>
+							
+									<span class="static" style="color:#555"> 11232</span>		
+							</div>
+
+
+							<div class="inputwrapper" >
+								<label class="label" for="checkout.lastName"> 姓 </label>
+				
+
+								<span class="static" style="color:#555"> 212</span>
+					
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.province"> 省份 </label>
+								
+								<span class="static" style="color:#555">2121</span>
+								
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.town"> 城市 </label>
+								
+
+								<span class="static" style="color:#555">54545 </span>        				
+							</div>
+
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.district"> 区 </label>
+								
+
+								 
+								<span class="static"style="color:#555" >545454 </span>
+
+							</div>
+
+
+		
+							<div class="inputwrapper" >
+								<label class="label" for="checkout.line1"> 地址栏 </label>
+								
+								
+								<span class="static" style="color:#555"> 54545 </span>
+									
+								
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.line2">电话 </label>
+								
+								
+								<span class="static" style="color:#555"> 54545</span>				
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.postalCode"> 邮政编码 </label>
+									
+								
+								<span class="static" style="color:#555" > <?php echo ($v[zip]); ?> </span>
+										
+							</div>
+	 						
+							<div class="inputwrapper" >
+
+								<label class="label" for="address-book.country"> 国家</label>			
+								
+								<span class="static" style="color:#555"> 中国 </span>
+
+							</div>
+						</fieldset>
+						<div class="button-group">
+							<button class="button" type="button" >修改地址</button> 
+							<a class="secondary button hideInfo" href="#remove-address" > 删除地址</a> 
+							<button class="secondary button hideInfo" type="button" > 取消</button> 
+							<button class="button save-form hideInfo" type="button" > 保存信息</button>
+						</div>
+					</form>
+				</div>
+			</div><?php endforeach; endif; endif; ?>
+
+			<div class="form-group"  data-toggle="distpicker">		
+				<div ng-show="visibility.delivery2">
+					<div class="default-fieldset" id="default">
+						<label for="default_00" class="preceding-label">
+							默认
+						</label>
+						<input type="radio" value="delivery2" id="default_02" name="use-as-default" class="radio-input" >
+					</div>
+					<form  id="delivery2AddressForm" name="delivery2AddressForm" class="form-section new-form delivery2Form" >
+					    <fieldset class="form-part" id="field" >
+							<legend class="heading"> 邮递地址:&nbsp;</legend>
+							
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.firstName"> *名 </label>
+							
+								<input 
+									required
+									type="text"
+									id="delivery2-firstName" 
+									name="firstName" 
+									maxlength="40"  
+									class="text-input field firstName " 
+									autocomplete="given-name"	
+									/>
+								<div class="input-info">   </div>
+									<span class="static" > </span>		
+							</div>
+
+
+							<div class="inputwrapper" >
+								<label class="label" for="checkout.lastName"> *姓 </label>
+				
+
+								<input 
+									required
+									type="text"
+									id="delivery2-lastName" 
+									name="lastName" 
+									maxlength="150"  
+									class="text-input field lastName " 
+									autocomplete="family-name"	
+									/>
+								<div class="input-info">  </div>
+								<span class="static"> </span>
+					
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.province"> *省份 </label>
+								<div class="select-primary delivery2provincecontainer ">
+
+								    <select 
+								    	class=""
+										required
+										name="province" 
+										data-province"---- 选择省 ----"
+										id="province"
+										>
+
+								        	<option  value=''> 选择省份 </option>
+								    </select>
+								</div>
+								<div class="input-info">   </div>
+								<span class="static"></span>
+								
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.town"> *城市 </label>
+								
+
+								<div class="select-primary delivery2towncontainer">
+
+								    <select 
+								    	class="" 
+								    	data-city="---- 选择市 ----" 
+										required
+										name="town" 	
+										id="delivery2-town" 
+
+									>
+								        	<option value=''> 选择城市 </option>
+								    </select>
+								</div>
+								<div class="input-info" >   </div>
+								<span class="static"> </span>        				
+							</div>
+
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.district"> *区 </label>
+								<div class="select-primary delivery2districtcontainer" >
+
+								    <select 
+								    	data-district="---- 选择区 ----"
+								    	class=""	
+										required
+										name="district" 		
+										id="delivery2-district" 
+										>
+								        	<option value=''> 选择地区 </option>
+								    </select>
+								</div>
+								<div class="input-info" > 如果在下拉式列表中找不到您所在的区，请选择“其他区”，并在地址1中输入您所在的区 </div>
+								<span class="static" > </span>
+
+							</div>
+
+
+		
+							<div class="inputwrapper" >
+								<label class="label" for="checkout.line1"> *地址栏 </label>
+								
+								<div class="input-field-info" >
+									
+									<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+								</div>
+
+								<input 
+									required
+									type="text"
+									id="delivery2-line1" 
+									name="line1" 
+									maxlength="40"  
+									class="text-input field line1 " 
+									autocomplete="address-line1"
+																		
+									/>
+								<div class="input-info" > 街道，门牌号,公寓，座，单元，楼层等 </div>
+								<span class="static" >  </span>
+									
+								
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.line2">*电话 </label>
+								
+								<div class="input-field-info"  >	
+									<span class="input-field-info-description hidden"> 此字段内需要填写数字</span>
+								</div>
+
+								<input 	
+									type="number"
+									id="delivery-phone" 
+									name="line2" 
+									class="text-input field line2 " 
+									autocomplete="address-line2"
+									oninput="if(value.length>11)value=value.slice(0,11)" 				
+																		
+									/>
+								<div class="input-info" >*收件人电话 </div>
+								<span class="static"> </span>				
+							</div>
+
+							<div class="inputwrapper">
+								<label class="label" for="checkout.postalCode"> *邮政编码 </label>
+									
+								<div class="input-field-info">	
+									<span class="input-field-info-description hidden"> 此字段内需要填写数字 </span>
+								</div>
+
+								<input 	
+									required
+									type="number"
+									id="delivery2-postalCode" 
+									name="postalCode" 
+									oninput="if(value.length>6)value=value.slice(0,6)"  
+									class="text-input field postalCode to-hankaku" 
+									autocomplete="postal-code"
+								
+										
+									/>
+								<div class="input-info" > 输入邮编 例如 518053 </div>
+								<span class="static" >  </span>
+										
+							</div>
+	 						
+							<div class="inputwrapper" >
+
+								<label class="label" for="address-book.country"> 国家</label>			
+								<input class="text-input field" readonly value="中国"/>
+								<spanclass="static"></span>
+
+							</div>
+						</fieldset>
+
+
+						<div class="button-group">
+							<button class="button" id="addInfo" type="button" >添加新地址</button> 
+							<a class="secondary button hideInfo" href="#remove-address" id="deleteInfo"> 删除地址</a> 
+							<button class="secondary button hideInfo" type="button" id="cancelInfo"> 取消</button> 
+							<button class="button save-form hideInfo" type="button" id="saveInfo"> 保存信息</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			
+		
+
+
+		</div> 
+	</div>
+
+	<script>
+		$('#field').hide();
+		$('#default').hide();
+		$('.hideInfo').hide();
+
+		$('#addInfo').click(function () {
+
+			$(this).hide();
+
+			$('#field').show();
+
+			$('#cancelInfo').show();
+
+			$('#saveInfo').show();
+
+		});
+
+		$('#cancelInfo').click(function () {
+
+			$('#addInfo').show();
+
+			$('.hideInfo').hide();
+
+			$('#field').hide();
+
+		});
+		//添加地址
+		$('#saveInfo').click(function () {
+
+			that = $(this);
+
+			if ($('#delivery2-firstName').val() == '' || $('#delivery2-lastName').val() == '') {
+
+				that.next('span').remove();
+
+				that.after("<span style='color:red'>请填写姓或者名!");
+
+				return false;
+			}
+
+			if ( $('#province').val() == '') {
+
+				that.next('span').remove();
+
+				that.after("<span style='color:red'>请选择所在省份!");
+
+				return false;
+
+			}
+			if ( $('#delivery2-town').val() == '') {
+
+				that.next('span').remove();
+
+				that.after("<span style='color:red'>请选择所在的市区!");
+
+				return false;
+
+			}
+
+
+
+			if ( $('#delivery2-line1').val() == '') {
+
+				that.next('span').remove();
+
+				that.after("<span style='color:red'>请填写你所在的地址!");
+
+				return false;
+			}
+
+
+			var	res = RegCheck($('#delivery-phone').val(),/^1(3|4|5|7|8)\d{9}$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+				$(this).after('<span style="color:red">电话号码有误</span>');
+
+				return false;
+			}
+
+
+			var	res = RegCheck($('#delivery2-postalCode').val(),/^[1-9]\d{5}$/);
+
+			if (res == null) {
+
+				$(this).next('span').remove();
+
+				$(this).after('<span style="color:red">邮政编码有误</span>');
+
+				return false;
+			}
+
+
+			that.next('span').remove();
+
+			$.post('/Project/project/index.php/Home/User/addAddress', {
+				'firstName':$('#delivery2-firstName').val(),
+				'lastName':$('#delivery2-lastName').val(),
+				'province':$('#province').val(),
+				'town': $('#delivery2-town').val(),
+				'district':$('#delivery2-district').val(),
+				'addr':$('#delivery2-line1').val(),
+				'phone':$('#delivery-phone').val(),
+				'code':$('#delivery2-postalCode').val(),
+
+			}, function (data){
+
+				if (data == 1){
+
+					show_msg('添加成功');
+
+				} else {
+
+					show_msg('添加失败');
+				}
+
+			}, 'json' );
+
+		});
+
+
+		function show_msg(msg){	
+
+			 $('body').append('<div class="sub_err" style="position:absolute;top:60px;left:0;width:500px;z-index:999999;"></div>');
+
+				var htmltop='<div class="bac" style="padding:8px 0px;border:1px solid #090;width:100%;margin:0 auto;background-color:white;color:#0d0d0d;border:2px black solid;text-align:center;font-size:16px;">';
+
+				var htmlfoot = '</div>';
+
+				$('.sub_err').html(htmltop+msg+htmlfoot); 
+
+				var left=($(document).width()-500)/2;
+
+				$('.sub_err').css({'left':left+'px'});
+
+				var scroll_height=$(document).scrollTop();
+
+				 $('.sub_err').animate({'top': scroll_height+120},100);
+
+				 msgdsq=setTimeout(function(){	
+
+					$('.sub_err').animate({'top': scroll_height+80},100);
+
+					setTimeout(function(){	
+
+				 	 $('.sub_err').remove();	
+
+			   		},100);	 
+			   
+				}, "1200");  
+		}
+
+		//进行正则判断
+        function RegCheck(str, pattern){
+
+            var res = str.match(pattern);
+
+            return res;
+        }
+
+
+	</script>
+</main>
+
 
 
         <footer class="footer-global responsive"><!-- Footer -->
@@ -382,14 +940,12 @@
             <div class="layout">
 
 
-                <a class="button button-chat" target="_blank" href="__APP__/Home/CustomService/index">在线客服
+                <a class="button button-chat" target="_blank" href="/Project/project/index.php/Home/CustomService/index">在线客服
                     <span>嗨我们在这里如果您需要任何帮助</span>
                 </a>
-                <if condition="$_SESSION['userInfo']['status'] eq 1">
-                <a class="button button-chat" style="margin-right:1150px" href="__APP__/Home/User/active/email/{$_SESSION['userInfo']['email']}">激活邮箱
+                <?php if($_SESSION['userInfo']['status'] == 1): ?><a class="button button-chat" style="margin-right:1150px" href="/Project/project/index.php/Home/User/active/email/<?php echo ($_SESSION['userInfo']['email']); ?>">激活邮箱
                     <span>点击此处激活</span>
-                </a>
-                </if>
+                </a><?php endif; ?>
 
                 <div class="four modules footer-menu footer-content">
 
@@ -480,7 +1036,7 @@
                         <div class="newsletter parbase newslettersignupform">
                         <h4 class="footer-heading">订阅通讯</h4>
                         <p class="text">立即注册，获得85折优惠</p>
-                        <a href="__APP__/Home/User/signUp" class="button">注册</a></div>
+                        <a href="/Project/project/index.php/Home/User/signUp" class="button">注册</a></div>
 
 
                     </section>
@@ -544,7 +1100,7 @@
             //鼠标进去触发
             $('.lists').on('mouseover', function() {
 
-                var url = '__CONTROLLER__/base';
+                var url = '/Project/project/index.php/Home/User/base';
 
                 var that = $(this);
 
@@ -561,7 +1117,7 @@
 
                         for (var i=0; i<data.length; i++) {
 
-                            res += '<li style="float:left;margin-left:40px;padding:10px;width:150px" ><a href="__APP__/Home/Index/goodsList/tid/'+data[i].id+'/pid/'+that.attr('data-id')+'">'+ data[i].name +'</a></li>';
+                            res += '<li style="float:left;margin-left:40px;padding:10px;width:150px" ><a href="/Project/project/index.php/Home/Index/goodsList/tid/'+data[i].id+'/pid/'+that.attr('data-id')+'">'+ data[i].name +'</a></li>';
 
                         }
                         res += '</ul>';
