@@ -194,7 +194,7 @@
 	  			$this->display('Sign/signin');
 
 	  			exit;
-	  		}       	
+	  		}
 
 	  		$res = D('user')->showPersonal();
 	  		
@@ -274,35 +274,6 @@
 	  		}
 	  	
 
-	  	}
-
-	  	//添加地址和修改地址
-	  	public function addAddress()
-	  	{
-	  		if( !isset($_SESSION['userInfo']) ){
-
-	  			$this->display('Sign/signin');
-
-	  			exit;
-	  		}
-
-	  		if (IS_GET){
-
-	  			$res = D('user')->getAddress();
-
-	  			$this->assign('list', $res);
-
-	  			$this->display('Address/address');
-	  		}
-
-	  		if (IS_AJAX){
-
-	  			$res = D('user')->addAddress();
-
-	  			echo $res;
-
-	  		}
-	  		
 	  	}
 
 
