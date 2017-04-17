@@ -64,9 +64,10 @@
 
 			if (!$res) {
 				echo 2;
+			} else {
+				echo $res;
 			}
 
-			echo $res;
 		}
 
 		public function queryOrder()
