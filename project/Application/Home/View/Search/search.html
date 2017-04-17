@@ -51,7 +51,7 @@
 </div>
 
 <div class="row">
-   
+
        
        
            
@@ -59,10 +59,18 @@
    
    <div>
        
-                   
+              <if condition="$lastCount eq 0" >
+  			   <article class="search-autocorrect  zero-results">
+                   <h1>很抱歉，您的搜索无结果 "{$keyword}"
+                       .
+                   </h1>
+                   <div class="search-autocorrect-copy">
+                       <p>请检查拼写，或用较为笼统的词语再试一次</p>
+                   </div>
+               </article>
        
            
-           
+           	    <else />
                
                    
                    
@@ -86,10 +94,10 @@
            <!-- Product filters -->
 
            <div class="row">
-               <div class="product-filters sticky-on-scroll" data-sticky-width="100%" data-sticky-stop-offset="24" data-sticky-fill="true">
+               <div class="product-filters sticky-on-scroll" style="width:100%" data-sticky-stop-offset="24" data-sticky-fill="true">
                    <div class="row">
                        <div class="totop">
-                           <a href="http://www2.hm.com/zh_cn/search-results.html?q=%E8%BF%9E%E8%A1%A3%E8%A3%99&amp;sort=stock&amp;offset=0&amp;page-size=80#" class="toptrigger">返回到顶部</a> <a href="http://www2.hm.com/zh_cn/index.html" class="filterlogo">返回到开始</a>
+                           <a href="#" class="toptrigger">返回到顶部</a> <a href="http://www2.hm.com/zh_cn/index.html" class="filterlogo">返回到开始</a>
                        </div>
                        <div class="filteractions clearfix">
                            <ul class="triggers clearfix">
@@ -231,7 +239,7 @@
                                        
 <ul class="menu toggleCurrent">
     <li class="menu-sub-item"><label class="menu-link" >默认排序<input type="radio" style="display:none" name="choose-radio" data-value="default" ></label></li>
-    <li class="menu-sub-item"><label class="menu-link" >最佳匹配<input type="radio" style="display:none" name="choose-radio" data-value="stock" ></label></li>
+    <li class="menu-sub-item"><label class="menu-link" >模糊搜索<input type="radio" style="display:none" name="choose-radio" data-value="stock" ></label></li>
     <li class="menu-sub-item"><label class="menu-link" >最低价格<input type="radio" style="display:none" name="choose-radio" data-value="ascPrice" ></label></li>
     <li class="menu-sub-item"><label class="menu-link" >最高价格<input type="radio" style="display:none" name="choose-radio" data-value="descPrice" ></label></li>
 </ul>
@@ -304,6 +312,8 @@
                                
                                <span class="filterinfo pagination-count ">
                                <strong>
+                               正在显示：
+                               <span class="show-count"></span>商品，	
                                共 <span class="total-count">{$lastCount}</span> 商品
                                </strong>
                                </span>
@@ -353,11 +363,9 @@
 									
 										
 										
-<<<<<<< HEAD
+
 											<a href="__CONTROLLER__/goodsDetail/id/{$v:id}" title="{$v:name}" class="product-item-link"> <img width="222" height="333" src="" class="goodsId" data-id="{$v:id}" class="product-item-image" alt="{$v:name} " data-alttext="{$v:name} 模特款型" title="{$v:name} ">
-=======
-											<a href="{$v:id}" title="{$v:name}" class="product-item-link"> <img width="222" height="333" src="" data-altimage="//lp2.hm.com/hmprod?set=source[/environment/2016/8AQ_0260_018R.jpg],width[3863],height[4517],x[678],y[371],type[FASHION_FRONT]&amp;hmver=0&amp;call=url[file:/product/main]" class="product-item-image" alt="{$v:name} " data-alttext="{$v:name} 模特款型" title="{$v:name} ">
->>>>>>> 93b1bcc348ec2afe332b9fcae567e4854f822590
+
 												
 												
 													<button type="button" data-tracking-type="event" data-tracking-json-template="utagFavorite" data-tracking-params="Favourites|0453424002|{$v:name}|SEARCH" class="favorite icon icon-favorites js-favorite" data-saved-text="已加入收藏" data-not-saved-text="加入收藏">加入收藏</button> 
@@ -427,7 +435,8 @@
 			
 			<a href="http://www2.hm.com/zh_cn/search-results.html?q=%E8%BF%9E%E8%A1%A3%E8%A3%99&amp;sort=stock&amp;offset=0&amp;page-size=80#" class="hidden listing-total-count" data-total-count="1066"></a>
 		</div>
-<<<<<<< HEAD
+		</if>
+
 
     <!-- 滚动条显示顶部栏 -->
       <script>
@@ -525,8 +534,7 @@
 
     });
     </script>
-=======
->>>>>>> 93b1bcc348ec2afe332b9fcae567e4854f822590
+
 		
 	
 
@@ -626,7 +634,6 @@
 
 
         </script>
-<<<<<<< HEAD
 
          <!-- 筛选数据处理 -->
         <script>
@@ -809,9 +816,10 @@
                 },
               });
             });
+
+       
          </script>
-=======
->>>>>>> 93b1bcc348ec2afe332b9fcae567e4854f822590
+
 </div>
 
 		<div class="parsys main">
