@@ -1,34 +1,5 @@
 <extend name="Base:base" />
 <block name="main" >
-<style>
-	#distpicker select{
-		background: transparent;
-		width: 200px;
-		padding: 5px;
-		font-size: 16px;
-		border: 1px solid #ccc;
-		height: 34px;
-		margin-bottom: 10px; 
-	}
-
-	#distpicker input{
-		background: transparent;
-		width: 200px;
-		padding: 5px;
-		font-size: 16px;
-		border: 1px solid #ccc;
-		height: 34px;
-		margin-bottom: 10px; 
-	}
-
-	#distpicker button{
-		border: 1px solid #ccc;
-		color: white;
-		background: black;
-		width: 200px;
-		margin: 0 auto;
-	}
-</style>
 <main role="main" class="">
 			<div class="wrapper">    
 				<nav class="breadcrumbs">
@@ -37,16 +8,16 @@
 	
 	
 	
-		<a href="__APP__/Home/Index/index">HM.COM</a>
+		<a href="https://www2.hm.com/zh_cn/">HM.COM</a>
 	</li>
 
 	<li class="">
 
-			<a href="" onclick="return false;"> 结账</a>
+			<a href="https://www2.hm.com/zh_cn/checkout#" onclick="return false;"> 结账</a>
 				</li>
 	<li class="active">
 
-			<a href="" onclick="return false;"> 结账</a>
+			<a href="https://www2.hm.com/zh_cn/checkout#" onclick="return false;"> 结账</a>
 				</li>
 	</ul>
 </nav>
@@ -71,28 +42,828 @@
 			</div>
 	<div class="row">
 		<div class="grid col-8">
+			<section id="checkoutAddressPartDiv" class="box checkout-section responsive checkout-address-section box-inactive" ng-class="{&#39;box-inactive&#39;: getContext().closeBillingSection &amp;&amp; !getContext().homeAddressBlocked}" ng-view="" initialize-combobox="">
+	<header class="box-headline checkout-address-section-header">
+		<h1 class="heading">我的详情</h1>
+	</header>
+		<form id="checkoutAddressPartForm" class="form-section newBillingAddress ng-valid-maxlength ng-valid-pattern ng-dirty ng-valid ng-valid-required hidden" name="checkoutAddressPartForm" ng-class="{&#39;hidden&#39;: getContext().closeBillingSection &amp;&amp; !getContext().homeAddressBlocked &amp;&amp; 	!getContext().customer.cbp}" ng-submit="addBillingAddress()" novalidate="">
+			<fieldset class="form-part hidden" ng-class="{&#39;hidden&#39;: getContext().closeBillingSection}">
+	<legend class="heading">个人信息</legend>
+	<div class="two modules">
+		<div>
+			
 
 
 
 
 
-			<section id="checkoutDeliveryPartDiv" class="box checkout-section checkout-delivery-section responsive" ng-class="{'box-inactive': getContext().closeDeliverySection}">
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper optional" ng-class="false ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.title"> 称呼 </label>
+		
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">
+	<select ng-options="key as value for (key , value) in getList(&#39;title&#39;,&#39;newBillingAddress&#39;)" ng-model="newBillingAddress.title" id="newBillingAddress-title" name="title" autocomplete="newBillingAddress-title" class="select  field  ng-pristine ng-untouched ng-valid" ng-change="getDetailBytitle(&#39;newBillingAddress&#39;)" data-validation-required-text="请选择…"><option value="" hidden="" class=""> 请选择 </option><option value="miss" label="夫人">夫人</option><option value="mr" selected="selected" label="先生">先生</option><option value="mrs" label="小姐">小姐</option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">   </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+
+			
+			
+			
+		
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.firstName"> 名 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]) &amp;&amp; (&#39;firstName&#39; == &#39;line1&#39; || &#39;firstName&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]" ng-model="newBillingAddress.firstName" ng-change="nameChanged(&#39;newBillingAddress&#39;,&#39;firstName&#39;)" required="" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+(\s+[^\s\d:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+)*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入名字 " data-validation-regex-text="请去除空格后重新输入" id="newBillingAddress-firstName" name="firstName" maxlength="40" class="text-input field firstName  ng-pristine ng-untouched ng-valid-maxlength ng-hide ng-valid ng-valid-required" autocomplete="given-name">
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;] ">   </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+			
+		
+	</div>
+
+	
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.lastName"> 姓 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]) &amp;&amp; (&#39;lastName&#39; == &#39;line1&#39; || &#39;lastName&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]" ng-model="newBillingAddress.lastName" ng-change="nameChanged(&#39;newBillingAddress&#39;,&#39;lastName&#39;)" required="" type="text" data-validation-maxlength="150" data-validation-regex="^(?:\s*)[^:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+(\s+[^\s\d:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+)*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入姓氏 " data-validation-regex-text="请去除空格后重新输入" id="newBillingAddress-lastName" name="lastName" maxlength="150" class="text-input field lastName  ng-pristine ng-untouched ng-valid-maxlength ng-hide ng-valid ng-valid-required" autocomplete="family-name">
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;] ">   </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+			
+		
+	</div>
+
+ </div>
+		<div>
+			<div class="inputwrapper static-text">
+	<span class="label">电子邮箱</span>
+	<p class="static checkout-email-address ng-binding">515292677@qq.com</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="inputwrapper select-date  optional" ng-class="false ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="myhm-dob"> 出生日期 </label>
+		<div class="merged-inputs ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">
+		
+			
+			<input type="tel" ng-model="newBillingAddress.year" autocomplete="bday-year" pattern="[0-9]*" inputmode="numeric" id="myhm-dob-year" class="input-year text-input dateOfBirth ng-pristine ng-untouched ng-valid ng-valid-pattern" placeholder="----" size="4" maxlenght="4">
+				
+					<span class="divider filled">年</span>
+				
+		
+			
+			<input type="tel" ng-model="newBillingAddress.month" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric" id="myhm-dob-month" class="input-month text-input dateOfBirth ng-pristine ng-untouched ng-valid ng-valid-pattern" placeholder="--" size="2" maxlenght="2">
+				
+					<span class="divider filled">月</span>
+				
+		
+			
+			<input type="tel" ng-model="newBillingAddress.day" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric" id="myhm-dob-day" class="input-day text-input dateOfBirth ng-pristine ng-untouched ng-valid ng-valid-pattern" placeholder="--" size="2" maxlenght="2">
+				
+					<span class="divider filled">日</span>
+				
+		
+		</div>
+		<input type="hidden" class="input-date" value="1996-05-03" data-min-age="16" data-min-age-text="您须年满 16 岁方可在我们的网站下订单。" data-format-text="Incorrect format" data-validation-minlength-text="Please enter your year of birth in a four digit format" data-show-text-after-this="true" data-validation-birthdate="true">
+		<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]"> YYYY年MM月DD日 </div>
+		<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+	</div>
+</div>
+	</div>
+</fieldset>
+
+<fieldset class="form-part hidden" ng-class="{&#39;hidden&#39;: getContext().closeBillingSection}">
+	<legend class="heading">家庭住址</legend>
+	<div class="two modules">
+		<div>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.province"> 省份 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newBillingAddressprovincecontainer ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">
+
+    <div class="custom-combobox"><input type="text" title="" placeholder=" 选择省份 " id="newBillingAddress-province-combobox" class="custom-combobox-input text-input ui-autocomplete-input" autocomplete="off" data-validation-required-text="请输入省份。 " required=""><button tabindex="-1" type="button" class="custom-combobox-toggle ui-corner-right"></button></div><select class="novalue ng-pristine ng-untouched ng-valid select-parent" ng-options="key as value for (key , value) in getList(&#39;province&#39;,&#39;newBillingAddress&#39;)" ng-model="newBillingAddress.province" name="province" ng-class="(&#39;province&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newBillingAddress-province" ng-change="getDetailByprovince(&#39;newBillingAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="#newBillingAddress-town" ng-combobox="" data-formname="newBillingAddress" style="display: none;"><option value="" class=""> 选择省份 </option><option value="CN-11" label="北京">北京</option><option value="CN-12" label="天津">天津</option><option value="CN-13" label="河北省">河北省</option><option value="CN-14" label="山西省">山西省</option><option value="CN-15" label="内蒙古自治区">内蒙古自治区</option><option value="CN-21" label="辽宁省">辽宁省</option><option value="CN-22" label="吉林省">吉林省</option><option value="CN-23" label="黑龙江省">黑龙江省</option><option value="CN-31" label="上海">上海</option><option value="CN-32" label="江苏省">江苏省</option><option value="CN-33" label="浙江省">浙江省</option><option value="CN-34" label="安徽省">安徽省</option><option value="CN-35" label="福建省">福建省</option><option value="CN-36" label="江西省">江西省</option><option value="CN-37" label="山东省">山东省</option><option value="CN-41" label="河南省">河南省</option><option value="CN-42" label="湖北省">湖北省</option><option value="CN-43" label="湖南省">湖南省</option><option value="CN-44" selected="selected" label="广东省">广东省</option><option value="CN-45" label="广西壮族自治区">广西壮族自治区</option><option value="CN-46" label="海南省">海南省</option><option value="CN-50" label="重庆">重庆</option><option value="CN-51" label="四川省">四川省</option><option value="CN-52" label="贵州省">贵州省</option><option value="CN-53" label="云南省">云南省</option><option value="CN-54" label="西藏自治区">西藏自治区</option><option value="CN-61" label="陕西省">陕西省</option><option value="CN-62" label="甘肃省">甘肃省</option><option value="CN-63" label="青海省">青海省</option><option value="CN-64" label="宁夏回族自治区">宁夏回族自治区</option><option value="CN-65" label="新疆维吾尔自治区">新疆维吾尔自治区</option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">   </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]"> 广东省 </span>
+
+<!-- data-child="#newBillingAddress-town"
+		data-child-data-select="#newBillingAddress-town-data" -->
+			
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.town"> 城市 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newBillingAddresstowncontainer ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">
+
+    <div class="custom-combobox"><input type="text" title="" placeholder=" 选择城市 " id="newBillingAddress-town-combobox" class="custom-combobox-input text-input ui-autocomplete-input" autocomplete="off" data-validation-required-text="请输入城市 " required=""><button tabindex="-1" type="button" class="custom-combobox-toggle ui-corner-right"></button></div><select class="novalue ng-pristine ng-untouched ng-valid" ng-options="key as value for (key , value) in getList(&#39;town&#39;,&#39;newBillingAddress&#39;)" ng-model="newBillingAddress.town" name="town" ng-class="(&#39;town&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newBillingAddress-town" ng-change="getDetailBytown(&#39;newBillingAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="#newBillingAddress-district" ng-combobox="" data-formname="newBillingAddress" style="display: none;"><option value="" class=""> 选择城市 </option><option value="CN-44_Chaozhou" label="潮州市">潮州市</option><option value="CN-44_Dongguan" label="东莞市">东莞市</option><option value="CN-44_Foshan" label="佛山市">佛山市</option><option value="CN-44_Guangzhou" selected="selected" label="广州市">广州市</option><option value="CN-44_Heyuan" label="河源市">河源市</option><option value="CN-44_Huizhou" label="惠州市">惠州市</option><option value="CN-44_Jiangmen" label="江门市">江门市</option><option value="CN-44_Jieyang" label="揭阳市">揭阳市</option><option value="CN-44_Maoming" label="茂名市">茂名市</option><option value="CN-44_Meizhou" label="梅州市">梅州市</option><option value="CN-44_Qingyuan" label="清远市">清远市</option><option value="CN-44_Shantou" label="汕头市">汕头市</option><option value="CN-44_Shanwei" label="汕尾市">汕尾市</option><option value="CN-44_Shaoguan" label="韶关市">韶关市</option><option value="CN-44_Shenzhen" label="深圳市">深圳市</option><option value="CN-44_Yangjiang" label="阳江市">阳江市</option><option value="CN-44_Yunfu" label="云浮市">云浮市</option><option value="CN-44_Zhanjiang" label="湛江市">湛江市</option><option value="CN-44_Zhaoqing" label="肇庆市">肇庆市</option><option value="CN-44_Zhongshan" label="中山市">中山市</option><option value="CN-44_Zhuhai" label="珠海市">珠海市</option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">   </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]"> 广州市 </span>
+
+<!-- data-child="#newBillingAddress-district"
+		data-child-data-select="#newBillingAddress-district-data" -->
+			
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.district"> 区 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newBillingAddressdistrictcontainer ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">
+
+    <div class="custom-combobox"><input type="text" title="" placeholder=" 选择地区 " id="newBillingAddress-district-combobox" class="custom-combobox-input text-input ui-autocomplete-input" autocomplete="off" data-validation-required-text="请输入地区。 " required=""><button tabindex="-1" type="button" class="custom-combobox-toggle ui-corner-right"></button></div><select class="novalue ng-pristine ng-untouched ng-valid" ng-options="key as value for (key , value) in getList(&#39;district&#39;,&#39;newBillingAddress&#39;)" ng-model="newBillingAddress.district" name="district" ng-class="(&#39;district&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newBillingAddress-district" ng-change="getDetailBydistrict(&#39;newBillingAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="" ng-combobox="" data-formname="newBillingAddress" style="display: none;"><option value="" class=""> 选择地区 </option><option value="8796519837439" label="从化市">从化市</option><option value="8796519870207" label="增城市">增城市</option><option value="8796519902975" label="天河区">天河区</option><option value="8796519935743" label="海珠区">海珠区</option><option value="8796519968511" label="番禺区">番禺区</option><option value="8796520001279" label="白云区">白云区</option><option value="8796520034047" label="花都区">花都区</option><option value="8796520066815" label="荔湾区">荔湾区</option><option value="8796520099583" label="越秀区">越秀区</option><option value="8796520132351" label="黄埔区">黄埔区</option><option value="8796520165119" label="其他区">其他区</option><option value="8796650450687" label="从化市">从化市</option><option value="8796650483455" label="花都区">花都区</option><option value="8796650548991" label="黄埔区">黄埔区</option><option value="8796650680063" label="越秀区">越秀区</option><option value="8796651171583" label="天河区">天河区</option><option value="8796651204351" label="增城市">增城市</option><option value="8796651237119" selected="selected" label="海珠区">海珠区</option><option value="8796651302655" label="白云区">白云区</option><option value="8796651335423" label="番禺区">番禺区</option><option value="8796651499263" label="荔湾区">荔湾区</option><option value="8796651728639" label="其他区">其他区</option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]"> 如果在下拉式列表中找不到您所在的区，请选择“其他区”，并在地址1中输入您所在的区 </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]"> 海珠区 </span>
+
+<!-- data-child="#newBillingAddress-line1"
+		data-child-data-select="#newBillingAddress-line1-data" -->
+			
+			
+		
+	</div>
+
+ </div>
+		<div>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.line1"> 地址栏1 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]) &amp;&amp; (&#39;line1&#39; == &#39;line1&#39; || &#39;line1&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]" ng-model="newBillingAddress.line1" ng-change="addressMandatoryChanged(&#39;newBillingAddress&#39;,&#39;line1&#39;)" required="" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入地址 " data-validation-regex-text="请删除首字前的空格" id="newBillingAddress-line1" name="line1" maxlength="40" class="text-input field line1  ng-pristine ng-untouched ng-valid-maxlength ng-hide ng-valid ng-valid-required" autocomplete="address-line1">
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;] "> 街道，门牌号 </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper optional" ng-class="false ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.line2"> 地址栏2 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]) &amp;&amp; (&#39;line2&#39; == &#39;line1&#39; || &#39;line2&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]" ng-model="newBillingAddress.line2" ng-change="addressNotMandatoryChanged(&#39;newBillingAddress&#39;,&#39;line2&#39;)" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text=" " data-validation-regex-text="请删除首字前的空格" id="newBillingAddress-line2" name="line2" maxlength="40" class="text-input field line2  ng-pristine ng-untouched ng-valid ng-valid-maxlength ng-hide" autocomplete="address-line2">
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;] "> 公寓，座，单元，楼层等 </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.postalCode"> 邮政编码 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]) &amp;&amp; (&#39;postalCode&#39; == &#39;line1&#39; || &#39;postalCode&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]" ng-model="newBillingAddress.postalCode" ng-change="addressMandatoryChanged(&#39;newBillingAddress&#39;,&#39;postalCode&#39;)" required="" type="text" data-validation-maxlength="150" data-validation-regex="^(?:\s*)(\d{6})(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入邮编 (518053) " data-validation-regex-text="请输入有效邮编(518053)。" id="newBillingAddress-postalCode" name="postalCode" maxlength="150" class="text-input field postalCode to-hankaku ng-pristine ng-untouched ng-valid-maxlength ng-hide ng-valid ng-valid-required" autocomplete="postal-code">
+<div class="input-info ng-hide" ng-show="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;] "> 输入邮编 例如 518053 </div>
+<span class="static ng-binding" ng-hide="isEditnewBillingAddress || isEdit[&#39;newBillingAddress&#39;]">  </span>
+			
+		
+	</div>
+
+ </div>
+	</div>
+</fieldset>
+
+<div class="form-part hidden" ng-class="{&#39;hidden&#39;: getContext().closeBillingSection}">
+	<div class="inputwrapper country-picker">
+		<div class="country-picker">
+         <label>国家</label>
+			<span class="country-name">中国</span>
+			<a class="country-name overlay-trigger " data-layout="confirm" data-modal-scrollup="false" href="https://www2.hm.com/zh_cn/checkout/change-country">	国家不正确吗？</a>
+		</div>
+     </div>
+     
+     
+     <div class="two modules">
+		<div>
+			<p>您的信息将保存于个人资料和通讯录中。</p>
+		</div>
+		<div>
+			<p>* 星号表示必填字段</p>
+		</div>
+	 </div>
+	 <input type="submit" id="submitBillingAddress" value="继续，跳转至快递页面" ng-click="reInitializationStopped=true;" data-validation-text="该表格不能提交，请检查您的信息。" ng-class="{&#39;hidden&#39;: getContext().closeBillingSection}" class="hidden">
+</div>
+
+
+</form>
+		<div class="read-only row" ng-class="{&#39;hidden&#39;: !getContext().closeBillingSection}">
+			<div class="grid col-4">
+				<div class="box-content">
+					<h3 class="checkout-header-text">个人信息</h3>
+					<div class="ng-binding">
+						潘 永赢<br>
+						515292677@qq.com<br>
+						1996/05/03
+					</div>
+				</div>
+			</div>
+			<div class="grid col-4">
+				<div class="box-content">
+					<h3 class="checkout-header-text">家庭住址</h3>
+					<div class="read-only-billing-address">
+						<span ng-bind-html="getContext().billingAddress.formattedAddress" class="ng-binding">仑头村环村南路50号<br>510000&nbsp;广州市<br>中国</span></div>
+					<!-- ngIf: getContext().homeAddressBlocked -->
+				</div>	
+			</div>
+		</div>			
+		<!-- ngIf: !getContext().homeAddressBlocked && 	!getContext().customer.cbp --><button id="checkoutAddressPartEdit" type="button" ng-class="{&#39;hidden&#39;: !getContext().closeBillingSection}" ng-if="!getContext().homeAddressBlocked &amp;&amp; 	!getContext().customer.cbp" ng-click="openBillingSection()" class="link responsive navigate icon-caret-right edit-toggle ng-scope">	
+				编辑</button><!-- end ngIf: !getContext().homeAddressBlocked && 	!getContext().customer.cbp -->
+</section>
+<section id="checkoutDeliveryPartDiv" class="box checkout-section checkout-delivery-section responsive box-inactive" ng-class="{&#39;box-inactive&#39;: getContext().closeDeliverySection}">
 		<header class="box-headline checkout-delivery-section-header">
 			<h1 class="heading">快递</h1>
 		</header>
-		<div id="checkoutDeliveryPartForm" name="checkoutDeliveryPartForm" class="box-content ng-dirty ng-invalid ng-invalid-required ng-valid-maxlength">
+		<form id="checkoutDeliveryPartForm" name="checkoutDeliveryPartForm" ng-submit="addDeliveryAddress()" novalidate="" ng-class="{&#39;hidden&#39;: getContext().closeDeliverySection || !getContext().closeBillingSection}" class="box-content hidden ng-dirty ng-invalid ng-invalid-required ng-valid-maxlength">
 			<fieldset class="delivery-preferences">	
 				<legend class="sub-sub-heading">选择您的首选运送方式</legend>
 				<p class="text">阅读我们的&nbsp;
-				<a href="/zh_cn/customer-service/shipping-and-delivery.html" class="underline overlay-trigger">发货信息</a></p>	
-					<!-- ngRepeat: deliveryMode in getContext().deliveryModeList --><fieldset ng-repeat="deliveryMode in getContext().deliveryModeList" id="delivery-address-0" class="delivery-option check-option js-check-option ng-scope checked single-option" ng-class="{'checked' : newDeliveryAddress.deliveryMode == deliveryMode.code,
-										  'check-option-disabled' : deliveryMode.paymentNotAvailable,
-										  'delivery-option-timeslot-home' : deliveryMode.timeSlotInterval != null &amp;&amp; deliveryMode.timeSlotInterval.length > 0,
-										  'single-option' : deliverySingleOption}">		  
+				<a href="https://www2.hm.com/zh_cn/customer-service/shipping-and-delivery.html" class="underline overlay-trigger">发货信息</a></p>	
+					<!-- ngRepeat: deliveryMode in getContext().deliveryModeList --><fieldset ng-repeat="deliveryMode in getContext().deliveryModeList" id="delivery-address-0" class="delivery-option check-option js-check-option ng-scope checked single-option" ng-class="{&#39;checked&#39; : newDeliveryAddress.deliveryMode == deliveryMode.code,
+										  &#39;check-option-disabled&#39; : deliveryMode.paymentNotAvailable,
+										  &#39;delivery-option-timeslot-home&#39; : deliveryMode.timeSlotInterval != null &amp;&amp; deliveryMode.timeSlotInterval.length &gt; 0,
+										  &#39;single-option&#39; : deliverySingleOption}">		  
 						<label for="deliveryMode-0" class="check-option-label delivery-option-label">
 							<input type="radio" ng-value="deliveryMode.code" class="js-update-on-change delivery-option-radio js-check-option-input ng-pristine ng-untouched ng-valid" id="deliveryMode-0" ng-model="newDeliveryAddress.deliveryMode" ng-disabled="isDisabledActions() || !deliveryMode.active" ng-change="setDeliveryMode(deliveryMode)" name="13" value="home-delivery-CN">
 							<strong class="delivery-option-type check-option-label-text-primary ng-binding">送货上门/备用地址</strong>
 							<span class="delivery-option-expedience check-option-label-text-secondary ng-binding">标准 2-7 个工作日</span>	
+							<strong class="delivery-option-price check-option-label-text-primary ng-binding">¥10.00</strong>
+							<!-- ngIf: (deliveryMode.addressBlackListed || !deliveryMode.pssEnable) && !deliveryMode.paymentNotAvailable -->
+							<!-- ngIf: !deliveryMode.supportCOD -->
 							<strong ng-hide="( deliveryMode.supportHazmat || (newDeliveryAddress.blackListed &amp;&amp; newDeliveryAddress.deliveryMode == deliveryMode.code) ) || ((deliveryMode.addressBlackListed || !deliveryMode.pssEnable) &amp;&amp; !deliveryMode.paymentNotAvailable)" class="icon-warning check-option-warning ng-hide" title="运送方式如带有此标志，表示您订单中的部分单品将被排除在外。"></strong>					
 						</label>	
 						<div class="delivery-option-details check-option-details" ng-switch="" on="deliveryMode.type">	
@@ -114,7 +885,7 @@
 <div class="message icon icon-info ng-binding">
 	  
 </div></div>
-							<!-- ngIf: deliveryMode.type == 'address' --><p ng-if-start="deliveryMode.type == 'address'" class="ng-scope"></p>
+							<!-- ngIf: deliveryMode.type == 'address' --><p ng-if-start="deliveryMode.type == &#39;address&#39;" class="ng-scope"></p>
 							
 
 
@@ -125,37 +896,697 @@
 <!-- ngIf: deliveryMode.pssEnable && deliveryMode.fastDelivery && !(deliveryMode.tommorrowHoliday || deliveryMode.warehouseCutoffTimePassed) && deliveryMode.warehouseLimitReached -->
 <!-- ngIf: deliveryMode.pssEnable && deliveryMode.fastDelivery && (deliveryMode.tommorrowHoliday || deliveryMode.warehouseCutoffTimePassed) -->
 <p class="ng-binding ng-scope"></p>	
-							<!-- ngIf: !deliveryMode.fastDelivery --><p class="text ng-scope" ng-if="!deliveryMode.fastDelivery">您的包裹将被送至居住地址。</p><!-- end ngIf: !deliveryMode.fastDelivery -->	
+							<!-- ngIf: !deliveryMode.fastDelivery --><p class="text ng-scope" ng-if="!deliveryMode.fastDelivery">您的包裹将被送至居住地址。</p><!-- end ngIf: !deliveryMode.fastDelivery -->		
+							<article class="delivery-address ng-scope">
+								<h1 class="sub-sub-heading">邮递地址</h1>
+								<address class="vcard read-only-delivery-address">
+									<span class="item fn ng-binding">潘 永赢</span>
+									<div class="adr">
+										<span ng-bind-html="getContext().deliveryAddress.formattedAddress" class="ng-binding">仑头村环村南路50号<br>510000&nbsp;广州市<br>中国</span>
+									</div>
+								</address>
+								<a href="https://www2.hm.com/zh_cn/checkout#delivery-address-0" ng-click="newAddressClickAction($index)" ng-class="{&#39;not-active&#39; : getContext().deliveryModeForced}" class="underline js-change-delivery-address-toggle">更换地址</a>			
+							</article> 
 							<div style="margin-top: 10px;" ng-show="getContext().deliveryModeForced" class="ng-scope ng-hide">The payment method you’ve chosen&nbsp;requires your package to be delivered to&nbsp;your home address. In order to change&nbsp;delivery address, change payment to card.</div>
 
-<fieldset>	
+<fieldset class="checkout-existing-addresses change-delivery-addresses newDeliveryAddressshome-delivery-CN">	
 	<legend class="sub-sub-heading">更换地址</legend>
 	<p class="text">选择现有地址，或添加新地址。</p>
-	<p class="text">您可在<a href="__APP__/Home/User/account"> 我的H&amp;M </a>中编辑地址</p>
+	<p class="text">您可在<a href="https://www2.hm.com/zh_cn/my-account/address-book"> 我的H&amp;M </a>中编辑地址</p>
 	<h3>使用现有地址</h3>
 	<ul class="choose-delivery-address">
-	<if condition="$addr eq 'empty'">
-		<li>暂无地址，请按下方按钮添加</li>
-	<else />
-		<foreach name="$addr" item="ov">
-			<li class="item js-check-option check-option delivery-option ng-scope">
-				<label for="delivery-address-{$ov.id}" class="delivery-option-label">
-					<input type="radio" name="addrid" id="delivery-address-{$ov.id}" class="js-update-on-change delivery-option-radio js-check-option-input ng-pristine ng-untouched ng-valid" 
-						<if condition="$ov.status eq 1">checked
-						</if>
+		<!-- ngRepeat: address in getContext().customerAddresses --><li class="item js-check-option check-option delivery-option ng-scope" ng-repeat="address in getContext().customerAddresses" ng-class="{&#39;checked&#39;: newDeliveryAddress.id == address.id}">
+	<label for="delivery-address-0" class="delivery-option-label">
+		<input type="radio" ng-click="handleHazmatForAddress(address)" name="delivery-radio-home-delivery-CN-false" ng-model="newDeliveryAddress.id" ng-value="address.id" id="delivery-radio-0" class="js-update-on-change delivery-option-radio js-check-option-input ng-pristine ng-untouched ng-valid" value="9516911263767">
+		<span class="vcard read-only-delivery-address">
+			<span class="item fn ng-binding" itemprop="name">潘 永赢</span>
+			<span class="adr ng-binding" ng-bind-html="address.formattedAddress">仑头村环村南路50号<br>510000&nbsp;广州市<br>中国</span>
+	<!-- <strong ng-show="address.blackListed" class="icon-notice check-option-warning"> 运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</strong> -->
+		<strong ng-hide="address.supportHazmat || address.blackListed || !getContext().hasHazmat" class="icon-warning check-option-warning ng-hide">运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</strong>	
+	</span></label>
+	<div ng-hide="address.supportHazmat &amp;&amp; deliveryMode.supportHazmat || address.blackListed || !getContext().hasHazmat" class="product-warning warning responsive ng-hide">
+		<p class="text icon-warning">运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</p>
+	</div>
+	<div ng-show="address.blackListed" class="product-warning notice responsive ng-hide">
+		<p class="text icon-notice ng-binding" ng-bind-html="getUrl(deliveryMode.blacklistMessage, &#39;&lt;a href=&quot;/zh_cn/customer-service/shipping-and-delivery.html&quot; class=&quot;overlay-trigger underline&quot; &gt;&#39;, &#39;&lt;/a&gt;&#39;)">您的地址无法送货上门。请更换收货地址，<a href="https://www2.hm.com/zh_cn/customer-service/shipping-and-delivery.html" class="overlay-trigger underline">或了解更多可送达的地点。</a></p>
+	</div>
+</li><!-- end ngRepeat: address in getContext().customerAddresses --><li class="item js-check-option check-option delivery-option ng-scope" ng-repeat="address in getContext().customerAddresses" ng-class="{&#39;checked&#39;: newDeliveryAddress.id == address.id}">
+	<label for="delivery-address-1" class="delivery-option-label">
+		<input type="radio" ng-click="handleHazmatForAddress(address)" name="delivery-radio-home-delivery-CN-false" ng-model="newDeliveryAddress.id" ng-value="address.id" id="delivery-radio-1" class="js-update-on-change delivery-option-radio js-check-option-input ng-pristine ng-untouched ng-valid" value="9516911296535">
+		<span class="vcard read-only-delivery-address">
+			<span class="item fn ng-binding" itemprop="name">潘 永赢</span>
+			<span class="adr ng-binding" ng-bind-html="address.formattedAddress">仑头村环村南路50号<br>510000&nbsp;广州市<br>中国</span>
+	<!-- <strong ng-show="address.blackListed" class="icon-notice check-option-warning"> 运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</strong> -->
+		<strong ng-hide="address.supportHazmat || address.blackListed || !getContext().hasHazmat" class="icon-warning check-option-warning ng-hide">运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</strong>	
+	</span></label>
+	<div ng-hide="address.supportHazmat &amp;&amp; deliveryMode.supportHazmat || address.blackListed || !getContext().hasHazmat" class="product-warning warning responsive ng-hide">
+		<p class="text icon-warning">运送方式如带有此标志，表示您订单中的部分单品将被排除在外。</p>
+	</div>
+	<div ng-show="address.blackListed" class="product-warning notice responsive ng-hide">
+		<p class="text icon-notice ng-binding" ng-bind-html="getUrl(deliveryMode.blacklistMessage, &#39;&lt;a href=&quot;/zh_cn/customer-service/shipping-and-delivery.html&quot; class=&quot;overlay-trigger underline&quot; &gt;&#39;, &#39;&lt;/a&gt;&#39;)">您的地址无法送货上门。请更换收货地址，<a href="https://www2.hm.com/zh_cn/customer-service/shipping-and-delivery.html" class="overlay-trigger underline">或了解更多可送达的地点。</a></p>
+	</div>
+</li><!-- end ngRepeat: address in getContext().customerAddresses --><li class="js-check-option item checkout-new-address checked" ng-class="{&#39;checked&#39; : newDeliveryAddress.id == null}">
+		
+			<label for="delivery-radio-home-delivery-CN-false" class="fields-group has-radio check-option-invert">
+			<input type="radio" ng-click="useNewAddress()" name="delivery-radio-home-delivery-CN-false" class="js-update-on-change delivery-option-radio js-check-option-input ng-pristine ng-untouched ng-valid" id="delivery-radio-home-delivery-CN-new" ng-model="newAddressForm" ng-value="newAddressForm">
+				<strong class="check-option-label-text-primary">更改收货地址</strong>
+			</label>
+			
+			<div class="check-option-details ng-hide" ng-show="newDeliveryAddressSelected">
+				
 
-					 value="{$ov.id}">
-					<span class="vcard read-only-delivery-address">
-						<span class="item fn ng-binding" itemprop="name">{$ov.recname}</span>
-						<span class="adr ng-binding" ng-bind-html="address.formattedAddress">{$ov.addr}<br>{$ov.zip}<br>{$ov.phone}</span>
-					</span>
-				</label>
-			</li>
-		</foreach>
-	</if>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.firstName"> 名 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]) &amp;&amp; (&#39;firstName&#39; == &#39;line1&#39; || &#39;firstName&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]" ng-model="newDeliveryAddress.firstName" ng-change="nameChanged(&#39;newDeliveryAddress&#39;,&#39;firstName&#39;)" required="" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+(\s+[^\s\d:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+)*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入名字 " data-validation-regex-text="请去除空格后重新输入" id="newDeliveryAddress-firstName" name="firstName" maxlength="40" class="text-input field firstName  ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength ng-hide" autocomplete="given-name">
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;] ">   </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.lastName"> 姓 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]) &amp;&amp; (&#39;lastName&#39; == &#39;line1&#39; || &#39;lastName&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]" ng-model="newDeliveryAddress.lastName" ng-change="nameChanged(&#39;newDeliveryAddress&#39;,&#39;lastName&#39;)" required="" type="text" data-validation-maxlength="150" data-validation-regex="^(?:\s*)[^:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+(\s+[^\s\d:;“”\u0022!@$%^&amp;*()_+={}\[&lt;&gt;,.?`~|\]\\\/]+)*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入姓氏 " data-validation-regex-text="请去除空格后重新输入" id="newDeliveryAddress-lastName" name="lastName" maxlength="150" class="text-input field lastName  ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength ng-hide" autocomplete="family-name">
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;] ">   </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+			
+		
+	</div>
+
+ <div class="two modules">
+				<div>
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.province"> 省份 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newDeliveryAddressprovincecontainer ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">
+
+    <select class="novalue ng-pristine ng-untouched ng-valid select-parent" ng-options="key as value for (key , value) in getList(&#39;province&#39;,&#39;newDeliveryAddress&#39;)" ng-model="newDeliveryAddress.province" name="province" ng-class="(&#39;province&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newDeliveryAddress-province" ng-change="getDetailByprovince(&#39;newDeliveryAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="#newDeliveryAddress-town" ng-combobox="" data-formname="newDeliveryAddress" style="display: inline-block;"><option value="" class=""> 选择省份 </option><option value="CN-11" label="北京">北京</option><option value="CN-12" label="天津">天津</option><option value="CN-13" label="河北省">河北省</option><option value="CN-14" label="山西省">山西省</option><option value="CN-15" label="内蒙古自治区">内蒙古自治区</option><option value="CN-21" label="辽宁省">辽宁省</option><option value="CN-22" label="吉林省">吉林省</option><option value="CN-23" label="黑龙江省">黑龙江省</option><option value="CN-31" label="上海">上海</option><option value="CN-32" label="江苏省">江苏省</option><option value="CN-33" label="浙江省">浙江省</option><option value="CN-34" label="安徽省">安徽省</option><option value="CN-35" label="福建省">福建省</option><option value="CN-36" label="江西省">江西省</option><option value="CN-37" label="山东省">山东省</option><option value="CN-41" label="河南省">河南省</option><option value="CN-42" label="湖北省">湖北省</option><option value="CN-43" label="湖南省">湖南省</option><option value="CN-44" label="广东省">广东省</option><option value="CN-45" label="广西壮族自治区">广西壮族自治区</option><option value="CN-46" label="海南省">海南省</option><option value="CN-50" label="重庆">重庆</option><option value="CN-51" label="四川省">四川省</option><option value="CN-52" label="贵州省">贵州省</option><option value="CN-53" label="云南省">云南省</option><option value="CN-54" label="西藏自治区">西藏自治区</option><option value="CN-61" label="陕西省">陕西省</option><option value="CN-62" label="甘肃省">甘肃省</option><option value="CN-63" label="青海省">青海省</option><option value="CN-64" label="宁夏回族自治区">宁夏回族自治区</option><option value="CN-65" label="新疆维吾尔自治区">新疆维吾尔自治区</option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">   </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+
+<!-- data-child="#newDeliveryAddress-town"
+		data-child-data-select="#newDeliveryAddress-town-data" -->
+			
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.town"> 城市 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newDeliveryAddresstowncontainer ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">
+
+    <select class="novalue ng-pristine ng-untouched ng-valid" ng-options="key as value for (key , value) in getList(&#39;town&#39;,&#39;newDeliveryAddress&#39;)" ng-model="newDeliveryAddress.town" name="town" ng-class="(&#39;town&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newDeliveryAddress-town" ng-change="getDetailBytown(&#39;newDeliveryAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="#newDeliveryAddress-district" ng-combobox="" data-formname="newDeliveryAddress" style="display: inline-block;"><option value="" class=""> 选择城市 </option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">   </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+
+<!-- data-child="#newDeliveryAddress-district"
+		data-child-data-select="#newDeliveryAddress-district-data" -->
+			
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.district"> 区 </label>
+		
+			
+			
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="select-primary newDeliveryAddressdistrictcontainer ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">
+
+    <select class="novalue ng-pristine ng-untouched ng-valid" ng-options="key as value for (key , value) in getList(&#39;district&#39;,&#39;newDeliveryAddress&#39;)" ng-model="newDeliveryAddress.district" name="district" ng-class="(&#39;district&#39; == &#39;province&#39;) ? &#39;select-parent&#39; : &#39;&#39; " id="newDeliveryAddress-district" ng-change="getDetailBydistrict(&#39;newDeliveryAddress&#39;);isAddressChanged=true;reInitializationStopped=true;" data-child="" ng-combobox="" data-formname="newDeliveryAddress" style="display: inline-block;"><option value="" class=""> 选择地区 </option></select>
+</div>
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]"> 如果在下拉式列表中找不到您所在的区，请选择“其他区”，并在地址1中输入您所在的区 </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+
+<!-- data-child="#newDeliveryAddress-line1"
+		data-child-data-select="#newDeliveryAddress-line1-data" -->
+			
+			
+		
+	</div>
+
+ </div>
+					<div>
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.line1"> 地址栏1 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]) &amp;&amp; (&#39;line1&#39; == &#39;line1&#39; || &#39;line1&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]" ng-model="newDeliveryAddress.line1" ng-change="addressMandatoryChanged(&#39;newDeliveryAddress&#39;,&#39;line1&#39;)" required="" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入地址 " data-validation-regex-text="请删除首字前的空格" id="newDeliveryAddress-line1" name="line1" maxlength="40" class="text-input field line1  ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength ng-hide" autocomplete="address-line1">
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;] "> 街道，门牌号 </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper optional" ng-class="false ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.line2"> 地址栏2 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]) &amp;&amp; (&#39;line2&#39; == &#39;line1&#39; || &#39;line2&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]" ng-model="newDeliveryAddress.line2" ng-change="addressNotMandatoryChanged(&#39;newDeliveryAddress&#39;,&#39;line2&#39;)" type="text" data-validation-maxlength="40" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text=" " data-validation-regex-text="请删除首字前的空格" id="newDeliveryAddress-line2" name="line2" maxlength="40" class="text-input field line2  ng-pristine ng-untouched ng-valid ng-valid-maxlength ng-hide" autocomplete="address-line2">
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;] "> 公寓，座，单元，楼层等 </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+			
+		
+	</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	<div class="inputwrapper required" ng-class="true ? &#39;required&#39; : &#39;optional&#39;">
+		<label class="label" for="checkout.postalCode"> 邮政编码 </label>
+		
+			
+			
+			 
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ngIf: true --><div class="input-field-info ng-scope ng-hide" ng-if="true" ng-show="(isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]) &amp;&amp; (&#39;postalCode&#39; == &#39;line1&#39; || &#39;postalCode&#39; == &#39;line2&#39;) ">
+	
+	<span class="input-field-info-description hidden"> 此字段内需要填写中文字符 </span>
+</div><!-- end ngIf: true -->
+
+<input ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]" ng-model="newDeliveryAddress.postalCode" ng-change="addressMandatoryChanged(&#39;newDeliveryAddress&#39;,&#39;postalCode&#39;)" required="" type="text" data-validation-maxlength="150" data-validation-regex="^(?:\s*)(\d{6})(?:\s*)$" data-validation-maxlength-text="   " data-validation-required-text="请输入邮编 (518053) " data-validation-regex-text="请输入有效邮编(518053)。" id="newDeliveryAddress-postalCode" name="postalCode" maxlength="150" class="text-input field postalCode to-hankaku ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength ng-hide" autocomplete="postal-code">
+<div class="input-info ng-hide" ng-show="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;] "> 输入邮编 例如 518053 </div>
+<span class="static ng-binding" ng-hide="isEditnewDeliveryAddress || isEdit[&#39;newDeliveryAddress&#39;]">  </span>
+			
+		
+	</div>
+
+ </div>
+					<div class="remember-delivery-address" ng-show="canAddNewAddress(2)">
+<p>
+	<input type="checkbox" ng-model="newDeliveryAddress.visibleInAddressBook" id="chb-remember-delivery-address" class="ng-pristine ng-untouched ng-valid">
+	<label class="remember-card" for="chb-remember-delivery-address">
+		将这个地址添加到我的地址薄</label>
+</p>	
+</div></div>
+			</div>
+		</li>	
 	</ul>
-	<button class="button secondary newAddr-btn">新建地址</button>
+	<a ng-click="closeChangeAddressSection(deliveryMode.code)" class="button secondary js-change-delivery-address-toggle">保存</a>
+	<a ng-click="useBillingAddress($index)" class="button secondary js-change-delivery-address-toggle">取消</a>
 </fieldset><p ng-if-end="" class="ng-scope"></p><!-- end ngIf: deliveryMode.type == 'address' -->	
 						<!-- ngSwitchWhen: places -->				
 						 <!-- ngSwitchWhen: timeSlot -->
@@ -181,21 +1612,269 @@
 <!-- ngIf: !deliveryMode.pssEnable && !deliveryMode.pssNoResponse -->
 <!-- ngIf: deliveryMode.pssNoResponse -->	</fieldset><!-- end ngRepeat: deliveryMode in getContext().deliveryModeList -->
 			</fieldset>
-			<fieldset class="delivery-telephone" style="margin-bottom: 0px">
+			<fieldset class="delivery-telephone">
 	<span ng-hide="!getContext().deliveryMode.phoneNumberMandatory" class="">
 		<h3>发货通知</h3>
 				承运人需要了解该信息，以便就送货事宜联系您。</span>			
+	<h3 ng-hide="getContext().deliveryMode.phoneNumberMandatory" class="ng-hide">
+			电话号码&nbsp;（可选）</h3>
+		<input ng-hide="getContext().deliveryMode.phoneNumberMandatory" type="checkbox" class="delivery-notification-toggle ng-pristine ng-untouched ng-valid ng-hide" id="chb-delivery-notification" ng-model="newDeliveryAddress.deliveryNotification" ng-change="deliveryNotification = newDeliveryAddress.deliveryNotification">
+		<label ng-hide="getContext().deliveryMode.phoneNumberMandatory" for="chb-delivery-notification" data-text-home-delivery="如果在运货时我们需要联系您" data-text-pickup-place="通过短信给我发货通知" style="display: inline" class="ng-hide">
+			如果在运货时我们需要联系您</label>					
+	<!-- ngIf: newDeliveryAddress.deliveryNotification || getContext().deliveryMode.phoneNumberMandatory --><div class="delivery-notification ng-scope" ng-if="newDeliveryAddress.deliveryNotification || getContext().deliveryMode.phoneNumberMandatory">
+		<label for="delivery-number">手机号码</label>
+	<div class="delivery-telephone-country-code">
+		<input type="tel" ng-model="newDeliveryAddress.prefix" ng-class="{&#39;invalid&#39; : errors.deliveryAddressForm.prefix!=null || errors.deliveryAddressForm.cellPhone!=null}" class="delivery-number-country-code mask ng-pristine ng-untouched ng-valid ng-valid-maxlength" id="delivery-number-country-code" maxlength="150" autocomplete="tel-country-code" data-validation-required-if-visible="true" data-validation-required-text="国家代码" data-validation-replace-dash="true" data-validation-regex="^(?:\s*)\+[0-9]{1,3}(?:\s*)$" data-validation-regex-text="国家代码" name="prefix" data-input-mask="+000">	
+		<span class="input-info">例如 +86</span>
+	</div>
+<div class="delivery-telephone-number">
+		<input type="tel" ng-model="newDeliveryAddress.cellPhone" ng-class="{&#39;invalid&#39; : errors.deliveryAddressForm.cellPhone!=null || errors.deliveryAddressForm.prefix!=null}" id="delivery-number" maxlength="15" data-validation-required-if-visible="true" data-validation-required-text="您必须输入一个电话号码" data-validation-replace-dash="true" data-validation-regex="^(?:\s*)[\s\d\-]+(?:\s*)$" data-validation-regex-text="电话号码无效" class="to-hankaku ng-pristine ng-untouched ng-valid ng-valid-maxlength" name="cellPhone" data-input-mask="0#">
+		<span class="input-info">例如 13900000000</span>
+	</div>
+<!-- ngIf: errors.deliveryAddressForm.cellPhone!=null --></div><!-- end ngIf: newDeliveryAddress.deliveryNotification || getContext().deliveryMode.phoneNumberMandatory -->	
 </fieldset>
-</div>
+<input type="submit" value="继续支付" id="checkoutDeliveryPartSubmit" ng-disabled="disabledActions ||  newDeliveryAddress.blackListed || openChangeAddress || getContext().entries.length == 0 || !getContext().deliveryMode.pssEnable || getContext().deliveryMode.paymentNotAvailable || (searchPupForm.pupListMessage &amp;&amp; searchPupForm.pickupPlaceList.length==0)" data-validation-text="该表格不能提交，请检查您的信息。">
+		</form>
+		<div class="checkout-pickup-place-map-modal-content hidden">
+			<div class="checkout-pickup-place-map"></div>
+		</div>
+		<div class="read-only box-content" ng-class="{&#39;hidden&#39;: !getContext().closeDeliverySection}">
+	<div class="read-only-group">
+		<h2 class="sub-sub-heading">选择您的首选运送方式</h2>
+		<p class="text ng-binding">
+			送货上门/备用地址<strong class="amount ng-binding">(2-7 个工作日, ¥10.00)</strong>
+	        <br>
+		 </p>
+		 <div ng-show="getContext().deliveryMode.onlineServicePackageInfo!=null" class="ng-hide">
+			<p class="text ng-binding">
+				
+			</p>
+		</div>
+		<div ng-show="getContext().orderPhone" class="">
+			<h2 class="sub-sub-heading">发货通知</h2>
+			<p class="text last ng-binding">
+				+86 13178633564
+			</p>
+		</div>
+	</div>
+	<div class="read-only-group read-only-delivery-address">
+		<h2 class="sub-sub-heading">邮递地址</h2>	
+		<address class="vcard read-only-delivery-address">
+			<span class="item fn ng-binding" itemprop="name">潘 永赢</span>
+			<div class="adr ng-binding" ng-bind-html="getContext().deliveryAddress.formattedAddress">仑头村环村南路50号<br>510000&nbsp;广州市<br>中国</div>
+		</address>
+	</div>
+</div><button type="button" ng-click="openShippingSection()" ng-class="{&#39;hidden&#39;: !getContext().closeDeliverySection || !getContext().closeBillingSection}" id="checkoutDeliveryPartEdit" class="link responsive navigate icon-caret-right edit-toggle" onclick="">
+			编辑</button>
+	</section>
+<style>
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
 
+.icon-info + .icon-warning {
+	margin-right:33px;
+}
 
-</section>
-
+input[type=text]+.input-info.invalid.field-validation-message{
+	margin-top:0px;
+}
+</style>	<section id="checkoutPaymentPartDiv" class="box checkout-section checkout-payment-section responsive box-inactive" ng-class="{&#39;box-inactive&#39;: getContext().closePaymentSection}">
+	<header class="box-headline checkout-payment-section-header">
+		<h1 class="heading">付款与折扣</h1>
+	</header>
+	<div class="row hidden" ng-class="{&#39;hidden&#39;: getContext().closePaymentSection || !getContext().closeBillingSection || !getContext().closeDeliverySection}">
+			<div class="grid col-4">
+				<div class="box-content">
+					<div class="discount-section">
+						<button ng-click="discountEdited = false; trackDiscount()" class="icon icon-right discount button overlay-trigger  icon-add-plus" ng-class="{&#39;icon-add-plus&#39;:!finallyApplied,&#39;icon-edit&#39;:finallyApplied}" data-content="discount-modal">
+	<div ng-hide="checkIfVoucherApplied()">添加折扣代码</div>
+	<!-- ngIf: checkIfVoucherApplied() --> 
+	<!-- ngIf: checkIfVoucherApplied() -->
+</button>	<button class="icon icon-right discount button overlay-trigger icon-add-plus" ng-click="trackGiftcard()" ng-class="{&#39;icon-add-plus&#39;:getContext().giftCardList.length == 0,&#39;icon-edit&#39;:getContext().giftCardList.length &gt; 0}" data-content="gift-card-modal">
+	<span class="discount-title">
+	<div ng-class="{&#39;hidden&#39;: getContext().giftCardList.length}">添加礼品卡</div>
+	<!-- ngIf: getContext().giftCardList.length > 0 -->
+	</span> 
+	<!-- ngIf: getContext().giftCardList.length > 0 -->					 
+</button>
+<div class="hidden product-warning notice responsive">
+   							<p class="text icon-info">礼品卡可与银行卡、首信易支付或支付宝搭配使用</p>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<form action="https://www2.hm.com/zh_cn/payment-details-form" id="payment-details-form" method="post" ng-class="{&#39;hidden&#39;: getContext().closePaymentSection || !getContext().closeBillingSection || !getContext().closeDeliverySection}" class="ng-pristine ng-valid hidden">
+		<div class="row use-new-payment-card">
+			<div class="grid col-4">
+				<div class="box-content">
+					<h3>选择支付方式</h3>
+					<p>阅读我们的<a href="https://www2.hm.com/zh_cn/customer-service/payments.html" class="underline overlay-trigger">支付方法</a>.</p>
+					<div class="info-message ng-hide" ng-show="getContext().giftCardGTtotalPrice">
+							<span class="icon icon-info"></span>
+							<p class="text">您可使用已添加的礼品卡全额付款。</p>
+					</div>
+				</div>
+			</div>
+			<div class="grid col-8">
+				<div class="box-content">
+					<h4>支付宝 (¥0.00)</h4>
+						<div class="radio-area select-payment-method">
+							<label for="payment-0-0">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-0-0" ng-change="setPaymentMode(&#39;Alipay&#39;)" ng-model="paymentMode" ng-value="&#39;Alipay&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至支付宝付款平台。请立即登陆您的支付宝账号并在5小时内尽快支付。如果未能成功操作会导致您的订单失效。" value="Alipay">
+									<img width="122" height="35" alt="支付宝" src="./Checkout _ H&amp;M China_files/m4-alipay.png" title="支付宝">
+								</label>
+							</div>
+					<h4>银行转帐 (¥0.00)</h4>
+						<div class="radio-area select-payment-method">
+							<label for="payment-1-0">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-0" ng-change="setPaymentMode(&#39;85&#39;)" ng-model="paymentMode" ng-value="&#39;85&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="85">
+									<img width="122" height="35" alt="中国银行" src="./Checkout _ H&amp;M China_files/m4-bank-of-china.png" title="中国银行">
+								</label>
+							<label for="payment-1-1">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-1" ng-change="setPaymentMode(&#39;3&#39;)" ng-model="paymentMode" ng-value="&#39;3&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="3">
+									<img width="122" height="35" alt="中国招商银行" src="./Checkout _ H&amp;M China_files/m4-china-merchants-bank.png" title="中国招商银行">
+								</label>
+							<label for="payment-1-2">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-2" ng-change="setPaymentMode(&#39;4&#39;)" ng-model="paymentMode" ng-value="&#39;4&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="4">
+									<img width="122" height="35" alt="中国建设银行" src="./Checkout _ H&amp;M China_files/m4-china-construction-bank.png" title="中国建设银行">
+								</label>
+							<label for="payment-1-3">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-3" ng-change="setPaymentMode(&#39;9&#39;)" ng-model="paymentMode" ng-value="&#39;9&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="9">
+									<img width="122" height="35" alt="中国工商银行（ICBC）" src="./Checkout _ H&amp;M China_files/m4-industrial-and-commercial-bank-of-china.png" title="中国工商银行（ICBC）">
+								</label>
+							<label for="payment-1-4">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-4" ng-change="setPaymentMode(&#39;14&#39;)" ng-model="paymentMode" ng-value="&#39;14&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="14">
+									<img width="122" height="35" alt="平安银行" src="./Checkout _ H&amp;M China_files/m4-ping-an-bank.png" title="平安银行">
+								</label>
+							<label for="payment-1-5">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-5" ng-change="setPaymentMode(&#39;16&#39;)" ng-model="paymentMode" ng-value="&#39;16&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="16">
+									<img width="122" height="35" alt="上海农村商业银行" src="./Checkout _ H&amp;M China_files/m4-shanghai-rural-commercial-bank.png" title="上海农村商业银行">
+								</label>
+							<label for="payment-1-6">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-6" ng-change="setPaymentMode(&#39;28&#39;)" ng-model="paymentMode" ng-value="&#39;28&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="28">
+									<img width="122" height="35" alt="中国民生银行" src="./Checkout _ H&amp;M China_files/m4-china-minsheng-banking.png" title="中国民生银行">
+								</label>
+							<label for="payment-1-7">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-7" ng-change="setPaymentMode(&#39;33&#39;)" ng-model="paymentMode" ng-value="&#39;33&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="33">
+									<img width="122" height="35" alt="兴业银行股份有限公司" src="./Checkout _ H&amp;M China_files/m4-industrial-bank.png" title="兴业银行股份有限公司">
+								</label>
+							<label for="payment-1-8">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-8" ng-change="setPaymentMode(&#39;43&#39;)" ng-model="paymentMode" ng-value="&#39;43&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="43">
+									<img width="122" height="35" alt="中国农业银行" src="./Checkout _ H&amp;M China_files/m4-agricultural-bank-of-china.png" title="中国农业银行">
+								</label>
+							<label for="payment-1-9">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-9" ng-change="setPaymentMode(&#39;67&#39;)" ng-model="paymentMode" ng-value="&#39;67&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="67">
+									<img width="122" height="35" alt="交通银行" src="./Checkout _ H&amp;M China_files/m4-bank-of-communications.png" title="交通银行">
+								</label>
+							<label for="payment-1-10">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-10" ng-change="setPaymentMode(&#39;69&#39;)" ng-model="paymentMode" ng-value="&#39;69&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="69">
+									<img width="122" height="35" alt="上海浦东发展银行" src="./Checkout _ H&amp;M China_files/m4-spd-bank.png" title="上海浦东发展银行">
+								</label>
+							<label for="payment-1-11">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-11" ng-change="setPaymentMode(&#39;74&#39;)" ng-model="paymentMode" ng-value="&#39;74&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="74">
+									<img width="122" height="35" alt="中国光大银行" src="./Checkout _ H&amp;M China_files/m4-china-everbright-bank.png" title="中国光大银行">
+								</label>
+							<label for="payment-1-12">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-12" ng-change="setPaymentMode(&#39;75&#39;)" ng-model="paymentMode" ng-value="&#39;75&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="75">
+									<img width="122" height="35" alt="北京农村商业银行" src="./Checkout _ H&amp;M China_files/m4-beijing-rural-commercial-bank.png" title="北京农村商业银行">
+								</label>
+							<label for="payment-1-13">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-13" ng-change="setPaymentMode(&#39;84&#39;)" ng-model="paymentMode" ng-value="&#39;84&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="84">
+									<img width="122" height="35" alt="中国中信银行" src="./Checkout _ H&amp;M China_files/m4-china-citic-bank.png" title="中国中信银行">
+								</label>
+							<label for="payment-1-14">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-1-14" ng-change="setPaymentMode(&#39;126&#39;)" ng-model="paymentMode" ng-value="&#39;126&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="126">
+									<img width="122" height="35" alt="中国银联在线支付" src="./Checkout _ H&amp;M China_files/m4-cup.png" title="中国银联在线支付">
+								</label>
+							</div>
+					<h4>国际信用卡 (¥0.00)</h4>
+						<div class="radio-area select-payment-method">
+							<label for="payment-2-0">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-2-0" ng-change="setPaymentMode(&#39;17&#39;)" ng-model="paymentMode" ng-value="&#39;17&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="17">
+									<img width="122" height="35" alt="VISA" src="./Checkout _ H&amp;M China_files/m4-visa.png" title="VISA">
+								</label>
+							<label for="payment-2-1">
+									<input type="radio" name="payment-option" class="payment-method ng-pristine ng-untouched ng-valid" id="payment-2-1" ng-change="setPaymentMode(&#39;18&#39;)" ng-model="paymentMode" ng-value="&#39;18&#39;" ng-disabled="isDisabledActions() || getContext().giftCardGTtotalPrice" data-not-added-text="点击“立即支付”按钮后，页面将会跳转至所选付款网银平台以完成购买。&lt;br&gt;选择支付方式： 银行转账" value="18">
+									<img width="122" height="35" alt="MasterCard" src="./Checkout _ H&amp;M China_files/m4-mastercard.png" title="MasterCard">
+								</label>
+							</div>
+					</div>
+				<div class="row">
+					<div class="grid col-4" ng-hide="getContext().giftCardGTtotalPrice">
+						<div class="box-content payment-method-information">
+							<h3 class="label-cc">重要信息!</h3>
+							<p id="information-text">
+								点击“立即支付”按钮后，页面将会跳转至支付宝付款平台。请立即登陆您的支付宝账号并在5小时内尽快支付。如果未能成功操作会导致您的订单失效。</p>
+						</div>
+					</div>
+					<div class="grid col-4"></div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		$(".payment-method").click(function() {
+			$('#selectedPaymentMode').val($(this).val());
+			var informationtext=$(this).data('not-added-text');
+			$('#information-text').html(informationtext);
+			$('#OuterIformationText').html(informationtext);
+		});
+	</script>
+	<div class="read-only row" ng-class="{&#39;hidden&#39;: !getContext().closePaymentSection}">
+		<div class="grid col-4">
+			<div class="box-content">
+				<div>
+					<h3 class="checkout-header-text">付款方式</h3>
+					<!-- ngIf: paymentMode != 'GiftCard' --><div class="read-only-paymeny-details ng-binding ng-scope" ng-if="paymentMode != &#39;GiftCard&#39;">
+						支付宝
+					</div><!-- end ngIf: paymentMode != 'GiftCard' -->
+					<!-- ngIf: paymentMode == 'GiftCard' -->
+				</div>
+			</div>
+		</div>
+		<div class="grid col-4">
+			<div class="box-content" ng-hide="haveDiscountsOnCart()">
+				<p class="text last">点击“编辑”添加礼品卡</p>
+					</div>
+			<div class="box-content ng-hide" ng-show="haveDiscountsOnCart()">
+				<h3 ng-show="isOnlineVoucherApplied()" class="ng-hide">H&amp;M CLUB REWARDS</h3>
+				<p ng-show="isOnlineVoucherApplied()" class="text ng-hide">已添加</p>
+				<h3 ng-show="getContext().giftCardList.length == 1" class="ng-hide">GIFT CARD</h3> 			
+				<h3 ng-show="getContext().giftCardList.length &gt; 1" class="ng-hide">礼品卡:</h3> 			
+				<p ng-show="getContext().giftCardList.length &gt; 0" class="text last ng-hide">已添加</p>	
+			</div>
+		</div>
+	</div>
+	<button type="button" ng-click="getContext().closePaymentSection = false; expandPaymentSection()" ng-class="{&#39;hidden&#39;: !getContext().closePaymentSection || !getContext().closeBillingSection || !getContext().closeDeliverySection}" class="link responsive navigate icon-caret-right edit-toggle">	
+		编辑</button>
+	<div id="payeaseForm"></div>
+	<div id="hidden-form">
+		<form id="hidden-unsigned-payment-form" method="post" action="https://www2.hm.com/zh_cn/checkout#" style="display: none;" class="ng-pristine ng-valid">
+			<input type="hidden" id="card_expiry_date" name="card_expiry_date">
+			<input type="hidden" id="card_number" name="card_number"> 
+			<input type="hidden" id="card_type" name="card_type">
+		</form>
+		<form id="hidden-signed-payment-form" method="post" action="https://www2.hm.com/zh_cn/checkout" style="display: none;" class="ng-pristine ng-valid"></form>
+	</div>
+	<div id="serialization"></div>
+</section><!-- CR 18208 Add Loader Key Start mobile-->
+<!-- CR 18208 Add Loader Key End-->
 <div class="checkout-place-order-section">
-	<div id="placeOrderFormId" class="ng-pristine ng-valid">
-	
-		<input id="placeorderbutton" class="button-big place-order-button" value="立即支付" data-not-added-text="" data-validation-text="付款未完成。请再次检查您的信息。" type="submit">
+	<form id="placeOrderFormId" ng-submit="doCheckout()" class="ng-pristine ng-valid">
+	  <input type="hidden" id="selectedPaymentMode" value="Alipay">
+		<div class="input-group terms">
+			<input id="check-terms" name="termsCheck" class="input-checkbox checkout-accept-terms" data-validation-required="true" type="checkbox"> 
+			<label for="check-terms">
+				是的，<a href="https://www2.hm.com/zh_cn/customer-service/terms-link.html" class="underline overlay-trigger">条款</a> 和 <a href="https://www2.hm.com/zh_cn/customer-service/privacy-link.html" class="underline overlay-trigger">以及隐私政策</a>。</label> 
+		</div>
 		
+		<input id="placeorderbutton" class="button-big place-order-button" value="立即支付" data-not-added-text="" data-validation-text="付款未完成。请再次检查您的信息。" data-cbptitle-text="" data-cbptext-text="" type="submit" ng-hide="getContext().paymentMode.paymentProvider === &#39;P24&#39;" ng-disabled="isDisabledPlaceOrder()">
+		
+		<!-- TODO: We have to validate if we can use the same complete to purchase button for P24 as well -->
+		<input id="placeorderbutton" class="button-big place-order-button ng-hide" value="checkout.summary.placeOrder.p24" data-not-added-text="" data-validation-text="付款未完成。请再次检查您的信息。" data-alt-submit-text-przelewy24="checkout.summary.placeOrder.p24" type="button" ng-click="openBankInfo()" ng-show="getContext().paymentMode.paymentProvider === &#39;P24&#39;" ng-disabled="isDisabledPlaceOrder()">
 		<div class="checkout-encryption-info">所有的数据将被编码</div>
 		<p class="fine-print">请您付款以便完成购物流程。</p>
 
@@ -211,29 +1890,26 @@
 				</div>
 		  <!-- CR 18208 Add Loader Key End desktop-->
 
-	</div>
-</div>
-</div>
-
-
-
-
-
-<div class="grid col-4">
+	</form>
+</div></div>
+		<div class="grid col-4">
 	<div class="box checkout-order" id="checkoutOrderPartDiv">
 		<h2 class="box-headline">
 			您的订单</h2>
 		<ul class="checkout-order-items">
-		<foreach name="$data.cartList" item="ov">
-			<li class="checkout-order-item ng-scope" id="{$ov.gid}">
-	<img alt="{$ov.name}" title="{$ov.name}" class="checkout-order-item-image" src="{$ov.pic}">
+			
+			<!-- ngRepeat: entry in getContext().entries --><li class="checkout-order-item ng-scope" id="0401021001" ng-repeat="entry in getContext().entries">
+			    <!-- product:hmProductNormalImage BEGIN  -->
+	<img ng-src="https://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2016%2FD00+0401021+001+78+6440.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D1%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="图案T恤" title="图案T恤" class="checkout-order-item-image" src="./Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FD00+0401021+001+78+6440.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Fcart]">
+<!-- product:hmProductNormalImage END -->
 
 <div class="checkout-order-item-product-info">
-		<div class="product-item-headline ng-binding">{$ov.name}</div>
+		<div class="product-item-headline ng-binding">图案T恤</div>
 		<div class="product-item-price" ng-class="{&#39;product-item-price-discount&#39;: entry.strikedPrice}">
-<span ng-if="!entry.strikedPrice" class="ng-scope">
+			<!-- ngIf: entry.strikedPrice -->	
+			<!-- ngIf: !entry.strikedPrice --><span ng-if="!entry.strikedPrice" class="ng-scope">
 				<span id="main_price_0401021001" class="main_price ng-binding">
-					¥{$ov.price}
+					¥99.90
 				</span>
 				<small id="white_price_0401021001"></small>
 			</span><!-- end ngIf: !entry.strikedPrice -->
@@ -241,42 +1917,189 @@
 		
 	<dl class="checkout-order-item-product-details">
 		<dt>数量：</dt>
-		<dd class="ng-binding">{$ov.gnum}</dd>
+		<dd class="ng-binding">1</dd>
 		<dt>颜色：</dt>
-		<dd class="ng-binding">{$ov.color}</dd>
+		<dd class="ng-binding">深灰色</dd>
 		<dt>尺码：</dt>
-		<dd class="ng-binding">{$ov.size}</dd>
+		<dd class="ng-binding">XS (165|84A)</dd>
 	</dl>
 	
 	<div class="shopping-bag-item-total-price product-item-price">
 		总价：&nbsp;
 		
-<span ng-if="entry.totalPrice !== 0" class="ng-binding ng-scope">
-			¥{$ov.gnum * $ov.price}
-		</span>
+		<!-- price.tag BEGIN -->
+		<!-- ngIf: entry.totalPrice == 0 -->
+		<!-- ngIf: entry.totalPrice !== 0 --><span ng-if="entry.totalPrice !== 0" class="ng-binding ng-scope">
+			¥99.90
+		</span><!-- end ngIf: entry.totalPrice !== 0 -->
+		<!-- price.tag END -->
 		
 	</div>
-</div>
-</li>
-</foreach>
+</div><div ng-show="entry.hazmat" class="product-warning warning responsive ng-hide">
+					<p class="text icon-warning normal">
+					本产品含易燃成分，因此对运送和退货有特定的限制和规定。<a href="https://www2.hm.com/zh_cn/customer-service/transportation-restrictions-link.html" class="overlay-trigger underline">}请于此</a>处查看详情。</p>
+			   </div>
+			</li><!-- end ngRepeat: entry in getContext().entries --><li class="checkout-order-item ng-scope" id="0513443001" ng-repeat="entry in getContext().entries">
+			    <!-- product:hmProductNormalImage BEGIN  -->
+	<img ng-src="https://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2017%2FE00+0513443+001+15+2529.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D1%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="蜡染印花T恤" title="蜡染印花T恤" class="checkout-order-item-image" src="./Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2017%2FE00+0513443+001+15+2529.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Fcart]">
+<!-- product:hmProductNormalImage END -->
+
+<div class="checkout-order-item-product-info">
+		<div class="product-item-headline ng-binding">蜡染印花T恤</div>
+		<div class="product-item-price" ng-class="{&#39;product-item-price-discount&#39;: entry.strikedPrice}">
+			<!-- ngIf: entry.strikedPrice -->	
+			<!-- ngIf: !entry.strikedPrice --><span ng-if="!entry.strikedPrice" class="ng-scope">
+				<span id="main_price_0513443001" class="main_price ng-binding">
+					¥149.00
+				</span>
+				<small id="white_price_0513443001"></small>
+			</span><!-- end ngIf: !entry.strikedPrice -->
+		</div> 
+		
+	<dl class="checkout-order-item-product-details">
+		<dt>数量：</dt>
+		<dd class="ng-binding">1</dd>
+		<dt>颜色：</dt>
+		<dd class="ng-binding">深蓝色/绿松石色</dd>
+		<dt>尺码：</dt>
+		<dd class="ng-binding">XS (165|84A)</dd>
+	</dl>
+	
+	<div class="shopping-bag-item-total-price product-item-price">
+		总价：&nbsp;
+		
+		<!-- price.tag BEGIN -->
+		<!-- ngIf: entry.totalPrice == 0 -->
+		<!-- ngIf: entry.totalPrice !== 0 --><span ng-if="entry.totalPrice !== 0" class="ng-binding ng-scope">
+			¥149.00
+		</span><!-- end ngIf: entry.totalPrice !== 0 -->
+		<!-- price.tag END -->
+		
+	</div>
+</div><div ng-show="entry.hazmat" class="product-warning warning responsive ng-hide">
+					<p class="text icon-warning normal">
+					本产品含易燃成分，因此对运送和退货有特定的限制和规定。<a href="https://www2.hm.com/zh_cn/customer-service/transportation-restrictions-link.html" class="overlay-trigger underline">}请于此</a>处查看详情。</p>
+			   </div>
+			</li><!-- end ngRepeat: entry in getContext().entries --><li class="checkout-order-item ng-scope" id="0497510001" ng-repeat="entry in getContext().entries">
+			    <!-- product:hmProductNormalImage BEGIN  -->
+	<img ng-src="https://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2017%2FE00+0497510+001+68+1697.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D5%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="Selvedge jeans" title="Selvedge jeans" class="checkout-order-item-image" src="./Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2017%2FE00+0497510+001+68+1697.jpg],type[STILLLIFE_FRONT]&amp;hmver=5&amp;call=url[file-%2Fproduct%2Fcart]">
+<!-- product:hmProductNormalImage END -->
+
+<div class="checkout-order-item-product-info">
+		<div class="product-item-headline ng-binding">Selvedge jeans</div>
+		<div class="product-item-price" ng-class="{&#39;product-item-price-discount&#39;: entry.strikedPrice}">
+			<!-- ngIf: entry.strikedPrice -->	
+			<!-- ngIf: !entry.strikedPrice --><span ng-if="!entry.strikedPrice" class="ng-scope">
+				<span id="main_price_0497510001" class="main_price ng-binding">
+					¥599.00
+				</span>
+				<small id="white_price_0497510001"></small>
+			</span><!-- end ngIf: !entry.strikedPrice -->
+		</div> 
+		
+	<dl class="checkout-order-item-product-details">
+		<dt>数量：</dt>
+		<dd class="ng-binding">1</dd>
+		<dt>颜色：</dt>
+		<dd class="ng-binding">蓝色水洗</dd>
+		<dt>尺码：</dt>
+		<dd class="ng-binding">28 (165|72A)</dd>
+	</dl>
+	
+	<div class="shopping-bag-item-total-price product-item-price">
+		总价：&nbsp;
+		
+		<!-- price.tag BEGIN -->
+		<!-- ngIf: entry.totalPrice == 0 -->
+		<!-- ngIf: entry.totalPrice !== 0 --><span ng-if="entry.totalPrice !== 0" class="ng-binding ng-scope">
+			¥599.00
+		</span><!-- end ngIf: entry.totalPrice !== 0 -->
+		<!-- price.tag END -->
+		
+	</div>
+</div><div ng-show="entry.hazmat" class="product-warning warning responsive ng-hide">
+					<p class="text icon-warning normal">
+					本产品含易燃成分，因此对运送和退货有特定的限制和规定。<a href="https://www2.hm.com/zh_cn/customer-service/transportation-restrictions-link.html" class="overlay-trigger underline">}请于此</a>处查看详情。</p>
+			   </div>
+			</li><!-- end ngRepeat: entry in getContext().entries --><li class="checkout-order-item ng-scope" id="0438740001" ng-repeat="entry in getContext().entries">
+			    <!-- product:hmProductNormalImage BEGIN  -->
+	<img ng-src="https://lp2.hm.com/hmprod%3Fset%3Dsource%5B%2Fmodel%2F2016%2FE00+0438740+001+74+1904.jpg%5D%2Ctype%5BSTILLLIFE_FRONT%5D%26hmver%3D1%26call%3Durl%5Bfile%3A%2Fproduct%2Fcart%5D" alt="蕾丝背上托文胸" title="蕾丝背上托文胸" class="checkout-order-item-image" src="./Checkout _ H&amp;M China_files/hmprod-set=source[%2Fmodel%2F2016%2FE00+0438740+001+74+1904.jpg],type[STILLLIFE_FRONT]&amp;hmver=1&amp;call=url[file-%2Fproduct%2Fcart]">
+<!-- product:hmProductNormalImage END -->
+
+<div class="checkout-order-item-product-info">
+		<div class="product-item-headline ng-binding">蕾丝背上托文胸</div>
+		<div class="product-item-price" ng-class="{&#39;product-item-price-discount&#39;: entry.strikedPrice}">
+			<!-- ngIf: entry.strikedPrice -->	
+			<!-- ngIf: !entry.strikedPrice --><span ng-if="!entry.strikedPrice" class="ng-scope">
+				<span id="main_price_0438740001" class="main_price ng-binding">
+					¥179.00
+				</span>
+				<small id="white_price_0438740001"></small>
+			</span><!-- end ngIf: !entry.strikedPrice -->
+		</div> 
+		
+	<dl class="checkout-order-item-product-details">
+		<dt>数量：</dt>
+		<dd class="ng-binding">1</dd>
+		<dt>颜色：</dt>
+		<dd class="ng-binding">黑色</dd>
+		<dt>尺码：</dt>
+		<dd class="ng-binding">75B</dd>
+	</dl>
+	
+	<div class="shopping-bag-item-total-price product-item-price">
+		总价：&nbsp;
+		
+		<!-- price.tag BEGIN -->
+		<!-- ngIf: entry.totalPrice == 0 -->
+		<!-- ngIf: entry.totalPrice !== 0 --><span ng-if="entry.totalPrice !== 0" class="ng-binding ng-scope">
+			¥179.00
+		</span><!-- end ngIf: entry.totalPrice !== 0 -->
+		<!-- price.tag END -->
+		
+	</div>
+</div><div ng-show="entry.hazmat" class="product-warning warning responsive ng-hide">
+					<p class="text icon-warning normal">
+					本产品含易燃成分，因此对运送和退货有特定的限制和规定。<a href="https://www2.hm.com/zh_cn/customer-service/transportation-restrictions-link.html" class="overlay-trigger underline">}请于此</a>处查看详情。</p>
+			   </div>
+			</li><!-- end ngRepeat: entry in getContext().entries -->
+			
+			
+		<!--  Hazmat Entry -->	
+		<!-- ngRepeat: entry in getContext().hazmatEntries -->
+			
 		</ul>
 		<div class="box-content">
 			<table class="order-total">
 	<tbody>
+	    <!-- ngRepeat: (key,value) in getContext().orderTotals.impositionType -->
+		<!-- ngIf: getContext().orderTotals.externalTaxApplied && getContext().orderTotals.maxTaxApplied -->
 		<tr>
 			<th scope="row">订单价值：</th>
-			<td><span id="newPriceSubtotal" class="ng-binding">¥{$ov.totalPrice}</span></td>
+			<td><span id="newPriceSubtotal" class="ng-binding">¥1,026.90</span></td>
 		</tr>		
+		<!-- ngIf: getContext().orderTotals.totalDiscount -->
+		<!-- ngIf: getContext().orderTotals.staffCardDiscount -->			
+		<!-- ngIf: getContext().orderTotals.clubVoucherDiscount -->	
+		<!-- ngIf: getContext().orderTotals.totalGiftCardAmount -->			
+		<!-- ngIf: getContext().cartEntries.length > 0 || getContext().deliveryMode --><tr ng-if="getContext().cartEntries.length &gt; 0 || getContext().deliveryMode" class="ng-scope">
+			<th scope="row">送货：</th>
+			<td class="ng-binding">¥10.00</td>
+		</tr><!-- end ngIf: getContext().cartEntries.length > 0 || getContext().deliveryMode -->
+		<!-- ngIf: getContext().orderTotals.paymentCost -->
 	</tbody>
 	<tfoot>
+		<!-- ngIf: getContext().orderTotals.totalBeforeRounding -->
+		<!-- ngIf: getContext().orderTotals.rounding -->
 		<tr>
 			<th scope="row">总价:</th>
 			<td id="total_price_of_basket" class="ng-binding">
-				¥{$ov.totalPrice}
+				¥1,036.90
 		    	</td>
 		   </tr>
 		 </tfoot>
 </table>
+	<!-- ngIf: getContext().orderTotals.maxTaxApplied -->
 			<p class="fine-print">
 					您可以取消订单，前提是您希望退回的商品在不迟于您收到订单商品后的30天内送达给我们。您可在此找到退换货政策全文&nbsp;
 					<a class="overlay-trigger underline" href="https://www2.hm.com/zh_cn/customer-service/return-link.html" onclick="returnRefundTealiumCheckout();">退货和退款</a>
@@ -307,7 +2130,52 @@
 
 <!-- /Only Content -->
 
+</div><div class="hidden modal-content ng-hide" id="address-validation-popup" ng-show="getContext().showPopup &amp;&amp; getContext().popupType ==&#39;ADDRESSES&#39;">
+	<div class="modal-text">
+		<div class="address-validation">
+			<h1 class="heading ng-binding"></h1>
+			<p ng-bind-html="getContext().popupMessage" class="ng-binding"></p>
+			<form class="ng-pristine ng-valid">
+				<div class="address-validation-addresses">
+					<div class="address-validation-un-validated">
+						<h3>您已输入：</h3>
+						<div class="address-validation-address">
+							<input type="radio" name="validation-address" value="-1" id="un-validated-address" ng-model="newAddress.selectedAddress" class="ng-pristine ng-untouched ng-valid">
+							<label for="un-validated-address">
+								 <span ng-bind-html="newAddress.formattedAddress" class="ng-binding"></span>
+								 <br>
+								 <a class="address-validation-edit modalclose underline ng-hide" ng-show="verifiedAddresses.length&gt;0" ng-click="closePopup()">编辑</a>
+							</label>
+						</div>
+					</div>
+					<div class="address-validation-suggestions ng-hide" ng-show="verifiedAddresses.length&gt;0">
+						<h3>您是否指：</h3>
+						<div class="address-validation-address-list " ng-class="{&#39;scrollable&#39; : verifiedAddresses.length&gt;4}">
+							<!-- ngRepeat: address in verifiedAddresses -->
+						</div>
+					</div>
+				</div>
+				<div class="buttons clearfix">
+					<button ng-click="closePopup()" class="modalclose button button-secondary">编辑</button>
+					<button ng-click="submitClosePopup()" class="modalclose button">确定</button>
+				</div>
+			</form>
+		</div>	
+	</div>
 </div>
+
+<div class="hidden modal-content" id="error-popup">
+	<div class="modal-text">
+		<div class="shopping-bag-message">
+			<h1 class="heading ng-binding"></h1>
+			<p ng-bind-html="getContext().popupMessage" class="ng-binding"></p>
+			<form class="ng-pristine ng-valid">
+				<div class="sticky button-group">
+					<button ng-click="closePopup()" class="modalclose button">确定</button>
+				</div>
+			</form>
+		</div>	
+	</div>
 </div>
 
 <div aria-hidden="true" id="generic-error-popup" class="hidden modal-content">
@@ -320,7 +2188,43 @@
 	</div>
 </div>
 
+<div aria-hidden="true" id="kcp-unavailable-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">checkout.error.kcp.unavailable.title</h1>
+		<p class="text">checkout.error.kcp.unavailable.message</p>
+		<div class="sticky button-group">
+			<button ng-click="closePopup()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
 
+<div aria-hidden="true" id="los-down-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">折扣代码未确认</h1>
+		<p class="text">很抱歉，您的折扣代码当前无法确认。请重试，或移除折扣代码完成购买。点击“确认”以返回结账。</p>
+		<div class="sticky button-group">
+			<button ng-click="closePopup()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
+
+<div aria-hidden="true" id="expired-idc-error" class="hidden modal-content">
+	<div class="modal-text">
+		<h1 class="heading">折扣代码无效</h1>
+		<p class="text">所输入代码已失效，无法享受折扣。您可打开经更新的订单汇总，查看实际订单金额。点击“确认”以返回结账。</p>
+		<div class="sticky button-group">
+			<button ng-click="removeExpiredIdc()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div><div class="hidden modal-content ng-hide" id="refresh-popup" ng-show="getContext().showPopup &amp;&amp; getContext().popupType==&#39;REFRESH&#39;">
+	<div class="modal-text">
+		<h1 class="ng-binding"></h1>
+		<p ng-bind-html="getContext().popupMessage" class="ng-binding"></p>
+		<div class="buttons clearfix">
+			<button ng-click="refreshPage()" class="modalclose button">确定</button>
+		</div>
+	</div>
+</div>
 
 
 
@@ -347,7 +2251,11 @@
 			</ul>
 		</div>
 	</div>
-
+	<div class="sticky button-group">
+		<input type="button" class="button modalclose" value="关闭" ng-show="!getContext().onlineVoucherAvalaible">
+		<input type="button" class="button secondary modalclose ng-hide" value="取消" ng-show="getContext().onlineVoucherAvalaible" ng-click="cancelVoucherActions(&#39;voucher-modal&#39;)"> 
+		<input type="button" class="button ng-hide" ng-disabled="!discountEdited" ng-click="useOnlineVoucher()" value="保存" ng-show="getContext().onlineVoucherAvalaible" disabled="disabled">
+	</div>
 </div>
 
 <div class="hidden modal-content" id="voucher-error-popup">
@@ -355,10 +2263,177 @@
 		<div class="shopping-bag-message">
 			<h1 class="heading ng-binding"></h1>
 			<p ng-bind-html="getContext().popupMessage" class="ng-binding"></p>
+			<form class="ng-pristine ng-valid">
+				<div class="buttons clearfix">
+					<button class="modalclose button">返回</button>
+				</div>
+			</form>
 		</div>	
 	</div>
 </div>
 
+
+
+
+<div id="discount-modal" class="modal-content" aria-hidden="true">
+	<section id="discount-modal-content" class="responsive modal-content">
+		<div class="modal-text">
+			<h1 class="heading">折扣代码</h1>
+			
+			<div class="add-to-list-form">
+				<div class="input-group">
+					<label for="txt-discount-code" class="sub-sub-heading"> 添加折扣代码</label>
+					<div class="input-wrapper row">
+						<div class="inline grid col-5">
+							<input ng-model="voucherCode" data-validation-inline="false" id="voucherCode" type="text" ng-class="{&#39;invalid&#39;:getContext().errors}" ng-disabled="getContext().voucherApplied" class="ng-pristine ng-untouched ng-valid">
+						</div>
+						<div class="inline grid">
+							<input value="添加" ng-click="checkVoucher()" type="button" id="addVoucher" ng-disabled="!voucherCode" disabled="disabled">
+						</div>
+						<!-- ngIf: getContext().voucherApplied -->		
+						<p class="input-info invalid field-validation-message ng-binding hidden" ng-class="{&#39;hidden&#39;:!getContext().errors}">  </p>
+					</div>
+				</div>
+				<h2 class="sub-sub-heading">已添加折扣代码</h2>
+				<div class="add-to-list-result selectable-overflows">
+					<p class="no-result" ng-show="!getContext().voucherApplied">折扣代码未添加。</p>			
+					<!-- ngIf: getContext().voucherApplied -->
+				</div>		
+			</div>
+		</div>
+		<div class="sticky button-group">
+				<input type="button" class="button secondary modalclose" ng-click="cancelVoucherActions(&#39;discount-modal&#39;)" value="取消"> 
+				<input type="button" class="button modalclose" ng-click="redeemVoucher(false)" value="保存" ng-disabled="!discountEdited || getContext().errors" disabled="disabled">
+		</div>
+	</section>
+</div>
+
+
+
+
+<div id="gift-card-modal" class="modal-content" aria-hidden="true">
+	<section id="gift-card-modal-content" class="responsive modal-content">
+		<div class="modal-text">
+			<h1 class="heading">礼品卡:</h1>
+			<div class="info-message">
+				<span class="icon icon-info"></span>
+				<p class="text">礼品卡可与银行卡、首信易支付或支付宝搭配使用</p>
+			</div>
+			<div class="add-to-list-form">
+				<div class="input-group">
+					<div class="input-wrapper row">
+							<div class="inline grid col-3">
+								<label for="txt-gift-card" class="sub-sub-heading">礼品卡号 </label>
+								<input id="gift-card-number" data-validation-inline="false" type="tel" data-validation-required-if-visible="" data-validation-maxlength="19" data-numbers-only="true" ng-model="giftCardInfo.cardNumber" autocomplete="new-password" class="ng-pristine ng-untouched ng-valid">
+							</div>
+							<div class="inline grid col-2">
+								<label for="txt-pin-code" class="sub-sub-heading">PIN码 </label>
+								 <input id="txt-pin-code" data-validation-inline="false" autocomplete="new-password" data-validation-required-if-visible="true" maxlength="4" type="password" ng-model="giftCardInfo.cardPin" class="ng-pristine ng-untouched ng-valid ng-valid-maxlength">
+							</div>										
+							<div class="inline grid">
+								<input type="button" id="btn-gift-card" value="添加到购物车" ng-click="addGiftCard()" ng-disabled="!giftCardInfo.cardNumber || !giftCardInfo.cardPin || getContext().disableAddGiftCart || disableGCbuttonMultiClick" disabled="disabled"> 
+							</div>											
+						<p class="input-info invalid ng-binding">		</p>
+						<p class="text ng-hide" ng-show="getContext().giftCardGTtotalPrice">您可使用已添加的礼品卡全额付款。</p>
+					</div>
+					<!-- ngIf: getContext().giftCardList.length >=  getContext().maxGiftCard --> 
+				</div>
+				<h2 class="sub-sub-heading">添加礼品卡</h2> 
+				<div class="add-to-list-result selectables-overflow">
+					<p class="no-result" ng-class="{&#39;hidden&#39;: getContext().giftCardList.length}">
+						No Gift Cards added.<br>
+						如需添加礼品卡，输入其卡号及PIN码。
+					</p>
+					<!-- ngRepeat: giftCardItem in getContext().giftCardList -->
+				</div>
+			</div>
+		</div>
+		<div class="sticky button-group">
+			<input class="button secondary modalclose" value="取消" type="button"> 
+			<input class="button modalclose" ng-click="giftCartCountTealium()" value="保存" ng-disabled="!getContext().giftCardList.length" type="button" disabled="disabled">
+		</div>
+	</section>
+</div><div class="hidden modal-content" id="payment-address-modal" aria-hidden="true">
+	<div class="modal-text">
+		<h1>持卡人地址</h1>
+		<p>如果以下地址与持卡人地址不符，请在“使用新地址”下方填入正确地址。</p>
+		<form id="paymentAddressForm" class="checkout-cardholder-address ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" ng-submit="closeAndSavePaymentAddress(&#39;payment-address-modal&#39;)" novalidate="">
+			<div class="use-new-delivery-address">
+				<div class="row">
+					<div class="grid col-4">
+						<div class="box-content box-content-not-first">
+							<div class="inputwrapper required">
+	<label for="txt-new-payment-address-address-1" class="label">
+		地址栏1</label>
+	<div class="input-field-info">
+				<span class="input-field-info-description hidden">此字段内需要填写中文字符</span>
+			</div>
+			<input type="text" ng-model="newPaymentInfo.line1" maxlength="40" id="cc-address-new-address-1" ng-class="{&#39;invalid&#39; : errors.paymentAddressForm.line1!=null}" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-regex-text="为了确保您的货能到，请用中文字写您的地址。" data-validation-required-if-visible="true" class="text-input ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength" data-validation-required-text="请输入地址" required="required">		 
+	<div class="input-info">
+		街道，门牌号</div>
+</div><div class="inputwrapper ">
+	<label for="txt-new-payment-address-address-2" class="label">
+		地址栏2<small>&nbsp;(可选)</small>
+	</label>
+		<div class="input-field-info">
+				<span class="input-field-info-description hidden">
+					此字段内需要填写中文字符</span>
+			</div>
+			<input type="text" ng-model="newPaymentInfo.line2" ng-class="{&#39;invalid&#39; : errors.paymentAddressForm.line2!=null}" class="text-input ng-pristine ng-untouched ng-valid ng-valid-maxlength" data-validation-regex="^(?:\s*)[^\s;“”\u0022]*[^;“”\u0022]*([\u4E00-\u9FA5]+)[^;“”\u0022]*(?:\s*)$" data-validation-regex-text="为了确保您的货能到，请用中文字写您的地址。" id="txt-new-payment-address-address-2" maxlength="40">
+				 
+	<div class="input-info">公寓，座，单元，楼层等</div>
+</div></div>
+					</div>
+					<div class="grid col-4">
+						<div class="box-content box-content-not-first">
+							<div class="inputwrapper required">
+	<label for="txt-new-payment-address-city" class="label">
+		城市</label>
+	<input type="text" ng-model="newPaymentInfo.town" maxlength="40" id="cc-address-new-city" ng-class="{&#39;invalid&#39; : errors.paymentAddressForm.town!=null}" data-validation-required-if-not-checked=".checkout-payment-addresses input" data-validation-regex="^(?:\s*).*(?:\s*)$" data-validation-required-text="请输入城市" class="text-input ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-maxlength" data-validation-regex-text="这个字段只能用字母" required="required">
+	<!-- ngIf: errors.paymentAddressForm.town!=null --></div>
+<div class="inputwrapper required ng-hide" ng-show="showProvince">
+	<label class="label">省份</label>
+	<div>
+		<select id="address-payment-province" name="address-payment-province" class="txt-address-province my-account-address-province custom ng-pristine ng-untouched ng-invalid ng-invalid-required" data-validation-required-if-visible="true" required="required" data-validation-required-text="请选择省份" ng-model="newPaymentInfo.provinceData" ng-options="province as province.name for province in getContext().provincesByCountry"><option value="" class="">选择省份</option><option value="0" label="新疆维吾尔自治区">新疆维吾尔自治区</option><option value="1" label="海南省">海南省</option><option value="2" label="湖北省">湖北省</option><option value="3" label="天津">天津</option><option value="4" label="安徽省">安徽省</option><option value="5" label="广东省">广东省</option><option value="6" label="江西省">江西省</option><option value="7" label="甘肃省">甘肃省</option><option value="8" label="云南省">云南省</option><option value="9" label="山东省">山东省</option><option value="10" label="内蒙古自治区">内蒙古自治区</option><option value="11" label="山西省">山西省</option><option value="12" label="浙江省">浙江省</option><option value="13" label="河南省">河南省</option><option value="14" label="贵州省">贵州省</option><option value="15" label="重庆">重庆</option><option value="16" label="福建省">福建省</option><option value="17" label="辽宁省">辽宁省</option><option value="18" label="河北省">河北省</option><option value="19" label="上海">上海</option><option value="20" label="北京">北京</option><option value="21" label="江苏省">江苏省</option><option value="22" label="西藏自治区">西藏自治区</option><option value="23" label="吉林省">吉林省</option><option value="24" label="广西壮族自治区">广西壮族自治区</option><option value="25" label="湖南省">湖南省</option><option value="26" label="四川省">四川省</option><option value="27" label="黑龙江省">黑龙江省</option><option value="28" label="陕西省">陕西省</option><option value="29" label="宁夏回族自治区">宁夏回族自治区</option><option value="30" label="青海省">青海省</option></select>
+	</div>
+</div><!-- ngIf: showPostalCode --><div class="inputwrapper ng-scope required" ng-class="!optionalPostalCode ? &#39;required&#39; : &#39;optional&#39;" ng-if="showPostalCode">
+	<label for="txt-new-payment-address-postal" class="label">邮政编码</label>
+	<input type="text" ng-model="newPaymentInfo.postalCode" ng-class="{&#39;invalid&#39; : errors.paymentAddressForm.postalCode!=null}" id="cc-address-new-postal-code" data-validation-required-if-not-checked=".checkout-payment-addresses input" data-validation-required-text="输入邮编" name="postalCode" class="to-hankaku text-input ng-pristine ng-untouched ng-valid">
+	<!-- ngIf: errors.paymentAddressForm.postalCode!=null --></div><!-- end ngIf: showPostalCode -->
+<div ng-hide="showPostalCode" class="input-group empty-input-group ng-hide"></div><div class="inputwrapper required">
+	<label class="label">国家</label>
+	<div class="select-primary">
+		<select name="country-payment-address" id="country-payment-address" class="select novalue ng-pristine ng-untouched ng-invalid ng-invalid-required" data-validation-required-text="您需选定国家" data-validation-required-if-not-checked=".checkout-billing-addresses input" ng-model="newPaymentInfo.country" required="required" ng-options="country as country.name for country in getContext().countries" ng-change="cleanPaymentPopupAddress(newPaymentInfo)"><option value="" class="">选择国家</option><option value="0" label="Scotland">Scotland</option><option value="1" label="不丹">不丹</option><option value="2" label="东帝汶">东帝汶</option><option value="3" label="中国">中国</option><option value="4" label="中国台湾">中国台湾</option><option value="5" label="中国香港">中国香港</option><option value="6" label="中非共和国">中非共和国</option><option value="7" label="丹麦">丹麦</option><option value="8" label="乌克兰">乌克兰</option><option value="9" label="乌兹别克斯坦">乌兹别克斯坦</option><option value="10" label="乌干达">乌干达</option><option value="11" label="乌拉圭">乌拉圭</option><option value="12" label="乍得">乍得</option><option value="13" label="也门">也门</option><option value="14" label="亚美尼亚">亚美尼亚</option><option value="15" label="以色列">以色列</option><option value="16" label="伊拉克">伊拉克</option><option value="17" label="伊朗">伊朗</option><option value="18" label="伯利兹">伯利兹</option><option value="19" label="佛得角">佛得角</option><option value="20" label="俄罗斯联邦">俄罗斯联邦</option><option value="21" label="保加利亚">保加利亚</option><option value="22" label="克罗地亚">克罗地亚</option><option value="23" label="关岛">关岛</option><option value="24" label="冈比亚">冈比亚</option><option value="25" label="冰岛">冰岛</option><option value="26" label="几内亚">几内亚</option><option value="27" label="几内亚比绍">几内亚比绍</option><option value="28" label="列支敦斯登">列支敦斯登</option><option value="29" label="刚果">刚果</option><option value="30" label="利比亚">利比亚</option><option value="31" label="利比里亚">利比里亚</option><option value="32" label="加拿大">加拿大</option><option value="33" label="加纳">加纳</option><option value="34" label="加蓬">加蓬</option><option value="35" label="匈牙利">匈牙利</option><option value="36" label="北马里亚纳群岛">北马里亚纳群岛</option><option value="37" label="南乔治亚和南桑德韦奇群岛">南乔治亚和南桑德韦奇群岛</option><option value="38" label="南极洲">南极洲</option><option value="39" label="南非">南非</option><option value="40" label="博内尔，圣圣尤斯特歇斯和萨巴">博内尔，圣圣尤斯特歇斯和萨巴</option><option value="41" label="博茨瓦纳">博茨瓦纳</option><option value="42" label="卡塔尔">卡塔尔</option><option value="43" label="卢旺达">卢旺达</option><option value="44" label="卢森堡">卢森堡</option><option value="45" label="印度">印度</option><option value="46" label="印度尼西亚">印度尼西亚</option><option value="47" label="危地马拉">危地马拉</option><option value="48" label="厄瓜多尔">厄瓜多尔</option><option value="49" label="厄立特里亚国">厄立特里亚国</option><option value="50" label="叙利亚">叙利亚</option><option value="51" label="古巴">古巴</option><option value="52" label="吉尔吉斯斯坦">吉尔吉斯斯坦</option><option value="53" label="吉布提">吉布提</option><option value="54" label="哈萨克斯坦">哈萨克斯坦</option><option value="55" label="哥伦比亚">哥伦比亚</option><option value="56" label="哥斯达黎加">哥斯达黎加</option><option value="57" label="喀麦隆">喀麦隆</option><option value="58" label="图瓦卢">图瓦卢</option><option value="59" label="土库曼斯坦">土库曼斯坦</option><option value="60" label="土耳其">土耳其</option><option value="61" label="圣卢西亚岛">圣卢西亚岛</option><option value="62" label="圣基茨和尼维斯">圣基茨和尼维斯</option><option value="63" label="圣多美和普林西比">圣多美和普林西比</option><option value="64" label="圣巴托洛缪岛">圣巴托洛缪岛</option><option value="65" label="圣文森特和格林纳丁斯">圣文森特和格林纳丁斯</option><option value="66" label="圣皮埃尔和密克隆群岛">圣皮埃尔和密克隆群岛</option><option value="67" label="圣诞岛">圣诞岛</option><option value="68" label="圣赫勒拿岛、阿森松岛和特里斯坦一达库尼亚群岛">圣赫勒拿岛、阿森松岛和特里斯坦一达库尼亚群岛</option><option value="69" label="圣马丁岛（法国）">圣马丁岛（法国）</option><option value="70" label="圣马丁岛（荷兰）">圣马丁岛（荷兰）</option><option value="71" label="圣马力诺">圣马力诺</option><option value="72" label="圭亚那">圭亚那</option><option value="73" label="坦桑尼亚">坦桑尼亚</option><option value="74" label="埃及">埃及</option><option value="75" label="埃塞俄比亚">埃塞俄比亚</option><option value="76" label="基里巴斯">基里巴斯</option><option value="77" label="塔吉克斯坦">塔吉克斯坦</option><option value="78" label="塞内加尔">塞内加尔</option><option value="79" label="塞尔维亚">塞尔维亚</option><option value="80" label="塞拉利昂">塞拉利昂</option><option value="81" label="塞浦路斯">塞浦路斯</option><option value="82" label="塞舌尔">塞舌尔</option><option value="83" label="墨西哥">墨西哥</option><option value="84" label="多哥">多哥</option><option value="85" label="多米尼加">多米尼加</option><option value="86" label="多米尼加共和国">多米尼加共和国</option><option value="87" label="奥地利">奥地利</option><option value="88" label="委内瑞拉">委内瑞拉</option><option value="89" label="孟加拉国">孟加拉国</option><option value="90" label="安哥拉">安哥拉</option><option value="91" label="安圭拉岛">安圭拉岛</option><option value="92" label="安提瓜和巴布达">安提瓜和巴布达</option><option value="93" label="安道尔">安道尔</option><option value="94" label="密克罗尼西亚联邦">密克罗尼西亚联邦</option><option value="95" label="尼加拉瓜">尼加拉瓜</option><option value="96" label="尼日利亚">尼日利亚</option><option value="97" label="尼日尔">尼日尔</option><option value="98" label="尼泊尔">尼泊尔</option><option value="99" label="巴勒斯坦领土">巴勒斯坦领土</option><option value="100" label="巴哈马">巴哈马</option><option value="101" label="巴基斯坦">巴基斯坦</option><option value="102" label="巴巴多斯">巴巴多斯</option><option value="103" label="巴布亚新几内亚">巴布亚新几内亚</option><option value="104" label="巴拉圭">巴拉圭</option><option value="105" label="巴拿马">巴拿马</option><option value="106" label="巴林">巴林</option><option value="107" label="巴西">巴西</option><option value="108" label="布基纳法索">布基纳法索</option><option value="109" label="布维岛">布维岛</option><option value="110" label="布隆迪">布隆迪</option><option value="111" label="希腊">希腊</option><option value="112" label="帕劳">帕劳</option><option value="113" label="库克群岛">库克群岛</option><option value="114" label="库腊索岛">库腊索岛</option><option value="115" label="开曼群岛">开曼群岛</option><option value="116" label="德国">德国</option><option value="117" label="意大利">意大利</option><option value="118" label="所罗门群岛">所罗门群岛</option><option value="119" label="托克劳群岛">托克劳群岛</option><option value="120" label="拉脱维亚">拉脱维亚</option><option value="121" label="挪威">挪威</option><option value="122" label="捷克共和国">捷克共和国</option><option value="123" label="摩尔多瓦">摩尔多瓦</option><option value="124" label="摩洛哥">摩洛哥</option><option value="125" label="摩纳哥">摩纳哥</option><option value="126" label="教廷（梵蒂冈城国）">教廷（梵蒂冈城国）</option><option value="127" label="文莱达鲁萨兰国">文莱达鲁萨兰国</option><option value="128" label="斐济">斐济</option><option value="129" label="斯威士兰">斯威士兰</option><option value="130" label="斯洛伐克">斯洛伐克</option><option value="131" label="斯洛文尼亚">斯洛文尼亚</option><option value="132" label="斯瓦尔巴和扬马延岛">斯瓦尔巴和扬马延岛</option><option value="133" label="斯里兰卡">斯里兰卡</option><option value="134" label="新加坡">新加坡</option><option value="135" label="新喀里多尼亚">新喀里多尼亚</option><option value="136" label="新西兰">新西兰</option><option value="137" label="日本">日本</option><option value="138" label="智利">智利</option><option value="139" label="朝鲜">朝鲜</option><option value="140" label="柬埔寨">柬埔寨</option><option value="141" label="根西岛">根西岛</option><option value="142" label="格林纳达">格林纳达</option><option value="143" label="格陵兰">格陵兰</option><option value="144" label="格鲁吉亚">格鲁吉亚</option><option value="145" label="比利时">比利时</option><option value="146" label="毛里塔尼亚">毛里塔尼亚</option><option value="147" label="毛里求斯">毛里求斯</option><option value="148" label="民主刚果共和国">民主刚果共和国</option><option value="149" label="汤加">汤加</option><option value="150" label="沙特阿拉伯">沙特阿拉伯</option><option value="151" label="法国">法国</option><option value="152" label="法属南部领地">法属南部领地</option><option value="153" label="法属圭亚那">法属圭亚那</option><option value="154" label="法属玻利尼西亚">法属玻利尼西亚</option><option value="155" label="法罗群岛">法罗群岛</option><option value="156" label="波兰">波兰</option><option value="157" label="波多黎各">波多黎各</option><option value="158" label="波斯尼亚和黑塞哥维那">波斯尼亚和黑塞哥维那</option><option value="159" label="泰国">泰国</option><option value="160" label="泽西岛">泽西岛</option><option value="161" label="津巴布韦">津巴布韦</option><option value="162" label="洪都拉斯">洪都拉斯</option><option value="163" label="海地">海地</option><option value="164" label="澳大利亚">澳大利亚</option><option value="165" label="澳门">澳门</option><option value="166" label="爱尔兰">爱尔兰</option><option value="167" label="爱沙尼亚">爱沙尼亚</option><option value="168" label="牙买加">牙买加</option><option value="169" label="特克斯和凯科斯群岛">特克斯和凯科斯群岛</option><option value="170" label="特立尼达和多巴哥">特立尼达和多巴哥</option><option value="171" label="玻利维亚">玻利维亚</option><option value="172" label="瑙鲁">瑙鲁</option><option value="173" label="瑞典">瑞典</option><option value="174" label="瑞士">瑞士</option><option value="175" label="瓜德罗普岛">瓜德罗普岛</option><option value="176" label="瓦利斯群岛和富图纳群岛">瓦利斯群岛和富图纳群岛</option><option value="177" label="瓦努阿图">瓦努阿图</option><option value="178" label="留尼汪岛">留尼汪岛</option><option value="179" label="白俄罗斯">白俄罗斯</option><option value="180" label="百慕大">百慕大</option><option value="181" label="皮特凯恩岛">皮特凯恩岛</option><option value="182" label="直布罗陀">直布罗陀</option><option value="183" label="福克兰群岛">福克兰群岛</option><option value="184" label="科威特">科威特</option><option value="185" label="科摩罗">科摩罗</option><option value="186" label="科特迪瓦">科特迪瓦</option><option value="187" label="科科斯（基林）群岛">科科斯（基林）群岛</option><option value="188" label="秘鲁">秘鲁</option><option value="189" label="突尼斯">突尼斯</option><option value="190" label="立陶宛">立陶宛</option><option value="191" label="索马里">索马里</option><option value="192" label="约旦">约旦</option><option value="193" label="纳米比亚">纳米比亚</option><option value="194" label="纽埃岛">纽埃岛</option><option value="195" label="缅甸">缅甸</option><option value="196" label="罗马尼亚">罗马尼亚</option><option value="197" label="美国">美国</option><option value="198" label="美国本土外小岛屿">美国本土外小岛屿</option><option value="199" label="美属维京群岛">美属维京群岛</option><option value="200" label="美属萨摩亚">美属萨摩亚</option><option value="201" label="老挝">老挝</option><option value="202" label="肯尼亚">肯尼亚</option><option value="203" label="芬兰">芬兰</option><option value="204" label="苏丹">苏丹</option><option value="205" label="苏里南">苏里南</option><option value="206" label="英国">英国</option><option value="207" label="英属印度洋领地">英属印度洋领地</option><option value="208" label="英属维京群岛">英属维京群岛</option><option value="209" label="荷兰">荷兰</option><option value="210" label="莫桑比克">莫桑比克</option><option value="211" label="莱索托">莱索托</option><option value="212" label="菲律宾">菲律宾</option><option value="213" label="萨尔瓦多">萨尔瓦多</option><option value="214" label="萨摩亚">萨摩亚</option><option value="215" label="葡萄牙">葡萄牙</option><option value="216" label="蒙古">蒙古</option><option value="217" label="蒙特塞拉特岛">蒙特塞拉特岛</option><option value="218" label="西撒哈拉">西撒哈拉</option><option value="219" label="西班牙">西班牙</option><option value="220" label="诺福克岛">诺福克岛</option><option value="221" label="贝宁">贝宁</option><option value="222" label="赞比亚">赞比亚</option><option value="223" label="赤道几内亚">赤道几内亚</option><option value="224" label="赫德岛和麦克唐纳群岛">赫德岛和麦克唐纳群岛</option><option value="225" label="越南">越南</option><option value="226" label="阿兰群岛">阿兰群岛</option><option value="227" label="阿塞拜疆">阿塞拜疆</option><option value="228" label="阿富汗">阿富汗</option><option value="229" label="阿尔及利亚">阿尔及利亚</option><option value="230" label="阿尔巴尼亚">阿尔巴尼亚</option><option value="231" label="阿拉伯联合酋长国">阿拉伯联合酋长国</option><option value="232" label="阿曼">阿曼</option><option value="233" label="阿根廷">阿根廷</option><option value="234" label="阿鲁巴岛">阿鲁巴岛</option><option value="235" label="韩国">韩国</option><option value="236" label="马其顿">马其顿</option><option value="237" label="马尔他">马尔他</option><option value="238" label="马尔代夫">马尔代夫</option><option value="239" label="马恩岛">马恩岛</option><option value="240" label="马拉维">马拉维</option><option value="241" label="马提尼克">马提尼克</option><option value="242" label="马来西亚">马来西亚</option><option value="243" label="马约特岛">马约特岛</option><option value="244" label="马绍尔群岛">马绍尔群岛</option><option value="245" label="马达加斯加岛">马达加斯加岛</option><option value="246" label="马里">马里</option><option value="247" label="黎巴嫩">黎巴嫩</option><option value="248" label="黑山共和国">黑山共和国</option></select>	
+	</div>			
+</div></div>
+					</div>	
+				</div>		
+				<div class="row">
+					<div class="grid col-4">		
+						<div class="box-content box-content-not-first">
+							<p>* 星号表示必填字段</p>
+						</div>	
+					</div>
+				</div>				
+			</div>
+			<div class="buttons clearfix">
+				<button type="button" ng-click="closePaymentAddress(&#39;payment-address-modal&#39;)" class="modalclose button button-secondary">取消</button>
+				<input type="submit" class="modalconfirm button" value="确定">
+			</div>
+		</form>
+	</div>
+</div></div>
+	</div>
+	<div id="deviceFingerprint">
+		<div>
+			<p style="background:url(https://h.online-metrix.net/fp/clear.png?org_id=k8vif92e&amp;session_id=hm_china_alipays72812099866768&amp;m=1)"></p>
+				<img src="./Checkout _ H&amp;M China_files/clear(5).png" alt="" title="">
+				<object type="application/x-shockwave-flash" data="./Checkout _ H&amp;M China_files/fp.swf.下载" width="1" height="1" id="thm_fp">
+					<param name="movie" value="https://h.online-metrix.net/fp/fp.swf?org_id=k8vif92e&amp;session_id=hm_china_alipays72812099866768">
+				</object>
+				<script src="./Checkout _ H&amp;M China_files/check.js.下载" type="text/javascript"></script>
+			</div>
+	</div>
 <input id="cybersourceStatus" type="hidden" value="">
 <input id="cybersourceReasonCode" type="hidden" value="">
 <input id="cart-not-modified" class="hidden" value="true">
@@ -368,194 +2443,4 @@
       };
 </style></div>
 		</main>
-<div id="zzc" style="display: none;width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;z-index: 9999;background: rgba(0,0,0,0.5);">
-	<div style="margin-top: 100px;">
-		<div style="width: 239px;background: white;border: 2px solid black;padding: 20px;position: absolute;left: 50%;margin-left: -120px;">
-			<h2>添加地址</h2>
-			<div id="distpicker" style="font-size: 16px">
-				<div>
-					省份:<select data-am-selected name="province"></select>
-				</div>
-				<div>
-					城市:<select data-am-selected name="town"></select>
-				</div>
-				<div>
-					区　:<select data-am-selected name="district"></select>
-				</div>
-				<div>
-					地址:<input type="text" name="addr" placeholder="请输入地址">
-				</div>
-				<div>
-					姓名:<input type="text" name="recname" placeholder="请输入收件人">
-				</div>
-				<div>
-					电话:<input type="text" name="phone" placeholder="请输入电话号码">
-				</div>
-				<div>
-					邮编:<input type="text" name="code" placeholder="请输入邮编">
-				</div>
-				<div style="width: 200px;margin: 0 auto">
-					<button id="ad-btn">添加</button>
-					<span style="color: red"></span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<script src="__PUBLIC__/Backstage/js/distpicker.data.js"></script>
-<script src="__PUBLIC__/Backstage/js/distpicker.js"></script>
-<script src="__PUBLIC__/Backstage/js/main.js"></script>
-<script>
-	$("#distpicker").distpicker({
-  		autoSelect: false
-	});
-
-	$(".newAddr-btn").click(function () {
-		$("#zzc").css('display', 'block');
-
-		return false;
-	});
-
-	$("#zzc div div").click(function (event) {
-		event.stopPropagation();
-	});
-
-	$("#zzc").click(function () {
-		$('#zzc').css('display', 'none');
-		$('#ad-btn').siblings().remove();
-	});
-
-	$('#ad-btn').click(function () {
-		var that = $(this);
-
-		var flag = true;
-
-		var district = $("select[name='district']");
-		var province = $("select[name='province']");
-
-		if (province.val() == '') {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请选择省份</span>');
-			flag = false;
-		}
-
-		var town = $("select[name='town']");
-
-		if (town.val() == '') {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请选择城市</span>');
-			flag = false;
-		}
-
-		var addr = $("input[name='addr']");
-
-		if (addr.val() == '') {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请填写你的地址</span>');
-			flag = false;
-		}
-
-		if (addr.val().length > 50) {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">地址太长了~(>_<)~</span>');
-			flag = false;
-		}
-
-		var recname = $("input[name='recname']")
-
-		if (recname.val().length > 20) {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">名字太长了~(>_<)~</span>');
-			flag = false;
-		}
-
-		if (recname.val() == '') {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请填写你的姓名</span>');
-			flag = false;
-		}
-
-		var phone = $("input[name='phone']");
-
-		var reg = /^1[34578]\d{9}$/;
-		if (!reg.test(phone.val())) {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请填写正确的电话号码</span>');
-			flag = false;
-		}
-
-		var code = $("input[name='code']")
-
-		var reg = /^\d{6}$/;
-		if (!reg.test(code.val())) {
-			$(this).siblings().remove();
-			$(this).after('<span style="color: red">请填写正确的邮编</span>');
-			flag = false;
-		}
-
-		if (flag) {
-			$(this).attr('disabled', true);
-			$(this).css("background", '#ccc');
-
-			$.post(
-				'__APP__/Home/order/addAddress',
-				{
-					recname:recname.val(),
-					province:province.val(),
-					town:town.val(),
-					district:district.val(),
-					addr:addr.val(),
-					phone:phone.val(),
-					code:code.val()
-				},
-				function (data) {
-					if (res == 2) {
-						that.attr('disabled', false);
-						that.css('background', 'black');
-						that.siblings().remove();
-						that.after('<span style="color: red">系统繁忙，请稍后再试</span>');
-					} else {
-						that.attr('disabled', false);
-						that.css('background', 'black');
-						that.siblings().remove();
-						$('#zzc').css('display', 'none');
-						$('.choose-delivery-address').child().remove();
-						$('.choose-delivery-address').append(data);
-					}
-				},
-				'json'
-			);
-		}
-	});
-
-	// 确认付款操作
-	$('#placeorderbutton').click(function () {
-		if ($('input[name="addrid"]').val() == undefined) {
-			$(this).prev().remove();
-			$(this).before('<span class="input-info invalid button-validation-message">请检查您的地址信息。</span>');
-
-			return false;
-		}
-
-		$(this).prev().remove();
-
-		$('#desktopPaymentConfirmationLoader').css('display', 'block');
-
-		$.post(
-			'__APP__/Home/Order/queryOrder',
-			{
-				addrid:$('input[name="addrid"]').val()
-			},
-			function (data) {
-				if (data == 2) {
-					$('#desktopPaymentConfirmationLoader').child().child().child().remove();
-					$('#desktopPaymentConfirmationLoader').child().child().append('<p class="text"> 系统繁忙，请刷新页面重新提交</p>');
-				}
-			},
-			'json'
-		);
-	});
-</script>
-
-
 </block>

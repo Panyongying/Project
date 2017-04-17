@@ -269,7 +269,7 @@
 
 				foreach ($data['cartList'] as $k => $v) {
 					// 头部购物车的处理
-					$result['topCart'] .= '<li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
+					$result['topCart'] += '<li class="shopping-bag-rollover-item clearfix clickable-container has-link ">
                                                                             <a href="">
                                                                                 <img alt="Straight Regular Jeans" class="shopping-bag-rollover-item-image" height="126" width="84" src="'.$v['pic'].'" title="'.$v['name'].'">
                                                                                     </a>
@@ -296,7 +296,7 @@
                                                                                 ¥'.$v['num'] * $v['price'].'</div>
                                                                         </li>';
 					// 主体购物车的处理
-					$result['mainCart'] .= '<li class="product-detail-list-item ng-scope" id="'.$v['gid'].'">
+					$result['mainCart'] += '<li class="product-detail-list-item ng-scope" id="'.$v['gid'].'">
 					<div class="product-detail-list-item-image-wrapper">
 					<div class="wrapper-inner">
 				<a href="" class="product-detail-list-item-image "> 
@@ -351,24 +351,24 @@
     				}
 
 					for ($i = 1; $i <= $v['stock']; $i++) {
-						$result['mainCart'] .= '<option value="'.$i.'"';
+						$result['mainCart'] += '<option value="'.$i.'"';
 
 						if ($v['stock'] == $i) {
-							$result['mainCart'] .= ' selected';
+							$result['mainCart'] += ' selected';
 						}
 						
-						$result['mainCart'] .= 'label="'.$i.'">'.$i.'</option>';
+						$result['mainCart'] += 'label="'.$i.'">'.$i.'</option>';
 					}
 
-					$result['mainCart'] .= '
+					$result['mainCart'] += '
     				</select>
 					</div>
            		</div>
 			</li>';
 				}
 
-				$result['topCart'] .= '</ul>';
-				$result['mainCart'] .= '</ul>';
+				$result['topCart'] += '</ul>';
+				$result['mainCart'] += '</ul>';
 			}
 
 			return $result;
