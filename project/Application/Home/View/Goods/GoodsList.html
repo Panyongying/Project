@@ -61,18 +61,22 @@
 
 
 
-       <div class="product-filters sticky-on-scroll"  style="width:100%" >
-                   <div class="row" style="margin-left:185px">
-                       <div class="totop">
-                           <a href="#" class="toptrigger">返回到顶部</a> <a href="__CONTROLLER__/index" class="filterlogo" style="background-image:url('__PUBLIC__/show/logotype.png');">返回到开始</a>
-                       </div>
-                       <div class="filteractions clearfix">
-                           <ul class="triggers clearfix">
-                               
-                               <li class="js-clickexpand clickexpand filter" style="border-right:1px solid #d1d1d1" data-expandoptions="{&quot;toggle&quot;:&quot;true&quot;}">
+        <div class="product-filters sticky-on-scroll" data-sticky-width="100%" data-sticky-stop-offset="25" data-sticky-fill="true" style="">
+                <div class="row">
+<!--                     <div class="totop">
+                        <a href="#" class="toptrigger">返回到顶部</a>
+                        <a href="/zh_cn/index.html" class="filterlogo">返回到开始</a>
+                    </div> -->
+                    <div class="filteractions clearfix">
+                        <ul class="triggers clearfix">
+                          <!--  category condition  -->
+                            <li class="js-clickexpand clickexpand category" data-expandoptions="{&quot;toggle&quot;:&quot;true&quot;}">
+
+                            </li>
+                            <li class="js-clickexpand clickexpand filter" data-expandoptions="{&quot;toggle&quot;:&quot;true&quot;}">
                                 <a href="javascript:;" class="trigger js-expandtrigger"><strong>筛选</strong></a>
                                 <div class="expandtarget js-expandtarget filters">
-                               
+                                <form class="js-product-list-filter-form ng-pristine ng-valid" method="get" data-productlist-page="true" data-filtered-products-url="/zh_cn/ladies/shop-by-product/basics/_jcr_content/main/productlisting_f4d1.display.html">
 
 
 
@@ -80,24 +84,25 @@
 
                                 <div class="row shut">
                                     <div class="cols clearfix">
-                                                  <style>
-                                                    .borderBlack{
-                                                      border: 3px solid black;
-                                                    }
-                                                  </style>
+
 
                                                 <div class="col">
                                                     <h4>颜色</h4>
                                                     <ul class="inputlist grid" data-filter-param-name="colorWithNames">
-                                                          <foreach name="typeOne" item="vc">
+
+                                                    <foreach name="typeOne" item="vc">
                                                          <li>
-                                                            <label  for="{$vc.attrname}" class="filter-option choose" ><input  class="choose-input"  type="checkbox" name="color" id="{$vc.attrname}" data-value="{$vc.attrname}"><span class="pattern" data-value="{$vc.attrname}" style="background:{$vc.attrname};margin-left:2px"></span>
+                                                            <label  title="黑色" class="filter-option" data-value="000000_%E9%BB%91%E8%89%B2"><input id="{$vc.attrname}" type="checkbox" value="{$vc.attrname}">
+                                                              <span class="pattern" style="background:{$vc.attrname};margin-left:2px"></span>
+<<<<<<< HEAD
                                                         
                                                             </label>
+=======
+
+                                                            </a>
+>>>>>>> 230219f5bba1a317aa8230e0eda7fecf3033c08e
                                                         </li>
                                                     </foreach>
-                                                   
-                                                      
                                                     </ul>
                                                 </div>
 
@@ -106,22 +111,45 @@
                                                     <h4>尺码</h4>
                                                     <ul class="inputlist row-cols">
 
+
                                                     <foreach name="typeTwo" item="vt">
                                                         <li class="row-col">
-                                                            <ul data-filter-param-name="sizes" class="inputlist rows"> 
+                                                            <ul data-filter-param-name="sizes" class="inputlist rows">
+
+
+
+
                                                                 <li>
-                                                                    <label class="choose" for="{$vt.attrname}">
-                                                                        <input class="choose-input" id="{$vt.attrname}" type="checkbox" name="size[]" data-value="{$vt.attrname}">
+                                                                    <label for="filter-size-5_{$vt.attrname}">
+                                                                        <input id="filter-size-5_{$vt.attrname}" type="checkbox" value="5_{$vt.attrname}">
+
+
+
+
+
+
                                                                                         <div class="detailbox detailbox-value"><span>{$vt.attrname}</span></div>
+
+
+
+
                                                                     </label>
                                                                 </li>
+
+
+
+
+
+
+
                                                             </ul>
                                                         </li>
                                                     </foreach>
+
+
                                                     </ul>
                                                 </div>
-                                                
-                                               
+
 
 
                                     </div>
@@ -138,25 +166,22 @@
                                 </form>
                                 </div>
                             </li>
-                               <li class="js-clickexpand clickexpand sort-by">
-                                   <a href="javascript:;" class="trigger js-expandtrigger"><strong>排序方式</strong></a>
-                                   <div class="expandtarget js-expandtarget sort">
-                                       
-<ul class="menu toggleCurrent">
-    <li class="menu-sub-item"><label class="menu-link" >默认排序<input type="radio" style="display:none" name="choose-radio" data-value="default" ></label></li>
-    <li class="menu-sub-item"><label class="menu-link" >模糊搜索<input type="radio" style="display:none" name="choose-radio" data-value="stock" ></label></li>
-    <li class="menu-sub-item"><label class="menu-link" >最低价格<input type="radio" style="display:none" name="choose-radio" data-value="ascPrice" ></label></li>
-    <li class="menu-sub-item"><label class="menu-link" >最高价格<input type="radio" style="display:none" name="choose-radio" data-value="descPrice" ></label></li>
-</ul>
-                                   </div>
-                                   
-                               </li>
-                           </ul>
-                       </div>
-                   </div>
-               </div>
-               <!-- /Product filters -->                    
-           </div>
+                            <li class="js-clickexpand clickexpand sort-by" data-expandoptions="{&quot;toggle&quot;:&quot;true&quot;}">
+                                                                    <a href="javascript:;" class="trigger js-expandtrigger"><strong>分类方式</strong></a>
+                                                                    <div class="expandtarget js-expandtarget sort">
+
+                                    <ul class="menu toggleCurrent">
+                                        <li class="menu-sub-item"><span class="menu-link" data-value="newProduct">最新</span></li>
+                                        <li class="menu-sub-item"><span class="menu-link" data-value="ascPrice">最低价格</span></li>
+                                        <li class="menu-sub-item"><span class="menu-link" data-value="descPrice">最高价格</span></li>
+                                    </ul>
+                                                                    </div>
+                                                                    </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 
         <section class="segment section singleteasercontainer">
@@ -204,7 +229,11 @@
                                 <div class="product-item-selection">新品</div>
 
 
-                            
+                            <ul class="list-swatches">
+                            <foreach name="vv.aid" item="va">
+                                    <li class="item" style="background:{$va[0][0].attrname};margin-left:2px"></li>
+                            </foreach>
+                            </ul>
                         </div>
                     </article>
                 </div>
@@ -308,20 +337,5 @@
 
 
         </script>
-
-        <!-- 滚动条显示顶部栏 -->
-      <script>
-        $(document).on('scroll', function() {
-          // sticky
-          var scrollHeight = $(this).scrollTop();
-          if (scrollHeight > 200) {
-            $('.sticky-on-scroll').addClass('sticky');
-          } else {
-            $('.sticky-on-scroll').removeClass('sticky');
-          }
-          
-        });
-      </script> 
-      
     </main>
 </block>

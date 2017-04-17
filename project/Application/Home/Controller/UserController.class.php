@@ -194,7 +194,7 @@
 	  			$this->display('Sign/signin');
 
 	  			exit;
-	  		}       	
+	  		}
 
 	  		$res = D('user')->showPersonal();
 	  		
@@ -276,6 +276,7 @@
 
 	  	}
 
+
 	  	//添加地址和显示地址
 	  	public function addAddress()
 	  	{
@@ -310,6 +311,7 @@
 	  	public function delAddress()
 	  	{
 	  		$res = D('user')->deleteAddress();
+
 
 	  		echo $res;
 	  	}
