@@ -498,4 +498,54 @@
 
 			return $addressInfo;
 		}
+
+		//删除地址
+		public function deleteAddress()
+		{
+			$id = I('post.id');
+
+			$res = M('addr')->where('id='.$id)->delete();
+
+			return $res;
+		}
+
+		//修改地址为默认地址
+		public function changeAddrStat()
+		{
+			$id = I('post.id');
+
+			$uid = I('post.uid');
+
+			$data['status'] = 2;
+
+			$map['uid'] = $uid;
+
+			M('addr')->where($map)->save($data);
+
+			$data['status'] = 1;
+
+			$res = M('addr')->where('id='.$id)->save($data);
+
+			return $res;
+		}
+
+		//修改地址		
+		public function editAddr()
+		{
+			$id = I('post.id');
+
+			$data['recname'] = I('post.recname');
+
+			$data['addr'] = I('post.addr');
+
+			$data['phone'] = I('post.phone');
+
+			$data['zip'] = I('post.zip');
+
+			$res = M('addr')->where('id='.$id)->save($data);
+
+			return $res;
+
+		}
+
 	}

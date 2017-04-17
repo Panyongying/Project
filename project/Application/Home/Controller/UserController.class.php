@@ -276,7 +276,7 @@
 
 	  	}
 
-	  	//添加地址和修改地址
+	  	//添加地址和显示地址
 	  	public function addAddress()
 	  	{
 	  		if( !isset($_SESSION['userInfo']) ){
@@ -305,5 +305,28 @@
 	  		
 	  	}
 
+	  	//删除地址
+	  	
+	  	public function delAddress()
+	  	{
+	  		$res = D('user')->deleteAddress();
 
+	  		echo $res;
+	  	}
+	  	//修改地址为默认地址
+	  	
+	  	public function changeAddrStatus()
+	  	{
+	  		$res = D('user')->changeAddrStat();
+	  		
+	  		return $res;
+	  	}
+
+	  	//修改地址
+	  	public function editAddress()
+	  	{
+	  		$res = D('user')->editAddr();
+
+	  		echo $res;
+	  	}
 	} 
